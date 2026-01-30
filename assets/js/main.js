@@ -325,3 +325,57 @@ document.addEventListener("DOMContentLoaded", initMobileScrollArrows);
 
             sections.forEach(section => observer.observe(section));
         });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const dialog = document.createElement('div');
+    dialog.className = 'copy-dialog';
+    dialog.innerHTML = '<i class="ph-fill ph-check-circle" style="color: var(--brand-secondary);"></i> URL copied';
+    document.body.appendChild(dialog);
+
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('copy-title')) {
+            const targetElement = e.target.id ? e.target : e.target.closest('[id]');
+            
+            if (targetElement) {
+                const anchor = '#' + targetElement.id;
+                const url = window.location.origin + window.location.pathname + anchor;
+
+                navigator.clipboard.writeText(url).then(() => {
+                    dialog.classList.add('show');
+                    setTimeout(() => {
+                        dialog.classList.remove('show');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Copy failed', err);
+                });
+            }
+        }
+    });
+});
+
+function closeNotice(isCheckAction = false) {
+    const notice = document.getElementById('mainNotice');
+    
+    if (isCheckAction) {
+        localStorage.setItem('hideNotice', new Date().getTime());
+        notice.style.opacity = '0';
+        setTimeout(() => { notice.style.display = 'none'; }, 300);
+    } else {
+        notice.style.display = 'none';
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const hideTime = localStorage.getItem('hideNotice');
+    const now = new Date().getTime();
+    
+    if (!hideTime || (now - hideTime > 24 * 60 * 60 * 1000)) {
+        setTimeout(() => {
+            const notice = document.getElementById('mainNotice');
+            if (notice) {
+                notice.style.display = 'block';
+                notice.style.opacity = '1'; 
+            }
+        }, 100); 
+    }
+});
