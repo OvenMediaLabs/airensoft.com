@@ -357,7 +357,7 @@ function closeNotice(isCheckAction = false) {
     const notice = document.getElementById('mainNotice');
     
     if (isCheckAction) {
-        localStorage.setItem('hideNotice', new Date().getTime());
+        localStorage.setItem('OMLNotice', new Date().getTime());
         notice.style.opacity = '0';
         setTimeout(() => { notice.style.display = 'none'; }, 300);
     } else {
@@ -366,7 +366,7 @@ function closeNotice(isCheckAction = false) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    const hideTime = localStorage.getItem('hideNotice');
+    const hideTime = localStorage.getItem('OMLNotice');
     const now = new Date().getTime();
     
     if (!hideTime || (now - hideTime > 24 * 60 * 60 * 1000)) {

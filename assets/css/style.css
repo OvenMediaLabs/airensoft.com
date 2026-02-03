@@ -1591,7 +1591,8 @@ html { scroll-padding-top: var(--navbar-height, 80px); }
     border: 2px solid rgba(238, 111, 42, 0.5);
 /*    border-top: 4px solid var(--company-primary);*/
     border-radius: 20px;
-	box-shadow: 0 5px 40px rgba(0, 0, 0, 0.8);
+/*	box-shadow: 0 5px 40px rgba(0, 0, 0, 0.8);*/
+	box-shadow: 0 0 0 200vmax rgba(0, 0, 0, 0.5);
     display: none;
     overflow: hidden;
     animation: popup-appear 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -1600,13 +1601,13 @@ html { scroll-padding-top: var(--navbar-height, 80px); }
 
 @media (min-width: 992px) {
     .notice-layer.center {
-        width: 480px;
+        width: 420px;
         top: 48%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
 	.notice-layer.right-bottom {
-		width: 480px;
+		width: 420px;
 		bottom: 30px;
 		right: 30px;
 	}
@@ -1615,12 +1616,12 @@ html { scroll-padding-top: var(--navbar-height, 80px); }
 @media (max-width: 991px) {
     .notice-layer {
         width: calc(100% - 30px) !important;
-        left: 15px !important;
-        right: 15px !important;
-        bottom: 20px !important;
-        top: auto !important;
-        transform: translateY(0) !important;
-/*        max-height: 100vh !important;*/
+		top: 50% !important;
+        left: 50% !important;
+        bottom: auto !important;
+        right: auto !important;
+        transform: translate(-50%, -50%) !important;
+        max-height: 50vh !important;
     }
     
     .notice-content {
