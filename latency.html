@@ -82,9 +82,9 @@
 			
 			<a class="navbar-brand d-flex align-items-center" href="index.html">
 				<picture style="pointer-events: none;">
-					<source srcset="images/airen_ci/02_OML_Letter_W2px.svg" type="image/svg+xml">  
-					<img src="images/airen_ci/02_OML_Letter_W2px.png" alt="OvenMedia Labs" class="sharp-img">
-					<p class="super-small text-end text-sub mb-0">(Formerly AirenSoft)</p>
+					<source srcset="images/airen_ci/OML_Letter_GGL.svg" type="image/svg+xml">  
+					<img src="images/airen_ci/OML_Letter_GGL.png" alt="OvenMedia Labs" class="sharp-img">
+					<p class="super-small text-end text-sub mb-0 opacity-75">(Formerly AirenSoft)</p>
 				</picture>
 			</a>
 			
@@ -105,49 +105,52 @@
             </div>
         </div>
     </nav>
-
-    <section id="hero-section" class="hero-bg-latency full-page-section d-flex align-items-center position-relative text-center delay-100">
+	
+    <section id="hero-section" class="hero-bg-ome full-page-section d-flex align-items-center position-relative text-center delay-100">
         <div class="hero-overlay"></div>
         <div class="container position-relative z-1">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="hero-badge mb-4 px-4 reveal-up mx-auto fw-bold small">Technology Deep Dive</div>
-                </div>
+                <div class="col-lg-10">
+                    <div class="hero-badge2 mb-4 px-4 reveal-up mx-auto fw-bold small">Technology Deep Dive</div>
+                </div>				
                 <div class="col-lg-12">
-                    <h1 class="display-1 fw-bold text-white mb-4 lh-tight reveal-up delay-100">Real-Time is<br><span class="text-gradient">Not 10 Seconds Late.</span>
+                    <h1 class="display-1 fw-bold text-main mb-4 lh-tight reveal-up delay-100">Real-Time is<br><span class="text-gradient-surf">Not 10 Seconds Late.</span>
                     </h1>
                     <p class="lead text-sub mb-5 reveal-up delay-200 col-lg-8 mx-auto">In the era of live interaction, <strong>Live</strong> should mean <strong>Now</strong>.<br class="d-none d-md-block"> Understand why latency occurs and how we achieved Sub-Second Latency.</p>
-                </div>
-            </div>
-        </div>          
-        
+					
+					<div class="d-flex flex-column flex-sm-row justify-content-center gap-2 reveal-up delay-300 mb-4 px-4 px-sm-0">
+						<a href="https://medium.com/@OvenMediaEngine" target="_blank" class="btn btn-md btn-brand-outline px-3 rounded-pill w-sm-auto" style="min-width: 240px;"><i class="ph ph-article-medium fs-5"></i>&nbsp;&nbsp;OvenMediaBlog</a>
+					</div>
+				</div>
+			</div>
+		</div>
         <div class="scroll-indicator d-none d-lg-flex">
             <div class="mouse"><div class="wheel"></div></div>
             <div class="arrow-scroll"><span></span><span></span><span></span></div>
-        </div>
+        </div>		
     </section>
 
-    <section class="full-page-section d-flex flex-column position-relative bg-surface bg-gradient2">
+    <section class="full-page-section d-flex flex-column position-relative bg-middle">
         <div class="w-100 flex-grow-1 d-flex align-items-center py-5">
             <div class="container">
                 <div class="row gx-5 align-items-center">
                     <div class="col-lg-6 mb-5 mb-lg-0 reveal-up">
-                        <div class="d-flex align-items-center gap-2 mb-3 text-bi-yellow">
+                        <div class="d-flex align-items-center gap-2 mb-3 text-secondary">
                             <i class="ph ph-question fs-4"></i>
                             <span class="fw-bold text-uppercase small">The Problem</span>
                         </div>
-                        <h2 class="display-4 fw-bold text-white mb-4">Why is your stream delayed?</h2>
+                        <h2 class="display-4 fw-bold text-main mb-4">Why is your stream delayed?</h2>
                         <p class="lead text-sub mb-4">Many people believe their live stream is happening in real-time, but they are actually watching the past.</p>
-                        <div class="p-4 rounded-4 bg-body border border-darker mb-4 shadow-lg">
-                            <h5 class="text-white mb-3 fw-bold"><i class="ph ph-film-strip text-sub me-2"></i>The "Chunk" Bottleneck</h5>
+                        <div class="p-4 rounded-4 bg-body-50 border border-accent mb-4 shadow-lg">
+                            <h5 class="text-main mb-3 fw-bold"><i class="ph ph-film-strip text-sub me-2"></i>The "Chunk" Bottleneck</h5>
                             <p class="text-sub fs-6 mb-0">Legacy protocols like HLS or DASH slice video into "Chunks" (segments) of 2~10 seconds. Players typically buffer 3 of these chunks to ensure stability.<br><br>
-								e.g.,<strong class="text-brand"> 3 Chunks × 10 Seconds = 30 Seconds Delay.</strong><br>This buffering creates a massive gap between the streamer and the viewer.
+								e.g.,<strong class="text-primary"> 3 Chunks × 10 Seconds = 30 Seconds Delay.</strong><br>This buffering creates a massive gap between the streamer and the viewer.
                             </p>
                         </div>
                     </div>
 
                     <div class="col-lg-6 reveal-up delay-100">
-                        <h4 class="text-white fw-bold mb-5 ps-lg-4">Latency Reality Check</h4>
+                        <h4 class="text-main fw-bold mb-5 ps-lg-4">Latency Reality Check</h4>
                         
                         <div class="ps-lg-4">
                             <div class="mb-5">
@@ -156,43 +159,43 @@
                                     <span class="text-sub">6s ~ 10s+</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-3">
-                                    <i class="ph ph-camera glass-icon text-sub fs-4"></i>
+                                    <i class="ph ph-camera glass-icon text-main fs-4"></i>
                                     <div class="race-container race-track flex-grow-1 mx-0">
-                                        <div class="race-bar bg-secondary" style="animation: race-fill 8s linear infinite;"></div>
+                                        <div class="race-bar bg-surface" style="animation: race-fill 8s linear infinite;"></div>
                                     </div>
-                                    <i class="ph ph-monitor glass-icon text-sub fs-4"></i>
+                                    <i class="ph ph-monitor glass-icon text-main fs-4"></i>
                                 </div>
                                 <p class="small text-sub mt-2"><i class="ph ph-x-circle fs-5"></i> Passive viewing only. Impossible to have real-time chat.</p>
                             </div>
 
                             <div class="mb-5">
                                 <div class="d-flex justify-content-between mb-2">
-                                    <span class="text-white fw-bold">Low Latency HLS (LL-HLS)</span>
-                                    <span class="text-white">2s ~ 4s</span>
+                                    <span class="text-main fw-bold">Low Latency HLS (LL-HLS)</span>
+                                    <span class="text-main">2s ~ 4s</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-3">
-                                    <i class="ph ph-camera glass-icon text-white fs-4"></i>
+                                    <i class="ph ph-camera glass-icon text-main fs-4"></i>
                                     <div class="race-container race-track flex-grow-1 mx-0">
-                                        <div class="race-bar bg-white" style="animation: race-fill 3s linear infinite;"></div>
+                                        <div class="race-bar bg-company" style="animation: race-fill 3s linear infinite;"></div>
                                     </div>
-                                    <i class="ph ph-monitor glass-icon text-white fs-4"></i>
+                                    <i class="ph ph-monitor glass-icon text-main fs-4"></i>
                                 </div>
                                 <p class="small text-sub mt-2"><i class="ph ph-warning fs-5"></i> Improved, but still feels "slightly off" for live interaction.</p>
                             </div>
 
                             <div>
                                 <div class="d-flex justify-content-between mb-2">
-                                    <span class="text-gradient fw-bold">WebRTC and SRT</span>
-                                    <span class="text-bi-yellow fw-bold">&lt; 1 Second</span>
+                                    <span class="text-gradient2 fw-bold">WebRTC and SRT</span>
+                                    <span class="text-secondary fw-bold">&lt; 1 Second</span>
                                 </div>
                                 <div class="d-flex align-items-center gap-3">
-                                    <i class="ph ph-camera glass-icon text-primary fs-4"></i>
+                                    <i class="ph ph-camera glass-icon text-main fs-4"></i>
                                     <div class="race-container race-track flex-grow-1 mx-0">
-                                        <div class="race-bar bg-brand" style="animation: race-fill 0.5s linear infinite; box-shadow: 0 0 10px var(--brand-secondary);"></div>
+                                        <div class="race-bar bg-bi-accent" style="animation: race-fill 0.5s linear infinite; box-shadow: 0 0 10px var(--brand-secondary);"></div>
                                     </div>
-                                    <i class="ph ph-monitor glass-icon text-primary fs-4"></i>
+                                    <i class="ph ph-monitor glass-icon text-main fs-4"></i>
                                 </div>
-                                <p class="small text-primary mt-2"><i class="ph ph-check-circle fs-5"></i> <strong>Sub-Second Latency.</strong> True real-time synchronization.</p>
+                                <p class="small text-secondary mt-2"><i class="ph ph-check-circle fs-5"></i> <strong>Sub-Second Latency.</strong> True real-time synchronization.</p>
                             </div>
                         </div>
                     </div>
@@ -201,40 +204,42 @@
         </div>
     </section>
 
-    <section class="full-page-section d-flex flex-column position-relative bg-black">
+    <section class="full-page-section d-flex flex-column position-relative bg-body">
         <div class="w-100 flex-grow-1 d-flex align-items-center py-5">
             <div class="container">
                 <div class="text-center mb-5 reveal-up">
-                    <span class="badge bg-bi-yellow text-dark mb-3 px-3 py-2 rounded-pill fw-bold">Unlock Possibilities</span>
-                    <h2 class="display-4 fw-bold text-white mb-3"><span class="text-gradient2">What Can You Do with Zero Delay?</span></h2>
+                    <span class="badge bg-brand text-dark mb-3 px-3 py-2 rounded-pill fw-bold">Unlock Possibilities</span>
+                    <h2 class="display-4 fw-bold text-main mb-3"><span class="text-gradient-surf">What Can You Do with Zero Delay?</span></h2>
                     <p class="lead text-sub col-lg-8 mx-auto">Latency close to zero means you can finally communicate naturally.</p>
                 </div>
 
                 <div class="row g-4 justify-content-center mobile-horizontal-scroll">
                     <div class="col-lg-4 col-md-6 reveal-up delay-100">
-                        <div class="tech-card-pro opensource p-4 p-md-5 p-pro bg-surface border border-darker h-100 text-center d-flex flex-column align-items-center">
-                            <div class="pro-icon-box mb-4 d-inline-flex align-items-center justify-content-center" style="--tech-icon: #0d0d0d; width: 80px; height: 80px;">
-                                <i class="ph ph-gavel fs-1 text-bi-yellow"></i>
+                        <div class="tech-card-pro h-100 p-4 p-md-5 rounded-4 bg-surface border border-darker d-flex flex-column hover-card3 text-center align-items-center justify-content-center border-0">
+                            <div class="pro-icon-box mb-4 d-inline-flex align-items-center justify-content-center" style="--tech-icon: #0A1122; width: 80px; height: 80px;">
+                                <i class="ph ph-gavel fs-2 text-main"></i>
                             </div>
-                            <h4 class="text-white fw-bold mb-3">Live Auction &amp; Commerce</h4>
+                            <h4 class="text-main fw-bold text-main mb-3">Live Auction &amp; Commerce</h4>
                             <p class="text-sub mb-0 flex-grow-1">Bids must happen instantly. A 5-second delay could mean losing a deal. Ensure fair, real-time bidding.</p>
                         </div>
-                    </div>
+                    </div>					
+					
                     <div class="col-lg-4 col-md-6 reveal-up delay-200">
-                        <div class="tech-card-pro opensource p-4 p-md-5 p-pro bg-surface border border-darker h-100 text-center d-flex flex-column align-items-center">
-                            <div class="pro-icon-box mb-4 d-inline-flex align-items-center justify-content-center" style="--tech-icon: #0d0d0d; width: 80px; height: 80px;">
-                                <i class="ph ph-game-controller fs-1 text-bi-yellow"></i>
+                        <div class="tech-card-pro h-100 p-4 p-md-5 rounded-4 bg-surface border border-darker d-flex flex-column hover-card3 text-center align-items-center justify-content-center border-0">
+                            <div class="pro-icon-box mb-4 d-inline-flex align-items-center justify-content-center" style="--tech-icon: #0A1122; width: 80px; height: 80px;">
+                                <i class="ph ph-game-controller fs-2 text-main"></i>
                             </div>
-                            <h4 class="text-white fw-bold mb-3">iGaming &amp; Betting</h4>
+                            <h4 class="text-main fw-bold text-main mb-3">iGaming &amp; Betting</h4>
                             <p class="text-sub mb-0 flex-grow-1">Trust is built on visibility. Players need to see the card turn or the ball drop the moment it happens.</p>
                         </div>
                     </div>
+					
                     <div class="col-lg-4 col-md-6 reveal-up delay-300">
-                        <div class="tech-card-pro enterprise p-4 p-md-5 p-pro bg-surface border border-darker h-100 text-center d-flex flex-column align-items-center">
-                            <div class="pro-icon-box mb-4 d-inline-flex align-items-center justify-content-center" style="--tech-icon: #0d0d0d; width: 80px; height: 80px;">
-                                <i class="ph ph-chats-circle fs-1 text-primary"></i>
+                        <div class="tech-card-pro h-100 p-4 p-md-5 rounded-4 bg-surface border border-darker d-flex flex-column hover-card3 text-center align-items-center justify-content-center border-0">
+                            <div class="pro-icon-box mb-4 d-inline-flex align-items-center justify-content-center" style="--tech-icon: #0A1122; width: 80px; height: 80px;">
+                                <i class="ph ph-chats-circle fs-2 text-main"></i>
                             </div>
-                            <h4 class="text-white fw-bold mb-3">Interactive Webinar</h4>
+                            <h4 class="text-main fw-bold text-main mb-3">Interactive Webinar</h4>
                             <p class="text-sub mb-0 flex-grow-1">Q&amp;A sessions shouldn't be awkward. Have a natural conversation with thousands of viewers.</p>
                         </div>
                     </div>
@@ -248,57 +253,57 @@
             <div class="container">
                 <div class="row justify-content-center mb-5 reveal-up">
                     <div class="col-lg-9 text-center">
-                        <div class="d-flex align-items-center justify-content-center gap-2 mb-3 text-bi-yellow">
+                        <div class="d-flex align-items-center justify-content-center gap-2 mb-3 text-primary">
                             <i class="ph ph-cpu fs-4"></i>
                             <span class="fw-bold text-uppercase small">Our Solution</span>
                         </div>
-                        <h2 class="display-4 fw-bold text-white mb-3">Engineered for Sub-Second</h2>
+                        <h2 class="display-4 fw-bold text-main mb-3">Engineered for Sub-Second</h2>
                         <p class="lead text-sub">OvenMeida Lab’s mission is to democratize high-quality, ultra-low latency streaming.<br>We combined the best open-source protocols to create a powerful engine.</p>
                     </div>
                 </div>
 
                 <div class="row g-4 mobile-horizontal-scroll">
                     <div class="col-lg-4 reveal-up delay-100">
-							<div class="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow">
+							<div class="p-4 rounded h-100 hover-card4 d-flex flex-column card-glow glow-secondary light">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h3 class="h4 text-white fw-bold mb-0">WebRTC</h3>
-                                <i class="ph ph-globe fs-1 text-primary"></i>
+                                <h3 class="h4 text-main fw-bold mb-0">WebRTC</h3>
+                                <i class="ph ph-globe fs-1 text-secondary"></i>
                             </div>
                             <p class="text-sub mb-4 fs-6">The gold standard for real-time communication. We optimized WebRTC for <strong>one-to-many broadcasting</strong>, overcoming its traditional scaling limits.</p>
-                            <ul class="text-sub small list-unstyled mb-0 border-top border-darker pt-3">
-                                <li class="mb-2"><i class="ph ph-check text-primary me-2"></i><strong>Frame-based:</strong> Renders frames as soon as arrive.</li>
-                                <li class="mb-2"><i class="ph ph-check text-primary me-2"></i><strong>Sub-500ms Latency:</strong> Instant, interactive feedback.</li>
-                                <li><i class="ph ph-check text-primary me-2"></i><strong>No Plugins:</strong> Modern browser support.</li>
+                            <ul class="text-sub small list-unstyled mb-0 border-top border-surface pt-3">
+                                <li class="mb-1"><i class="ph ph-check text-secondary me-2"></i><strong>Frame-based:</strong> Renders frames as soon as arrive.</li>
+                                <li class="mb-1"><i class="ph ph-check text-secondary me-2"></i><strong>Sub-500ms Latency:</strong> Instant, interactive feedback.</li>
+                                <li><i class="ph ph-check text-secondary me-2"></i><strong>No Plugins:</strong> Modern browser support.</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-lg-4 reveal-up delay-200">
-                        <div class="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-secondary">
+                        <div class="p-4 rounded h-100 hover-card4 d-flex flex-column card-glow glow-secondary2 light">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h3 class="h4 text-white fw-bold mb-0">LL-HLS</h3>
-                                <i class="ph ph-file-video fs-1 text-bi-yellow"></i>
+                                <h3 class="h4 text-main fw-bold mb-0">LL-HLS</h3>
+                                <i class="ph ph-file-video fs-1 text-tertiary"></i>
                             </div>
                             <p class="text-sub mb-4 fs-6">Extended HLS protocol. With Chunked Transfer Encoding and HTTP/2, we cut typical HLS latency from tens of seconds down to about 2–3 seconds.</p>
-                            <ul class="text-sub small list-unstyled mb-0 border-top border-darker pt-3">
-                                <li class="mb-2"><i class="ph ph-check text-bi-yellow me-2"></i><strong>Firewall Friendly:</strong> HTTP/TCP based.</li>
-                                <li class="mb-2"><i class="ph ph-check text-bi-yellow me-2"></i><strong>HLS-Compatible:</strong> Works with existing HLS/CDN.</li>
-                                <li><i class="ph ph-check text-bi-yellow me-2"></i><strong>ABR Support:</strong> Seamless streaming quality.</li>
+                            <ul class="text-sub small list-unstyled mb-0 border-top border-surface pt-3">
+                                <li class="mb-1"><i class="ph ph-check text-tertiary me-2"></i><strong>Firewall Friendly:</strong> HTTP/TCP based.</li>
+                                <li class="mb-1"><i class="ph ph-check text-tertiary me-2"></i><strong>HLS-Compatible:</strong> Works with existing HLS/CDN.</li>
+                                <li><i class="ph ph-check text-tertiary me-2"></i><strong>ABR Support:</strong> Seamless streaming quality.</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-lg-4 reveal-up delay-300">
-                        <div class="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-gray">
+                        <div class="p-4 rounded h-100 hover-card4 d-flex flex-column card-glow glow-secondary3 light">
                             <div class="d-flex align-items-center justify-content-between mb-4">
-                                <h3 class="h4 text-white fw-bold mb-0">SRT</h3>
-                                <i class="ph ph-arrows-left-right fs-1 text-bi-yellow"></i>
+                                <h3 class="h4 text-main fw-bold mb-0">SRT</h3>
+                                <i class="ph ph-arrows-left-right fs-1 text-tertiary-accent"></i>
                             </div>
                             <p class="text-sub mb-4 fs-6">Quality in, quality out. We use SRT instead of aging RTMP to keep both ingress and egress stable, even over unreliable public networks or between sites.</p>
-                            <ul class="text-sub small list-unstyled mb-0 border-top border-darker pt-3">
-                                <li class="mb-2"><i class="ph ph-check text-white me-2"></i><strong>Reliable:</strong> End-to-end packet loss recover.</li>
-                                <li class="mb-2"><i class="ph ph-check text-white me-2"></i><strong>Low Jitter:</strong> Smooth input &amp; output stream.</li>
-                                <li><i class="ph ph-check text-white me-2"></i><strong>Modern Standard:</strong> Future-proof.</li>
+                            <ul class="text-sub small list-unstyled mb-0 border-top border-surface pt-3">
+                                <li class="mb-1"><i class="ph ph-check text-tertiary-accent me-2"></i><strong>Reliable:</strong> End-to-end packet loss recover.</li>
+                                <li class="mb-1"><i class="ph ph-check text-tertiary-accent me-2"></i><strong>Low Jitter:</strong> Smooth input &amp; output stream.</li>
+                                <li><i class="ph ph-check text-tertiary-accent me-2"></i><strong>Modern Standard:</strong> Future-proof.</li>
                             </ul>
                         </div>
                     </div>
@@ -310,7 +315,7 @@
 	<section class="full-page-section d-flex flex-column position-relative bg-black">
         <div class="d-flex align-items-center justify-content-center py-5">
             <div class="container py-4 text-center reveal-up">
-                <h2 class="fw-bold text-white mb-3">Ready to Go Real-Time?</h2>
+                <h2 class="fw-bold text-main mb-3">Ready to Go Real-Time?</h2>
                 <p class="lead text-sub fw-light mb-4 col-lg-9 mx-auto">Don't let latency hold your business back.</p>
 				
 				<div class="d-flex gap-2 w-100 flex-wrap justify-content-center">
@@ -321,14 +326,14 @@
         </div>
 	</section>
 		
-		<section id="blog" class="full-page-section d-flex flex-column align-items-center bg-surface position-relative">
+		<section id="blog" class="full-page-section d-flex flex-column align-items-center bg-body position-relative">
         <div class="w-100 flex-grow-1 d-flex align-items-center py-5">
             <div class="container"><div class="d-flex justify-content-between align-items-end mb-4 reveal-up">
                 <div>
-                    <h2 class="fw-bold text-white mb-1 copy-title">OvenMeidaBlog</h2>
+                    <h2 class="fw-bold text-main mb-1 copy-title">OvenMediaBlog</h2>
                         <p class="text-sub small mb-0">From the OvenMediaEngine Engineers.</p>
                     </div>
-                    <a href="https://medium.com/@OvenMediaEngine" target="_blank" class="btn btn-sm btn-secondary-outline rounded-pill d-none d-md-block">Read More &rarr;</a>
+                    <a href="https://medium.com/@OvenMediaEngine" target="_blank" class="btn btn-sm btn-secondary-outline3 rounded-pill d-none d-md-block">Read More &rarr;</a>
                 </div>
                 <div id="blog-grid" class="row g-3 g-md-4 mobile-horizontal-scroll">
                     <div class="col-12 text-center text-sub py-5"><div class="spinner-border text-primary mb-3" role="status"></div></div>
@@ -340,7 +345,7 @@
 	<section class="full-page-section d-flex flex-column bg-black footer-section pb-0-mobile">
         <div class="py-5 bg-surface border-bottom border-darker d-none">
             <div class="container text-center reveal-up delay-100">
-                <h4 class="fw-bold text-white mb-3">Stay in the loop</h4>
+                <h4 class="fw-bold text-main mb-3">Stay in the loop</h4>
                 <form class="d-flex gap-2 justify-content-center mt-3">
                     <input type="email" class="form-control bg-dark border-secondary small" placeholder="Enter your email" style="max-width: 300px;">
                     <button type="submit" class="btn btn-sm btn-primary-brand small">Subscribe</button>
@@ -354,8 +359,8 @@
                     <div class="col-12 col-lg-4 address-col">
 						
 						<picture style="pointer-events: none;">
-							<source srcset="images/airen_ci/03_OML_Footer_GT2px.svg" type="image/svg+xml">  
-							<img src="images/airen_ci/03_OML_Footer_GT2px.png" alt="OvenMedia Labs" class="sharp-img">
+							<source srcset="images/airen_ci/OML_Text_L.svg" type="image/svg+xml">  
+							<img src="images/airen_ci/OML_Text_L.png" alt="OvenMedia Labs" class="sharp-img">
 						</picture>
 						
                         <div class="address-compact">
@@ -420,10 +425,9 @@
             </div>
         </footer>
     </section>
-	</section>
 
     <button type="button" class="btn-scroll-top" id="btnScrollTop" aria-label="Scroll to Top">
-        <i class="ph ph-arrow-up text-white fs-4"></i>
+        <i class="ph ph-arrow-up text-main fs-4"></i>
     </button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -435,15 +439,15 @@
 			<div class="notice-header">
 				<div>
 					<span class="notice-badge mb-2">CORPORATE UPDATE</span>
-					<h4 class="text-white fw-normal mt-2 mb-0">AirenSoft is becoming<br><span class="fs-2 text-brand fw-bold">OvenMedia Labs</span></h4>
+					<h4 class="text-main fw-normal mt-2 mb-0">AirenSoft is becoming<br><span class="fs-2 text-primary fw-bold">OvenMedia Labs</span></h4>
 					<p class="text-sub extra-small">(AirenSoft Co., Ltd. &rarr; OvenMedia Labs Inc.)</p>
 				</div>
 				<button type="button" class="btn-close btn-close-white" onclick="closeNotice(false)" aria-label="Close"></button>
 			</div>
 			<hr>
 			<div class="notice-body mt-4">
-				<p class="text-white fw-bold mb-2 lh-14">We are evolving!</p>
-				<p class="text-white small lh-14">Same technology, same team,<br>but <span class="text-bi-yellow fst-italic">brand new name coming soon</span>.</p>
+				<p class="text-main fw-bold mb-2 lh-14">We are evolving!</p>
+				<p class="text-main small lh-14">Same technology, same team,<br>but <span class="text-primary fst-italic">brand new name coming soon</span>.</p>
 			</div>
 		</div>
 		
