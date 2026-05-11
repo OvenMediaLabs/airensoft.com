@@ -1,0 +1,10 @@
+ovenmedialabs:
+  name: OvenMediaLabs
+  title: Media Technology Experts Group
+  url: https://ovenmedialabs.com
+  image_url: /images/airen_ci/OML_Icon.svg
+  page: true
+  socials:
+    github: OvenMediaLabs
+    linkedin: ovenmedialabs
+    x: OvenMediaEngine

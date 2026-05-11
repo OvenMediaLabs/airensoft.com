@@ -1,0 +1,70 @@
+/**
+ * Bridge file between Docusaurus's Infima theme and the legacy marketing-site
+ * CSS. The legacy /assets/css/style.css is loaded as a separate <link> via
+ * headTags in docusaurus.config.ts (so it cascades after Infima but before
+ * page-scoped CSS modules).
+ */
+
+:root {
+  --ifm-color-primary: #ffb800;
+  --ifm-color-primary-dark: #e6a600;
+  --ifm-color-primary-darker: #d99c00;
+  --ifm-color-primary-darkest: #b38000;
+  --ifm-color-primary-light: #ffc733;
+  --ifm-color-primary-lighter: #ffcc4d;
+  --ifm-color-primary-lightest: #ffd980;
+
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Match legacy --navbar-height (78px desktop / 64px mobile) so Docusaurus's
+     docs/blog layouts reserve the correct space below the fixed navbar. The
+     legacy CSS sets .navbar-custom { height: var(--navbar-height); } via its
+     own variable; we mirror the value into Infima's variable so docs sidebar
+     positioning, scroll-to-anchor offsets, and content top padding all align. */
+  --ifm-navbar-height: 78px;
+}
+
+@media (max-width: 996px) {
+  :root {
+    --ifm-navbar-height: 64px;
+  }
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #ffb800;
+  --ifm-color-primary-dark: #e6a600;
+  --ifm-color-primary-darker: #d99c00;
+  --ifm-color-primary-darkest: #b38000;
+  --ifm-color-primary-light: #ffc733;
+  --ifm-color-primary-lighter: #ffcc4d;
+  --ifm-color-primary-lightest: #ffd980;
+
+  --ifm-background-color: #0a0a0a;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+}
+
+/**
+ * Marketing pages use full-bleed sections that fill the viewport. Docusaurus's
+ * default <main> for MDX pages has class "container container--fluid
+ * margin-vert--lg" which applies max-width: 1320px from Infima. We override
+ * to remove the constraint so hero backgrounds touch both viewport edges.
+ *
+ * The !important is needed because Infima's .container rule has equal
+ * specificity but is loaded after via the CSS bundle order.
+ */
+.marketing-page main,
+.marketing-page main.container,
+.marketing-page main.container--fluid {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.marketing-page .main-wrapper {
+  max-width: none !important;
+  padding: 0 !important;
+}
+
