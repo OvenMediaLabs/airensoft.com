@@ -1,0 +1,8 @@
+{
+  "label": "AWS Marketplace",
+  "position": 32,
+  "link": {
+    "type": "doc",
+    "id": "README"
+  }
+}
