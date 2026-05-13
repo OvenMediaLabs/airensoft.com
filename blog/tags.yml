@@ -31,4 +31,24 @@ release:
 fundamentals:
   label: Fundamentals
   permalink: /fundamentals
-  description: Streaming fundamentals — frame rate, latency, codecs, formats.
+  description: Streaming fundamentals (frame rate, latency, codecs, formats).
+
+news:
+  label: News
+  permalink: /news
+  description: Company news and announcements.
+
+case-study:
+  label: Case Study
+  permalink: /case-study
+  description: Real-world deployments and customer use cases.
+
+benchmark:
+  label: Benchmark
+  permalink: /benchmark
+  description: Performance tests, comparisons, and tuning results.
+
+tutorial:
+  label: Tutorial
+  permalink: /tutorial
+  description: Step-by-step guides and how-tos.
