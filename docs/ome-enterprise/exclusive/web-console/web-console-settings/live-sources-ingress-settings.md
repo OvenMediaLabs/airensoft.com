@@ -16,7 +16,7 @@ Additionally, you can select Virtual Host and Application in the Application sec
 
 :::info
 
-Detailed Guide: [/docs/ome/live-source/rtmp](/docs/ome/live-source/rtmp)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/rtmp](https://ovenmedialabs.com/docs/ome/live-source/rtmp)
 
 :::
 
@@ -36,7 +36,7 @@ Additionally, you can select Virtual Host and Application in the Application sec
 
 :::info
 
-Detailed Guide: [/docs/ome/live-source/webrtc](/docs/ome/live-source/webrtc)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/webrtc](https://ovenmedialabs.com/docs/ome/live-source/webrtc)
 
 :::
 
@@ -52,7 +52,7 @@ Additionally, SRT uses the MPEG-TS format when transmitting streams, which allow
 
 :::info
 
-Detailed Guide: [/docs/ome/live-source/srt](/docs/ome/live-source/srt)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/srt](https://ovenmedialabs.com/docs/ome/live-source/srt)
 
 :::
 
@@ -68,7 +68,7 @@ Additionally, you can select Virtual Host and Application in the Application sec
 
 :::info
 
-Detailed Guide: [/docs/ome/live-source/mpeg-2-ts-beta](/docs/ome/live-source/mpeg-2-ts-beta)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/mpeg-2-ts-beta](https://ovenmedialabs.com/docs/ome/live-source/mpeg-2-ts-beta)
 
 :::
 
@@ -85,7 +85,7 @@ On the Scheduled Channel in the Live Source Settings, you can view whether Sched
 
 :::info
 
-Detailed Guide: [/docs/ome/live-source/scheduled-channel](/docs/ome/live-source/scheduled-channel)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/scheduled-channel](https://ovenmedialabs.com/docs/ome/live-source/scheduled-channel)
 
 :::
 
@@ -101,7 +101,7 @@ On the Multiplex Channel in the Live Source Settings, you can check whether Mult
 
 :::info
 
-Detailed Guide: [/docs/ome/live-source/multiplex-channel](/docs/ome/live-source/multiplex-channel)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/multiplex-channel](https://ovenmedialabs.com/docs/ome/live-source/multiplex-channel)
 
 :::
 

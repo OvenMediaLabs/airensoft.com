@@ -47,7 +47,7 @@ This setting is ignored if the playback URL already has a query string appended 
 :::
 
 
-<table><thead><tr><th width="151">Key</th><th width="138">Value</th><th>Description</th></tr></thead><tbody><tr><td>_HLS_legacy</td><td>YES | NO <br />* Default: NO</td><td>Sets the `_HLS_legacy` value to `YES` will remove partial segment information from LL-HLS playlists, making them work the same as legacy HLS like HLSv6.<br />* LL-HLS Only</td></tr><tr><td>_HLS_rewind</td><td>YES | NO<br />* Default: YES</td><td>If the `_HLS_rewind` value is set to `YES` and the <a href="/docs/ome/streaming/low-latency-hls#live-rewind">Live Rewind</a> feature is enabled, old segment information will be included in the playlist.</td></tr></tbody></table>
+<table><thead><tr><th width="151">Key</th><th width="138">Value</th><th>Description</th></tr></thead><tbody><tr><td>_HLS_legacy</td><td>YES | NO <br />* Default: NO</td><td>Sets the `_HLS_legacy` value to `YES` will remove partial segment information from LL-HLS playlists, making them work the same as legacy HLS like HLSv6.<br />* LL-HLS Only</td></tr><tr><td>_HLS_rewind</td><td>YES | NO<br />* Default: YES</td><td>If the `_HLS_rewind` value is set to `YES` and the <a href="https://ovenmedialabs.com/docs/ome/streaming/low-latency-hls#live-rewind">Live Rewind</a> feature is enabled, old segment information will be included in the playlist.</td></tr></tbody></table>
 
 ## Using Propagate Query String
 

@@ -3,7 +3,7 @@ title: Web Console Settings
 sidebar_position: 67
 ---
 
-You can check the settings for various features provided by OvenMediaEngine. Detailed information about the list of features and settings can be found in the [OvenMediaEngine User Guide](/docs/ome).
+You can check the settings for various features provided by OvenMediaEngine. Detailed information about the list of features and settings can be found in the [OvenMediaEngine User Guide](https://ovenmedialabs.com/docs/ome).
 
 ### Unapplied Configuration Detection
 

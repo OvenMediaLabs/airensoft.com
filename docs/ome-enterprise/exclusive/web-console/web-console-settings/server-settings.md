@@ -28,7 +28,7 @@ This is the screen that appears when you access the Server section in Settings, 
 
 :::info
 
-Detailed Guide: [/docs/ome/configuration#server](/docs/ome/configuration#server)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/configuration#server](https://ovenmedialabs.com/docs/ome/configuration#server)
 
 :::
 
@@ -46,7 +46,7 @@ This feature allows you to view and modify the Module information currently set 
 
 :::info
 
-P2P Guide: [/docs/ome/p2p-delivery](/docs/ome/p2p-delivery)
+P2P Guide: [https://ovenmedialabs.com/docs/ome/p2p-delivery](https://ovenmedialabs.com/docs/ome/p2p-delivery)
 
 :::
 
@@ -62,7 +62,7 @@ As you can see in the image above, you can go to the Server in Settings to view 
 
 :::info
 
-Detailed Guide: [/docs/ome/configuration#virtual-host](/docs/ome/configuration#virtual-host)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/configuration#virtual-host](https://ovenmedialabs.com/docs/ome/configuration#virtual-host)
 
 :::
 

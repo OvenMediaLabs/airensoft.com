@@ -30,7 +30,7 @@ These APIs allow you to list sessions, force-terminate sessions, and inquire ses
 ### Sessions: List and Terminate API
 
 You can control WebRTC playback using this API. When you identify a problematic session, call the `DELETE` API to force-stop it immediately.
-&#x20;For proactive access control, pair Session Management with [Admission Webhooks](/docs/ome/access-control/admission-webhooks).
+&#x20;For proactive access control, pair Session Management with [Admission Webhooks](https://ovenmedialabs.com/docs/ome/access-control/admission-webhooks).
 
 
 [session.md](../rest-api/v1/session.md)

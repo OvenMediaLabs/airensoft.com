@@ -93,7 +93,7 @@ The File Name of the Playlist must be unique throughout the entire `Application`
 
 :::info
 
-Detailed Guide:  [/docs/ome/live-source/multiplex-channel#configuration](/docs/ome/live-source/multiplex-channel#configuration)
+Detailed Guide:  [https://ovenmedialabs.com/docs/ome/live-source/multiplex-channel#configuration](https://ovenmedialabs.com/docs/ome/live-source/multiplex-channel#configuration)
 
 :::
 
@@ -130,8 +130,8 @@ You can also use and control Recording using the API.
 
 :::info
 
-* Recording Settings Guide: [/docs/ome/recording](/docs/ome/recording)
-* Recording API Guide: [/docs/ome/rest-api/v1/virtualhost/application/recording](/docs/ome/rest-api/v1/virtualhost/application/recording)
+* Recording Settings Guide: [https://ovenmedialabs.com/docs/ome/recording](https://ovenmedialabs.com/docs/ome/recording)
+* Recording API Guide: [https://ovenmedialabs.com/docs/ome/rest-api/v1/virtualhost/application/recording](https://ovenmedialabs.com/docs/ome/rest-api/v1/virtualhost/application/recording)
 
 :::
 
@@ -151,8 +151,8 @@ Also, you can use and control Push Publishing using the API.
 
 :::info
 
-* Push Publishing Settings Guide: [/docs/ome/recording](/docs/ome/recording)
-* Push Publishing API Guide: [/docs/ome/rest-api/v1/virtualhost/application/push](/docs/ome/rest-api/v1/virtualhost/application/push)
+* Push Publishing Settings Guide: [https://ovenmedialabs.com/docs/ome/recording](https://ovenmedialabs.com/docs/ome/recording)
+* Push Publishing API Guide: [https://ovenmedialabs.com/docs/ome/rest-api/v1/virtualhost/application/push](https://ovenmedialabs.com/docs/ome/rest-api/v1/virtualhost/application/push)
 
 :::
 
@@ -170,8 +170,8 @@ In addition, you can use and control (LL)-HLS Dump using the API.
 
 :::info
 
-* LLHLS Dump Settings Guide: [/docs/ome/streaming/low-latency-hls#dump](/docs/ome/streaming/low-latency-hls#dump)
-* LLHLS Dump API Guide: [/docs/ome/rest-api/v1/virtualhost/application/stream/hls-dump](/docs/ome/rest-api/v1/virtualhost/application/stream/hls-dump)
+* LLHLS Dump Settings Guide: [https://ovenmedialabs.com/docs/ome/streaming/low-latency-hls#dump](https://ovenmedialabs.com/docs/ome/streaming/low-latency-hls#dump)
+* LLHLS Dump API Guide: [https://ovenmedialabs.com/docs/ome/rest-api/v1/virtualhost/application/stream/hls-dump](https://ovenmedialabs.com/docs/ome/rest-api/v1/virtualhost/application/stream/hls-dump)
 
 :::
 

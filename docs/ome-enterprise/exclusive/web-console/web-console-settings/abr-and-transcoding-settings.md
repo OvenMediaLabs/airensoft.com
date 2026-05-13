@@ -29,7 +29,7 @@ ABR and Transcoding Settings 페이지에서 Transcode Webhook의 활성화 여�
 
 :::info
 
-Detailed Guide: [/docs/ome/transcoding/transcodewebhook](/docs/ome/transcoding/transcodewebhook)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding/transcodewebhook](https://ovenmedialabs.com/docs/ome/transcoding/transcodewebhook)
 
 :::
 
@@ -55,7 +55,7 @@ On the ABR and Transcoding Settings page, you can verify that GPU-based hardware
 
 :::info
 
-Detailed Guide: [/docs/ome/transcoding/gpu-usage](/docs/ome/transcoding/gpu-usage)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding/gpu-usage](https://ovenmedialabs.com/docs/ome/transcoding/gpu-usage)
 
 :::
 
@@ -72,7 +72,7 @@ On the ABR and Transcoding Settings page, you can see a list of `Output Profiles
 
 :::info
 
-Detailed Guide: [/docs/ome/transcoding#outputprofiles](/docs/ome/transcoding#outputprofiles)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding#outputprofiles](https://ovenmedialabs.com/docs/ome/transcoding#outputprofiles)
 
 :::
 
@@ -108,7 +108,7 @@ You can set up ABR by adding `Playlists` or a Playlist with multiple `Renditions
 
 :::info
 
-Detailed Guide: [/docs/ome/transcoding#adaptive-bitrate-streaming-abr](/docs/ome/transcoding#adaptive-bitrate-streaming-abr)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding#adaptive-bitrate-streaming-abr](https://ovenmedialabs.com/docs/ome/transcoding#adaptive-bitrate-streaming-abr)
 
 :::
 
@@ -120,7 +120,7 @@ Each streaming protocol has a supported codec. If you set multiple codecs in the
 
 :::tip
 
-List of supported codecs by streaming protocol: [/docs/ome/transcoding#supported-codecs-by-streaming-protocol](/docs/ome/transcoding#supported-codecs-by-streaming-protocol)
+List of supported codecs by streaming protocol: [https://ovenmedialabs.com/docs/ome/transcoding#supported-codecs-by-streaming-protocol](https://ovenmedialabs.com/docs/ome/transcoding#supported-codecs-by-streaming-protocol)
 
 :::
 
@@ -130,7 +130,7 @@ List of supported codecs by streaming protocol: [/docs/ome/transcoding#supported
 
 :::tip
 
-List of codecs supported by Live Transcoder: [/docs/ome/transcoding#supported-video-audio-and-image-codecs](/docs/ome/transcoding#supported-video-audio-and-image-codecs)
+List of codecs supported by Live Transcoder: [https://ovenmedialabs.com/docs/ome/transcoding#supported-video-audio-and-image-codecs](https://ovenmedialabs.com/docs/ome/transcoding#supported-video-audio-and-image-codecs)
 
 :::
 
@@ -158,7 +158,7 @@ If you only set the Audio Encoding Profile, you can transmit it as Audio-only.
 
 :::info
 
-Detailed Guide: [/docs/ome/transcoding#audio](/docs/ome/transcoding#audio)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding#audio](https://ovenmedialabs.com/docs/ome/transcoding#audio)
 
 :::
 
@@ -194,7 +194,7 @@ If you want to reduce or increase the overall resolution while maintaining the a
 
 :::info
 
-Detailed Guide: [/docs/ome/transcoding#video](/docs/ome/transcoding#video)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding#video](https://ovenmedialabs.com/docs/ome/transcoding#video)
 
 :::
 
@@ -221,7 +221,7 @@ If you want to generate a thumbnail image while maintaining the aspect ratio of 
 
 :::info
 
-Detailed Guide: [/docs/ome/transcoding#image](/docs/ome/transcoding#image)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding#image](https://ovenmedialabs.com/docs/ome/transcoding#image)
 
 :::
 
@@ -246,7 +246,7 @@ If the codec or track quality of the ingress stream matches all of the condition
 
 :::info
 
-Detailed Guide: [/docs/ome/transcoding#conditional-transcoding](/docs/ome/transcoding#conditional-transcoding)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding#conditional-transcoding](https://ovenmedialabs.com/docs/ome/transcoding#conditional-transcoding)
 
 :::
 

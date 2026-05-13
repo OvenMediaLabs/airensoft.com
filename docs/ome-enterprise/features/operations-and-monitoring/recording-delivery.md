@@ -78,7 +78,7 @@ aws_access_key_id='****',aws_secret_access_key='****',endpoint='https://object.s
 * `object_dir` (required): Specify the path within the bucket to deliver the recorded file.
 * `delete` (optional): Specify `true` or `false` for whether to delete the recorded file created in the RootPath of Server.xml after the delivery is complete.
 
-For more details on the recording format, see [OvenMediaEngine Recording](/docs/ome/recording#automated-recording).
+For more details on the recording format, see [OvenMediaEngine Recording](https://ovenmedialabs.com/docs/ome/recording#automated-recording).
 
 ### Recording Settings Using REST API
 
@@ -110,7 +110,7 @@ Example `Server.xml`:
 
 For detailed information about the recording feature, please refer to this document.
 
-[/docs/ome/recording](/docs/ome/recording)
+[https://ovenmedialabs.com/docs/ome/recording](https://ovenmedialabs.com/docs/ome/recording)
 
 :::
 
@@ -178,7 +178,7 @@ curl --location 'http://{OME_HOST}:{OME_REST_API_PORT}/v1/vhosts/default/apps/ap
 :::info
 
 You can find the Recording REST API documentation at the following URL.\
-[/docs/ome/rest-api/v1/virtualhost/application/recording](/docs/ome/rest-api/v1/virtualhost/application/recording)
+[https://ovenmedialabs.com/docs/ome/rest-api/v1/virtualhost/application/recording](https://ovenmedialabs.com/docs/ome/rest-api/v1/virtualhost/application/recording)
 
 :::
 

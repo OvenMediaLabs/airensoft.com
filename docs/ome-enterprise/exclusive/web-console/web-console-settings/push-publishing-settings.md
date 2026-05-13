@@ -16,7 +16,7 @@ When the Push Publishing feature is enabled, you can use the `StreamMap` option 
 
 :::info
 
-Detailed Guide: [/docs/ome/push-publishing](/docs/ome/push-publishing)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/push-publishing](https://ovenmedialabs.com/docs/ome/push-publishing)
 
 :::
 
