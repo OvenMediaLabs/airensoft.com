@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: TypeScript type check
+        run: npm run typecheck
+
       - name: Build Docusaurus site
         env:
           NODE_OPTIONS: --max-old-space-size=4096

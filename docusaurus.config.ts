@@ -63,7 +63,18 @@ const config: Config = {
   projectName: 'airensoft.com',
   trailingSlash: false,
 
-  // Warn (don't throw) during migration; flip to 'throw' before cutover.
+  // Warn (don't throw) during migration.
+  //
+  // Plan for cutover:
+  //  - `onBrokenLinks`: flip to 'throw' once the remaining ~10 broken
+  //    docs links (all in upstream OvenMediaEngine + Enterprise content)
+  //    are fixed via upstream PRs.
+  //  - `onBrokenAnchors`: keep as 'warn'. Docusaurus only registers MDX
+  //    headings (`#`, `##`, ...) as anchors; raw JSX `id="..."` props
+  //    on marketing pages like /ome (#ovenplayer, #ovenlivekit) are
+  //    invisible to the checker. Those false positives account for
+  //    ~95% of anchor warnings. Real broken anchors should be hunted
+  //    via an external link checker (e.g. lychee) in CI.
   onBrokenLinks: 'warn',
   onBrokenAnchors: 'warn',
 

@@ -19,6 +19,9 @@ jobs:
 
       - run: npm ci
 
+      - name: TypeScript type check
+        run: npm run typecheck
+
       - name: Build (verify only)
         env:
           NODE_OPTIONS: --max-old-space-size=4096
