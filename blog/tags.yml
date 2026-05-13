@@ -27,3 +27,8 @@ release:
   label: Release
   permalink: /release
   description: OvenMediaEngine release announcements.
+
+fundamentals:
+  label: Fundamentals
+  permalink: /fundamentals
+  description: Streaming fundamentals — frame rate, latency, codecs, formats.

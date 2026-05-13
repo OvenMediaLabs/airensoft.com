@@ -1,0 +1,87 @@
+---
+slug: how-to-choose-an-aws-ec2-instance-for-using-ovenstudio-llhls
+title: "How to choose an AWS EC2 Instance for using OvenStudio LLHLS?"
+description: "Selecting the right EC2 instance type for OvenStudio LLHLS enables smooth and efficient streaming performance."
+authors: [ovenmedialabs]
+date: 2023-09-12T05:46:14.657Z
+tags: [llhls, ome]
+image: ./1-HvFmukpRjHl207C97sumAg.png
+canonical_url: "https://medium.com/@OvenMediaEngine/how-to-choose-an-aws-ec2-instance-for-using-ovenstudio-llhls-4678d2858b7e"
+---
+
+![](./1-HvFmukpRjHl207C97sumAg.png)
+
+When it comes to deploying [OvenStudio LLHLS](https://airensoft.com/os.html) on the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-xwvoj4om6w4ee), selecting the right EC2 instance type is a critical decision that can significantly impact your streaming performance and cost efficiency. In this blog post, we’ll guide you through the process of choosing the optimal EC2 instance for your [OvenStudio LLHLS](https://airensoft.com/os.html) deployment.
+
+{/* truncate */}
+
+### #01. Consider Your Workload and Streaming Requirements
+
+Before diving into EC2 instance types, evaluate your streaming workload and requirements. Factors to consider include:
+
+- **Concurrent Viewers**: Estimate the number of simultaneous viewers you expect. This will impact the CPU, memory, and network resources needed.
+- **Video Quality**: Higher quality streams require more resources. Determine the desired video quality *(resolution, bitrate, framerate, and more)* of your streams.
+
+### #02. CPU and Memory Requirements
+
+For [OvenStudio LLHLS](https://airensoft.com/os.html), CPU and memory are crucial. Here are some EC2 instance families that offer a good balance between CPU and memory:
+
+- **M5 Instances**: These provide a balanced mix of resources, ideal for moderate CPU and memory-intensive workloads.
+- **C5 Instances**: Designed for compute-intensive tasks, these instances offer high CPU performance.
+
+### #03. Network Performance
+
+Since streaming involves transmitting large amounts of data, network performance matters. EC2 instance types vary in their network capabilities:
+
+- **Network Performance Levels**: Instances like the C4, C5, M4, and M5 families generally offer higher network performance.
+- **Enhanced Networking**: Look for instances that support Enhanced Networking, which can improve network throughput and latency.
+
+### #04. EC2 Instance Sizing
+
+[OvenStudio LLHLS](https://airensoft.com/os.html) supports a variety of instance types including T2, T3, M4, M5, M6, C4, C5, C6, depending on various usage scenarios. The list of instances that can use OvenStudio LLHLS is shown below:
+
+- **T2: **t2.micro, t2.small, t2.medium, t2.large, t2.xlarge, t2.2xlarge
+- **T3: **t3.micro, t3.small, t3.medium, t3.large, t3.xlarge, t3.2xlarge
+- **T3A: **t3a.micro, t3a.small, t3a.medium, t3a.large, t3a.xlarge, t3a.2xlarge
+- **M4: **m4.large, m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, m4.16xlarge
+- **M5: **m5.large, m5.xlarge, m5.2xlarge, m5.4xlarge, m5.8xlarge, m5.12xlarge, m5.16xlarge, m5.24xlarge, m5.metal
+- **M5A: **m5a.large, m5a.xlarge, m5a.2xlarge, m5a.4xlarge, m5a.8xlarge, m5a.12xlarge, m5a.16xlarge, m5a.24xlarge
+- **M5AD: **m5ad.large, m5ad.xlarge, m5ad.2xlarge, m5ad.4xlarge, m5ad.8xlarge, m5ad.12xlarge, m5ad.16xlarge, m5ad.24xlarge
+- **M5D: **m5d.large, m5d.xlarge, m5d.2xlarge, m5d.4xlarge, m5d.8xlarge, m5d.12xlarge, m5d.16xlarge, m5d.24xlarge, m5d.metal
+- **M5ZN: **m5zn.large, m5zn.xlarge, m5zn.2xlarge, m5zn.3xlarge, m5zn.6xlarge, m5zn.12xlarge, m5zn.metal
+- **M6I: **m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m6i.12xlarge, m6i.16xlarge, m6i.24xlarge, m6i.32xlarge, m6i.metal
+- **C4: **c4.8xlarge
+- **C5: **c5.large, **c5.xlarge ***(Vendor Recommended)*, c5.2xlarge, c5.4xlarge, c5.9xlarge, c5.12xlarge, c5.18xlarge, c5.24xlarge, c5.metal
+- **C5D: **c5d.9xlarge, c5d.12xlarge, c5d.18xlarge, c5d.24xlarge, c5d.metal
+- **C5A: **c5a.8xlarge, c5a.12xlarge, c5a.16xlarge, c5a.24xlarge
+- **C5N: **c5n.9xlarge, c5n.18xlarge, c5n.metal
+- **C6I: **c6i.large, c6i.xlarge, c6i.2xlarge, c6i.4xlarge, c6i.8xlarge, c6i.12xlarge, c6i.16xlarge, c6i.24xlarge, c6i.32xlarge, c6i.metal
+
+If you want to know the performance and features of each instance, you can refer to the guides provided by AWS. Click the links below to see a description of each instance:
+
+- **Low-cost and General Purpose **(T2): [Amazon EC2 T2 Instances](https://aws.amazon.com/ec2/instance-types/t2)
+- **Low-cost and General Purpose **(T3): [Amazon EC2 T3 Instances](https://aws.amazon.com/ec2/instance-types/t3/)
+- **General Purpose **(M5~M6): [Amazon EC2 Instance M-Types](https://aws.amazon.com/ec2/instance-types/?nc1=h_ls#General_Purpose)
+- **Optimized Computing** (C4~C6): [Amazon EC2 Instance C-Types](https://aws.amazon.com/ec2/instance-types/?nc1=h_ls#Compute_Optimized)
+
+### #05. Cost Optimization
+
+Optimizing costs is essential. Choose an instance that meets your requirements without being overprovisioned. AWS offers various pricing options *(On-Demand, Spot Instances, Reserved Instances)* that can help control costs.
+
+The AWS Marketplace provides calculators to help you figure out your software and instance costs, click [**HERE**](https://aws.amazon.com/marketplace/pp/prodview-xwvoj4om6w4ee#pdp-pricing) for more details.
+
+## Conclusion
+
+Selecting the right EC2 instance type for [OvenStudio LLHLS](https://airensoft.com/os.html) enables smooth and efficient streaming performance. By evaluating your workload, and considering CPU, memory, network, and storage requirements, you can make an informed decision that aligns with your streaming goals and budget. For a comprehensive guide on EC2 instance types, performance benchmarks, and hands-on examples, check out our detailed documentation on the [OvenStudio LLHLS User Guide](https://ovenstudio.gitbook.io/ovenstudio-llhls/ovenstudio-llhls/aws-instance).
+
+Tailor your OvenStudio LLHLS to fit your needs by considering your requirements, instance characteristics, specifications, and pricing. For instance, if you want to utilize OvenStudio LLHLS to its full potential and set up medium to large-scale streaming, following our recommendation, you might choose the **c5.xlarge** instance on a C5 instance family. This instance offers specifications of 4vCPU / 8GiB RAM / Up to 10Gbps *(Network Bandwidth)* / Up to 4750Mbps *(EBS Bandwidth)*, with an hourly cost of $0.33 *(Software: $0.16 per hour, Instance: $0.17 per hour)*. Plus, with an annual commitment, you can enjoy the software at a discounted rate of $450, which is approximately 68% cheaper.
+
+Moreover, if your streaming requirements grow beyond your current selection, you can consider scaling up by choosing higher-spec instances. Alternatively, leverage OvenStudio LLHLS’s seamless integration with AWS CloudFront to expand your streaming distribution by adding Edge Servers as needed.
+
+Remember, making the right EC2 instance choice sets the foundation for a successful and reliable [OvenStudio LLHLS](https://airensoft.com/os.html) deployment on the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-xwvoj4om6w4ee).
+
+## For more information
+
+- [OvenStudio LLHLS Website](https://airensoft.com/os)
+- [OvenStudio LLHLS on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-xwvoj4om6w4ee)
+- [OvenStudio LLHLS User Guide](https://ovenstudio.gitbook.io/ovenstudio-llhls)
