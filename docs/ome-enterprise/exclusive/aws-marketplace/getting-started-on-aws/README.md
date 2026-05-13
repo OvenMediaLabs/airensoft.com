@@ -17,7 +17,7 @@ sidebar_position: 33
 
 
 
-### Launch an EC2 instance <a href="#launch-an-ec2-instance" id="launch-an-ec2-instance"></a>
+### Launch an EC2 instance
 
 5. After deciding on your subscription, click the \[Launch Software] button displayed shortly after to enter the EC2 Instance configuration page.
    * If the \[Launch Software] button does not appear even after waiting, you can go directly to the page where you can launch the instance by clicking \[AWS Marketplace Software] (or \[Manage Subscriptions]) in the [AWS Console Home](https://console.aws.amazon.com) or [AWS Marketplace](https://aws.amazon.com/marketplace).
@@ -31,7 +31,7 @@ sidebar_position: 33
 :::
 
 
-#### \[Option A]  If you select “**Launch from EC2 Console**” <a href="#launch-from-ec2-console" id="launch-from-ec2-console"></a>
+#### \[Option A]  If you select “**Launch from EC2 Console**”
 
 ![](../../../images/image-400.png)
 
@@ -52,7 +52,7 @@ For details on the ports included in the \[Vendor-recommended security group], p
 
 ***
 
-#### \[Option B] If you select “**One-click launch from AWS Marketplace**” <a href="#one-click-launch-from-aws-marketplace" id="one-click-launch-from-aws-marketplace"></a>
+#### \[Option B] If you select “**One-click launch from AWS Marketplace**”
 
 ![](../../../images/image-402.png)
 
@@ -73,7 +73,7 @@ For details on the ports included in the \[Vendor-recommended security group], p
 
 
 
-### Check required instance information <a href="#check-required-instance-information" id="check-required-instance-information"></a>
+### Check required instance information
 
 ![](../../../images/image-405.png)
 
@@ -83,7 +83,7 @@ For details on the ports included in the \[Vendor-recommended security group], p
 
 
 
-### Connect to the Web Console and sign in <a href="#connect-to-the-web-console-and-sign-in" id="connect-to-the-web-console-and-sign-in"></a>
+### Connect to the Web Console and sign in
 
 6. Open the OvenMediaEngine Enterprise Web Console in your browser using the following:
    * **`http://`**`{Public IPv4 Address}:`**`8080`**
@@ -108,7 +108,7 @@ In this example, we used OBS Studio, one of the most widely used live encoder so
 
 
 
-### Streaming with a Live Encoder (OBS Studio) <a href="#streaming-with-a-live-encoder" id="streaming-with-a-live-encoder"></a>
+### Streaming with a Live Encoder (OBS Studio)
 
 ![](../../../images/image-388.png)
 
@@ -119,7 +119,7 @@ In this example, we used OBS Studio, one of the most widely used live encoder so
 
 
 
-### Configure the Stream destination in OBS <a href="#configure-the-stream-destination-in-obs" id="configure-the-stream-destination-in-obs"></a>
+### Configure the Stream destination in OBS
 
 ![](../../../images/image-387.png)
 
@@ -160,7 +160,7 @@ If you would like to verify basic operation using other protocols (RTSP Pull, We
 
 
 
-### Verify stream status and playback in the Web Console <a href="#verify-stream-status-and-playback-in-the-web-console" id="verify-stream-status-and-playback-in-the-web-console"></a>
+### Verify stream status and playback in the Web Console
 
 ![](../../../images/image-406.png)
 
@@ -175,7 +175,7 @@ If you would like to verify basic operation using other protocols (RTSP Pull, We
 
 
 
-## Play via Egress Protocol (WebRTC, LLHLS, HLS, SRT) <a href="#post-setup-verification-for-ovenmediaengine-enterprise" id="post-setup-verification-for-ovenmediaengine-enterprise"></a>
+## Play via Egress Protocol (WebRTC, LLHLS, HLS, SRT)
 
 ### Play with the embedded player
 
@@ -192,7 +192,7 @@ If you would like to verify basic operation using other protocols (RTSP Pull, We
 ![](../../../images/image-409.png)
 
 * In the stream detail view, click the \[URLs] tab and use an \[Egress URL] from the list to play the stream in an external player.
-  * Alternatively, based on the Playlist, Protocol, and TLS settings you selected under "[Play with the embedded player](./#play-with-the-embedded-player)," you can use the \[Playback URL] shown at the bottom to play in an external player.
+  * Alternatively, based on the Playlist, Protocol, and TLS settings you selected under "[Play with the embedded player](./README.md#play-with-the-embedded-player)," you can use the \[Playback URL] shown at the bottom to play in an external player.
 
 ![](../../../images/image-70.png)
 

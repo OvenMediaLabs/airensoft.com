@@ -100,7 +100,7 @@ You can delete a Scheduled Channel Box created by a user by clicking the X mark 
 
 ## Multiplex Channels
 
-You can use the Multiplex Channel feature within OvenMeidaEngine Enterprise to combine multiple ingressing streams into one stream to form an [Adaptive Bitrate Streaming _(_&#x41;BR)](../../web-console-settings/abr-and-transcoding-settings.md#adaptive-bitrate-streaming-abr) or to duplicate an external stream and send it to another Application. Multiplex Channel can also take already encoded tracks from other Local Streams and compose them into its tracks, which can be useful when changing codecs or re-tuning quality.
+You can use the Multiplex Channel feature within OvenMeidaEngine Enterprise to combine multiple ingressing streams into one stream to form an [Adaptive Bitrate Streaming _(_&#x41;BR)](../../web-console-settings/abr-and-transcoding-settings.md#check-adaptive-bitrate-streaming-abr-settings--01430) or to duplicate an external stream and send it to another Application. Multiplex Channel can also take already encoded tracks from other Local Streams and compose them into its tracks, which can be useful when changing codecs or re-tuning quality.
 
 ![](../../../../images/image-127.png)
 

@@ -10,11 +10,11 @@ Modern web browsers such as Chrome, Safari, Firefox, and Edge enforce security r
 
 OvenMediaEngine Enterprise on AWS provides features that make this configuration easy. Completing the security setup described in this guide is a required step to build and operate a stable and secure streaming service.
 
-## Configure and Verify SSL <a href="#configure-and-verify-ssl" id="configure-and-verify-ssl"></a>
+## Configure and Verify SSL
 
 
 
-### Configure SSL in the Web Console <a href="#configure-ssl-in-the-web-console" id="configure-ssl-in-the-web-console"></a>
+### Configure SSL in the Web Console
 
 ![](../../../images/image-430.png)
 
@@ -63,7 +63,7 @@ You must first associate an **AWS Elastic IP** (EIP) with the instance to keep i
 
 
 
-### Access via HTTPS <a href="#access-via-https" id="access-via-https"></a>
+### Access via HTTPS
 
 ![](../../../images/image-420.png)
 
@@ -72,7 +72,7 @@ You must first associate an **AWS Elastic IP** (EIP) with the instance to keep i
 
 
 
-### Verify SSL playback and check URLs <a href="#verify-ssl-playback-and-check-urls" id="verify-ssl-playback-and-check-urls"></a>
+### Verify SSL playback and check URLs
 
 ![](../../../images/image-434.png)
 

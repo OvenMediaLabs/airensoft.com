@@ -1518,7 +1518,7 @@ Anomaly Detection can be configured in `<Server><Alert><Rules>` as shown below:
 
 :::warning
 
-Because this `PacketTimeout` feature overlaps with the [`PacketSilenceTimeoutMs` in Origin Redundancy,](../high-availability/origin-redundancy.md#packetsilencetimeoutms) we recommend using the Anomaly Detection feature.
+Because this `PacketTimeout` feature overlaps with the [`PacketSilenceTimeoutMs` in Origin Redundancy,](../high-availability/origin-redundancy.md#packetsilencetimeoutms-settings--01830) we recommend using the Anomaly Detection feature.
 
 * If both settings are enabled, the module configured with the smaller value will take effect first.
 

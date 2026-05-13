@@ -7,7 +7,7 @@ While operating a service based on OvenMediaEngine Enterprise on AWS, unexpected
 
 OvenMediaEngine Enterprise on AWS provides the \[Download Logs] feature, which allows you to download the current state data as-is. Using this feature, you can share an issue with the OvenMediaEngine Enterprise Team quickly and accurately at any time.
 
-## Log Download and Submission <a href="#log-download-and-submission" id="log-download-and-submission"></a>
+## Log Download and Submission
 
 
 
@@ -34,7 +34,7 @@ OvenMediaEngine Enterprise on AWS provides the \[Download Logs] feature, which a
 
 
 
-## Direct-to-Engineer Support Program <a href="#direct-to-engineer-support-program" id="direct-to-engineer-support-program"></a>
+## Direct-to-Engineer Support Program
 
 OvenMediaEngine Enterprise on AWS provides email-based Basic Technical Support during your subscription period. If you need **faster**, **more direct support** via a **private channel** (Slack), please refer to the page below.
 

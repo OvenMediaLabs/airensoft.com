@@ -94,7 +94,7 @@ In `Server.xml`, configure `<Application><OutputProfiles><MediaOptions><Overlays
 
 ## Using Image Overlay in Real-Time (REST API)
 
-You can use the REST API to add, update, or clear overlays on a specific stream or on a track(s) within the stream in real-time. The available options and parameters are identical to those in the [XML configuration](image-overlay.md#overlay-configuration-xml) above.
+You can use the REST API to add, update, or clear overlays on a specific stream or on a track(s) within the stream in real-time. The available options and parameters are identical to those in the [XML configuration](image-overlay.md#image-overlay-configuration-xml) above.
 
 ### Add Image Overlay
 

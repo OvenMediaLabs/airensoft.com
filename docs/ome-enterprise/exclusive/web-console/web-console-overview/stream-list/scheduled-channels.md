@@ -105,7 +105,7 @@ Also, you can use and control Recording using the API.
 
 ### Start Recording | 0.17.1.2+
 
-Please refer to the [#start-recording-or-0.17.1.2](managed-and-instant-streams.md#start-recording-or-0.17.1.2 "mention") as the Recording function works the same regardless of whether it is a Managed Stream, Instant Stream, Scheduled Channel, or Multiplex Channel.
+Please refer to the [#start-recording-or-0.17.1.2](managed-and-instant-streams.md#start-recording--01712 "mention") as the Recording function works the same regardless of whether it is a Managed Stream, Instant Stream, Scheduled Channel, or Multiplex Channel.
 
 ## Push Publishing Status
 
@@ -126,7 +126,7 @@ In addition, you can use and control Push Publishing using the API.
 
 ### Start Push Publishing | 0.17.1.2+
 
-Please refer to the [#start-push-publishing-or-0.17.1.2](managed-and-instant-streams.md#start-push-publishing-or-0.17.1.2 "mention") as the Push Publishing function works the same regardless of whether it is a Managed Stream, Instant Stream, Scheduled Channel, or Multiplex Channel.
+Please refer to the [#start-push-publishing-or-0.17.1.2](managed-and-instant-streams.md#start-push-publishing--01712 "mention") as the Push Publishing function works the same regardless of whether it is a Managed Stream, Instant Stream, Scheduled Channel, or Multiplex Channel.
 
 ## (LL)-HLS Dump Status
 
@@ -145,4 +145,4 @@ In addition, you can use and control (LL)-HLS Dump using the API.
 
 ### Start (LL)-HLS Dump | 0.17.1.2+
 
-Please refer to the [#start-ll-hls-dump-or-0.17.1.2](managed-and-instant-streams.md#start-ll-hls-dump-or-0.17.1.2 "mention") as the (LL)-HLS Dump function works the same regardless of whether it is a Managed Stream, Instant Stream, Scheduled Channel, or Multiplex Channel.
+Please refer to the [#start-ll-hls-dump-or-0.17.1.2](managed-and-instant-streams.md#start-ll-hls-dump--01712 "mention") as the (LL)-HLS Dump function works the same regardless of whether it is a Managed Stream, Instant Stream, Scheduled Channel, or Multiplex Channel.

@@ -75,7 +75,7 @@ HTTP/2 outperforms HTTP/1.1, especially with LLHLS. Since all current browsers o
 
 LLHLS can deliver adaptive bitrate streaming. OME encodes the same source with multiple renditions and delivers it to the players. And LLHLS Player, including OvenPlayer, selects the best quality rendition according to its network environment. Of course, these players also provide option for users to manually select rendition.
 
-See the [Adaptive Bitrates Streaming](../transcoding-and-processing/) section for how to configure renditions.
+See the [Adaptive Bitrates Streaming](../transcoding-and-processing/README.md) section for how to configure renditions.
 
 ## CrossDomain
 
@@ -85,7 +85,7 @@ For information on CrossDomains, see [CrossDomains ](../operations-and-monitorin
 
 LLHLS is ready when a live source is inputted and a stream is created. Viewers can stream using OvenPlayer or other players.
 
-If your input stream is already h.264/aac, you can use the input stream as is like below. If not, or if you want to change the encoding quality, you can do [Transcoding](../transcoding-and-processing/).
+If your input stream is already h.264/aac, you can use the input stream as is like below. If not, or if you want to change the encoding quality, you can do [Transcoding](../transcoding-and-processing/README.md).
 
 ```markup
 <!-- /Server/VirtualHosts/VirtualHost/Applications/Application/OutputProfiles -->

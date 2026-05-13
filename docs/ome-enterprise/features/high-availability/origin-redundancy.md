@@ -9,7 +9,7 @@ When an HTTP-based CDN or cache system supports origin failover for high availab
 
 When a CDN supports origin failover, it automatically switches to the backup server if a failure occurs on the Main Server. To support this, the Main and Backup Servers must provide identical content in the same manner. This guide explains how OvenMediaEngine Enterprise, installed on different servers, can be configured to provide the same Low-Latency HLS (LL-HLS) and HLS content.
 
-## TimestampMode Settings | 0.18.3.0+ <a href="#timestampmode" id="timestampmode"></a>
+## TimestampMode Settings | 0.18.3.0+
 
 `TimestampMode` is a feature for aligning stream timestamps. OvenMediaEngine Enterprise provides three timestamp modes to ensure that the Main and Backup Servers can generate identical content:
 
@@ -36,7 +36,7 @@ If you are unsure of how the encoder generates timestamps, it is recommended to 
 :::
 
 
-### TimestampMode Example <a href="#timestampmode" id="timestampmode"></a>
+### TimestampMode Example
 
 To use this feature, configure `<TimestampMode>` under `<Providers><[Protocol Name]>` in `Server.xml` as shown below:
 
@@ -92,7 +92,7 @@ When using the `ServerTimeBasedSegmentNumbering` feature, the following settings
 
 In addition, the stream's FPS and Keyframe Interval must also be configured identically.
 
-### ServerTimeBasedSegmentNumbering Example <a href="#timestampmode" id="timestampmode"></a>
+### ServerTimeBasedSegmentNumbering Example
 
 To enable this feature, configure `<ServerTimeBasedSegmentNumbering>` under `<Publishers><LLHLS>` (or `<Publishers><HLS>`) in `Server.xml` as shown below:
 
@@ -149,7 +149,7 @@ When `OriginMode` is enabled, the responsibility for access control shifts from 
 :::
 
 
-## PacketSilenceTimeoutMs Settings | 0.18.3.0+ <a href="#packetsilencetimeoutms" id="packetsilencetimeoutms"></a>
+## PacketSilenceTimeoutMs Settings | 0.18.3.0+
 
 `PacketSilenceTimeoutMs` is a feature that detects and terminates unresponsive streams.
 
@@ -175,14 +175,14 @@ The `PacketSilenceTimeoutMs` setting is supported by the following `Providers`:
 
 :::danger
 
-Because this `PacketSilenceTimeoutMs` feature overlaps with the [`PacketTimeout` in Anomaly Detection](../operations-and-monitoring/enhanced-alert.md#configuring-packettimeout), we recommend using this capability in [Anomaly Detection](../operations-and-monitoring/enhanced-alert.md#anomaly-detection-or-0.20.1.0), which was introduced in version 0.20.1.0.
+Because this `PacketSilenceTimeoutMs` feature overlaps with the [`PacketTimeout` in Anomaly Detection](../operations-and-monitoring/enhanced-alert.md#configuring-packettimeout), we recommend using this capability in [Anomaly Detection](../operations-and-monitoring/enhanced-alert.md#anomaly-detection--02010), which was introduced in version 0.20.1.0.
 
 * If both settings are enabled, the module with the smaller timeout value will be triggered first.
 
 :::
 
 
-### PacketSilenceTimeoutMs Example <a href="#timestampmode" id="timestampmode"></a>
+### PacketSilenceTimeoutMs Example
 
 To use this feature, configure `<PacketSilenceTimeoutMs>` under `<Providers><[Protocol Name]>` in `Server.xml` as shown below:
 

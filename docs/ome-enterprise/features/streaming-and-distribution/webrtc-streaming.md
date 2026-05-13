@@ -271,7 +271,7 @@ Streaming starts from the top rendition of Playlist, and when Auto ABR is true, 
 </OutputProfiles>
 ```
 
-See the [Adaptive Bitrates Streaming](../transcoding-and-processing/) section for more details on how to configure renditions.
+See the [Adaptive Bitrates Streaming](../transcoding-and-processing/README.md) section for more details on how to configure renditions.
 
 ### Multiple codec support in Playlist
 
@@ -338,7 +338,7 @@ You can turn on the TURN server by setting `<TcpRelay>` in the WebRTC Bind.
 
 > Example : `<TcpRelay>*:3478</TcpRelay>`
 
-OME may sometimes not be able to get the server's public IP to its local interface. (Environment like Docker or AWS) So, specify the public IP for `Relay IP`. If `*` is used, the public IP obtained from [\<StunServer>](../../pre-built-package-installation/configuration-structure/#stunserver) and all IPs obtained from the local interface are used. `<Port>` is the tcp port on which the TURN server is listening.
+OME may sometimes not be able to get the server's public IP to its local interface. (Environment like Docker or AWS) So, specify the public IP for `Relay IP`. If `*` is used, the public IP obtained from [\<StunServer>](../../pre-built-package-installation/configuration-structure/README.md#stunserver) and all IPs obtained from the local interface are used. `<Port>` is the tcp port on which the TURN server is listening.
 
 ```markup
 <Server version="8">

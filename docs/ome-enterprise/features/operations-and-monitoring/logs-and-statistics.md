@@ -162,7 +162,7 @@ OvenMediaEngine collects the following metrics for each host, application, and s
 * Maximum connections and time
 * Time is taken to connect to origin
 
-You can get the current statistics using the REST API. See [Stat API ](../rest-api/v1/statistics/current/)for the statistics REST API.
+You can get the current statistics using the REST API. See [Stat API ](../rest-api/v1/statistics/current/README.md)for the statistics REST API.
 
 
 :::warning

@@ -55,7 +55,7 @@ Regardless of Stream Categorization, you can check the Stream List including Ste
 :::
 
 
-For descriptions of each item in the Stream List, including Managed Streams, Instant Streams, Scheduled Channels, and Multiplex Channels, please refer to the [Stream List](stream-list/), a sub-manual of Web Console Home.
+For descriptions of each item in the Stream List, including Managed Streams, Instant Streams, Scheduled Channels, and Multiplex Channels, please refer to the [Stream List](stream-list/README.md), a sub-manual of Web Console Home.
 
 ## System Status
 

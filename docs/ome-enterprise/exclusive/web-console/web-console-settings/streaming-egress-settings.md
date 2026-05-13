@@ -81,7 +81,7 @@ WebRTC Publisher Guide: [https://ovenmedialabs.com/docs/ome/streaming/webrtc-pub
 :::
 
 
-* `Create Default Playlist`: You can control whether each playback protocol (LL-HLS, Legacy HLS, WebRTC) creates a Playlist (llhls, playlist, webrtc) by default. See the detailed guide [#default-playlist-creation-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md#default-playlist-creation-settings "mention") for more information.
+* `Create Default Playlist`: You can control whether each playback protocol (LL-HLS, Legacy HLS, WebRTC) creates a Playlist (llhls, playlist, webrtc) by default. See the detailed guide [#default-playlist-creation-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention") for more information.
 
 
 :::info
@@ -114,12 +114,12 @@ The LLHLS Streaming Settings page allows you to check and modify the LLHLS Proto
 
 ![](../../../images/image-229.png)
 
-* `Cache Control`: You can specify how long content is cached on the Edge Server or CDN Cache Server by adding a Cache-Control header to the HTTP response. For more information, see the [#control-origin-cache](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md#control-origin-cache "mention") guide.
-* `Create Default Playlist`: You can control whether each playback protocol (LL-HLS, Legacy HLS, WebRTC) creates a default playlist (llhls, playlist, webrtc). For more information, see the [#default-playlist-creation-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md#default-playlist-creation-settings "mention") guide.
-* `Default Query String`: You can control the default behavior for Low-Latency HLS (or Legacy HLS) via `<DefaultQueryString>`. For more information, see the [#default-query-string-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md#default-query-string-settings "mention") guide.
+* `Cache Control`: You can specify how long content is cached on the Edge Server or CDN Cache Server by adding a Cache-Control header to the HTTP response. For more information, see the [#control-origin-cache](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention") guide.
+* `Create Default Playlist`: You can control whether each playback protocol (LL-HLS, Legacy HLS, WebRTC) creates a default playlist (llhls, playlist, webrtc). For more information, see the [#default-playlist-creation-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention") guide.
+* `Default Query String`: You can control the default behavior for Low-Latency HLS (or Legacy HLS) via `<DefaultQueryString>`. For more information, see the [#default-query-string-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention") guide.
 * `Origin Mode`: Specifies the stream as the origin.
-* `Propagate Query String`: If you enable `<PropagateQueryString>`, the query string included in the initial master playlist request will be automatically included in all subrequests (media playlists, segments, and partial segments). For more information, see the [#using-propagatet-query-string](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md#using-propagatet-query-string "mention") guide.
-* `ServerTime Based Segment Numbering:` Origin redundancy allows the Edge Server or CDN Cache Server to connect to the Secondary Origin Server instead of the Primary Origin Server to download the same content if the Primary Origin Server fails. For more information, see the [#origin-redundancy-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md#origin-redundancy-settings "mention").
+* `Propagate Query String`: If you enable `<PropagateQueryString>`, the query string included in the initial master playlist request will be automatically included in all subrequests (media playlists, segments, and partial segments). For more information, see the [#using-propagatet-query-string](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention") guide.
+* `ServerTime Based Segment Numbering:` Origin redundancy allows the Edge Server or CDN Cache Server to connect to the Secondary Origin Server instead of the Primary Origin Server to download the same content if the Primary Origin Server fails. For more information, see the [#origin-redundancy-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention").
 
 
 :::info
@@ -195,7 +195,7 @@ LLHLS DRM Guide: [https://ovenmedialabs.com/docs/ome/streaming/low-latency-hls#d
 
 ## Legacy HLS (HLSv3 - TS Container) Settings | 0.16.6.0+
 
-Since HLS based on MPEG-2 TS containers still provides broad compatibility, including support for older devices, the OME Enterprise team decided to support HLS version 3+ based on MPEG-2 TS containers starting with [OvneMediaEngine Enterprise 16.6.0](../../../about/release-notes/0.16.6.md#v0.16.6.0-july-5-2024) (updated on July 5, 2024).
+Since HLS based on MPEG-2 TS containers still provides broad compatibility, including support for older devices, the OME Enterprise team decided to support HLS version 3+ based on MPEG-2 TS containers starting with [OvneMediaEngine Enterprise 16.6.0](../../../about/release-notes/0.16.6.md#01660-1-july-5-2024) (updated on July 5, 2024).
 
 ![](../../../images/image-230.png)
 
@@ -230,11 +230,11 @@ HLS Cross Domain Guide: [https://ovenmedialabs.com/docs/ome/streaming/hls#crossd
 :::
 
 
-* `Create Default Playlist`: You can control whether each playback protocol (LL-HLS, Legacy HLS, WebRTC) creates a default playlist (llhls, playlist, webrtc). For more information, see the [#default-playlist-creation-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md#default-playlist-creation-settings "mention") guide.
-* `Default Query String`: You can control the default behavior for Low-Latency HLS (or Legacy HLS) via `<DefaultQueryString>`. For more information, see the [#default-query-string-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md#default-query-string-settings "mention") guide.
+* `Create Default Playlist`: You can control whether each playback protocol (LL-HLS, Legacy HLS, WebRTC) creates a default playlist (llhls, playlist, webrtc). For more information, see the [#default-playlist-creation-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention") guide.
+* `Default Query String`: You can control the default behavior for Low-Latency HLS (or Legacy HLS) via `<DefaultQueryString>`. For more information, see the [#default-query-string-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention") guide.
 * `Origin Mode`: Specifies the stream as the origin.
-* `Propagate Query String`: If you enable `<PropagateQueryString>`, the query string included in the initial master playlist request will be automatically included in all subrequests (media playlists, segments, and partial segments). For more information, see the [#using-propagatet-query-string](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md#using-propagatet-query-string "mention") guide.
-* `ServerTime Based Segment Numbering:` Origin redundancy allows the Edge Server or CDN Cache Server to connect to the Secondary Origin Server instead of the Primary Origin Server to download the same content if the Primary Origin Server fails. For more information, see the [#origin-redundancy-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md#origin-redundancy-settings "mention").
+* `Propagate Query String`: If you enable `<PropagateQueryString>`, the query string included in the initial master playlist request will be automatically included in all subrequests (media playlists, segments, and partial segments). For more information, see the [#using-propagatet-query-string](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention") guide.
+* `ServerTime Based Segment Numbering:` Origin redundancy allows the Edge Server or CDN Cache Server to connect to the Secondary Origin Server instead of the Primary Origin Server to download the same content if the Primary Origin Server fails. For more information, see the [#origin-redundancy-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention").
 
 ### Check HLS DVR Activation | 0.16.0.0+
 

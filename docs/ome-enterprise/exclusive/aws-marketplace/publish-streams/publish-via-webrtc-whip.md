@@ -11,13 +11,13 @@ This guide walks you through how to publish a stream via WebRTC/WHIP and how to 
 
 <table><thead><tr><th width="151">Item</th><th>Supported</th></tr></thead><tbody><tr><td>Container</td><td>RTP / RTCP</td></tr><tr><td>Security</td><td>DTLS, SRTP</td></tr><tr><td>Transport</td><td>ICE</td></tr><tr><td>Error Correction</td><td>ULPFEC (`VP8`, `H.264`), In-band FEC (`Opus`)</td></tr><tr><td>Codec</td><td>VP8, H.264, H.265, Opus</td></tr><tr><td>Signaling</td><td>Self-Defined Signaling Protocol, Embedded WebSocket-based Server / WHIP</td></tr></tbody></table>
 
-## Start Publishing a WebRTC/WHIP Stream <a href="#start-publishing-a-webrtc-whip-stream" id="start-publishing-a-webrtc-whip-stream"></a>
+## Start Publishing a WebRTC/WHIP Stream
 
 In this example, we use OBS Studio (Option A), one of the most commonly used live encoder software, and the OvenPlayer Demo provided by OvenMedia Labs (Option B).
 
 
 
-### \[Option A] Publish from a Live Encoder (OBS Studio) <a href="#publish-from-a-live-encoder" id="publish-from-a-live-encoder"></a>
+### \[Option A] Publish from a Live Encoder (OBS Studio)
 
 ![](../../../images/image-56.png)
 
@@ -62,7 +62,7 @@ Setting B-frames to 0 (`bframes=0`) helps reduce playback stuttering in `WebRTC`
 
 
 
-### \[Option B] Publish using the OvenPlayer Demo <a href="#publish-using-the-ovenplayer-demo" id="publish-using-the-ovenplayer-demo"></a>
+### \[Option B] Publish using the OvenPlayer Demo
 
 ![](../../../images/image-58.png)
 
@@ -86,7 +86,7 @@ If you are not sure about the WebRTC Input or WHIP URL pattern, create a \[Manag
 
 
 
-### Check Stream Status and Playback in the Web Console <a href="#check-stream-status-and-playback-in-the-web-console" id="check-stream-status-and-playback-in-the-web-console"></a>
+### Check Stream Status and Playback in the Web Console
 
 ![](../../../images/image-423.png)
 

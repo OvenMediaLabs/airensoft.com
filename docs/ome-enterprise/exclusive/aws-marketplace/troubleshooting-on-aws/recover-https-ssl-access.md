@@ -7,13 +7,13 @@ If the Public IP of a running Instance changes, the existing Domain mapping may 
 
 In this case, check the current connection status in the Web Console’s \[SSL Configuration] page, and restore the connection by following the steps below based on your SSL setup method (Option A/B).
 
-## When Using "OvenMediaEngine Enterprise–Provided Subdomain with an Auto-Managed SSL Certificate" <a href="#option-a" id="option-a"></a>
+## When Using "OvenMediaEngine Enterprise–Provided Subdomain with an Auto-Managed SSL Certificate"
 
 If you are using the default Subdomain and Auto-Managed SSL Certificate provided by OvenMediaEngine Enterprise on AWS, the fix is very simple.
 
 
 
-### Check IP and Domain Mapping Status <a href="#check-the-ip-and-domain-mapping-status" id="check-the-ip-and-domain-mapping-status"></a>
+### Check IP and Domain Mapping Status
 
 1. In the Web Console, click the \[Settings] icon in the upper-right corner to open the Settings page.   &#x20;Then, select \[SSL Configuration] from the left menu to open the SSL configuration page.
 
@@ -33,7 +33,7 @@ To prevent recurring issues, **assign an AWS Elastic IP** (EIP) and **pin the In
 
 
 
-### Reconnect IP and Domain <a href="#reconnect-the-ip-and-domain" id="reconnect-the-ip-and-domain"></a>
+### Reconnect IP and Domain
 
 ![](../../../images/image-49.png)
 
@@ -50,19 +50,19 @@ DNS changes may take time to propagate across the global network. Depending on t
 
 
 
-### Confirm Reconnection <a href="#confirm-reconnection" id="confirm-reconnection"></a>
+### Confirm Reconnection
 
-5. Follow the "[Verify SSL playback and check URLs](../ssl-configuration-on-aws/#verify-ssl-playback-and-check-urls)" guide to run a basic streaming test and confirm everything is working normally.
+5. Follow the "[Verify SSL playback and check URLs](../ssl-configuration-on-aws/README.md#verify-ssl-playback-and-check-urls)" guide to run a basic streaming test and confirm everything is working normally.
 
 
 
-## When Using "Your Own Domain with Your Own Certificate" <a href="#option-b" id="option-b"></a>
+## When Using "Your Own Domain with Your Own Certificate"
 
 If you are using a domain you own along with your own SSL certificate, you must reconfigure SSL settings in the Web Console and update the DNS records of the domain currently in use.
 
 
 
-### Check IP Address <a href="#check-ip-address" id="check-ip-address"></a>
+### Check IP Address
 
 ![](../../../images/image-51.png)
 
@@ -90,11 +90,11 @@ To prevent recurring issues, **assign an AWS Elastic IP** (EIP) and **pin the In
 
 
 
-### Update the IP Address for the Domain <a href="#reconnect-the-ip-and-domain" id="reconnect-the-ip-and-domain"></a>
+### Update the IP Address for the Domain
 
 3. Update the DNS record of your domain so that it points to the Public IPv4 address confirmed in \[SSL Configuration].
 4. Return to the Web Console, click \[Change Configuration] on the \[SSL Configuration] page, switch to edit mode, and first apply the configuration as **Disabled**.
-5. Then follow the "[Configure and Verify SSL](../ssl-configuration-on-aws/#configure-and-verify-ssl)" guide and configure SSL again using the **Your Own Domain with Your Own Certificate** option.
+5. Then follow the "[Configure and Verify SSL](../ssl-configuration-on-aws/README.md#configure-and-verify-ssl)" guide and configure SSL again using the **Your Own Domain with Your Own Certificate** option.
 
 
 :::tip
@@ -106,8 +106,8 @@ DNS changes may take time to propagate across the global network. Depending on t
 
 
 
-### Verify Reconnection <a href="#verify-reconnection" id="verify-reconnection"></a>
+### Verify Reconnection
 
-6. Follow the "[Verify SSL playback and check URLs](../ssl-configuration-on-aws/#verify-ssl-playback-and-check-urls)" guide to run a basic streaming test and confirm everything is working normally.
+6. Follow the "[Verify SSL playback and check URLs](../ssl-configuration-on-aws/README.md#verify-ssl-playback-and-check-urls)" guide to run a basic streaming test and confirm everything is working normally.
 
 

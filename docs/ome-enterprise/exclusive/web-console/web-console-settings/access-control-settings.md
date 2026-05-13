@@ -5,7 +5,7 @@ sidebar_position: 73
 
 On the Access Control Settings, you can check if access restrictions for Ingress and Egress streams provided by OvenMediaEngine are enabled and what the settings are.
 
-Also, [OvneMediaEngine Enterprise 16.6.2](../../../about/release-notes/0.16.6.md#v0.16.6.2-july-17-2024) (updated on July 17, 2024) adds support for [Proxy Protocol](../../../features/workflow-integration-and-external-system-connectivity/proxy-protocol.md) in `SignedPolicy` and `AdmissionWebhooks`, further enhancing security by comparing and verifying the Client Address passed through The PROXY protocol version 1 by HAProxy with `real_ip`.
+Also, [OvneMediaEngine Enterprise 16.6.2](../../../about/release-notes/0.16.6.md#01662-1-july-17-2024) (updated on July 17, 2024) adds support for [Proxy Protocol](../../../features/workflow-integration-and-external-system-connectivity/proxy-protocol.md) in `SignedPolicy` and `AdmissionWebhooks`, further enhancing security by comparing and verifying the Client Address passed through The PROXY protocol version 1 by HAProxy with `real_ip`.
 
 ## Signed Policy Settings | 0.12.0.0+
 

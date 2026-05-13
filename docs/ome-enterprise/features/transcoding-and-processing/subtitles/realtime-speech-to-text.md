@@ -88,7 +88,7 @@ STT configuration is split across two sections:
 :::
 
 
-### Step 1: Preload Models (`Server.xml`) <a href="#step-1" id="step-1"></a>
+### Step 1: Preload Models (`Server.xml`)
 
 Declare the Whisper model files to load at server startup inside `<Modules><Whisper>`. Multiple `<PreloadModel>` entries are allowed. Models are loaded in descending file-size order to maximize GPU utilization.
 
@@ -129,9 +129,9 @@ Each `<PreloadModel>` entry has the following fields:
 :::
 
 
-### Step 2: Define Subtitle Renditions <a href="#step-2" id="step-2"></a>
+### Step 2: Define Subtitle Renditions
 
-Define the subtitle tracks that will receive STT output. For more details on `<Subtitles>`, refer to the [Subtitles](./) section.
+Define the subtitle tracks that will receive STT output. For more details on `<Subtitles>`, refer to the [Subtitles](./README.md) section.
 
 ```xml
 <Application>
@@ -152,7 +152,7 @@ Define the subtitle tracks that will receive STT output. For more details on `<S
 </Application>
 ```
 
-### Step 3: Configure STT in `OutputProfiles` <a href="#step-3" id="step-3"></a>
+### Step 3: Configure STT in `OutputProfiles`
 
 Under `<OutputProfiles><MediaOptions><STT>`, add a `<Rendition>` for each audio-to-subtitle mapping. The `<OutputSubtitleLabel>` must match a `<Label>` defined in `<Subtitles>`.
 

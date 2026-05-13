@@ -108,7 +108,7 @@ You can set up ABR by adding `Playlists` or a Playlist with multiple `Renditions
 
 :::info
 
-Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding#adaptive-bitrate-streaming-abr](https://ovenmedialabs.com/docs/ome/transcoding#adaptive-bitrate-streaming-abr)
+Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding#adaptive-bitrate-streaming-abr](https://ovenmedialabs.com/docs/ome/transcoding#check-adaptive-bitrate-streaming-abr-settings--01430)
 
 :::
 

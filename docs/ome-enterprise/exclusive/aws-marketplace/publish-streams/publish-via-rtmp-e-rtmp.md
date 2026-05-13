@@ -9,13 +9,13 @@ This guide walks you through the process of publishing a stream via `RTMP`/`E-RT
 
 <table><thead><tr><th width="151">Item</th><th>Supported</th></tr></thead><tbody><tr><td>Container</td><td>FLV</td></tr><tr><td>Transport</td><td>TCP</td></tr><tr><td>Codec</td><td>H.264, AAC / H.265 (E-RTMP only)</td></tr></tbody></table>
 
-## Start Publishing an RTMP/E-RTMP Stream <a href="#start-publishing-an-rtmp-e-rtmp-stream" id="start-publishing-an-rtmp-e-rtmp-stream"></a>
+## Start Publishing an RTMP/E-RTMP Stream
 
 For this example, we used OBS Studio, one of the most commonly used live encoder software applications.
 
 
 
-### Publish with a Live Encoder (OBS Studio) <a href="#publish-with-a-live-encoder" id="publish-with-a-live-encoder"></a>
+### Publish with a Live Encoder (OBS Studio)
 
 ![](../../../images/image-56.png)
 
@@ -26,7 +26,7 @@ For this example, we used OBS Studio, one of the most commonly used live encoder
 
 
 
-### Configure Streaming in OBS <a href="#configure-streaming-in-obs" id="configure-streaming-in-obs"></a>
+### Configure Streaming in OBS
 
 ![](../../../images/image-397.png)
 
@@ -62,7 +62,7 @@ Setting B-frames to 0 (`bframes=0`) helps reduce playback stuttering in `WebRTC`
 
 
 
-### Check Stream Status and Playback in the Web Console <a href="#check-stream-status-and-playback-in-the-web-console" id="check-stream-status-and-playback-in-the-web-console"></a>
+### Check Stream Status and Playback in the Web Console
 
 ![](../../../images/image-427.png)
 

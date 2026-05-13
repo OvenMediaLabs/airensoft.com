@@ -5,7 +5,7 @@ sidebar_position: 35
 
 OvenMediaEngine Enterprise on AWS **continuously generates** **Log Files** while the service is running. If logs accumulate, Disk usage may increase excessively. To prevent this in advance, OvenMediaEngine Enterprise provides the **Automatic Log Cleanup** feature.
 
-## Default Log Cleanup Policy <a href="#default-log-cleanup-policy" id="default-log-cleanup-policy"></a>
+## Default Log Cleanup Policy
 
 The default Automatic Log Cleanup policy applied to OvenMediaEngine Enterprise on AWS is as follows:
 
@@ -18,7 +18,7 @@ This policy applies to the following logs:
 
 <table><thead><tr><th width="164.7777099609375">Log Type</th><th width="221.6666259765625">Directory</th><th width="199.9998779296875">File Pattern</th><th>Description</th></tr></thead><tbody><tr><td>OvenMediaEngine</td><td>/var/log/ovenmediaengine</td><td>`ovenmediaengine.log.*`</td><td>OME Core Engine Log (Rotated)</td></tr><tr><td>Web Console</td><td>/var/log/ovenmediaengine/ovenstudio</td><td>`oven-studio_*.log`</td><td>Web Console Service Log</td></tr><tr><td>OvenMediaEngine Delivery</td><td>/var/log/ovenmediaengine/ovenmediaengine-delivery</td><td>`delivery-daemon.log.*`</td><td>Recording Delivery System Log</td></tr><tr><td>OvenMediaEngine Monitoring</td><td>/var/log/ovenmediaengine</td><td>`events.log.*`</td><td>OME Monitoring Event Log</td></tr></tbody></table>
 
-## Changing the Log Cleanup Policy <a href="#changing-the-log-cleanup-policy" id="changing-the-log-cleanup-policy"></a>
+## Changing the Log Cleanup Policy
 
 If you need to adjust the policy (such as retention period or size limit) for your environment, follow the steps below.
 
@@ -67,7 +67,7 @@ cleanup_logs "/var/log/ovenmediaengine" "events.log.*" $RETENTION_DAYS $MIN_RETE
 
 
 
-### Customize Policy per Log Type (Optional) <a href="#customize-policy-per-log-type-optional" id="customize-policy-per-log-type-optional"></a>
+### Customize Policy per Log Type (Optional)
 
 * If you want different policies for different log files, edit the `cleanup_logs` calls near the bottom of the script.
 
@@ -107,7 +107,7 @@ cleanup_logs "/var/log/ovenmediaengine" "events.log.*" 30 1 500
 
 
 
-### Save the Log Cleanup Script <a href="#save-the-log-cleanup-script" id="save-the-log-cleanup-script"></a>
+### Save the Log Cleanup Script
 
 4. After editing the script, save the file to apply the changes immediately. There is no need to restart the instance, restart OvenMediaEngine (service), or re-register the crontab.
 

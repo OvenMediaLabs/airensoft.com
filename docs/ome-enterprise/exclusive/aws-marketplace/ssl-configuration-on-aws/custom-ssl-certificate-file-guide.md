@@ -5,7 +5,7 @@ sidebar_position: 44
 
 This guide explains which certificate files must be uploaded when using the _**Your Own Domain with Your Own Certificate**_ option in \[SSL Configuration].
 
-## Certificate File Names and Extensions by Certificate Authority <a href="#certificate-file-by-certificate-authority" id="certificate-file-by-certificate-authority"></a>
+## Certificate File Names and Extensions by Certificate Authority
 
 All certificate and key files must be in PEM format. File names and extensions may vary depending on the Certificate Authority (CA). Please refer to the table below to map your downloaded certificate files to the appropriate fields.
 
@@ -18,7 +18,7 @@ All certificate and key files must be in PEM format. File names and extensions m
 | DigiCert / GeoTrust | `Certificate.pem`    | `Intermediate.pem`                                               | <p>`*.key`</p><p>(Your Generated File)</p> |
 | GlobalSign          | `domain.crt`         | `gs_bundle.crt`                                                  | <p>`*.key`</p><p>(Your Generated File)</p> |
 
-## Certificate and Key Files Content Reference <a href="#certificate-and-key-files-content-reference" id="certificate-and-key-files-content-reference"></a>
+## Certificate and Key Files Content Reference
 
 The Cert File, Chain Cert File, and Key File must be provided in PEM format, as described below.
 

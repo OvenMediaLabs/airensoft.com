@@ -11,13 +11,13 @@ This guide walks you through the SRT publishing procedure and the basic verifica
 
 <table><thead><tr><th width="151">Item</th><th>Supported</th></tr></thead><tbody><tr><td>Container</td><td>MPEG-2 TS</td></tr><tr><td>Transport</td><td>SRT</td></tr><tr><td>Codec</td><td>H.264, H.265, AAC</td></tr></tbody></table>
 
-## Start Publishing an SRT Stream <a href="#start-publishing-an-srt-stream" id="start-publishing-an-srt-stream"></a>
+## Start Publishing an SRT Stream
 
 In this example, we use OBS Studio, one of the most commonly used live encoder applications.
 
 
 
-### Publish with a Live Encoder (OBS Studio) <a href="#streaming-with-a-live-encoder" id="streaming-with-a-live-encoder"></a>
+### Publish with a Live Encoder (OBS Studio)
 
 ![](../../../images/image-56.png)
 
@@ -28,7 +28,7 @@ In this example, we use OBS Studio, one of the most commonly used live encoder a
 
 
 
-### Configure Streaming in OBS <a href="#configure-streaming-in-obs" id="configure-streaming-in-obs"></a>
+### Configure Streaming in OBS
 
 ![](../../../images/image-425.png)
 
@@ -63,7 +63,7 @@ Setting B-frames to 0 (`bframes=0`) helps reduce playback stuttering in `WebRTC`
 
 
 
-### Check Stream Status and Playback in the Web Console <a href="#check-stream-status-and-playback-in-the-web-console" id="check-stream-status-and-playback-in-the-web-console"></a>
+### Check Stream Status and Playback in the Web Console
 
 ![](../../../images/image-426.png)
 

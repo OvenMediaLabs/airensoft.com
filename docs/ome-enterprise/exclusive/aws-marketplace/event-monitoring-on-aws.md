@@ -3,7 +3,7 @@ title: Event Monitoring on AWS
 sidebar_position: 42
 ---
 
-## View Event Monitoring <a href="#view-event-monitoring" id="view-event-monitoring"></a>
+## View Event Monitoring
 
 ![](../../images/image-428.png)
 
@@ -14,7 +14,7 @@ OvenMediaEngine Enterprise on AWS has Event Monitoring enabled by default.
 
 :::info
 
-For more details on Event Monitoring, please refer to the [Event Monitoring](../web-console/web-console-overview/event-monitoring/) guide.
+For more details on Event Monitoring, please refer to the [Event Monitoring](../web-console/web-console-overview/event-monitoring/README.md) guide.
 
 :::
 
@@ -33,7 +33,7 @@ For the Alarm Level of Stream Events, please refer to [Stream Event Category](..
 
 You can click the \[Alarm] icon displaying the number of alarms to view the alarm list. By clicking the circular button located on the left side of each alarm entry, you can mark the alarm as read or unread. Additionally, clicking an alarm message will take you to the \[Event Timeline] page for the corresponding stream.
 
-## Configure Event Monitoring <a href="#configure-event-monitoring" id="configure-event-monitoring"></a>
+## Configure Event Monitoring
 
 ![](../../images/image-429.png)
 

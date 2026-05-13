@@ -3,7 +3,7 @@ title: Multicast
 sidebar_position: 88
 ---
 
-OvenMediaEngine can pull MPEG-2 TS input delivered over `UDP` multicast. The Multicast Provider uses the `multicast://` URL scheme and creates streams through `StreamMap` or the [Stream Creation API](../rest-api/v1/virtual-host/application/stream/#create-stream-pull).
+OvenMediaEngine can pull MPEG-2 TS input delivered over `UDP` multicast. The Multicast Provider uses the `multicast://` URL scheme and creates streams through `StreamMap` or the [Stream Creation API](../rest-api/v1/virtual-host/application/stream/README.md#create-stream-pull).
 
 <table><thead><tr><th width="217.22216796875">Item</th><th>Description</th></tr></thead><tbody><tr><td>Container</td><td>MPEG-2 TS</td></tr><tr><td>Transport</td><td>UDP Multicast</td></tr><tr><td>Codec</td><td>H.264, H.265, AAC</td></tr><tr><td>Additional Features</td><td>SCTE-35 event forwarding</td></tr></tbody></table>
 
@@ -114,7 +114,7 @@ The only supported query parameter is `interface`:
 
 ## Pulling streams using the Stream Creation API
 
-Multicast streams can also be created through the [Stream Creation API](../rest-api/v1/virtual-host/application/stream/#create-stream-pull).
+Multicast streams can also be created through the [Stream Creation API](../rest-api/v1/virtual-host/application/stream/README.md#create-stream-pull).
 
 ```json
 {
@@ -128,7 +128,7 @@ Multicast streams can also be created through the [Stream Creation API](../rest-
 }
 ```
 
-For more information, see the [REST API](../rest-api/) documentation.
+For more information, see the [REST API](../rest-api/README.md) documentation.
 
 ## Notes
 

@@ -9,11 +9,11 @@ With this approach, OvenMediaEngine **connects directly to an external RTSP (med
 
 <table><thead><tr><th width="151">Item</th><th>Supported</th></tr></thead><tbody><tr><td>Container</td><td>RTP</td></tr><tr><td>Transport</td><td>UDP / TCP</td></tr><tr><td>Codec</td><td>H.264, H.265, Opus, AAC</td></tr></tbody></table>
 
-## Start Publishing an RTSP Pull Stream <a href="#start-publishing-an-rtsp-pull-stream" id="start-publishing-an-rtsp-pull-stream"></a>
+## Start Publishing an RTSP Pull Stream
 
 
 
-### Create an RTSP Pull Stream and enter information <a href="#create-an-rtsp-pull-stream" id="create-an-rtsp-pull-stream"></a>
+### Create an RTSP Pull Stream and enter information
 
 ![](../../../images/image-415.png)
 
@@ -33,7 +33,7 @@ A typical RTSP URL format is `rtsp://{ID}:{Password}@{IP}:{Port}/path`, but form
 
 
 
-### Ensuring stability with Advanced Settings (Optional) <a href="#ensuring-stability-with-advanced-settings" id="ensuring-stability-with-advanced-settings"></a>
+### Ensuring stability with Advanced Settings (Optional)
 
 ![](../../../images/image-417.png)
 
@@ -51,7 +51,7 @@ If you are using RTSP Pull Streams for the first time, we recommend creating the
 
 
 
-### Verify stream output and status <a href="#verify-stream-output-and-status" id="verify-stream-output-and-status"></a>
+### Verify stream output and status
 
 ![](../../../images/image-418.png)
 
