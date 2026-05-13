@@ -1,6 +1,6 @@
 # Handoff: OvenMediaLabs site rebuild (Docusaurus migration)
 
-> 이 문서를 새 Claude 세션에 그대로 넘기면 컨텍스트 회복 가능. 최신 갱신: Medium 블로그 35개 마이그레이션 완료 직후.
+> 이 문서를 새 Claude 세션에 그대로 넘기면 컨텍스트 회복 가능. 최신 갱신: 블로그 디자인 개편 + 이미지 평탄화 (upstream PR 머지 완료) 직후.
 
 ## 1. 프로젝트 한 줄 정리
 
@@ -13,7 +13,7 @@ OvenMediaLabs (구 AirenSoft)는 마케팅 사이트(현재 `ovenmedialabs.com`,
 
 ## 2. 사용자가 정한 핵심 룰
 
-- 사이트 이름은 **ovenmedialabs.com** (airensoft.com 아님). 커밋/PR prefix는 `feat:` (docs:나 chore: 아님).
+- 사이트 이름은 **ovenmedialabs.com** (airensoft.com 아님). 커밋/PR prefix는 `feat:`. 단 **upstream 레포(OvenMediaEngine 등)는 그쪽 컨벤션 따름** — 거기선 `docs:` / `build:` 등을 씀.
 - PR 본문은 **Summary + Why만**. Test plan / What changed / After merge 같은 섹션은 노이즈 — 리뷰어가 diff 보면 다 알 수 있으니 안 씀.
 - 인터럽트 시 즉시 멈추고 명시적 진행 신호 대기.
 - 파일 참조는 markdown 링크 (예: `[src/file.ts](src/file.ts#L42)`). backtick으로 감싸지 않음.
@@ -31,14 +31,11 @@ OvenMediaLabs (구 AirenSoft)는 마케팅 사이트(현재 `ovenmedialabs.com`,
 ### Git
 - 브랜치: `feat/docusaurus-migration` (이전 `hugo-migration`에서 rename).
 - 최근 커밋:
+  - `431b7da0d feat: redesign blog, drop image wrapper, rewrite Medium links`
+  - `073596fc4 feat: refine blog tags with news/case-study/benchmark/tutorial`
+  - `4ca602685 feat: migrate 35 Medium posts to local blog`
   - `66d4523c7 feat: brand polish + marketing pages for the new Docusaurus site`
-  - `a76eefb37 feat: wire up three Docusaurus docs plugins for OME/Enterprise/OvenPlayer`
-  - `2ee73e17a feat: import docs/ome-enterprise via read-tree from upstream master`
-  - `6b71eb4fc Merge commit ... as 'docs/ome'`
-- **미커밋 변경 (이 세션)**:
-  - `M blog/tags.yml` — `fundamentals` 태그 추가
-  - `?? blog/2022-*` ~ `blog/2025-*` 34개 신규 디렉토리 (각 `index.mdx` + 이미지들)
-  - `?? scripts/migrate-medium.py`, `?? scripts/medium-redirects.json`
+- 트리 clean. 미커밋 변경 없음.
 
 ## 4. 이미 끝난 작업
 
@@ -66,31 +63,40 @@ OvenMediaLabs (구 AirenSoft)는 마케팅 사이트(현재 `ovenmedialabs.com`,
 - 동기화 스크립트: [scripts/sync-docs.sh](scripts/sync-docs.sh) — `git read-tree --prefix=$prefix/ -u $remote/master^{tree}:docs-site` 사용 (subtree split보다 빠름, Enterprise 같은 큰 history도 즉시).
 - GitBook 변환 스크립트 [scripts/migrate-docs.py](scripts/migrate-docs.py)는 풀 전환 끝나기 전까지 보관 (재사용 가능성).
 
-### 4.4 Blog (이번 세션)
+### 4.4 Blog (이전 세션)
 - **35개 Medium 글 마이그레이션 완료** — `blog/<YYYY-MM-DD>-<slug>/index.mdx`.
 - 188개 이미지 Medium CDN에서 다운로드, co-located.
 - 스크립트: [scripts/migrate-medium.py](scripts/migrate-medium.py). 표준 라이브러리만 사용. 재실행 안전.
 - Frontmatter: `slug`, `title`, `description`, `authors: [ovenmedialabs]`, `date`(원본 ISO), `tags`(자동 분류), `image`(첫 이미지), `canonical_url`(원본 Medium URL).
-- 자동 태그: webrtc / llhls / srt / sub-second-latency / fundamentals / ome.
+- 자동 태그: webrtc / llhls / srt / sub-second-latency / fundamentals / ome / news / case-study / benchmark / tutorial.
 - [scripts/medium-redirects.json](scripts/medium-redirects.json) — 35개 Medium canonical URL → `/blog/<slug>` 매핑 (향후 도메인 리다이렉트 레이어용).
 - `blog/authors.yml`, `blog/tags.yml` 정의됨. `welcome-to-our-new-blog` 1개 + Medium 34개 = 총 35 글.
 
-### 4.5 CI / 배포
+### 4.5 Blog 디자인 + 이미지 표면 개편 (이 세션)
+- **"OvenMedia Labs"** (띄어쓰기) 공식 명칭으로 통일 — docusaurus.config.ts (title/blogTitle/blogDescription/feed/copyright), blog/authors.yml, welcome 글, swizzle 컴포넌트. GitHub org/URL의 `OvenMediaLabs`는 그대로 둠 (path는 변경 불가).
+- **목록 페이지** — horizontal 카드 (좌 16:9 썸네일 + 우 텍스트), 작성자 블록 제거, description 발췌 line-clamp, 태그 pill. [src/theme/BlogPostItem/index.tsx](src/theme/BlogPostItem/index.tsx) + [styles.module.css](src/theme/BlogPostItem/styles.module.css).
+- **본문 페이지** — 좌측 "Recent Posts" 사이드바 숨김 (글 상세에서만), 본문 폭 760px로 좁히고 row justify-content: center로 가운데 정렬, 작성자 한 줄 컴팩트 (아바타 36px + 이름 + 부제), 소셜 아이콘 숨김, 첫 문단 lede 강조 + 아래 hairline, h2 위 hairline. Footer Tags 라벨 숨기고 pill을 목록과 통일. "Edit this page" 제거 (config의 `editUrl` 삭제).
+- **마케팅 영역 (글 끝)** — [src/theme/BlogPostItem/PostFooterExtras.tsx](src/theme/BlogPostItem/PostFooterExtras.tsx): 그라데이션 Product CTA 배너 (Get started + Star on GitHub), "You might also like" 3카드 (태그 오버랩 점수 + 날짜 fallback), "View all posts →" 링크.
+- **데이터 소스** — [scripts/build-blog-index.py](scripts/build-blog-index.py)가 모든 blog/<slug>/index.mdx frontmatter를 [src/data/blog-index.json](src/data/blog-index.json)으로 추출 (36개). frontmatter 바뀌면 재실행 필요. 자동화는 미정.
+- **아바타** — [static/images/airen_ci/OML_Symbol_White.svg](static/images/airen_ci/OML_Symbol_White.svg) 새로 만듦 (Symbol_Default 복제 후 흰색 톤). 다크 배경에서 깨져 보이던 문제 해결.
+- **Medium 내부 링크 → 로컬 path 변환** — [scripts/rewrite-medium-links.py](scripts/rewrite-medium-links.py): 35개 redirects.json 매핑 사용. 12개 링크 / 6개 글에 적용됨. canonical_url frontmatter는 의도적으로 유지 (SEO).
+- **이미지 흰 wrapper 제거 + 다이어그램 평탄화** — [scripts/flatten-transparent-images.py](scripts/flatten-transparent-images.py): docs/blog 의 투명 PNG 55개에 흰 배경 + 24px 흰 테두리 baking. `static/images/`는 제외 (CI 로고). `.gitignore`에 `.alpha-backup/` 추가. CSS의 `.markdown img { background: white; padding }` wrapper 삭제, layout만 남김.
+- **Upstream PR 머지됨** — 다이어그램 평탄화는 sync 덮어쓰기 방지 위해 upstream에도 반영:
+  - OvenMediaEngine PR #2121 (4 files) — 머지
+  - OvenMediaEngineEnterprise PR #49 (5 files) — 머지
+  - OvenPlayer — 변환 대상 없음
+  - [scripts/sync-docs.sh](scripts/sync-docs.sh) 재실행으로 downstream 동기화 확인 완료.
+
+### 4.6 CI / 배포
 - `.github/workflows/deploy.yml` — main push 시 GH Pages 빌드 + 배포. Node 22, `NODE_OPTIONS=--max-old-space-size=4096`.
 - CNAME `ovenmedialabs.com` 이미 `static/`에 있음.
 
 ## 5. 앞으로 할 일 (우선순위 순)
 
-### A. 즉시 (블로그 후처리)
-1. **블로그 35개 + 스크립트 + tags.yml 변경분 커밋**. 한 커밋 권장 (`feat: migrate 34 Medium posts to local blog`).
-2. **태그 수동 보정**: `[ome]`만 붙은 글 8개 보정. 새 태그 후보 — news / case-study / benchmark / tutorial. 추가 시 `blog/tags.yml`에 정의.
-   - `OvenMediaEngine is certified as Good Software Level 1 by the TTA` → news/release
-   - `AirenSoft participates in the 2023 NAB Show` → news
-   - `Driving the Media Service Market...` → news
-   - `A review using OvneMediaEngine has arrived from Russia!` → case-study
-   - `Online Interactive Conference: IoTcube Conference 2021` → case-study
-   - `Test results of finding the encoder optimized...` → benchmark
-3. **블로그 비주얼 확인** — 모바일 폭, 이미지 가독성, 코드 블럭 등. 직접 브라우저로 봐야 함.
+### A. 블로그 후속 (선택적)
+1. **`prebuild` hook으로 [scripts/build-blog-index.py](scripts/build-blog-index.py) 자동화** — 현재는 frontmatter 바꿀 때 수동으로 재실행. `package.json`에 prestart/prebuild로 묶는 게 안전.
+2. **관련글 카드 썸네일 추가** (선택) — 지금은 텍스트만. 필요하면 처음 이미지를 `/static/blog-thumbs/<dir>/`에 복사해서 활용.
+3. **GTM/Cookiebot 동작 검증** — 아래 D.16과 동일.
 
 ### B. 가까운 우선순위 (자동화 / 편집자 UX)
 4. **자동 sync 워크플로** — GitHub Action으로 [scripts/sync-docs.sh](scripts/sync-docs.sh) 주기/이벤트 실행 → 자동 PR.
@@ -185,8 +191,8 @@ HANDOFF.md                      ← 이 문서
 
 ## 9. 새 세션 첫 단계
 
-1. `npm install && npm start -- --port 3100`. http://localhost:3100/blog/ 에서 글 35개 보이는지 확인. http://localhost:3100/docs/ 에서 3개 docs 정상.
-2. `git status`로 미커밋 변경분 확인 — 블로그 35개 디렉토리 + scripts + tags.yml.
-3. 사용자 지시 기다리기. 위 §5의 A부터 진행하는 게 자연스러움.
+1. `npm install && npm start -- --port 3100`. http://localhost:3100/blog/ 에서 글 35개가 horizontal 카드 레이아웃으로 보이는지 확인. /docs/ 3개 정상. 아무 글이나 열어서 CTA 배너 + "You might also like" 3카드 표시되는지.
+2. `git log -1` — 최신 커밋 `feat: redesign blog, drop image wrapper, rewrite Medium links` 확인. 트리 clean.
+3. 사용자 지시 기다리기. §5 A/B/C/D 중 상황에 맞게.
 
 행운을.
