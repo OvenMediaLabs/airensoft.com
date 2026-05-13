@@ -37,7 +37,7 @@ Currently, `SignedPolicy` supports `RTMP` between Providers, and `WebRTC`, `LLHL
 
 :::info
 
-Detailed Guide: [https://docs.ovenmediaengine.com/access-control/signedpolicy](https://docs.ovenmediaengine.com/access-control/signedpolicy)
+Detailed Guide: [/docs/ome/access-control/signedpolicy](/docs/ome/access-control/signedpolicy)
 
 :::
 
@@ -66,7 +66,7 @@ Currently, `AdmissionWebhooks` supports `RTMP`, `WebRTC`, and `SRT` between Prov
 
 :::info
 
-Detailed Guide: [https://docs.ovenmediaengine.com/access-control/admission-webhooks](https://docs.ovenmediaengine.com/access-control/admission-webhooks)
+Detailed Guide: [/docs/ome/access-control/admission-webhooks](/docs/ome/access-control/admission-webhooks)
 
 :::
 

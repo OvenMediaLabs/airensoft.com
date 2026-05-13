@@ -75,7 +75,7 @@ Currently, DRM is only supported for H.264 and AAC codecs. Support for H.265 wil
 
 :::info
 
-Detailed Guide: [https://docs.ovenmediaengine.com/streaming/low-latency-hls#drm-beta](https://docs.ovenmediaengine.com/streaming/low-latency-hls#drm-beta)
+Detailed Guide: [/docs/ome/streaming/low-latency-hls#drm-beta](/docs/ome/streaming/low-latency-hls#drm-beta)
 
 :::
 

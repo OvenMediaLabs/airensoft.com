@@ -71,7 +71,7 @@ A great alternative that meets all my needs is an Open-Source and Sub-Second Lat
 
 Since the OvenMediaEngine team is actively developing this media server, I decided to use the Docker installation they suggested for a quick start. It rolls only two things inside the container, Let’s Encrypt’s certificate and a server configuration file.
 
-[*OvenMediaEngine’s user guide*](https://airensoft.gitbook.io/ovenmediaengine/) includes a quick start page, but it doesn’t explain the best default practices due to the up-to-dateness of the project. After investigating all of this myself, I identified two issues in the release and felt I needed an article.
+[*OvenMediaEngine’s user guide*](/docs/ome) includes a quick start page, but it doesn’t explain the best default practices due to the up-to-dateness of the project. After investigating all of this myself, I identified two issues in the release and felt I needed an article.
 
 1. This example shows how it works with HTTP and WS protocols, but if you want to know how to work with HTTPS and WSS, you’ll have to reconfigure everything. And the documentation doesn’t have a word for attaching a free certificate like Let’s Encrypt, but it’s officially fully supported.
 2. When I configure and start my server, the entry point is publicly available to everyone. Therefore, It would be best to show me how to secure the entry point like the Nginx-RTMP module immediately.
@@ -85,7 +85,7 @@ HTTP and HTTPS for server debugging. Moreover, the setting is reflected immediat
 
 ### Installation
 
-I used Ubuntu 20 following the [*Getting Started*](https://airensoft.gitbook.io/ovenmediaengine/v/0.10.10/getting-started) they provided.
+I used Ubuntu 20 following the [*Getting Started*](/docs/omev/0.10.10/getting-started) they provided.
 
 ```
 docker run -d \
@@ -250,9 +250,9 @@ sudo docker update --restart unless-stopped 87b8610034bc
 
 ### Encoder
 
-AirenSoft considers OBS to be the most popular encoder for OvenMediaEngine. Therefore, in the [documentation](https://airensoft.gitbook.io/ovenmediaengine/v/0.10.10/getting-started#example-of-using-obs-encoder) and more detail in the [blog,](https://www.airensoft.com/post/best_encoder_for_ome) you can find suitable settings that minimize broadcasting latency.
+AirenSoft considers OBS to be the most popular encoder for OvenMediaEngine. Therefore, in the [documentation](/docs/omev/0.10.10/getting-started#example-of-using-obs-encoder) and more detail in the [blog,](https://www.airensoft.com/post/best_encoder_for_ome) you can find suitable settings that minimize broadcasting latency.
 
-Right, OBS is the most popular encoder on the market. So, if you take a closer look at the [documentation](https://airensoft.gitbook.io/ovenmediaengine/v/0.10.10/getting-started#example-of-using-obs-encoder) and [AirenBlog](https://www.airensoft.com/post/best_encoder_for_ome), you can find suitable settings that minimize broadcast latency.
+Right, OBS is the most popular encoder on the market. So, if you take a closer look at the [documentation](/docs/omev/0.10.10/getting-started#example-of-using-obs-encoder) and [AirenBlog](https://www.airensoft.com/post/best_encoder_for_ome), you can find suitable settings that minimize broadcast latency.
 
 If you need sub-second latency streaming from OvenMediaEngine using OBS Studio, see:
 

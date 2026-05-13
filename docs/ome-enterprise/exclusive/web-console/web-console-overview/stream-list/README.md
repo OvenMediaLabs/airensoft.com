@@ -44,7 +44,7 @@ Scheduled Channel is a feature in OvenMediaEngine Enterprise that allows you to 
 
 :::info
 
-Detailed Guide: [https://docs.ovenmediaengine.com/dev/live-source/scheduled-channel](https://docs.ovenmediaengine.com/dev/live-source/scheduled-channel)
+Detailed Guide: [/docs/ome/live-source/scheduled-channel](/docs/ome/live-source/scheduled-channel)
 
 :::
 
@@ -107,7 +107,7 @@ You can use the Multiplex Channel feature within OvenMeidaEngine Enterprise to c
 
 :::info
 
-Detailed Guide: [https://docs.ovenmediaengine.com/dev/live-source/multiplex-channel](https://docs.ovenmediaengine.com/dev/live-source/multiplex-channel)
+Detailed Guide: [/docs/ome/live-source/multiplex-channel](/docs/ome/live-source/multiplex-channel)
 
 :::
 
@@ -162,7 +162,7 @@ If the thumbnail feature is not enabled in OvenMediaEngine when broadcasting a s
 
 :::info
 
-Detailed Guide: [https://docs.ovenmediaengine.com/thumbnail](https://docs.ovenmediaengine.com/thumbnail)
+Detailed Guide: [/docs/ome/thumbnail](/docs/ome/thumbnail)
 
 :::
 

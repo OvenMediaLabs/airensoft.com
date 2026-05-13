@@ -33,7 +33,7 @@ Explain the Output Profiles in the image above, you can see that the Encode cont
 
 :::info
 
-Detailed Guide: [https://docs.ovenmediaengine.com/thumbnail](https://docs.ovenmediaengine.com/thumbnail)
+Detailed Guide: [/docs/ome/thumbnail](/docs/ome/thumbnail)
 
 :::
 

@@ -60,7 +60,7 @@ Shows the program configured in the Schedule File. The program can be configured
 
 :::info
 
-Detailed Guide: [https://docs.ovenmediaengine.com/live-source/scheduled-channel#schedule-files](https://docs.ovenmediaengine.com/live-source/scheduled-channel#schedule-files)
+Detailed Guide: [/docs/ome/live-source/scheduled-channel#schedule-files](/docs/ome/live-source/scheduled-channel#schedule-files)
 
 :::
 
@@ -97,8 +97,8 @@ Also, you can use and control Recording using the API.
 
 :::info
 
-* Recording Settings Guide: [https://docs.ovenmediaengine.com/recording](https://docs.ovenmediaengine.com/recording)
-* Recording API Guide: [https://docs.ovenmediaengine.com/rest-api/v1/virtualhost/application/recording](https://docs.ovenmediaengine.com/rest-api/v1/virtualhost/application/recording)
+* Recording Settings Guide: [/docs/ome/recording](/docs/ome/recording)
+* Recording API Guide: [/docs/ome/rest-api/v1/virtualhost/application/recording](/docs/ome/rest-api/v1/virtualhost/application/recording)
 
 :::
 
@@ -118,8 +118,8 @@ In addition, you can use and control Push Publishing using the API.
 
 :::info
 
-* Push Publishing Settings Guide: [https://docs.ovenmediaengine.com/recording](https://docs.ovenmediaengine.com/recording)
-* Push Publishing API Guide: [https://docs.ovenmediaengine.com/rest-api/v1/virtualhost/application/push](https://docs.ovenmediaengine.com/rest-api/v1/virtualhost/application/push)
+* Push Publishing Settings Guide: [/docs/ome/recording](/docs/ome/recording)
+* Push Publishing API Guide: [/docs/ome/rest-api/v1/virtualhost/application/push](/docs/ome/rest-api/v1/virtualhost/application/push)
 
 :::
 
@@ -137,8 +137,8 @@ In addition, you can use and control (LL)-HLS Dump using the API.
 
 :::info
 
-* LLHLS Dump Settings Guide: [https://docs.ovenmediaengine.com/streaming/low-latency-hls#dump](https://docs.ovenmediaengine.com/streaming/low-latency-hls#dump)
-* LLHLS Dump API Guide: [https://docs.ovenmediaengine.com/rest-api/v1/virtualhost/application/stream/hls-dump](https://docs.ovenmediaengine.com/rest-api/v1/virtualhost/application/stream/hls-dump)
+* LLHLS Dump Settings Guide: [/docs/ome/streaming/low-latency-hls#dump](/docs/ome/streaming/low-latency-hls#dump)
+* LLHLS Dump API Guide: [/docs/ome/rest-api/v1/virtualhost/application/stream/hls-dump](/docs/ome/rest-api/v1/virtualhost/application/stream/hls-dump)
 
 :::
 

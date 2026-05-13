@@ -25,7 +25,7 @@ Below are the commands and examples used in the video guide.
 
 ## AWS EC2 Instance Setup
 
-For quick guidance, we opened all TCP ports 0–65535 when creating the EC2 Instance, but the default ports used by OvenMediaEngine are as follows. For more information, please refer to [**Ports used by default**](https://airensoft.gitbook.io/ovenmediaengine/getting-started#ports-used-by-default) in the Getting Started sub-item of the OvenMediaEngine User Guide.
+For quick guidance, we opened all TCP ports 0–65535 when creating the EC2 Instance, but the default ports used by OvenMediaEngine are as follows. For more information, please refer to [**Ports used by default**](/docs/ome/getting-started#ports-used-by-default) in the Getting Started sub-item of the OvenMediaEngine User Guide.
 
 ### Ports used by default
 
@@ -59,7 +59,7 @@ $ sudo service docker start
 
 ## Installing OvenMediaEngine on Docker in EC2
 
-For detailed steps, refer to the [**Getting Started with OME Docker Launcher**](https://airensoft.gitbook.io/ovenmediaengine/getting-started/getting-started-with-ome-docker-launcher) guide, accessible under the Getting Started menu in the OME User Guide.
+For detailed steps, refer to the [**Getting Started with OME Docker Launcher**](/docs/ome/getting-started/getting-started-with-ome-docker-launcher) guide, accessible under the Getting Started menu in the OME User Guide.
 
 The commands used to install and run OvenMediaEngine in the video guide are as follows:
 
@@ -79,7 +79,7 @@ $ sudo OME_HOST_IP=<Instance_IP> ./ome_docker_launcher.sh start
 
 ## Broadcasting with OBS to OvenMediaEngine
 
-If you would like to know how to set up and use protocols that OvenMediaEngine can ingest, please refer to the [**Live Source**](https://airensoft.gitbook.io/ovenmediaengine/live-source) subsection in the OvenMediaEngine User Guide.
+If you would like to know how to set up and use protocols that OvenMediaEngine can ingest, please refer to the [**Live Source**](/docs/ome/live-source) subsection in the OvenMediaEngine User Guide.
 
 The RTMP URL pattern used in this video guide is as follows:
 
@@ -96,7 +96,7 @@ And to transmit the media source, I used X264 as an encoder and made detailed se
 
 ## Streaming Playback
 
-When streaming through OvenMediaEngine, you may or may not have a certificate. Please refer to the information below. For more information, refer to the [**Streaming**](https://airensoft.gitbook.io/ovenmediaengine/streaming) section in the OvenMediaEngine User Guide.
+When streaming through OvenMediaEngine, you may or may not have a certificate. Please refer to the information below. For more information, refer to the [**Streaming**](/docs/ome/streaming) section in the OvenMediaEngine User Guide.
 
 ### Without TLS
 
@@ -112,7 +112,7 @@ When streaming through OvenMediaEngine, you may or may not have a certificate. P
 
 ## Configuring OvenMediaEngine Options
 
-OvenMediaEngine operates according to Server.xml. Therefore, you need to know how to modify Server.xml to use the various functions provided by OvenMediaEngine. For guides for each function, please refer to the [**OvenMediaEngine User Guide**](https://airensoft.gitbook.io/ovenmediaengine).
+OvenMediaEngine operates according to Server.xml. Therefore, you need to know how to modify Server.xml to use the various functions provided by OvenMediaEngine. For guides for each function, please refer to the [**OvenMediaEngine User Guide**](/docs/ome).
 
 ```shell
 # Go to the folder where Server.xml is located
@@ -134,7 +134,7 @@ $ sudo OME_HOST_IP=<Instance_IP> ./ome_docker_launcher.sh start
 
 ## TLS Encryption (Certification)
 
-To apply TLS to your OvenMediaEngine you have a domain. If you get a domain, you can easily use a certificate at no cost using Let’s Encrypt. For more information, see [**TLS Encryption**](https://airensoft.gitbook.io/ovenmediaengine/configuration/tls-encryption), a subtopic of Configuration in the OvenMediaEngine User Guide.
+To apply TLS to your OvenMediaEngine you have a domain. If you get a domain, you can easily use a certificate at no cost using Let’s Encrypt. For more information, see [**TLS Encryption**](/docs/ome/configuration/tls-encryption), a subtopic of Configuration in the OvenMediaEngine User Guide.
 
 ```shell
 # Install Certbot
@@ -191,7 +191,7 @@ To verify that your certificate is working properly, stream using TLS.
 
 ## Adaptive Bitrate Streaming (ABR)
 
-The example used in the video guide is below: Please refer to [**Adaptive Bitrate Streaming (ABR)**](https://airensoft.gitbook.io/ovenmediaengine/transcoding#adaptive-bitrate-streaming-abr) in the OvenMediaEngine User Guide for detailed information on the function.
+The example used in the video guide is below: Please refer to [**Adaptive Bitrate Streaming (ABR)**](/docs/ome/transcoding#adaptive-bitrate-streaming-abr) in the OvenMediaEngine User Guide for detailed information on the function.
 
 ```shell
 <OutputProfile>
@@ -334,7 +334,7 @@ When writing &lt;OutputProfile> to use ABR, an important point to keep in mind i
 
 ## REST API
 
-Please refer to [**REST API**](https://airensoft.gitbook.io/ovenmediaengine/rest-api) in the OvenMediaEngine User Guide. This guide explains Server.xml items in detail and includes examples.
+Please refer to [**REST API**](/docs/ome/rest-api) in the OvenMediaEngine User Guide. This guide explains Server.xml items in detail and includes examples.
 
 In this video guide, we uncommented &lt;Bind> in Server.xml and added 8082/TLS.
 
@@ -401,7 +401,7 @@ Then, let’s call the API according to the API request pattern.
 
 - **https://&lt;Domain>:8082/v1/&lt;Resource>**
 
-Please refer to the [**REST API (v1)**](https://airensoft.gitbook.io/ovenmediaengine/rest-api/v1) section in the OvenMediaEngine User Guide. It is written in detail about API resources, action names, reactions, etc.
+Please refer to the [**REST API (v1)**](/docs/ome/rest-api/v1) section in the OvenMediaEngine User Guide. It is written in detail about API resources, action names, reactions, etc.
 
 ## Conclusion
 

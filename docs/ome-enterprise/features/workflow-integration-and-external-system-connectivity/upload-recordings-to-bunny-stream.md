@@ -87,7 +87,7 @@ Enable the recording feature by configuring the File Publisher in the OvenMediaE
 :::info
 
 For more details on OvenMediaEngine's recording feature, please refer to the following documentation.\
-[https://docs.ovenmediaengine.com/recording](https://docs.ovenmediaengine.com/recording)
+[/docs/ome/recording](/docs/ome/recording)
 
 :::
 

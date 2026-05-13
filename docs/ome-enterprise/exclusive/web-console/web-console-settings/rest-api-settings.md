@@ -37,7 +37,7 @@ By default, the OvenMediaEngine API Server is disabled, so to use the API, you n
 
 :::info
 
-Detailed Guide: [https://docs.ovenmediaengine.com/rest-api](https://docs.ovenmediaengine.com/rest-api)
+Detailed Guide: [/docs/ome/rest-api](/docs/ome/rest-api)
 
 :::
 

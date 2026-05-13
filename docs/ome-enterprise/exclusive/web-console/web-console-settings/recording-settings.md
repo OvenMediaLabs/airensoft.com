@@ -26,7 +26,7 @@ On the Recording Settings, you can check the activation status and configuration
 
 :::info
 
-Detailed Guide: [https://docs.ovenmediaengine.com/recording](https://docs.ovenmediaengine.com/recording)
+Detailed Guide: [/docs/ome/recording](/docs/ome/recording)
 
 :::
 

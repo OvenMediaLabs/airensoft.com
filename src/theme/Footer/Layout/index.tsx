@@ -55,9 +55,9 @@ export default function FooterLayout(): ReactNode {
                 <div className="footer-col">
                   <h6 className="footer-heading">Docs</h6>
                   <ul className="list-unstyled">
-                    <li><Link to="/docs" className="footer-link">OME Guide</Link></li>
+                    <li><Link to="/docs/ome" className="footer-link">OME Guide</Link></li>
                     <li><Link to="/docs/ome-enterprise" className="footer-link">OME-E Guide</Link></li>
-                    <li><a href="https://docs.ovenplayer.com/" target="_blank" rel="noopener noreferrer" className="footer-link">OP Guide</a></li>
+                    <li><Link to="/docs/ovenplayer" className="footer-link">OP Guide</Link></li>
                   </ul>
                 </div>
                 <div className="footer-col">

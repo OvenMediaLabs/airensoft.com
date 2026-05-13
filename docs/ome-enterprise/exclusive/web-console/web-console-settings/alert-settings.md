@@ -12,7 +12,7 @@ Alert is a module that can detect anomalies and patterns of interest in a stream
 On the Alert Settings, you can view and edit the details of the set Alert.
 
 * `Url`: The HTTP Server will receive the notification. HTTP and HTTPS are available.
-* `Secret Key`: The secret key used when encrypting with HMAC-SHA1. For more information, please see [Security](https://airensoft.gitbook.io/ovenmediaengine/alert#security).
+* `Secret Key`: The secret key used when encrypting with HMAC-SHA1. For more information, please see [Security](/docs/ome/alert#security).
 * `Timeout`: The time (in milliseconds) to wait for a response after a request.
 
 ## Rules Settings
@@ -37,7 +37,8 @@ On the Alert Settings page, enable the `Use Rule File` option. When enabled, a U
 
 ![](../../../images/alert_use_rules_file.JPG)
 
-* `Rules File`: Enter the path for the Rules management file to be created.  \
+* `Rules File`: Enter the path for the Rules management file to be created.
+  \
   If a relative path is specified, it will be set relative to the OvenMediaEngine configuration directory.
 * `Import Existing Rules File`: Load an existing Rules management file.
 
@@ -45,12 +46,13 @@ Click the `Update Configuration button` in the upper right corner to apply the R
 
 ![](../../../images/rules_save.JPG)
 
-Before applying the settings, a popup will display the changes in the file for review.&#x20;By clicking the "OK" button, the new settings will be applied immediately without restarting OvenMediaEngine.
+Before applying the settings, a popup will display the changes in the file for review.
+&#x20;By clicking the "OK" button, the new settings will be applied immediately without restarting OvenMediaEngine.
 
 
 :::info
 
-Detailed Guide: [https://docs.ovenmediaengine.com/alert](https://docs.ovenmediaengine.com/alert)
+Detailed Guide: [/docs/ome/alert](/docs/ome/alert)
 
 :::
 

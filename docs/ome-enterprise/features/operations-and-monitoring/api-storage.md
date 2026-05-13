@@ -5,7 +5,7 @@ sidebar_position: 119
 
 ## **API Storage**
 
-This feature allows you to permanently store`VirtualHost` and `Application` information managed through OvenMediaEngine's [REST API](https://airensoft.gitbook.io/ovenmediaengine/rest-api). To enable the API Storage feature, enable `<Managers><API><Storage>` in Server.xml as follows:
+This feature allows you to permanently store`VirtualHost` and `Application` information managed through OvenMediaEngine's [REST API](/docs/ome/rest-api). To enable the API Storage feature, enable `<Managers><API><Storage>` in Server.xml as follows:
 
 ```xml
 <Server version="8">
