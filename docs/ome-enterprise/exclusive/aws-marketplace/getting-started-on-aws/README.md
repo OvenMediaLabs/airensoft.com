@@ -153,7 +153,7 @@ Setting B-frames to 0 (`bframes=0`) helps reduce playback stuttering in `WebRTC`
 
 :::info
 
-If you would like to verify basic operation using other protocols (RTSP Pull, WebRTC/WHIP, SRT, RTMP/E-RTMP, etc.), please refer to the [Publish Streams](../publish-streams/) section.
+If you would like to verify basic operation using other protocols (RTSP Pull, WebRTC/WHIP, SRT, RTMP/E-RTMP, etc.), please refer to the [Publish Streams](../publish-streams/README.md) section.
 
 :::
 

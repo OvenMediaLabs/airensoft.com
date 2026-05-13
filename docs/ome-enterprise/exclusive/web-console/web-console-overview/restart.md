@@ -38,7 +38,7 @@ All client connections from other Applications remain intact, except for the spe
 
 :::info
 
-Click [HERE](/broken/pages/ZmDPbfdDcFBTEmiIz2Zy#api-interface) to learn how to restart the Application using the API.
+Click [HERE](../../../features/rest-api/README.md) to learn how to restart the Application using the API.
 
 :::
 

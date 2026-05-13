@@ -75,7 +75,7 @@ To use HLS, you need to add the `<HLS>` elements to the `<Publishers>` in the co
 
 :::warning
 
-Safari Native Player only provides the Seek UI if `#EXT-X-PLAYLIST-TYPE: EVENT` is present. Since it is specified that nothing can be removed from the playlist when it is of type EVENT, you must call the [concludeHlsLive API](/broken/pages/4Di8YpOh9dVJQvw6zHIY) to switch to VoD or terminate the stream before `<MaxDuration>` is exceeded if you use this option. Otherwise, unexpected behavior may occur in the Safari Player.
+Safari Native Player only provides the Seek UI if `#EXT-X-PLAYLIST-TYPE: EVENT` is present. Since it is specified that nothing can be removed from the playlist when it is of type EVENT, you must call the [concludeHlsLive API](../rest-api/v1/virtual-host/application/stream/conclude-hls-live.md) to switch to VoD or terminate the stream before `<MaxDuration>` is exceeded if you use this option. Otherwise, unexpected behavior may occur in the Safari Player.
 
 :::
 

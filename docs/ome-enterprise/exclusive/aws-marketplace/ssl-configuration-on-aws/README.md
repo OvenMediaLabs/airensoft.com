@@ -76,7 +76,7 @@ You must first associate an **AWS Elastic IP** (EIP) with the instance to keep i
 
 ![](../../../images/image-434.png)
 
-5. Following "[Post-Setup Verification for OvenMediaEngine Enterprise](../getting-started-on-aws/#post-setup-verification-for-ovenmediaengine-enterprise)", publish a media source to `rtmp://``{Domain}``:1935/{app}/{stream}`, then confirm Stream List on the Web Console that the stream is being delivered properly.
+5. Following "[Post-Setup Verification for OvenMediaEngine Enterprise](../getting-started-on-aws/README.md#post-setup-verification-for-ovenmediaengine-enterprise)", publish a media source to `rtmp://``{Domain}``:1935/{app}/{stream}`, then confirm Stream List on the Web Console that the stream is being delivered properly.
 
 ![](../../../images/image-435.png)
 
