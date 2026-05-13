@@ -40,8 +40,8 @@ export default function FooterLayout(): ReactNode {
                   <ul className="list-unstyled">
                     <li><Link to="/ome" className="footer-link">OvenMediaEngine</Link></li>
                     <li><Link to="/ome-enterprise" className="footer-link">OvenMediaEngine Enterprise</Link></li>
-                    <li><Link to="/ome#ovenplayer" className="footer-link">OvenPlayer</Link></li>
-                    <li><Link to="/ome#ovenlivekit" className="footer-link">OvenLiveKit</Link></li>
+                    <li><Link to="/docs/ovenplayer" className="footer-link">OvenPlayer</Link></li>
+                    <li><Link to="https://github.com/OvenMediaLabs/OvenLiveKit-Web" className="footer-link">OvenLiveKit</Link></li>
                   </ul>
                 </div>
                 <div className="footer-col">

@@ -57,7 +57,7 @@ const sidebars: SidebarsConfig = {
       link: {type: 'doc', id: "transcoding/README"},
       collapsed: true,
       items: [
-        {type: 'doc', id: "transcoding/transcoding", label: "Transcoding"},
+        {type: 'doc', id: "transcoding/output-profile", label: "OutputProfile"},
         {type: 'doc', id: "transcoding/abr", label: "ABR"},
         {type: 'doc', id: "transcoding/transcodewebhook", label: "TranscodeWebhook"},
         {type: 'doc', id: "transcoding/gpu-usage", label: "GPU Acceleration"}
