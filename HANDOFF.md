@@ -1,290 +1,192 @@
 # Handoff: OvenMediaLabs site rebuild (Docusaurus migration)
 
-> Working notes for the next Claude session, picking up after the remote-server session disconnected. Read this top-to-bottom before changing anything.
+> 이 문서를 새 Claude 세션에 그대로 넘기면 컨텍스트 회복 가능. 최신 갱신: Medium 블로그 35개 마이그레이션 완료 직후.
 
-## 1. The project in one paragraph
+## 1. 프로젝트 한 줄 정리
 
-OvenMediaLabs (OML, formerly AirenSoft) is consolidating its web presence. Today the public marketing site lives at `ovenmedialabs.com` as hand-written static HTML, the engineering blog is on Medium (`medium.com/@OvenMediaEngine`), and the OvenMediaEngine manuals live on GitBook (`docs.ovenmediaengine.com/` for OSS, `docs.enterprise.ovenmediaengine.com/` for the Enterprise edition). The rebuild moves all three onto a single Docusaurus site served from GitHub Pages at `ovenmedialabs.com`, with `/blog/*` and `/docs/*` as subpaths. The branch is `hugo-migration` (legacy name from when Hugo was the candidate; the stack actually settled on Docusaurus — see section 3).
+OvenMediaLabs (구 AirenSoft)는 마케팅 사이트(현재 `ovenmedialabs.com`, 정적 HTML), Medium 엔지니어링 블로그(`medium.com/@OvenMediaEngine`), 그리고 GitBook 매뉴얼들(`docs.ovenmediaengine.com`, `docs.enterprise.ovenmediaengine.com`, `docs.ovenplayer.com`)을 **하나의 Docusaurus 3.10 사이트**로 통합 중. `/blog/*`, `/docs/ome/`, `/docs/ome-enterprise/`, `/docs/ovenplayer/` 서브패스 구조.
 
-Repo: `https://github.com/OvenMediaLabs/airensoft.com`
-Branch: `hugo-migration`
-Production host: GitHub Pages (CNAME `ovenmedialabs.com`)
+- 레포: `https://github.com/OvenMediaLabs/airensoft.com` (디렉토리명은 레거시)
+- 작업 브랜치: **`feat/docusaurus-migration`** (메인은 `main`)
+- 프로덕션: GitHub Pages, CNAME `ovenmedialabs.com`
+- 새 도메인 후보: `ovenmedialabs.com` 그대로
 
-## 2. The original brief (verbatim, condensed)
+## 2. 사용자가 정한 핵심 룰
 
-- **Goal**: Pull Medium blog and GitBook docs into the OML domain so SEO and lead capture land on OML assets.
-- **SSG decision history**: started Hugo, then evaluated Astro+Starlight / Next.js+Nextra / Hugo+Docusaurus hybrid / Docusaurus solo. Final pick: **Docusaurus solo, full stack**.
-- **Blog URL**: `ovenmedialabs.com/blog/` subpath (not subdomain).
-- **Hosting**: GitHub Pages, deployed via GitHub Actions.
-- **Medium**: migrate all posts.
-- **Docs**: migrate both OSS (markdown in `OvenMediaLabs/OvenMediaEngine` repo under `docs/`) and Enterprise (needs GitBook export — user must produce this).
-- **Theme**: custom, no popular theme. Preserve existing marketing design "100%". After seeing LiveKit reference the user agreed that *LiveKit-level* visual consistency was sufficient — section-appropriate UX (docs sidebar, blog list) is acceptable as long as the brand feel is consistent.
-- **Editorial constraint**: maintainer is non-developer but comfortable with HTML/Markdown and has Claude Code available. Devs will also contribute. Markdown-first workflow is OK.
-- **Money**: OK to spend, but only if it pays off. So far no paid SaaS introduced.
-- **Blog cadence**: 3-4 posts/month.
-- **Docs cadence**: frequent (tracks feature additions).
-- **GitBook satisfaction**: "별로야" (not great) — real motivation to move off, not just brand unification.
-- **Content rule for blog posts**: do not use em-dash (—) or en-dash (–) as sentence punctuation. Use commas, periods, colons, or parentheses instead.
+- 사이트 이름은 **ovenmedialabs.com** (airensoft.com 아님). 커밋/PR prefix는 `feat:` (docs:나 chore: 아님).
+- PR 본문은 **Summary + Why만**. Test plan / What changed / After merge 같은 섹션은 노이즈 — 리뷰어가 diff 보면 다 알 수 있으니 안 씀.
+- 인터럽트 시 즉시 멈추고 명시적 진행 신호 대기.
+- 파일 참조는 markdown 링크 (예: `[src/file.ts](src/file.ts#L42)`). backtick으로 감싸지 않음.
+- 블로그 본문에서 em-dash(—), en-dash(–)를 문장 구두점으로 쓰지 않기. 쉼표/마침표/콜론/괄호 사용.
+- 편집자는 비개발자지만 HTML/Markdown 가능. 개발자 PR도 받음. Markdown 우선.
 
-## 3. Why Docusaurus (concise re-derivation)
+## 3. 현재 상태 (이 세션 끝 시점)
 
-The conversation cycled through Hugo (fast but no built-in docs polish; would have to build sidebar/search/versioning by hand), Astro+Starlight (modern, content-friendly, but newer ecosystem), Next.js+Nextra (industry-standard for company sites like LiveKit/Mux, but Next.js is a general framework and overkill for a pure content site), and Hugo+Docusaurus split (two toolchains, design drift risk). The user kept refining priorities: GitBook escape + content-management ergonomics + LiveKit-level (not pixel-perfect) consistency. Docusaurus wins on:
+### 빌드 / 서버
+- `npm install` 완료. Node 20+ 필요.
+- `npm start -- --port 3100` 으로 dev 서버 동작 (3000은 다른 프로세스 점유 중).
+- `npm run build` production 통과. 경고만 있고 에러 없음.
+- onBrokenLinks / onBrokenAnchors는 현재 `warn`. 컷오버 직전 `throw`로 flip 예정.
 
-- Built-in docs + blog + versioning + i18n; no DIY chrome.
-- MDX inline React components (better than Hugo shortcodes for the API-heavy docs OME has).
-- Daily.co (a direct peer in real-time streaming) uses it for its docs.
-- Marketing pages absorbed as `src/pages/*.mdx` after the user accepted the "약간 부자연스러움" framing was overstated by the assistant.
-- Single toolchain, single design system, simpler CI.
+### Git
+- 브랜치: `feat/docusaurus-migration` (이전 `hugo-migration`에서 rename).
+- 최근 커밋:
+  - `66d4523c7 feat: brand polish + marketing pages for the new Docusaurus site`
+  - `a76eefb37 feat: wire up three Docusaurus docs plugins for OME/Enterprise/OvenPlayer`
+  - `2ee73e17a feat: import docs/ome-enterprise via read-tree from upstream master`
+  - `6b71eb4fc Merge commit ... as 'docs/ome'`
+- **미커밋 변경 (이 세션)**:
+  - `M blog/tags.yml` — `fundamentals` 태그 추가
+  - `?? blog/2022-*` ~ `blog/2025-*` 34개 신규 디렉토리 (각 `index.mdx` + 이미지들)
+  - `?? scripts/migrate-medium.py`, `?? scripts/medium-redirects.json`
 
-Trade-offs accepted: Node toolchain (npm + dependencies), slower dev-server first-boot vs Hugo, eventual React/MDX version migrations.
+## 4. 이미 끝난 작업
 
-## 4. What's already done
+### 4.1 Scaffold (이전 세션들)
+- Docusaurus 3.10.1 + React 19 + `@docusaurus/faster` (RSpack) + TypeScript.
+- `docusaurus.config.ts`, `sidebars*.ts` 다수 (각 docs source 별).
 
-### 4.1 Scaffold
-- Docusaurus **3.10.1** + React 19 + `@docusaurus/faster` (RSpack) + TypeScript.
-- `package.json`, `package-lock.json`, `tsconfig.json`, `docusaurus.config.ts`, `sidebars.ts` — all in repo root.
-- Node 20+ required (`engines.node: ">=20.0"`).
+### 4.2 디자인 / 브랜드
+- **OvenMedia Labs 컬러 팔레트** 적용 (이전 yellow `#ffb800` 사용 중단):
+  - `--omb-navy-deep #14274E`, `--omb-navy #394867`, `--omb-blue-gray #9BA4B4`, `--omb-tan #C5A38E`, `--omb-sky #38BDF8`
+  - 모든 yellow 흔적 brand 컬러로 교체됨.
+- 커스텀 Prism 코드 테마 (`omeCodeTheme`) — 차분한 5색, 눈에 덜 자극.
+- 사이드바: 그룹 라벨(annotation) trailing fade line + 브랜드 컬러, depth 1 wrapper 제거하고 실제 메뉴가 depth 1에 위치.
+- Edit this page 링크 + Previous/Next pagination 숨김 (`.pagination-nav { display: none }`).
+- Admonition / details 폰트 축소.
+- 이미지 흰 배경 카드 wrapper — 어두운 페이지 배경에서 흰 다이어그램 가독성 확보.
+- 마케팅 페이지: `src/pages/index.mdx`, `ome.mdx`, `company.mdx`, `contact.mdx`, `latency.mdx`, `ome-enterprise.mdx`, `agplv3.mdx`, `eula.mdx`, `404.mdx`.
 
-### 4.2 Assets migrated to `static/`
-- Legacy `assets/` → `static/assets/` (CSS, JS, downloads). URL unchanged: `/assets/...`.
-- Legacy `images/` → `static/images/`. URL unchanged: `/images/...`.
-- `CNAME`, `robots.txt`, `.htaccess` → `static/`. Domain config preserved.
-- Legacy `index.html`, `ome.html`, `ome-enterprise.html`, `company.html`, `contact.html`, `latency.html`, `agplv3.html`, `eula.html`, `404.html` **kept at repo root as reference only**. They are not served (Docusaurus serves from `build/`).
+### 4.3 Docs 통합 (3-source)
+- 3개 upstream의 `docs-site/` 폴더를 직접 import. **MDX 원본을 upstream에 두고 downstream으로 sync**:
+  - `OvenMediaLabs/OvenMediaEngine` (OSS) → `docs/ome/`
+  - `OvenMediaLabs/OvenMediaEngineEnterprise` → `docs/ome-enterprise/`
+  - `OvenMediaLabs/OvenPlayer` → `docs/ovenplayer/`
+- **각 upstream에 PR 머지됨** (브랜치 `feat/docusaurus-migration`).
+- 동기화 스크립트: [scripts/sync-docs.sh](scripts/sync-docs.sh) — `git read-tree --prefix=$prefix/ -u $remote/master^{tree}:docs-site` 사용 (subtree split보다 빠름, Enterprise 같은 큰 history도 즉시).
+- GitBook 변환 스크립트 [scripts/migrate-docs.py](scripts/migrate-docs.py)는 풀 전환 끝나기 전까지 보관 (재사용 가능성).
 
-### 4.3 CSS pipeline
-- `src/css/custom.css` — Infima token overrides (primary color #ffb800, Inter font, `--ifm-navbar-height: 78px` mirroring legacy `--navbar-height`), full-bleed reset for `.marketing-page` wrapper class.
-- `src/css/legacy-marketing.css` — verbatim copy of legacy `style.css` (2014 lines), with `url(../../images/...)` rewritten to `url(/images/...)` since the file moved under `src/`.
-- Both passed to `customCss` as an array; legacy CSS loads **last** in the bundle so its selectors win over Infima where they collide.
-- Bootstrap 5 CDN + Phosphor Icons CDN + Inter Google Font loaded via `headTags`.
+### 4.4 Blog (이번 세션)
+- **35개 Medium 글 마이그레이션 완료** — `blog/<YYYY-MM-DD>-<slug>/index.mdx`.
+- 188개 이미지 Medium CDN에서 다운로드, co-located.
+- 스크립트: [scripts/migrate-medium.py](scripts/migrate-medium.py). 표준 라이브러리만 사용. 재실행 안전.
+- Frontmatter: `slug`, `title`, `description`, `authors: [ovenmedialabs]`, `date`(원본 ISO), `tags`(자동 분류), `image`(첫 이미지), `canonical_url`(원본 Medium URL).
+- 자동 태그: webrtc / llhls / srt / sub-second-latency / fundamentals / ome.
+- [scripts/medium-redirects.json](scripts/medium-redirects.json) — 35개 Medium canonical URL → `/blog/<slug>` 매핑 (향후 도메인 리다이렉트 레이어용).
+- `blog/authors.yml`, `blog/tags.yml` 정의됨. `welcome-to-our-new-blog` 1개 + Medium 34개 = 총 35 글.
 
-### 4.4 Bootstrap dark theme
-- Legacy CSS expects `<html data-bs-theme="dark">`. We set this with an **inline script in `headTags`** so it executes synchronously before first paint — no light-theme flash.
-- A redundant clientModule (`src/clientModules/bootstrap-dark.ts`) also sets it; safe to keep both.
+### 4.5 CI / 배포
+- `.github/workflows/deploy.yml` — main push 시 GH Pages 빌드 + 배포. Node 22, `NODE_OPTIONS=--max-old-space-size=4096`.
+- CNAME `ovenmedialabs.com` 이미 `static/`에 있음.
 
-### 4.5 Theme swizzles (live under `src/theme/`)
-- `Navbar/Content/index.tsx` — full custom navbar markup (Bootstrap `<nav class="navbar navbar-expand-lg navbar-custom">` structure). Menu items still come from `themeConfig.navbar.items`. Active-state detection via `useLocation()`. Brand block places `(Formerly AirenSoft)` `<p>` *inside* the `<picture>` to match legacy stacking (browsers tolerate the non-spec nesting).
-- `Navbar/Layout/index.tsx` — wraps Docusaurus's outer nav element. Adds `navbar-expand-lg navbar-custom` classes so legacy CSS selectors apply.
-- `Footer/Layout/index.tsx` — replaces Docusaurus's default footer with the legacy 5-column layout + Seoul address block + copyright line.
+## 5. 앞으로 할 일 (우선순위 순)
 
-### 4.6 ClientModules (`src/clientModules/`)
-- `bootstrap-dark.ts` — sets `data-bs-theme=dark` on hydration (belt-and-braces with the headTags inline script).
-- `legacy-marketing.ts` — port of legacy `static/assets/js/main.js`:
-  - SPA-aware: uses `onRouteDidUpdate` to re-attach on every route change.
-  - Null-guards every DOM lookup.
-  - Returns cleanup functions; observers and listeners are torn down on route change.
-  - Ports: navbar scroll-effect (`scrolled` class above 20px), reveal-up IntersectionObserver, scroll-indicator click, scroll-to-top button.
-  - Intentionally NOT ported: Medium RSS blog grid (we're moving to internal blog), legacy notice modal, EULA section observer.
+### A. 즉시 (블로그 후처리)
+1. **블로그 35개 + 스크립트 + tags.yml 변경분 커밋**. 한 커밋 권장 (`feat: migrate 34 Medium posts to local blog`).
+2. **태그 수동 보정**: `[ome]`만 붙은 글 8개 보정. 새 태그 후보 — news / case-study / benchmark / tutorial. 추가 시 `blog/tags.yml`에 정의.
+   - `OvenMediaEngine is certified as Good Software Level 1 by the TTA` → news/release
+   - `AirenSoft participates in the 2023 NAB Show` → news
+   - `Driving the Media Service Market...` → news
+   - `A review using OvneMediaEngine has arrived from Russia!` → case-study
+   - `Online Interactive Conference: IoTcube Conference 2021` → case-study
+   - `Test results of finding the encoder optimized...` → benchmark
+3. **블로그 비주얼 확인** — 모바일 폭, 이미지 가독성, 코드 블럭 등. 직접 브라우저로 봐야 함.
 
-### 4.7 Marketing pages (MDX)
-- `src/pages/index.mdx` — homepage, all sections from legacy `index.html` (hero, Enterprise + open-source split, latency comparison, use-case grid, blog preview placeholder, company tagline). Uses `wrapperClassName: marketing-page` and `hide_table_of_contents: true`.
-- `src/pages/ome.mdx` — OvenMediaEngine product page. Same structure, ~7 sections.
+### B. 가까운 우선순위 (자동화 / 편집자 UX)
+4. **자동 sync 워크플로** — GitHub Action으로 [scripts/sync-docs.sh](scripts/sync-docs.sh) 주기/이벤트 실행 → 자동 PR.
+5. **사이드바 유지 정책 결정** — 편집자가 페이지 추가 시 `sidebars-*.ts` 어떻게 갱신할지: (a) 손으로 (현재), (b) Docusaurus autogenerated 전환, (c) 미니 sidebar-gen 스크립트.
+6. **편집자용 로컬 프리뷰 스크립트** — 각 upstream `docs-site/preview.sh`: `~/.cache/ovenmedialabs-preview`에 사이트 clone + 현재 docs-site를 symlink + `npm start`. 외부 기여자 PR 전 로컬 확인용. Mac/Linux 우선, Node + git만 있으면 됨.
+7. **npm start 자동 sync** (선택) — prestart hook으로 [scripts/sync-docs.sh](scripts/sync-docs.sh) 자동 실행.
 
-### 4.8 Blog
-- `blog/` retains Docusaurus template posts (welcome, mdx-blog-post, long-blog-post). To be deleted/replaced when Medium migration runs.
-- `blog/authors.yml`, `blog/tags.yml` — placeholders.
-- RSS + Atom feeds enabled in config (`feedOptions: type: ['rss', 'atom']`).
+### C. 콘텐츠 / 기능
+8. **모바일 breakpoint 검증** — 사이드바/카드/타이포 깨짐 확인.
+9. **API docs (OpenAPI)** — REST/WebSocket API 레퍼런스 자동 생성. `docusaurus-plugin-openapi-docs` 후보. OME에 OpenAPI 스펙 있는지 확인 필요.
+10. **301 리다이렉트 맵** — GitBook URL → 새 `/docs/...`. (Medium 쪽은 [scripts/medium-redirects.json](scripts/medium-redirects.json) 이미 있음.)
 
-### 4.9 Docs
-- `docs/intro.mdx` with `slug: /` so `/docs` route serves it. Contains `:::info[Migration in progress]` admonition (v3 syntax — title in **brackets**, not space-separated like v2).
-- `sidebars.ts` uses `{type: 'autogenerated', dirName: '.'}` so files dropped into `docs/` show up automatically.
-- Docusaurus tutorial template files (`tutorial-basics/`, `tutorial-extras/`) **already deleted**.
+### D. 빌드 경고 정리 (컷오버 전)
+11. **`/docs/ome/transcoding` 중복 라우트**: upstream OvenMediaEngine 레포의 `docs-site/transcoding/`에 `README.md`(title: ABR and Transcoding)와 `transcoding.md`(title: Transcoding)가 같은 URL로 매핑됨. **upstream에서 슬러그/파일명 수정 필요** — downstream 수정은 sync 시 덮어쓰임.
+12. **누락 이미지 워닝 정리** — 일부 페이지에 broken image link.
+13. **onBrokenLinks / onBrokenAnchors → throw flip** — 위 둘 다 잡고 나서 컷오버 직전에.
+14. **`/ome#ovenplayer`, `/ome#ovenlivekit` broken anchor**: false positive — [src/pages/ome.mdx](src/pages/ome.mdx)에 `id=...`가 존재하므로 런타임 정상. Docusaurus 빌드 체커가 HTML element id를 못 봄. `throw` flip 시 ignore 처리 필요.
+15. **HTML minifier 경고**: 기존 docs의 nested `<a>` (release-notes 다수). upstream 정리 필요.
+16. **GTM + Cookiebot 검증** — `docusaurus.config.ts`의 GA/GTM/Cookiebot 셋업이 새 사이트에서 실제 동작 확인 (legacy `index.html` lines 46-77 참조).
 
-### 4.10 CI / deploy
-- `.github/workflows/deploy.yml` — on push to `main`, builds with Node 22 and deploys to GitHub Pages via `actions/deploy-pages@v4`.
-- Concurrency group prevents overlapping deploys.
-- `NODE_OPTIONS=--max-old-space-size=4096` allotted for the build step.
+### E. 컷오버
+17. **GitBook 도메인 리다이렉트** — `docs.ovenmediaengine.com`, `docs.enterprise.*`, `docs.ovenplayer.com` → 새 페이지 매핑.
+18. **`ovenmedialabs.com` DNS 전환 + HTTPS**.
+19. **Production 빌드 + 배포 파이프라인 최종 확인** — GH Pages 동작.
+20. **main 머지 + 브랜치 정리**.
 
-### 4.11 Verified rendering
-- `npm run build` succeeds; only warnings are `onBrokenAnchors` for `/ome#ovenplayer`, `/ome#ovenlivekit` (legitimate — Docusaurus's anchor checker doesn't index `id` attributes on JSX `<div>`s, but they work at runtime).
-- Headless-Chrome screenshot comparison (Puppeteer) used iteratively against `ovenmedialabs.com` (production legacy) to verify visual parity at viewport 1440×900 and 1600×900. Homepage and OME page match the legacy design.
-- Known visible difference vs production: navbar items differ intentionally — production has external "OvenMediaBlog" Medium link; ours has internal "Docs" and "Blog". The blog grid section on the homepage shows a placeholder spinner because the Medium fetcher was removed (replaced by Docusaurus blog plugin, which is empty until posts are migrated).
-
-## 5. What's NOT done (the work queue)
-
-| Priority | Item | Notes |
-|---|---|---|
-| 1 | Port remaining marketing pages | `ome-enterprise.html` (54KB), `company.html` (32KB), `latency.html` (31KB), `contact.html` (19KB), `agplv3.html` (23KB), `eula.html` (96KB, mostly prose), `404.html` (13KB). Mechanical HTML→MDX. Use index.mdx and ome.mdx as templates. |
-| 2 | Migrate Medium blog | User has not exported Medium yet. Options: (a) ask user for the Medium export ZIP, (b) use `rss2json.com` build-time fetcher, (c) use `medium-to-markdown` npm tool. Each post becomes `blog/YYYY-MM-DD-slug.mdx`. Re-host images to `static/blog/`. Add canonical link back to Medium until SEO transfers. |
-| 3 | Migrate OSS docs | Source: `https://github.com/OvenMediaLabs/OvenMediaEngine/tree/master/docs` (GitBook flavor markdown). Need to clone or `gh api` fetch the directory tree, then convert GitBook syntax (`{% hint %}`, `{% tabs %}`, `{% page-ref %}`, `{% embed %}`, `{% file %}`) to Docusaurus admonitions and components. |
-| 4 | Migrate Enterprise docs | User must produce a **GitBook export** first (no automated path — Enterprise docs are not in a public repo). After export, same conversion rules as OSS docs. |
-| 5 | API docs tooling | If OME has an OpenAPI spec (likely yes, for REST control plane), install `docusaurus-plugin-openapi-docs` + `docusaurus-theme-openapi-docs`. Generates per-endpoint pages from `openapi.yaml`. Check spec location with user. |
-| 6 | GTM + Cookiebot | Legacy `index.html` lines 46-77 carry `gtag` consent defaults, Cookiebot script, GTM-THBJMSZV container, GA4 G-YF1TS3WD9S, Google Ads AW-955539851. Move into `docusaurus.config.ts` `scripts` / `headTags` arrays. |
-| 7 | 301 redirect map | Old Medium URLs → new `/blog/...`. Old GitBook URLs → new `/docs/...`. Place in legacy hosting or use Docusaurus `aliases` frontmatter for in-app redirects. |
-| 8 | Visual review @ mobile breakpoint | Headless tests so far only run at 1440/1600 width. Mobile menu collapse, hamburger toggle, mobile blog-grid horizontal scroll need verification. |
-| 9 | Replace blog placeholder posts | Delete the Docusaurus welcome template posts in `blog/` once real Medium posts arrive. |
-| 10 | Rename branch `hugo-migration` → `docusaurus-migration` (or merge to `main` and delete) | Cosmetic but reduces confusion. |
-| 11 | Domain cutover | Final step: merge branch to `main`, verify GH Pages deploy, point DNS if needed (CNAME already in `static/`). |
-
-The session's last in-flight detail was a **dev server restart** to pick up the `clientModules` config change. On the Mac, just run `npm start` fresh — the restart happens by definition.
-
-## 6. Mac setup
-
-```bash
-# Clone (skip if you already have the repo locally)
-git clone https://github.com/OvenMediaLabs/airensoft.com.git
-cd airensoft.com
-
-# Switch to the rebuild branch
-git fetch origin
-git checkout hugo-migration
-
-# Node 20+ required. Check version
-node --version
-
-# Install deps (~1 min, 1300+ packages)
-npm install
-
-# Dev server with hot reload
-npm start
-# opens http://localhost:3000
-
-# Production build (~30s-1min)
-npm run build
-# output at build/
-
-# Preview production build
-npm run serve
-# also serves at http://localhost:3000
-
-# TypeScript check
-npm run typecheck
-```
-
-The screenshot comparison harness used on the remote server lives in `/tmp/screenshot-tool/` (not in the repo). If you want to recreate it on Mac:
-
-```bash
-mkdir -p /tmp/screenshot-tool && cd /tmp/screenshot-tool
-npm init -y
-npm install puppeteer
-```
-
-Then write a capture script that hits `localhost:3000` and `https://ovenmedialabs.com/` at the same viewport and saves PNGs to compare. The previous session used `--no-sandbox` flags and force-activated `.reveal-up` elements before screenshotting (since the IntersectionObserver requires scroll/visibility).
-
-## 7. File map (cheat sheet)
+## 6. 핵심 파일 / 디렉토리
 
 ```
-docusaurus.config.ts           ← site config: navbar, footer, headTags, customCss, clientModules
-sidebars.ts                    ← docs sidebar (autogenerated from docs/)
-package.json                   ← deps and scripts
-tsconfig.json                  ← extends @docusaurus/tsconfig
+docusaurus.config.ts            ← site config, navbar/footer/headTags/Prism theme, 3 docs plugin instances
+sidebars-ome.ts                 ← OME OSS 사이드바 (수동 유지)
+sidebars-ome-enterprise.ts      ← Enterprise 사이드바
+sidebars-ovenplayer.ts          ← OvenPlayer 사이드바
+
+scripts/
+├── sync-docs.sh                ← upstream docs-site/ → 로컬 docs/<source>/ 동기화 (git read-tree)
+├── migrate-docs.py             ← GitBook → MDX 변환기 (legacy, 풀 전환 후 archive)
+├── migrate-medium.py           ← Medium HTML → blog MDX 변환기 + redirects.json 생성
+└── medium-redirects.json       ← 35개 Medium URL → /blog/<slug> 매핑
 
 src/
-├── pages/
-│   ├── index.mdx              ← homepage (DONE)
-│   └── ome.mdx                ← OME page (DONE)
-├── theme/                     ← swizzled Docusaurus components
-│   ├── Navbar/
-│   │   ├── Content/index.tsx  ← inner nav markup (eject)
-│   │   └── Layout/index.tsx   ← outer nav wrapper (eject)
-│   └── Footer/
-│       └── Layout/index.tsx   ← custom footer (eject)
-├── clientModules/
-│   ├── bootstrap-dark.ts      ← data-bs-theme=dark
-│   └── legacy-marketing.ts    ← scroll/reveal/scroll-top, SPA-aware
+├── pages/                      ← 마케팅 페이지 + 404
+├── theme/                      ← Navbar/Footer swizzle
+├── clientModules/              ← bootstrap-dark, legacy-marketing.ts
 └── css/
-    ├── custom.css             ← Infima overrides + navbar height var
-    └── legacy-marketing.css   ← copy of legacy style.css (2014 lines)
+    ├── custom.css              ← Infima + 브랜드 팔레트 + 사이드바/코드/이미지 커스텀
+    └── legacy-marketing.css    ← 레거시 style.css 복사본
 
 docs/
-└── intro.mdx                  ← /docs landing (slug: /)
+├── ome/                        ← OSS docs (upstream sync)
+├── ome-enterprise/             ← Enterprise docs (upstream sync)
+└── ovenplayer/                 ← OvenPlayer docs (upstream sync)
 
-blog/                          ← Docusaurus template posts (to replace)
+blog/                           ← 35개 글 + authors.yml + tags.yml
+└── <YYYY-MM-DD>-<slug>/
+    ├── index.mdx
+    └── *.png / *.jpeg          ← co-located images
 
 static/
-├── assets/                    ← legacy CSS/JS/downloads (URL: /assets/...)
-├── images/                    ← legacy images (URL: /images/...)
-├── CNAME                      ← domain
-├── robots.txt
-└── .htaccess                  ← preserved but inert on GH Pages
+├── images/, assets/, CNAME, robots.txt, .htaccess
 
-.github/workflows/
-└── deploy.yml                 ← build + GH Pages deploy
+.github/workflows/deploy.yml    ← GH Pages 배포
 
-Repo root *.html               ← legacy reference (NOT served, asset paths broken)
-HANDOFF.md                     ← this document
+HANDOFF.md                      ← 이 문서
 ```
 
-## 8. Gotchas to remember
+## 7. 자주 마주치는 gotcha
 
-- **MDX page width**: Docusaurus auto-wraps MDX pages in `<main class="container">` which clamps to 1320px. For full-bleed marketing layouts you need `wrapperClassName: marketing-page` in frontmatter, and `.marketing-page main { max-width: none !important }` is already in `custom.css`. Apply this to every new marketing page.
-- **Admonition syntax v3**: `:::info[Title]` (brackets), not `:::info Title` (space). Title goes in brackets; v2 syntax is broken in 3.x.
-- **Legacy main.js**: do **not** load it via headTags `<script src=/assets/js/main.js>`. It assumes DOMContentLoaded fires after React hydration (false in SPA) and crashes with `null.classList`. Use `src/clientModules/legacy-marketing.ts` instead.
-- **Bootstrap dark mode**: legacy CSS keys off `[data-bs-theme="dark"]`. We set it inline via a synchronous script in `headTags` plus a clientModule. Don't remove either.
-- **Navbar height**: legacy uses `--navbar-height: 78px` (desktop) and 64px (≤996px). We mirror this into `--ifm-navbar-height` in `custom.css` so docs sidebar positioning and anchor-scroll offsets stay correct.
-- **Image URLs in CSS**: when copying legacy CSS into `src/css/`, `url("../../images/...")` resolves to a non-existent path inside `src/`. The file at `src/css/legacy-marketing.css` already has absolute `url(/images/...)` rewrites — preserve them if you re-copy.
-- **`onBrokenAnchors` warnings**: Docusaurus's anchor checker doesn't see `id` on JSX `<div>` elements (only headings), so `/ome#ovenplayer` shows as broken even though it works at runtime. Currently set to `warn`; flip to `throw` only once you've audited all anchor targets.
-- **The branch name `hugo-migration`** is a historical artefact from when Hugo was the candidate. The stack is Docusaurus. Don't get confused — rename whenever convenient.
-- **Legacy HTML files at repo root are reference only**. Their links to `/assets/...` and `/images/...` are broken if opened via `file://` because those moved under `static/`. They're useful for source-comparing during MDX conversion; not for visual checking.
-- **VS Code Remote-SSH port forwarding** was what made `localhost:3000` work on the remote-server session. On the Mac, this is local; no port forwarding needed.
+- **MDX 3 admonition**: `:::info[Title]` (대괄호). v2 형식 (`:::info Title` 공백)은 깨짐.
+- **`<Identifier>` 본문 escape**: `<Instance_IP>` 같은 텍스트는 MDX가 JSX 컴포넌트로 파싱 시도. `&lt;Instance_IP>` 로 escape 필요. (migrate-medium.py에서 이미 처리됨.)
+- **`{` / `}` 본문 escape**: 마찬가지로 `&#123;` / `&#125;` 처리.
+- **이미지 import 경로**: depth 0(같은 디렉토리)도 `./` prefix 필요. 그냥 파일명만 쓰면 webpack이 못 찾음.
+- **`*`가 들어간 파일명**: Medium의 `1*xxxx.png`처럼 `*` 들어가면 webpack glob 충돌. `-`로 정규화.
+- **공백/괄호 들어간 GitBook asset 이름**: URL 디코드 후 `[^\w.\-/]+` → `-` 치환. (migrate-docs.py 처리.)
+- **사이드바 잘림 (짧은 본문)**: `.docSidebarContainer min-height: calc(100vh + var(--ifm-navbar-height))` 필요. clip-path도 주의.
+- **사이드바 horizontal scroll**: `overflow-x: hidden !important` 명시 (overflow-y: auto가 overflow-x: visible을 auto로 promote).
+- **Bootstrap dark**: `<html data-bs-theme="dark">`. `headTags`의 inline script + clientModule 둘 다 유지 (FOUC 방지).
+- **마케팅 페이지 full-bleed**: `wrapperClassName: marketing-page` + `hide_table_of_contents: true` 프론트매터, CSS에 `.marketing-page main { max-width: none }`.
+- **upstream 수정 vs downstream 수정**: docs/ome/, docs/ome-enterprise/, docs/ovenplayer/ 안의 파일은 sync 시 덮어쓰임. 항상 **upstream 레포에서 PR**.
 
-## 9. Editorial workflow reference (give to the maintainer)
+## 8. 외부 시스템 / 참조
 
-**Add a blog post**
-1. Create `blog/2026-05-12-llhls-vs-webrtc.mdx`
-2. Frontmatter:
-   ```yaml
-   ---
-   slug: llhls-vs-webrtc
-   title: "LL-HLS vs WebRTC: when to choose which"
-   authors: [ovenmedialabs]
-   tags: [webrtc, llhls, latency]
-   date: 2026-05-12
-   ---
-   ```
-3. Write body in markdown/MDX.
-4. Optional: drop images into the same folder as a *page bundle* and reference relatively.
-5. `git add` + commit + push. PR or push to main triggers the GH Pages deploy.
+- Upstream 3개 레포 (모두 `OvenMediaLabs/` org):
+  - `OvenMediaEngine` (OSS, public)
+  - `OvenMediaEngineEnterprise` (private, GitHub PAT 필요 — `GITHUB_TOKEN` env)
+  - `OvenPlayer`
+- Medium export 디렉토리: `/Users/getroot/Downloads/medium-export-7bdeda746d7ad07f255675403aca74c25c06130c33fc4753aef47fccd6b876df/` (재실행 시 필요)
+- Memory: `/Users/getroot/.claude/projects/-Users-getroot-Project-airensoft-com/memory/`
+  - `project-naming.md` — ovenmedialabs.com, feat: prefix
+  - `feedback-pause-and-wait.md` — 인터럽트 처리
+  - `feedback-pr-body-scope.md` — PR 본문 최소화
 
-**Add a docs page**
-1. Create `docs/streaming/webrtc-output.md` (or `.mdx`).
-2. Frontmatter: `title:`, `sidebar_position: 30`, `description:`.
-3. Sidebar updates automatically (autogenerated).
-4. Use admonitions: `:::note`, `:::info[Title]`, `:::warning`, `:::tip`, `:::danger`.
+## 9. 새 세션 첫 단계
 
-**Add a marketing page**
-1. Create `src/pages/<slug>.mdx`.
-2. Frontmatter:
-   ```yaml
-   ---
-   title: ...
-   description: ...
-   hide_table_of_contents: true
-   wrapperClassName: marketing-page
-   ---
-   ```
-3. Compose Bootstrap-styled sections (`<section className="full-page-section ...">`). Use existing index.mdx / ome.mdx as the template.
+1. `npm install && npm start -- --port 3100`. http://localhost:3100/blog/ 에서 글 35개 보이는지 확인. http://localhost:3100/docs/ 에서 3개 docs 정상.
+2. `git status`로 미커밋 변경분 확인 — 블로그 35개 디렉토리 + scripts + tags.yml.
+3. 사용자 지시 기다리기. 위 §5의 A부터 진행하는 게 자연스러움.
 
-## 10. The session's last todo list (verbatim)
-
-```
-1. [completed]  Scaffold Docusaurus 3.x with TypeScript
-2. [completed]  Move existing assets/ and images/ into static/
-3. [completed]  Wire existing CSS into Docusaurus
-4. [completed]  Run npm install + first build
-5. [completed]  Swizzle Navbar + Footer
-6. [completed]  Convert index.html → src/pages/index.mdx
-7. [completed]  Convert ome.html → src/pages/ome.mdx
-8. [completed]  Blog plugin config + welcome post placeholder
-9. [completed]  Docs plugin config + intro page placeholder
-10. [completed] GitHub Actions deploy workflow
-11. [pending]   Port remaining 7 marketing pages
-12. [pending]   Port legacy main.js behaviors          ← actually done via clientModule; verify on Mac
-13. [pending]   Add GTM + Cookiebot integration
-14. [pending]   Migrate Medium posts → MDX
-15. [pending]   Migrate OSS docs (GitBook → Docusaurus)
-16. [pending]   Export Enterprise GitBook and migrate
-17. [pending]   API docs tooling (OpenAPI)
-18. [pending]   301 redirect map
-19. [pending]   Preview, merge to main, domain cutover
-```
-
-Item 12 is effectively done in code (`src/clientModules/legacy-marketing.ts`) but was never marked complete because the session ended before final dev-server verification.
-
-## 11. First steps on the Mac
-
-1. `npm install && npm start`. Verify `http://localhost:3000` renders the homepage matching production, and `/docs` renders the intro page with the admonition.
-2. If anything looks off vs production, compare with `https://ovenmedialabs.com/` and patch CSS/MDX accordingly. The remote session's last visual-parity pass was at viewport 1440 and 1600.
-3. Pick the next page from item 11's queue (suggest `ome-enterprise.html` — it's the Enterprise pitch page, biggest pageview value).
-4. Continue.
-
-Good luck.
+행운을.

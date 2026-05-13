@@ -22,3 +22,8 @@ yarn-error.log*
 # Claude Code session artifacts
 .claude/
 .claude-session-recovery/
+
+# Backups left by scripts/flatten-transparent-images.py.
+# Kept until the upstream diagram PRs land + a sync resyncs the new
+# images, then this directory can be deleted entirely.
+.alpha-backup/

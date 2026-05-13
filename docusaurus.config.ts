@@ -47,7 +47,7 @@ const omeCodeTheme: PrismTheme = {
 };
 
 const config: Config = {
-  title: 'OvenMediaLabs',
+  title: 'OvenMedia Labs',
   tagline: 'Sub-second latency live streaming, powered by OvenMediaEngine.',
   favicon: 'images/ico/favicon.ico',
 
@@ -216,16 +216,18 @@ const config: Config = {
         blog: {
           showReadingTime: true,
           routeBasePath: 'blog',
-          blogTitle: 'OvenMediaLabs Blog',
-          blogDescription: 'Sub-second latency live streaming insights from OvenMediaLabs.',
+          blogTitle: 'OvenMedia Labs Blog',
+          blogDescription: 'Sub-second latency live streaming insights from OvenMedia Labs.',
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
-            title: 'OvenMediaLabs Blog',
-            description: 'Sub-second latency live streaming insights from OvenMediaLabs.',
+            title: 'OvenMedia Labs Blog',
+            description: 'Sub-second latency live streaming insights from OvenMedia Labs.',
           },
-          editUrl:
-            'https://github.com/OvenMediaLabs/airensoft.com/tree/main/',
+          // editUrl intentionally omitted: editors and contributors don't
+          // need a per-post "Edit this page" link on the live blog. The
+          // GitHub source is one click away from the footer for the rare
+          // case someone wants to open a PR.
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -340,7 +342,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} OvenMediaLabs (Formerly AirenSoft). All rights reserved.`,
+      copyright: `Copyright © ${new Date().getFullYear()} OvenMedia Labs (Formerly AirenSoft). All rights reserved.`,
     },
     prism: {
       // Custom theme — see `omeCodeTheme` above this config block.

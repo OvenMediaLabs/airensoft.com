@@ -201,21 +201,18 @@ html.plugin-blog .main-wrapper .container--fluid {
   padding-right: 2rem !important;
 }
 
-/* Most upstream docs images (diagrams, screenshots from light tools)
- * were authored against a white canvas. Dropping them onto our dark
- * docs surface kills contrast (dark text on dark background). Wrap
- * every prose image in an off-white card so the diagram lands on the
- * background it was designed for. Side effect: dark-UI screenshots
- * also get the pad — but it reads as a framed photo, not a bug. */
+/* Prose images get a uniform layout (centered block, generous vertical
+ * rhythm) but no white background or padding. Diagrams that need a
+ * white canvas have it baked into the file by
+ * scripts/flatten-transparent-images.py, so they composite cleanly on
+ * the dark surface without a CSS frame. */
 html.plugin-docs .markdown img,
 html.plugin-blog .markdown img {
-  background: #fafafa;
-  padding: 0.75rem;
-  border-radius: 8px;
   display: block;
-  margin: 1.25rem auto;
+  margin: 1.5rem auto;
   max-width: 100%;
   height: auto;
+  border-radius: 8px;
 }
 
 /* Hide the per-doc "Previous / Next" pagination block at the bottom of
@@ -1098,3 +1095,201 @@ html.plugin-docs .gitbook-card strong {
   font-weight: 600;
 }
 
+
+/* ============================================================
+ * Blog post (detail page) — focused reading layout.
+ *
+ * Goals:
+ *   1. Hide the left "Recent posts" sidebar on single-post pages.
+ *      It's noise when the reader has already committed to one post.
+ *   2. Narrow the prose column to ~720px so line length stays in the
+ *      sweet spot (60-80ch). The global container is 1760px wide
+ *      for the marketing-style docs/list layouts, which is too wide
+ *      for long-form reading.
+ *   3. Compact the author block into a single horizontal row at the
+ *      top of the post (avatar + name + title). The default stacks
+ *      avatar above name above social icons, which eats vertical
+ *      space and competes with the article title.
+ *   4. Style inline code with a subtle background pill so tokens
+ *      like `#EXT-X-VERSION:3` stand out from prose.
+ * ============================================================ */
+
+/* 1. Hide the left blog sidebar (Recent posts column) on detail pages.
+ * The blog sidebar renders as `<aside class="col col--3">`, no class-module
+ * hash. Target the bare `aside` inside the blog post layout. */
+html.plugin-blog.blog-post-page .main-wrapper aside {
+  display: none !important;
+}
+
+/* 2. Narrow the prose column. The body column on a single post is
+ * `<main class="col col--7">` inside a row. Force a fixed width via
+ * flex-basis (no grow) so the row's `justify-content: center` actually
+ * centers main + TOC as a pair. `flex-grow: 0` is the critical bit;
+ * without it main expands to fill the row and centering is a no-op. */
+html.plugin-blog.blog-post-page .main-wrapper main[class*='col'] {
+  flex: 0 1 760px !important;
+  max-width: 760px !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+/* When the right TOC is present, the main column is paired with a
+ * narrower TOC column. Keep that pairing but center the whole row.
+ * Important required because the global `.main-wrapper .row` rule above
+ * resets row flex behavior and can win specificity. */
+html.plugin-blog.blog-post-page .main-wrapper .container > .row {
+  justify-content: center !important;
+  gap: 2.5rem;
+}
+
+/* 3. Compact author row at the top of a post. The upstream layout
+ * uses an Infima `.row` with each author taking col--12 (single
+ * author) and stacks avatar + name + title + socials vertically.
+ * Flip it into a horizontal flex so the byline reads as one line. */
+html.plugin-blog.blog-post-page header [class*='authorCol'] {
+  width: auto !important;
+  max-width: none !important;
+  flex: 0 0 auto !important;
+}
+
+html.plugin-blog.blog-post-page header .avatar {
+  align-items: center;
+  gap: 0.75rem;
+}
+
+html.plugin-blog.blog-post-page header .avatar__photo,
+html.plugin-blog.blog-post-page header .avatar__photo-link img {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+html.plugin-blog.blog-post-page header .avatar__intro {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+html.plugin-blog.blog-post-page header .avatar__name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+html.plugin-blog.blog-post-page header .avatar__subtitle {
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Hide author social icons in the post header — they belong on the
+ * author profile page, not above every article. */
+html.plugin-blog.blog-post-page header [class*='authorSocials'],
+html.plugin-blog.blog-post-page header .author__socials {
+  display: none !important;
+}
+
+/* Tighten the spacing between title, meta, author, and hero image. */
+html.plugin-blog.blog-post-page header > h1 {
+  margin-bottom: 0.5rem !important;
+}
+
+html.plugin-blog.blog-post-page header > .margin-vert--md {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* 4. Inline code styling. The default has no background, so prose
+ * tokens disappear. Add a subtle pill + monospace so they pop. */
+html.plugin-blog.blog-post-page .markdown :not(pre) > code {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  font-size: 0.88em;
+  color: var(--omb-sky, #38bdf8);
+}
+
+/* 5. Improve the prose itself: comfortable line-height, larger first
+ * paragraph as a lede, and gentler heading hierarchy. */
+html.plugin-blog.blog-post-page .markdown {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+html.plugin-blog.blog-post-page .markdown > p:first-of-type {
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: #e8eaed;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html.plugin-blog.blog-post-page .markdown h2 {
+  font-size: 1.6rem !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 0.75rem !important;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html.plugin-blog.blog-post-page .markdown h3 {
+  font-size: 1.25rem !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* 6. Brighten the right TOC's inactive items so the outline is
+ * actually scannable, not just a list of dots. */
+html.plugin-blog.blog-post-page .table-of-contents__link {
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* ---- Blog post footer (tags) ----
+ * The post footer is just an inline tag list. Hide the bold "Tags:"
+ * label (the pills are self-explanatory) and restyle the pills to
+ * match the horizontal card tags in the list view, so the same visual
+ * language flows from /blog -> /blog/<slug>. */
+html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row {
+  margin-top: 2.5rem !important;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row > .col > b {
+  display: none;
+}
+
+html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tags_'] {
+  margin-left: 0 !important;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Pill itself - mirrors the list-view tag style */
+html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_'] a {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none;
+  line-height: 1.6;
+  background: transparent;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_'] a:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  background: rgba(56, 189, 248, 0.06);
+  text-decoration: none;
+}
