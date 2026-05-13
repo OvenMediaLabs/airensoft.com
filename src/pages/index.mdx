@@ -5,6 +5,8 @@ hide_table_of_contents: true
 wrapperClassName: marketing-page
 ---
 
+import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
+
 <section id="hero-section" className="hero-bg-index full-page-section d-flex align-items-center position-relative text-center delay-100">
   <div className="hero-overlay"></div>
   <div className="container position-relative z-1">
@@ -172,22 +174,7 @@ wrapperClassName: marketing-page
   </div>
 </section>
 
-<section id="blog" className="full-page-section d-flex flex-column align-items-center bg-body position-relative">
-  <div className="w-100 py-5">
-    <div className="container">
-      <div className="d-flex justify-content-between align-items-end mb-4 reveal-up">
-        <div>
-          <h2 className="fw-bold text-main mb-1">OvenMediaBlog</h2>
-          <p className="text-sub small mb-0">Discover the research and ideas driving our streaming technology.</p>
-        </div>
-        <a href="/blog" className="btn btn-sm btn-secondary-outline3 rounded-pill d-none d-md-block">Read More &rarr;</a>
-      </div>
-      <div id="blog-grid" className="row g-3 g-md-4 mobile-horizontal-scroll">
-        <div className="col-12 text-center text-sub py-5"><div className="spinner-border text-primary mb-3" role="status"></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+<LatestBlogPosts />
 
 <section className="full-page-section d-flex flex-column bg-surface-50">
   <div className="d-flex align-items-center justify-content-center py-5">

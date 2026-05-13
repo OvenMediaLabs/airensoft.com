@@ -49,7 +49,7 @@ export default function FooterLayout(): ReactNode {
                   <ul className="list-unstyled">
                     <li><a href="https://github.com/OvenMediaLabs" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a></li>
                     <li><Link to="/latency" className="footer-link">Tech: Low Latency</Link></li>
-                    <li><Link to="/blog" className="footer-link">OvenMediaBlog</Link></li>
+                    <li><Link to="/blog" className="footer-link">Blog</Link></li>
                   </ul>
                 </div>
                 <div className="footer-col">
