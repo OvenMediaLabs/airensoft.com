@@ -337,7 +337,9 @@ const config: Config = {
         {
           title: 'Resources',
           items: [
-            {label: 'Documentation', to: '/docs'},
+            {label: 'OvenMediaEngine Guide', to: '/docs/ome'},
+            {label: 'OvenMediaEngine Enterprise Guide', to: '/docs/ome-enterprise'},
+            {label: 'OvenPlayer Guide', to: '/docs/ovenplayer'},
             {label: 'Blog', to: '/blog'},
             {label: 'GitHub', href: 'https://github.com/AirenSoft'},
             {label: 'Community Discussions', href: 'https://github.com/AirenSoft/OvenMediaEngine/discussions'},
