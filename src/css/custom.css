@@ -85,6 +85,22 @@
   padding: 0 !important;
 }
 
+/* Docusaurus wraps MDX pages in `.row.mdxPageWrapper`. Infima's `.row`
+ * uses negative horizontal margins meant to offset its container's
+ * padding. Marketing pages have `padding: 0`, so the negative margin
+ * spills the row 12px past the viewport. Zero it out and the children
+ * have full-width sections of their own. */
+.marketing-page .mdxPageWrapper_j9I6,
+.marketing-page [class*='mdxPageWrapper'] {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.marketing-page [class*='mdxPageWrapper'] > .col {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 /**
  * Dark dropdown menu in the marketing navbar. Bootstrap's default
  * .dropdown-menu is light; we restyle it to match the dark navbar so the
@@ -571,6 +587,10 @@ html.plugin-blog .main-wrapper .col--7,
 html.plugin-blog .main-wrapper .col--9 {
   flex: 1 1 0% !important;
   max-width: none !important;
+  /* Flex items default to `min-width: auto`, which lets a long-line code
+   * block stretch the column past the viewport. Force `0` so the column
+   * stays within its grid track and the `<pre>` scrolls internally. */
+  min-width: 0 !important;
 }
 
 /* Sidebar column (docs: TOC; blog: recent posts or TOC). 240px keeps the
@@ -596,6 +616,7 @@ html.plugin-blog .theme-doc-markdown > article,
 html.plugin-blog .markdown {
   max-width: none !important;
   width: 100% !important;
+  min-width: 0 !important;
 }
 
 /* Heading scale: tighter, more LiveKit/Stripe-like. No section dividers
@@ -1142,14 +1163,34 @@ html.plugin-blog.blog-post-page .main-wrapper .container > .row {
   gap: 2.5rem;
 }
 
+/* Mobile: the desktop layout pins 240px for the right TOC, which on a
+ * 375px viewport leaves ~30px for the post and snaps the title to one
+ * character per line. Hide the right TOC below the Infima medium
+ * breakpoint and let main fill the row. The TOC content stays
+ * accessible via Docusaurus's collapsible mobile "On this page". */
+@media (max-width: 996px) {
+  html.plugin-blog.blog-post-page .main-wrapper .col--2 {
+    display: none !important;
+  }
+  html.plugin-blog.blog-post-page .main-wrapper main[class*='col'] {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
+}
+
 /* 3. Compact author row at the top of a post. The upstream layout
  * uses an Infima `.row` with each author taking col--12 (single
  * author) and stacks avatar + name + title + socials vertically.
  * Flip it into a horizontal flex so the byline reads as one line. */
 html.plugin-blog.blog-post-page header [class*='authorCol'] {
   width: auto !important;
-  max-width: none !important;
-  flex: 0 0 auto !important;
+  /* Cap at viewport so the avatar block can't push the page wider than
+   * the post column on mobile. `max-width: none` was the desktop intent
+   * (collapse the full-width col--12) but it let the column outgrow the
+   * 375px viewport when the author name + subtitle ran long. */
+  max-width: 100% !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
 }
 
 html.plugin-blog.blog-post-page header .avatar {
