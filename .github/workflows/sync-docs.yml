@@ -2,29 +2,28 @@ name: Sync docs from upstream
 
 # When an upstream OvenMediaLabs/* repo pushes a change inside its
 # `docs-site/` tree, its notify workflow dispatches a `docs-changed`
-# event here. We run scripts/sync-docs.sh to pull the upstream's
-# docs-site/ into our docs/<source>/ folder, then commit and push the
-# result directly to the consuming branch. No PR — docs syncs are
-# expected to ship as-is because the review already happened upstream.
+# event here. We re-pull all three upstreams' docs-site/ into our
+# docs/<source>/ folder, then commit and push the result directly to
+# main. No PR — docs syncs are expected to ship as-is because the
+# review already happened upstream.
 #
-# Manual trigger (`workflow_dispatch`) is also exposed so we can re-
-# sync ad hoc from the Actions UI.
+# Manual trigger (`workflow_dispatch`) is also exposed for an ad-hoc
+# re-sync from the Actions UI.
 
 on:
   repository_dispatch:
     types: [docs-changed]
   workflow_dispatch:
-    inputs:
-      source:
-        description: 'which upstream to sync (ome / ome-enterprise / ovenplayer); empty for all'
-        required: false
-        type: string
 
-# Single in-flight sync at a time — back-to-back upstream pushes
-# should queue, not race.
+# Coalesce bursts: if three upstream merges arrive in quick succession,
+# the newest run cancels the in-flight one and resyncs everything from
+# fresh. End state matches the latest dispatch instead of being stuck
+# on whichever event happened to land first. We always sync all three
+# upstreams, so cancelling mid-run is safe — the next run picks up
+# every change.
 concurrency:
   group: docs-sync
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   sync:
@@ -51,12 +50,10 @@ jobs:
           git config user.name "github-actions[bot]"
 
       - name: Run sync
-        run: |
-          # client_payload.source comes from the upstream's dispatch
-          # event; inputs.source comes from manual workflow_dispatch.
-          # Pass whichever is set (empty falls through to "all").
-          src="${{ github.event.client_payload.source }}${{ inputs.source }}"
-          bash scripts/sync-docs.sh $src
+        # Always sync all three upstreams. Ignoring the dispatch's
+        # `source` payload makes coalescing trivial: every run lands
+        # the same end state regardless of which upstream triggered.
+        run: bash scripts/sync-docs.sh
 
       - name: Push if changes
         run: |
