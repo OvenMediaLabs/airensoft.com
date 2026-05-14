@@ -8,10 +8,13 @@
 import {type ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function FooterLayout(): ReactNode {
   const logoSvg = useBaseUrl('/images/airen_ci/OML_Text_L.svg');
   const logoPng = useBaseUrl('/images/airen_ci/OML_Text_L.png');
+  const {siteConfig} = useDocusaurusContext();
+  const previewSource = (siteConfig.customFields as Record<string, string> | undefined)?.previewSource || '';
 
   return (
     <section className="full-page-section d-flex flex-column bg-black footer-section pb-0-mobile">
@@ -33,6 +36,7 @@ export default function FooterLayout(): ReactNode {
               </div>
             </div>
 
+            {!previewSource && (
             <div className="col-12 col-lg-8 d-none d-md-block">
               <div className="d-flex justify-content-between">
                 <div className="footer-col">
@@ -79,6 +83,7 @@ export default function FooterLayout(): ReactNode {
                 </div>
               </div>
             </div>
+            )}
           </div>
 
           <div className="border-top border-darker mt-3 pt-2 text-center">

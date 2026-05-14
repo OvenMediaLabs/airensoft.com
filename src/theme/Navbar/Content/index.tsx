@@ -12,6 +12,7 @@ import {useThemeConfig} from '@docusaurus/theme-common';
 import {useLocation} from '@docusaurus/router';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {resourcesDropdownItems} from '@site/src/config/navbarResources';
 
 type NavbarItem = {
@@ -131,7 +132,13 @@ function isDropdownActive(item: NavbarItem, pathname: string): boolean {
 
 export default function NavbarContent(): ReactNode {
   const {navbar} = useThemeConfig();
-  const items = (navbar.items ?? []) as NavbarItem[];
+  const {siteConfig} = useDocusaurusContext();
+  const previewSource = (siteConfig.customFields as Record<string, string> | undefined)?.previewSource || '';
+  // In preview mode the editor is focused on one product's docs — drop
+  // the marketing menu so it can't distract or mis-link off the docs
+  // chapter.
+  const items = previewSource ? [] : ((navbar.items ?? []) as NavbarItem[]);
+  const brandTo = previewSource ? `/docs/${previewSource}/` : '/';
   const {pathname} = useLocation();
 
   const logoSrc = useBaseUrl('/images/airen_ci/OML_Letter_GGL.svg');
@@ -143,7 +150,7 @@ export default function NavbarContent(): ReactNode {
           sits INSIDE the <picture> element so it stacks below the logo image as
           a subscript. Browsers tolerate non-spec children in <picture>; the
           rendering order matches the original site exactly. */}
-      <Link className="navbar-brand d-flex align-items-center" to="/">
+      <Link className="navbar-brand d-flex align-items-center" to={brandTo}>
         <picture style={{pointerEvents: 'none'}}>
           <source srcSet={logoSrc} type="image/svg+xml" />
           <img src={logoPng} alt="OvenMedia Labs" className="sharp-img" />

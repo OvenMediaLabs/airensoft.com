@@ -46,10 +46,22 @@ const omeCodeTheme: PrismTheme = {
   ],
 };
 
+// When upstream editors run `docs-site/preview.sh`, the script starts
+// the site with OML_PREVIEW_SOURCE=ome|ome-enterprise|ovenplayer. That
+// switches the site into "docs-only" mode: marketing nav/footer items
+// are hidden, and `/` redirects to `/docs/<source>/`. The rest of the
+// site stays reachable by direct URL so nothing actually breaks — the
+// editor just never sees marketing chrome while previewing docs.
+const PREVIEW_SOURCE = process.env.OML_PREVIEW_SOURCE || '';
+
 const config: Config = {
   title: 'OvenMedia Labs',
   tagline: 'Sub-second latency live streaming, powered by OvenMediaEngine.',
   favicon: 'images/ico/favicon.ico',
+
+  customFields: {
+    previewSource: PREVIEW_SOURCE,
+  },
 
   future: {
     v4: true,
@@ -84,6 +96,7 @@ const config: Config = {
   clientModules: [
     './src/clientModules/bootstrap-dark.ts',
     './src/clientModules/legacy-marketing.ts',
+    './src/clientModules/preview-redirect.ts',
   ],
 
   headTags: [
