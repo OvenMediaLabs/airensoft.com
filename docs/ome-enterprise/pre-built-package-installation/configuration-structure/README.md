@@ -123,7 +123,7 @@ The `<Bind>` is the configuration for the server port that will be used. Bind co
                     <!-- 
                         If you want to stream WebRTC over TCP, specify IP:Port for TURN server.
                         This uses the TURN protocol, which delivers the stream from the built-in TURN server to the player's TURN client over TCP. 
-                        For detailed information, refer ../streaming/webrtc-publishing.md#webrtc-over-tcp
+                        For detailed information, refer ../../features/streaming-and-distribution/webrtc-streaming.md#webrtc-over-tcp
                     -->
                     <TcpRelay>*:3478</TcpRelay>
                     <!-- TcpForce is an option to force the use of TCP rather than UDP in WebRTC streaming. (You can omit ?transport=tcp accordingly.) If <TcpRelay> is not set, playback may fail. -->
@@ -160,7 +160,7 @@ The `<Bind>` is the configuration for the server port that will be used. Bind co
                     <!-- 
                         If you want to stream WebRTC over TCP, specify IP:Port for TURN server.
                         This uses the TURN protocol, which delivers the stream from the built-in TURN server to the player's TURN client over TCP. 
-                        For detailed information, refer ../streaming/webrtc-publishing.md#webrtc-over-tcp
+                        For detailed information, refer ../../features/streaming-and-distribution/webrtc-streaming.md#webrtc-over-tcp
                     -->
                     <TcpRelay>*:3478</TcpRelay>
                     <!-- TcpForce is an option to force the use of TCP rather than UDP in WebRTC streaming. (You can omit ?transport=tcp accordingly.) If <TcpRelay> is not set, playback may fail. -->
@@ -255,7 +255,7 @@ Origins (also we called `OriginMap`) are a feature to pull streams from external
 
 The Origin has `<Location>` and `<Pass>` elements. Location is a URI pattern for incoming requests. If the incoming URL request matches Location, OvenMediaEngine pulls the stream according to a Pass element. In the Pass element, you can set the origin stream's protocol and URLs.
 
-When an Edge server receives a request for an application or stream that does not exist, the Origin creates them on demand. To learn more about Origin-Edge, see the [Live Source](../live-source/README.md) chapter.
+When an Edge server receives a request for an application or stream that does not exist, the Origin creates them on demand. To learn more about Origin-Edge, see the [Live Source](../../features/live-source/README.md) chapter.
 
 ```xml
 <!-- /Server/VirtualHosts -->
@@ -366,7 +366,7 @@ When an Edge server receives a request for an application or stream that does no
 </Application>
 ```
 
-For more information about the `<OutputProfiles>`, please see the [Transcoding](../transcoding/README.md) chapter.
+For more information about the `<OutputProfiles>`, please see the [Transcoding](../../features/transcoding-and-processing/README.md) chapter.
 
 #### Providers
 
@@ -390,7 +390,7 @@ For more information about the `<OutputProfiles>`, please see the [Transcoding](
 </Application>
 ```
 
-If you want to get more information about the `<Providers>`, please refer to the [Live Source](../live-source/README.md) chapter.
+If you want to get more information about the `<Providers>`, please refer to the [Live Source](../../features/live-source/README.md) chapter.
 
 #### Publishers
 
@@ -420,7 +420,7 @@ You need many threads to transmit streams to a large number of users at the same
 
 ​OvenMediaEngine currently supports WebRTC, Low-Latency DASH, MEPG-DASH, and HLS. If you don't want to use any protocol then you can delete that protocol setting, the component for that protocol isn't initialized. As a result, you can save system resources by deleting the settings of unused protocol components.
 
-If you want to learn more about WebRTC, visit the [WebRTC Streaming](../streaming/webrtc-publishing.md) chapter. And if you want to get more information on Low-Latency DASH, MPEG-DASH, and HLS, refer to the chapter on [HLS & MPEG-DASH Streaming](../streaming/low-latency-hls.md).
+If you want to learn more about WebRTC, visit the [WebRTC Streaming](../../features/streaming-and-distribution/webrtc-streaming.md) chapter. And if you want to get more information on Low-Latency DASH, MPEG-DASH, and HLS, refer to the chapter on [HLS & MPEG-DASH Streaming](../../features/streaming-and-distribution/low-latency-hls.md).
 
 ## Configuration Example
 
@@ -513,7 +513,7 @@ Finally, `Server.xml` is configured as follows:
                     <!--
                         If you want to stream WebRTC over TCP, specify IP:Port for TURN server.
                         This uses the TURN protocol, which delivers the stream from the built-in TURN server to the player's TURN client over TCP.
-                        For detailed information, refer ../streaming/webrtc-publishing.md#webrtc-over-tcp
+                        For detailed information, refer ../../features/streaming-and-distribution/webrtc-streaming.md#webrtc-over-tcp
                     -->
                     <TcpRelay>*:3478</TcpRelay>
                     <!--
@@ -553,7 +553,7 @@ Finally, `Server.xml` is configured as follows:
                     <!--
                         If you want to stream WebRTC over TCP, specify IP:Port for TURN server.
                         This uses the TURN protocol, which delivers the stream from the built-in TURN server to the player's TURN client over TCP.
-                        For detailed information, refer ../streaming/webrtc-publishing.md#webrtc-over-tcp
+                        For detailed information, refer ../../features/streaming-and-distribution/webrtc-streaming.md#webrtc-over-tcp
                     -->
                     <TcpRelay>*:3478</TcpRelay>
                     <!--
