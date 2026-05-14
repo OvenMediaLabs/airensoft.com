@@ -18,6 +18,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Notify Slack — build started
+        # Skipped silently if the secret isn't set, so the workflow
+        # keeps working in forks or before the webhook is provisioned.
+        if: env.SLACK_WEBHOOK_URL != ''
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DEVREL_WEBHOOK_URL }}
+        run: |
+          curl -fsS -X POST -H 'Content-Type: application/json' \
+            --data "$(jq -nc \
+              --arg t ":rocket: *ovenmedialabs.com* build started (run #${{ github.run_number }}, \`${GITHUB_SHA:0:7}\`)" \
+              '{text: $t}')" \
+            "$SLACK_WEBHOOK_URL"
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # needed for last-update times in docs
@@ -53,3 +66,27 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  notify:
+    # Runs after deploy regardless of build/deploy outcome, so failures
+    # also generate a Slack message instead of going silent.
+    needs: [build, deploy]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack — result
+        if: env.SLACK_WEBHOOK_URL != ''
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_DEVREL_WEBHOOK_URL }}
+          BUILD_RESULT: ${{ needs.build.result }}
+          DEPLOY_RESULT: ${{ needs.deploy.result }}
+        run: |
+          run_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if [ "$BUILD_RESULT" = "success" ] && [ "$DEPLOY_RESULT" = "success" ]; then
+            text=":white_check_mark: *ovenmedialabs.com* deployed → https://ovenmedialabs.com (run #${{ github.run_number }})"
+          else
+            text=":x: *ovenmedialabs.com* build/deploy failed (build=$BUILD_RESULT, deploy=$DEPLOY_RESULT) → $run_url"
+          fi
+          curl -fsS -X POST -H 'Content-Type: application/json' \
+            --data "$(jq -nc --arg t "$text" '{text: $t}')" \
+            "$SLACK_WEBHOOK_URL"
