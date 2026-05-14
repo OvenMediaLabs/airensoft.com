@@ -1,4 +1,4 @@
-# `docs-site/` — OvenPlayer docs source
+# `docs/` — OvenPlayer docs source
 
 This folder holds the **MDX source** for the OvenPlayer user
 guide published at <https://ovenmedialabs.com/docs/ovenplayer/>.
@@ -12,16 +12,16 @@ conventions, and image rules.
 
 ## Local preview
 
-Run `./docs-site/preview.sh` from the repo root.
+Run `./docs/preview.sh` from the repo root.
 
 The script clones the [ovenmedialabs.com](https://github.com/OvenMediaLabs/ovenmedialabs.com)
-repo into a per-product cache, symlinks your `docs-site/` into it,
+repo into a per-product cache, symlinks your `docs/` into it,
 and starts a dev server. When it's ready you'll see:
 
     [SUCCESS] Docusaurus website is running at: http://localhost:3000/
 
 Open that URL in a browser — the page reloads automatically as you
-save edits in `docs-site/`.
+save edits in `docs/`.
 
 Stop the preview with **Ctrl-C** in the terminal.
 
