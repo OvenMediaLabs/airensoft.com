@@ -32,13 +32,13 @@ source_url() {
     esac
 }
 
-# Per-product docs folder name in the upstream repo. Enterprise moved
-# its docs to `docs-site-enterprise/` so the OvenMediaEngine merge into
-# Enterprise wouldn't overwrite it.
+# Per-product docs folder name in the upstream repo. Enterprise's
+# docs live under `docs-enterprise/` so that the OvenMediaEngine
+# merge into Enterprise doesn't overwrite them.
 source_docs_folder() {
     case "$1" in
-        ome-enterprise) echo "docs-site-enterprise" ;;
-        *)              echo "docs-site" ;;
+        ome-enterprise) echo "docs-enterprise" ;;
+        *)              echo "docs" ;;
     esac
 }
 
