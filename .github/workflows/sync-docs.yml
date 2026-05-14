@@ -36,7 +36,7 @@ jobs:
         with:
           fetch-depth: 0
           token: ${{ secrets.OML_DOCS_SYNC_PAT }}
-          ref: feat/docusaurus-migration
+          ref: main
 
       # The PAT covers the private OvenMediaEngineEnterprise repo too,
       # so make HTTPS clones use it for any github.com URL the sync
