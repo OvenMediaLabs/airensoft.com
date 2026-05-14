@@ -1,4 +1,4 @@
-# `docs-site-enterprise/` — OvenMediaEngine Enterprise docs source
+# `docs-enterprise/` — OvenMediaEngine Enterprise docs source
 
 This folder holds the **MDX source** for the OvenMediaEngine Enterprise user
 guide published at <https://ovenmedialabs.com/docs/ome-enterprise/>.
@@ -12,16 +12,16 @@ conventions, and image rules.
 
 ## Local preview
 
-Run `./docs-site-enterprise/preview.sh` from the repo root.
+Run `./docs-enterprise/preview.sh` from the repo root.
 
 The script clones the [ovenmedialabs.com](https://github.com/OvenMediaLabs/ovenmedialabs.com)
-repo into a per-product cache, symlinks your `docs-site-enterprise/` into it,
+repo into a per-product cache, symlinks your `docs-enterprise/` into it,
 and starts a dev server. When it's ready you'll see:
 
     [SUCCESS] Docusaurus website is running at: http://localhost:3000/
 
 Open that URL in a browser — the page reloads automatically as you
-save edits in `docs-site-enterprise/`.
+save edits in `docs-enterprise/`.
 
 Stop the preview with **Ctrl-C** in the terminal.
 
