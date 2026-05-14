@@ -1,0 +1,46 @@
+---
+slug: in-house-video-conferencing-and-casting-event-system-with-sub-second-latency
+title: "In-house Video Conferencing and Casting Event System with Sub-Second Latency Streaming"
+description: "Vitrag Mehta, an avid user of OvenMeidaEngine, has created a video conferencing and collaboration tool in-house."
+authors: [ovenmedialabs]
+date: 2022-10-21T09:07:31.736Z
+tags: [sub-second-latency]
+image: ./1-XPerz0dcrZlbUmW0p9w2Dw.png
+canonical_url: "https://medium.com/@OvenMediaEngine/in-house-video-conferencing-and-casting-event-system-with-sub-second-latency-streaming-e9b058d4ce10"
+---
+
+![](./1-XPerz0dcrZlbUmW0p9w2Dw.png)
+
+Vitrag Mehta, an avid user of OvenMeidaEngine, has created a video conferencing and collaboration tool in-house. Let’s see how he/she used OME’s sub-second latency streaming technology.
+
+{/* truncate */}
+
+Here we go!
+
+## Q. Why did you need OvenMediaEngine?
+
+Some internal meetings and live casting events (internal sports events and games like tombola etc.) need to be viewable for our internal users on their own laptops. These events need to be broadcast in real-time on the company’s intranet website; however, this site is also open to the public. There are a total of 4 such simultaneous live casts required (for simultaneous events). The event audience can access these events’ live casts only if they are invited or have access to them; this is not open to all employees. The event typically runs for about 4–6 hours per day for about 3–5 days a month. Sometimes even 48 hours constant in a month. We didn’t want the regular involvement of the IT team; we wanted the HR and Admin team to handle this on their own as a daily operational activity.
+
+## Q. How did you set up OvenMediaEngine?
+
+We created OvenMediaEngine on AWS (8-Core 16GB RAM * 1-Instance). We made 4 windows instances on AWS as well in the same network (LAN) to reduce network latency (4-Core 8GB RAM * 4-Instances) and used OBS to capture the windows instances screen (used the low latency tweaks on OBS). OBS, we set to push these specific application windows as RTMP push to the OvenMediaEngine server.
+
+Since AWS bandwidth cost was too high for the given budget; We decided to use cheap servers and adopt an origin-edge setup; this will pull only 1 stream (a total of 4 different streams) from the AWS side, and users will connect to the EDGE server which is dirt cheap. Our edge servers need not be heavy computing servers. Since we were exposed to the internet, we used SSL mode for the transmission. The setup is working fine on the player side. We pulled the demo OvenPlayer and embedded it in our CSS/frame.
+
+## Q. Was OvenMediaEngine easy to install and use?
+
+Apologies, as we are constrained on software coding/development skills as we are a core network/server/virtualization infra-skilled team; hence we didn’t want to make any changes to the existing code. So instead, we tweaked the configs to our liking and sweet spot and got it working beautifully.
+
+HR team connects to the AWS; starts working on the APP, and it is cast in 0.8~1.2 sec delay to every user who has the player open. So even when the server is idle, if a user opens the player page, he will see the sluggish system desktop.
+
+## Q. What more did you need while using OvenMediaEngine?
+
+The server could have some basic web interface / GUI (need not be very cosmetic) but should be able to give near real-time stats of several users currently connected, with their IP address or some other info; Maybe even disconnect them if the required end of a session is something we never really do; these are online 24 * 7.
+
+The URL of the stream and the player can be extracted by any user who has access to the web page (use debug/inspect in the browser and extract the stream URL); once this URL is extracted, anyone can view the stream, and we don’t have much control of who can view the stream and who cannot view the stream. Some authentication mechanisms like a user/password or similar features would help.
+
+We have observed that, at times, more users connected to the stream than we expected (3,000+), which overwhelmed the server’s bandwidth. If we have a way to say limit that one edge server will handle only 100 streams, and post that, it will reject the stream, and OvenPlayer is configured to do a retry after a delay. We can have a round-robin DNS and have multiple edge servers to scale up what happens here easily is, say, we have 3 edge servers with 1000 user capacity each; their IP address is mapped to one record in DNS (DNS round-robin); what happens is when the player does a DNS resolve; it tries and connected to the first IP it gets. This ends up with edge server 1 handling 1500 sessions and getting congested. Still, edge server 2 remains at 300 sessions and idle, and the support team is getting calls that the stream isn’t working as expected.
+
+From his experiences, we were able to make more tests to fix errors, allowing us to release a more stable version of OME, 0.10.2. Some of our fixes include frequent memory leaks and crashes, and continued testing has confirmed that OME is stable on more than 2,000 streams. Please click [HERE](https://github.com/AirenSoft/OvenMediaEngine/releases) for detailed update information.
+
+Thanks for reading.

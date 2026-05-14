@@ -1,0 +1,67 @@
+name: Sync docs from upstream
+
+# When an upstream OvenMediaLabs/* repo pushes a change inside its
+# `docs-site/` tree, its notify workflow dispatches a `docs-changed`
+# event here. We run scripts/sync-docs.sh to pull the upstream's
+# docs-site/ into our docs/<source>/ folder, then commit and push the
+# result directly to the consuming branch. No PR — docs syncs are
+# expected to ship as-is because the review already happened upstream.
+#
+# Manual trigger (`workflow_dispatch`) is also exposed so we can re-
+# sync ad hoc from the Actions UI.
+
+on:
+  repository_dispatch:
+    types: [docs-changed]
+  workflow_dispatch:
+    inputs:
+      source:
+        description: 'which upstream to sync (ome / ome-enterprise / ovenplayer); empty for all'
+        required: false
+        type: string
+
+# Single in-flight sync at a time — back-to-back upstream pushes
+# should queue, not race.
+concurrency:
+  group: docs-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.OML_DOCS_SYNC_PAT }}
+          ref: feat/docusaurus-migration
+
+      # The PAT covers the private OvenMediaEngineEnterprise repo too,
+      # so make HTTPS clones use it for any github.com URL the sync
+      # script touches.
+      - name: Authenticate git for private upstreams
+        run: |
+          git config --global url."https://x-access-token:${{ secrets.OML_DOCS_SYNC_PAT }}@github.com/".insteadOf "https://github.com/"
+
+      - name: Configure git author
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+      - name: Run sync
+        run: |
+          # client_payload.source comes from the upstream's dispatch
+          # event; inputs.source comes from manual workflow_dispatch.
+          # Pass whichever is set (empty falls through to "all").
+          src="${{ github.event.client_payload.source }}${{ inputs.source }}"
+          bash scripts/sync-docs.sh $src
+
+      - name: Push if changes
+        run: |
+          if git log @{upstream}..HEAD --oneline | grep -q .; then
+            git push
+          else
+            echo "no new commits to push"
+          fi

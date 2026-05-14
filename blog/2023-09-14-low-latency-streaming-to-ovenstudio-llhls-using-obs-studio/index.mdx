@@ -1,0 +1,89 @@
+---
+slug: low-latency-streaming-to-ovenstudio-llhls-using-obs-studio
+title: "Low-Latency Streaming to OvenStudio LLHLS using OBS Studio"
+description: "OvenStudio LLHLS is a Low-Latency Streaming Server that operates in a Cloud environment, boasting exceptional performance and scalability."
+authors: [ovenmedialabs]
+date: 2023-09-14T11:34:26.238Z
+tags: [llhls, sub-second-latency, ome]
+image: ./1-HyB9u_BlmFpbi9PmvlxwbA@2x.png
+canonical_url: "https://medium.com/@OvenMediaEngine/low-latency-streaming-to-ovenstudio-llhls-using-obs-studio-65fc78873779"
+---
+
+Content creation and sharing industries are evolving at an unprecedented pace, and video/audio streaming has become an integral part of our daily lives.
+
+{/* truncate */}
+
+For content providers, streamers, and businesses utilizing streaming, finding the right tools to seamlessly broadcast media sources is essential. [OvenStudio LLHLS](https://airensoft.com/os.html) supports various ingress protocols such as WebRTC, WHIP, SRT, and RTMP, allowing you to send media sources to [OvenStudio LLHLS](https://airensoft.com/os.html) using **software encoders** like [OvenLiveKit](https://github.com/AirenSoft/OvenLiveKit-Web), [OvenStreamEncoder](https://play.google.com/store/apps/details?id=com.airensoft.ovenstreamencoder.camera&hl=en_US), OBS, Xsplit,
+
+![With Software Encoder](./1-HyB9u_BlmFpbi9PmvlxwbA@2x.png)
+
+*With Software Encoder*
+
+or even **hardware encoders**.
+
+![With Hardware Encoder](./1-z4TIVIUyyz4Me2MGmXz3OQ@2x.png)
+
+*With Hardware Encoder*
+
+![](./1-3jKWsMPEelXBMh6J-JAJ0w@2x.png)
+
+[Open Broadcaster Software](https://obsproject.com/) *(OBS or OBS Studio)* is one of the most popular open-source live encoders globally, favored by creators and streamers alike. These encoders enable content to be streamed to a streaming server using various protocols. When using [OvenStudio LLHLS](https://airensoft.com/os.html) as your streaming server, you can reduce the traditional streaming delay of around 10 seconds to less than 3 seconds, providing an interactive experience for your viewers.
+
+In this guide, we’ll walk you through the process of using OBS to send media sources to [OvenStudio LLHLS](https://airensoft.com/os.html).
+
+## OvenStudio LLHLS?
+
+[OvenStudio LLHLS](https://airensoft.com/os.html) is a **Low-Latency Streaming Server** that operates in a Cloud environment, boasting exceptional performance and scalability. It supports a range of ingress protocols *(WebRTC, WHIP, SRT, RTMP, and more)*, allowing media sources received via these protocols to be streamed as **Low Latency HLS** *(LLHLS)* with a streaming delay of less than 3 seconds. If you want to broadcast various content with minimal delay, [OvenStudio LLHLS](https://airensoft.com/os.html) is your solution.
+
+## Sending Media Sources to OvenStudio LLHLS
+
+The process of sending media sources to [OvenStudio LLHLS](https://airensoft.com/os.html) using OBS is straightforward and can be summarized in the following steps:
+
+![](./1-Shx63amHpvEswTkPPhAibw.png)
+
+1. **OBS Installation**: Start by downloading the appropriate version of OBS for your operating system from the [official website](https://obsproject.com/) and install it on your computer. Launch OBS and load the media source you want to broadcast.
+
+![](./1-0VrMpaoet0GX_ZyJkweNyQ.png)
+
+2. **OBS Settings**: Click on the [**Settings**] button in the bottom right corner of OBS. Here, you can select your desired video and audio devices, and adjust basic settings like resolution, framerate, bitrate, and more.
+
+![](./1-rjsgMS9VybT3n0wyYaVYiA.png)
+
+3.** Create a Streaming Box**: After logging into OvenStudio LLHLS, click the [**+**] button on the main page to create a Managed Stream.
+
+![](./1-0liKMG-Lce8EuPJJaP5sYQ.png)
+
+4. **Choose the Appropriate Streaming Protocol**: OBS can transmit a media source with various ingress protocols like WebRTC, WHIP, SRT, and RTMP, among others. Once you’ve created your Managed Stream in OvenStudio LLHLS, click on it to access the details. In the right-hand menu, navigate to the [**URLs**] tab and copy the Ingress URL *(Stream key)* for your chosen protocol. Or, on the same page, press the [**Start streaming**] button at the bottom of the player and select the [**Live Encoder**] tab from the menu that appears. Using the ingress URL that appears afterward works the same way.
+
+![](./1-xyRJGDK3Mq8Bwqp7QEraHQ.png)
+
+5. **Enter Stream Key**: Return to the OBS settings screen and enter the **Stream key** you copied. Then, close the settings window. Then click the [**OK**] button below to close the settings window.
+
+- **WebRTC — **wss://&#123;domain&#125;:&#123;port&#125;/&#123;app name&#125;/&#123;**stream name?direction=send**&#125;
+- **WHIP — **wss://&#123;domain&#125;:&#123;port&#125;/&#123;app name&#125;/&#123;**stream name?direction=whip**&#125;
+- **SRT — **srt://&#123;domain&#125;:&#123;port&#125;?streamid=srt%3A%2F%2F&#123;domain&#125;%3A&#123;port&#125;%2F&#123;app name&#125;%2F&#123;**stream name**&#125;
+- **RTMP — **rtmp://&#123;domain&#125;:&#123;port&#125;/&#123;app name&#125;/&#123;**stream name**&#125;
+
+![](./1-Im6tkiNxaeKii3iqfIL0Yw.png)
+
+6.** Connect and Start Streaming**: Once you’ve configured OBS, click the [**Start Streaming**] button to begin streaming your video to OvenStudio LLHLS.
+
+![](./1-Sd9sFOyHOxHcxHP-sWvH4w.png)
+
+7.** Low-Latency Streaming Monitoring**: If your media source is successfully delivered to OvenStudio LLHLS, you can monitor it using the OvenPlayer within OvenStudio LLHLS. You can also use the Origin URL *(or Edge URL, depending on your settings)* from the [URLs] tab to watch it in LLHLS-compatible players like [OvenPlayer](https://demo.ovenplayer.com/), [THEO Player](https://www.theoplayer.com/test-your-stream-hls-dash-hesp), and others.
+
+![](./1-wNDmuDbFxNThdls1tIqGtQ.png)
+
+8. **Checking Latency**: To ensure your streaming delay is less than 3 seconds, compare the OBS streaming screen to what you see on OvenStudio LLHLS’s player. If your streaming exceeds 3 seconds, check if the [**Live Streaming**] indicator at the bottom of the OvenStudio LLHLS player is lit in red. If it is, but your streaming delay still exceeds 3 seconds, it might be related to network, system performance, instance location, or instance type issues.
+
+## In Conclusion
+
+[OvenStudio LLHLS](https://airensoft.com/os.html) provides easy scalability and delivers reliable low-latency streaming. It can be employed in various interactive content services, including game streaming, sports streaming, entertainment events, online classes, video conferencing, and more —* *[***What you can do with OvenStudio LLHLS***](/blog/what-you-can-do-with-ovenstudio-llhls).
+
+The technological advancements and flexibility offered by [OvenStudio LLHLS](https://airensoft.com/os.html) present content creators and streamers with opportunities to utilize streaming in diverse ways, enhancing interactions with viewers. Enjoy a superior streaming experience with [OvenStudio LLHLS](https://airensoft.com/os.html)!
+
+## For more information
+
+- [OvenStudio LLHLS Website](https://airensoft.com/os)
+- [OvenStudio LLHLS on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-xwvoj4om6w4ee)
+- [OvenStudio LLHLS User Guide](https://ovenstudio.gitbook.io/ovenstudio-llhls)

@@ -1,0 +1,412 @@
+---
+slug: ovenmediaengine-getting-started-with-ome-docker-launcher
+title: "OvenMediaEngine — Getting Started with OME Docker Launcher"
+description: "To make this process even smoother, you can minimize the hassle by using our OME Docker Launcher!"
+authors: [ovenmedialabs]
+date: 2024-05-27T07:02:20.241Z
+tags: [ome, tutorial]
+image: ./1-z1ez34kIPE7FcUQaoddeWg.png
+canonical_url: "https://medium.com/@OvenMediaEngine/ovenmediaengine-getting-started-with-ome-docker-launcher-2d1723279b1c"
+---
+
+OvenMediaEngine is an open-source and sub-second latency streaming server capable of handling large-scale and high-definition streams. It can be installed and used in various environments, such as servers, CDNs, and Clouds. Today, we will show you how to easily use OvenMediaEngine by installing Docker on an AWS EC2 instance.
+
+{/* truncate */}
+
+To make this process even smoother, you can minimize the hassle by using our OME Docker Launcher.
+
+The OME Docker Launcher is a tool that simplifies the process of deploying and managing the OvenMediaEngine application using Docker containers. This tool is designed for developers and system administrators who want to quickly deploy and test the OME application in a Docker environment.
+
+Let’s start the OvenMediaEngine quick start guide now!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MkfVfI--OT4" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Below are the commands and examples used in the video guide.
+
+## AWS EC2 Instance Setup
+
+For quick guidance, we opened all TCP ports 0–65535 when creating the EC2 Instance, but the default ports used by OvenMediaEngine are as follows. For more information, please refer to [**Ports used by default**](/docs/ome/getting-started#ports-used-by-default) in the Getting Started sub-item of the OvenMediaEngine User Guide.
+
+### Ports used by default
+
+- API (Manager) is configured to use 8081 (Port)
+- API (Manager) is configured to use 8082 (TLSPort)
+- RTMP Provider is configured to use 1935 (Port)
+- SRT Provider is configured to use 9999 (Port)
+- WebRTC Provider is configured to use 3333 (Port)
+- WebRTC Provider is configured to use 3334 (TLSPort)
+- WebRTC Provider is configured to use 10000–10004/UDP (IceCandidate)
+- WebRTC Provider is configured to use 3478 (TcpRelay)
+- OVT Publisher is configured to use 9000 (Port)
+- LLHLS Publisher is configured to use 3333 (Port)
+- LLHLS Publisher is configured to use 3334 (TLSPort)
+- WebRTC Publisher is configured to use 3333 (Port)
+- WebRTC Publisher is configured to use 3334 (TLSPort)
+- WebRTC Publisher is configured to use 10000–10004/UDP (IceCandidate)
+- WebRTC Publisher is configured to use 3478 (TcpRelay)
+
+## Installing Docker in EC2
+
+The commands used to install Docker on an EC2 instance in the video guide are as follows:
+
+```shell
+# Install Dqocker
+$sudo yum install docker -y
+
+# Run Docker
+$ sudo service docker start
+```
+
+## Installing OvenMediaEngine on Docker in EC2
+
+For detailed steps, refer to the [**Getting Started with OME Docker Launcher**](/docs/ome/getting-started/getting-started-with-ome-docker-launcher) guide, accessible under the Getting Started menu in the OME User Guide.
+
+The commands used to install and run OvenMediaEngine in the video guide are as follows:
+
+```shell
+# Run OME Docker Launcher
+$ curl -OL 'https://raw.githubusercontent.com/AirenSoft/OvenMediaEngine/master/misc/ome_docker_launcher.sh' && chmod +x ome_docker_launcher.sh
+
+# Show OME Docker Launcher help message
+$ sudo ./ome_docker_launcher.sh -h
+
+# Download the latest Docker image and setup
+$ sudo ./ome_docker_launcher.sh setup
+
+# Start a docker container
+$ sudo OME_HOST_IP=<Instance_IP> ./ome_docker_launcher.sh start
+```
+
+## Broadcasting with OBS to OvenMediaEngine
+
+If you would like to know how to set up and use protocols that OvenMediaEngine can ingest, please refer to the [**Live Source**](/docs/ome/live-source) subsection in the OvenMediaEngine User Guide.
+
+The RTMP URL pattern used in this video guide is as follows:
+
+- **rtmp://&lt;Instance_IP>:1935/app/&lt;Stream_Name>**
+
+And to transmit the media source, I used X264 as an encoder and made detailed settings as follows:
+
+- Bitrate: **2500kbps**
+- Keyframe Interval: **1s**
+- CPU Usage Preset: **ultrafast**
+- Profile: **main**
+- Tune: **zerolatency**
+- x264 Options: **bframes=0 threads=8**
+
+## Streaming Playback
+
+When streaming through OvenMediaEngine, you may or may not have a certificate. Please refer to the information below. For more information, refer to the [**Streaming**](/docs/ome/streaming) section in the OvenMediaEngine User Guide.
+
+### Without TLS
+
+- OvenPlayer Demo: [**http://demo.ovenplayer.com**](http://demo.ovenplayer.com)
+- WebRTC: **ws://&lt;Instance_IP>:3333/app/&lt;Stream_Name>**
+- LLHLS: **http://&lt;Instance_IP>:3333/app/&lt;Stream_Name>/llhls.m3u8**
+
+### With TLS
+
+- OvenPlayer Demo: [**https://demo.ovenplayer.com**](https://demo.ovenplayer.com)
+- WebRTC: **wss://&lt;Domain>:3334/app/&lt;Stream_Name>**
+- LLHLS: **https://&lt;Domain>:3334/app/&lt;Stream_Name>/llhls.m3u8**
+
+## Configuring OvenMediaEngine Options
+
+OvenMediaEngine operates according to Server.xml. Therefore, you need to know how to modify Server.xml to use the various functions provided by OvenMediaEngine. For guides for each function, please refer to the [**OvenMediaEngine User Guide**](/docs/ome).
+
+```shell
+# Go to the folder where Server.xml is located
+$cd /usr/share/ovenmediaengine/conf/
+
+# Edit Server.xml
+$ sudo vi Server.xml
+```
+
+Also, if you modify Server.xml, you always need to turn OvenMediEngine on and off to apply it.
+
+```shell
+# Stop OvenMediaEngine
+$ sudo ./ome_docker_launcher.sh stop
+
+# Start OvenMediaEngine
+$ sudo OME_HOST_IP=<Instance_IP> ./ome_docker_launcher.sh start
+```
+
+## TLS Encryption (Certification)
+
+To apply TLS to your OvenMediaEngine you have a domain. If you get a domain, you can easily use a certificate at no cost using Let’s Encrypt. For more information, see [**TLS Encryption**](/docs/ome/configuration/tls-encryption), a subtopic of Configuration in the OvenMediaEngine User Guide.
+
+```shell
+# Install Certbot
+$ sudo yum -y install certbot
+
+# Certificate issuance
+$ sudo certbot certonly --standalone -d <Domain> -m <Email> --agree-tos  -n
+
+# Check whether the certificate was issued correctly
+$ sudo ls -al /etc/letsencrypt/live/<Domain>
+```
+
+If your TLS certificate was issued properly, you will need to copy the certificate into the OvenMediaEngine directory to match the &lt;TLS> entry within Server.xml.
+
+```shell
+<TLS>
+  <CertPath>./cert.crt</CertPath>
+  <KeyPath>./cert.key</KeyPath>
+  <ChainCertPath>./cert.ca-bundle</ChainCertPath>
+</TLS>
+```
+
+Here’s how to copy these:
+
+```shell
+# Copy and rename cert.pem to cert.crt 
+$ sudo cp /etc/letsencrypt/live/<Domain>/cert.pem /usr/share/ovenmediaengine/conf/cert.crt
+
+# Copy and rename privkey.pem to cert.key
+$ sudo cp /etc/letsencrypt/live/<Domain>/privkey.pem /usr/share/ovenmediaengine/conf/cert.key
+
+# Copy and rename fullchain.pem to cert.ca-bundle
+$ sudo cp /etc/letsencrypt/live/<Domain>/fullchain.pem /usr/share/ovenmediaengine/conf/cert.ca-bundle
+```
+
+Next, check whether the certificate has been properly copied to the OvenMediaEngine directory. If confirmed, restart OvenMediaEngine to apply it.
+
+```shell
+# Check the certificate has been copied properly
+$ sudo ls -al /usr/share/ovenmediaengine/conf
+
+# Stop OvenMediaEngine
+$ sudo ./ome_docker_launcher.sh stop
+
+# Start OvenMediaEngine
+$ sudo OME_HOST_IP=<Instance_IP> ./ome_docker_launcher.sh start
+```
+
+To verify that your certificate is working properly, stream using TLS.
+
+- OvenPlayer Demo: [**https://demo.ovenplayer.com**](https://demo.ovenplayer.com)
+- WebRTC: **wss://&lt;Domain>:3334/app/&lt;Stream_Name>**
+- LLHLS: **https://&lt;Domain>:3334/app/&lt;Stream_Name>/llhls.m3u8**
+
+## Adaptive Bitrate Streaming (ABR)
+
+The example used in the video guide is below: Please refer to [**Adaptive Bitrate Streaming (ABR)**](/docs/ome/transcoding/abr#adaptive-bitrate-streaming-abr) in the OvenMediaEngine User Guide for detailed information on the function.
+
+```shell
+<OutputProfile>
+ <Name>bypass_stream</Name>
+ <OutputStreamName>${OriginStreamName}</OutputStreamName>
+ <!--LLHLS URL : https://domain/app/stream/abr.m3u8 --> 
+ <Playlist>
+  <Name>For ABR</Name>
+  <FileName>abr</FileName>
+  <Options> <!-- Optinal -->
+   <!-- 
+   Automatically switch rendition in WebRTC ABR 
+   [Default] : true
+   -->
+   <WebRtcAutoAbr>true</WebRtcAutoAbr> 
+  </Options>
+  <Rendition>
+   <Name>Bypass</Name>
+   <Video>bypass_video</Video>
+   <Audio>bypass_audio</Audio>
+  </Rendition>
+  <Rendition>
+   <Name>FHD</Name>
+   <Video>video_1920</Video>
+   <Audio>bypass_audio</Audio>
+  </Rendition>
+  <Rendition>
+   <Name>HD</Name>
+   <Video>video_720</Video>
+   <Audio>bypass_audio</Audio>
+  </Rendition>
+  <Rendition>
+   <Name>SD</Name>
+   <Video>video_480</Video>
+   <Audio>bypass_audio</Audio>
+  </Rendition>
+  <Rendition>
+   <Name>FHD_Opus</Name>
+   <Video>video_1920</Video>
+   <Audio>opus_audio</Audio>
+  </Rendition>
+  <Rendition>
+   <Name>HD_Opus</Name>
+   <Video>video_720</Video>
+   <Audio>opus_audio</Audio>
+  </Rendition>
+  <Rendition>
+   <Name>SD_Opus</Name>
+   <Video>video_480</Video>
+   <Audio>opus_audio</Audio>
+  </Rendition>
+ </Playlist>
+ <!--LLHLS URL : https://domain/app/stream/llhls.m3u8 --> 
+ <Playlist>
+  <Name>Change Default</Name>
+  <FileName>llhls</FileName>
+  <Rendition>
+   <Name>HD</Name>
+   <Video>video_720</Video>
+   <Audio>bypass_audio</Audio>
+  </Rendition>
+ </Playlist> 
+ <Encodes>
+  <Audio>
+   <Name>bypass_audio</Name>
+   <Bypass>true</Bypass>
+  </Audio>
+  <Video>
+   <Name>bypass_video</Name>
+   <Bypass>true</Bypass>
+  </Video>
+  <Audio>
+   <Name>opus_audio</Name>
+   <Codec>opus</Codec>
+   <Bitrate>128000</Bitrate>
+   <Samplerate>48000</Samplerate>
+   <Channel>2</Channel>
+  </Audio>
+  <Video>
+   <Name>video_1920</Name>
+   <Codec>h264</Codec>
+   <Bitrate>1024000</Bitrate>
+   <Framerate>30</Framerate>
+   <Width>1920</Width>
+   <Height>1080</Height>
+   <Preset>faster</Preset>
+  </Video>
+  <Video>
+   <Name>video_720</Name>
+   <Codec>h264</Codec>
+   <Bitrate>724000</Bitrate>
+   <Framerate>30</Framerate>
+   <Width>1280</Width>
+   <Height>720</Height>
+   <Preset>faster</Preset>
+  </Video>
+  <Video>
+   <Name>video_480</Name>
+   <Codec>h264</Codec>
+   <Bitrate>224000</Bitrate>
+   <Framerate>30</Framerate>
+   <Width>720</Width>
+   <Height>480</Height>
+   <Preset>faster</Preset>
+  </Video>
+ </Encodes>
+</OutputProfile>
+```
+
+Now that Server.xml has been modified you must restart OvenMediaEngine.
+
+```shell
+# Stop OvenMediaEngine
+$ sudo ./ome_docker_launcher.sh stop
+
+# Start OvenMediaEngine
+$ sudo OME_HOST_IP=<Instance_IP> ./ome_docker_launcher.sh start
+```
+
+Create a streaming URL pattern as shown below according to the title specified in &lt;FileName> in &lt;OutputProfile> and then proceed with the ABR test.
+
+### Without TLS
+
+- OvenPlayer Demo: [**http://demo.ovenplayer.com**](http://demo.ovenplayer.com)
+- WebRTC: **ws://&lt;Instance_IP>:3333/app/&lt;Stream_Name>/&lt;FileName>**
+- LLHLS: **http://&lt;Instance_IP>:3333/app/&lt;Stream_Name>/&lt;FileName>.m3u8**
+
+### With TLS
+
+- OvenPlayer Demo: [**https://demo.ovenplayer.com**](https://demo.ovenplayer.com)
+- WebRTC: **wss://&lt;Domain>:3334/app/&lt;Stream_Name>/&lt;FileName>**
+- LLHLS: **https://&lt;Domain>:3334/app/&lt;Stream_Name>/&lt;FileName>.m3u8**
+
+If the stream plays successfully, hover your mouse over OvenPlayer and click the gear icon at the bottom left of the displayed controller to see if the list you specified in &lt;Rendition> is displayed.
+
+When writing &lt;OutputProfile> to use ABR, an important point to keep in mind is that if the protocol and codec do not match as listed below, it may not be played due to browser policy:
+
+- WebRTC: **VP8, H.264, Opus**
+- LLHLS: **H.264, AAC**
+
+## REST API
+
+Please refer to [**REST API**](/docs/ome/rest-api) in the OvenMediaEngine User Guide. This guide explains Server.xml items in detail and includes examples.
+
+In this video guide, we uncommented &lt;Bind> in Server.xml and added 8082/TLS.
+
+```shell
+ <Bind>
+  <Managers>
+   <API>
+    <Port>${env:OME_APIT_PORT:8081}</Port>
+    <TLSPort>${env:OME_APIT_PORT:8082}</TLSPort>
+    <WorkerCount>1</WorkerCount>
+   </API>
+  </Managers>
+  ...
+ </Bind>
+```
+
+And according to the OvenMediaEngine User Guide, I inserted the &lt;Manager> example under &lt;Bind>. Afterward, I matched the file name in &lt;TLS>, entered the ID and password to be used in &lt;AccessToken>, and modified &lt;CrossDomains> to allow all. If you want to use &lt;AccessToken>, you have to follow the format ID:Password.
+
+```shell
+ <Managers>
+  <Host>
+   <Names>
+    <Name>*</Name>
+   </Names>
+   <TLS>
+    <CertPath>./cert.crt</CertPath>
+    <KeyPath>./cert.key</KeyPath>
+    <ChainCertPath>./cert.ca-bundle</ChainCertPath>
+   </TLS>
+  </Host>
+  <API>
+   <AccessToken>ID:Password</AccessToken>
+   <CrossDomains>
+    <Url>*</Url>
+   </CrossDomains>
+  </API>
+ </Managers>
+```
+
+When you are finished editing Server.xml, restart OvenMediaEngine again so that OvenMediaEngine can read the modified Server.xml.
+
+```shell
+# Stop OvenMediaEngine
+$ sudo ./ome_docker_launcher.sh stop
+
+# Start OvenMediaEngine
+$ sudo OME_HOST_IP=<Instance_IP> ./ome_docker_launcher.sh start
+```
+
+Restart OvenMediaEngine, and in the displayed dashboard, check that the API-related ports are recognized properly.
+
+```shell
+API (Manager) is configured to use 8081 (Port)
+API (Manager) is configured to use 8082 (TLSPort)
+```
+
+Then, let’s call the API according to the API request pattern.
+
+### Without TLS
+
+- **http://&lt;Instance_IP>:8081/v1/&lt;Resource>**
+
+### With TLS
+
+- **https://&lt;Domain>:8082/v1/&lt;Resource>**
+
+Please refer to the [**REST API (v1)**](/docs/ome/rest-api/v1) section in the OvenMediaEngine User Guide. It is written in detail about API resources, action names, reactions, etc.
+
+## Conclusion
+
+With just a few commands, you can build your own fully-featured sub-second latency streaming server. Experience low latency streaming right now. While OvenMediaEngine has an array of features that we couldn’t cover entirely in this video guide, we hope our guide has been helpful to you.
+
+Thank you for watching and reading.
+
+![](./1-z1ez34kIPE7FcUQaoddeWg.png)

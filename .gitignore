@@ -1,0 +1,32 @@
+# Dependencies
+/node_modules
+
+# Production
+/build
+
+# Generated files
+.docusaurus
+.cache-loader
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Claude Code session artifacts
+.claude/
+.claude-session-recovery/
+
+# Backups left by scripts/flatten-transparent-images.py.
+# Kept until the upstream diagram PRs land + a sync resyncs the new
+# images, then this directory can be deleted entirely.
+.alpha-backup/
+
+# Personal handoff notes (not for the repo)
+/HANDOFF.md

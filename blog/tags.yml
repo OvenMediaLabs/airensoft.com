@@ -1,0 +1,54 @@
+webrtc:
+  label: WebRTC
+  permalink: /webrtc
+  description: Posts about WebRTC streaming.
+
+llhls:
+  label: LL-HLS
+  permalink: /llhls
+  description: Posts about Low-Latency HLS.
+
+srt:
+  label: SRT
+  permalink: /srt
+  description: Posts about Secure Reliable Transport.
+
+sub-second-latency:
+  label: Sub-Second Latency
+  permalink: /sub-second-latency
+  description: Sub-second latency live streaming.
+
+ome:
+  label: OvenMediaEngine
+  permalink: /ome
+  description: Posts about OvenMediaEngine.
+
+release:
+  label: Release
+  permalink: /release
+  description: OvenMediaEngine release announcements.
+
+fundamentals:
+  label: Fundamentals
+  permalink: /fundamentals
+  description: Streaming fundamentals (frame rate, latency, codecs, formats).
+
+news:
+  label: News
+  permalink: /news
+  description: Company news and announcements.
+
+case-study:
+  label: Case Study
+  permalink: /case-study
+  description: Real-world deployments and customer use cases.
+
+benchmark:
+  label: Benchmark
+  permalink: /benchmark
+  description: Performance tests, comparisons, and tuning results.
+
+tutorial:
+  label: Tutorial
+  permalink: /tutorial
+  description: Step-by-step guides and how-tos.

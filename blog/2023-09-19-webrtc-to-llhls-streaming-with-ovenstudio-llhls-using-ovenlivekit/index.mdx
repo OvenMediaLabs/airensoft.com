@@ -1,0 +1,90 @@
+---
+slug: webrtc-to-llhls-streaming-with-ovenstudio-llhls-using-ovenlivekit
+title: "WebRTC to LLHLS Streaming with OvenStudio LLHLS using OvenLiveKit"
+description: "OvenLiveKit leverages the browser’s WebRTC API, simplifying the process of sending WebRTC streams directly to OvenStudio LLHLS."
+authors: [ovenmedialabs]
+date: 2023-09-19T10:11:28.548Z
+tags: [webrtc, llhls, ome]
+image: ./1-9RVJldGxW7li8I7o3LGPqw@2x.png
+canonical_url: "https://medium.com/@OvenMediaEngine/webrtc-to-llhls-streaming-with-ovenstudio-llhls-using-ovenlivekit-de1153cdfc09"
+---
+
+![](./1-9RVJldGxW7li8I7o3LGPqw@2x.png)
+
+If you want to use streaming with a latency of less than 3 seconds but don’t have separate software or hardware to transmit your media source to [OvenStudio LLHLS](https://airensoft.com/os.html), don’t worry. It comes with [OvenLiveKit](https://github.com/AirenSoft/OvenLiveKit-Web), which allows you to transmit streams through WebRTC directly from a web browser, without the need for additional software or plugins.
+
+{/* truncate */}
+
+### Key Benefits Using OvenLiveKit
+
+1. **Ease of Use and Accessibility:** There’s no need to install additional software or plugins. Just open your web browser, capture your webcam/microphone or your current screen, and start your live streaming.
+2. **Cross-Browser Compatibility:** WebRTC is supported by most major web browsers, making it easy to stream live across various platforms.
+
+In summary, with [OvenLiveKit](https://github.com/AirenSoft/OvenLiveKit-Web), you can broadcast your screen directly from your browser without the hassle of installing extra software or configuring intricate settings. Here’s a basic guide on how to use [OvenLiveKit](https://github.com/AirenSoft/OvenLiveKit-Web) within [OvenStudio LLHLS](https://airensoft.com/os.html).
+
+## OvenLiveKit?
+
+[OvenLiveKit (for Web)](https://github.com/AirenSoft/OvenLiveKit-Web) is an Open-Source and JavaScript-based Live Streaming Encoder that supports WebRTC optimized for [OvenMediaEngine](https://github.com/AirenSoft/OvenMediaEngine), an Open-Source Sub-Second Latency Streaming Server. However, as you may be aware, [OvenStudio LLHLS](https://airensoft.com/os.html) is developed with it, which means that [OvenLiveKit](https://github.com/AirenSoft/OvenLiveKit-Web) will seamlessly work in [OvenStudio LLHLS](https://airensoft.com/os.html).
+
+![](./1-diEsNBh9y3ChUwQN2QnkAA.png)
+
+This kit leverages the browser’s WebRTC API, simplifying the process of sending WebRTC streams directly to [OvenStudio LLHLS](https://airensoft.com/os.html). If you’re interested in learning more, check out the links below.
+
+- [OvenLiveKit GitHub](https://github.com/AirenSoft/OvenLiveKit-Web)
+- [OvenSpace Demo](https://space.ovenplayer.com/)
+
+## Using OvenLiveKit in Your Web Browser
+
+[OvenLiveKit](https://github.com/AirenSoft/OvenLiveKit-Web) is provided along with [OvenStudio LLHLS](https://airensoft.com/os.html). Follow these steps to start WebRTC streaming with it. This guide used the Chrome browser.
+
+![](./1-JbwzFvTOAkPdakoxVbdSnQ.png)
+
+1.** Create a Streaming Box:** Access OvenStudio LLHLS via your web browser and create a streaming box. After that, go to the detailed view page.
+
+![](./1-tdbRaFxSrQEP1WYPNW1Vqw.png)
+
+2. **Start Streaming:** Under the player section, you’ll find the **[Start Streaming]** button. Click it to send your media source to OvenStudio LLHLS. There are two options:
+
+### **WebCam/Mic**
+
+![](./1-eJyYWvSENKgGPujYnicrfw.png)
+
+i) Click on the **[Start Streaming]** button located at the bottom of OvenPlayer and select **[WebCam/Mic]** from the menu that appears.
+
+ii) In the subsequent WebCam/Mic settings screen, choose your video and audio capture devices. Ensure that your video and audio are displaying correctly. Then, click the **[Start Streaming]** button to send your media source to OvenStudio LLHLS.
+
+![](./1-8TjoGaIoFsDy9yZMcw9g8Q.png)
+
+iii) If you encounter issues capturing your screen in the WebCam/Mic settings screen, please check your browser’s permissions.
+
+![](./1-T0xmfad7bfcBLtdEKngETA.png)
+
+iv) In the bottom right, compare the latency between the capturing OvenLiveKit and OvenPlayer on the left. It’s really that simple.
+
+### **Screen Sharing**
+
+![](./1-XLY77yePwQzNigeNH2MriQ.png)
+
+i) The process for Screen Sharing is just as straightforward as WebCam/MIC. Once you are in the detailed view, click the **[Start Streaming]** button located at the bottom of OvenPlayer and select **[Screen Sharing]** from the menu that appears.
+
+![](./1-4wFRSvFZSLylaDswuq2KkQ.png)
+
+ii) In the subsequent Screen Sharing settings, choose the screen you wish to broadcast by selecting either **[Select from opened browser tabs — *Chrome Tab*]**, **[Select from running programs — *Window*]**, or **[Select entire screen capture — *Entire Screen*]**. Of course, the displayed tab name may vary depending on the browser. Then, click the **[Start Streaming]** button to send your media source to OvenStudio LLHLS.
+
+![](./1-4-SYIYdf4iG8QkUXFSm69A.png)
+
+iii) Compare the latency between the capturing OvenLiveKit at the bottom right, the selected tab for capture, and OvenPlayer on the left. This option is great for presentations, screen sharing, or demos.
+
+## Going Live with Sub-3-Second Latency
+
+Choose your desired option and configure your capture device settings. You can easily stream your captured screen to [OvenStudio LLHLS](https://airensoft.com/os.html). It accepts WebRTC streams and provides low-latency HLS (LLHLS) streaming to your viewers, with a delay of less than 3 seconds.
+
+## Conclusion
+
+This guide demonstrates how you can stream your webcam/microphone or screen capture directly to [OvenStudio LLHLS](https://airensoft.com/os.html) from your web browser. This approach makes web-based live streaming a breeze without the need for additional software or plugins. Try it out to leverage the powerful low-latency streaming capabilities of [OvenStudio LLHLS](https://airensoft.com/os.html) and enhance your interaction with viewers.
+
+## For more information
+
+- [OvenStudio LLHLS Website](https://airensoft.com/os)
+- [OvenStudio LLHLS on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-xwvoj4om6w4ee)
+- [OvenStudio LLHLS User Guide](https://ovenstudio.gitbook.io/ovenstudio-llhls)

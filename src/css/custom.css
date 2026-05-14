@@ -1,0 +1,1404 @@
+/**
+ * Bridge file between Docusaurus's Infima theme and the legacy marketing-site
+ * CSS. The legacy /assets/css/style.css is loaded as a separate <link> via
+ * headTags in docusaurus.config.ts (so it cascades after Infima but before
+ * page-scoped CSS modules).
+ */
+
+:root {
+  /* OvenMedia Labs brand palette (from company.html design guide):
+   *   #14274E / #394867  Deep & medium navy (canvas, dark surfaces)
+   *   #9BA4B4            Blue-gray neutral (secondary text, dividers)
+   *   #C5A38E            Warm tan accent (premium highlights)
+   *   #38BDF8            Sky-blue highlight (links, active state, CTA)
+   * The previous palette pivoted on amber #ffb800 which isn't a brand
+   * color. Primary is now the sky-blue highlight; shades follow
+   * Tailwind sky-* steps. */
+  --ifm-color-primary: #38bdf8;
+  --ifm-color-primary-dark: #0ea5e9;
+  --ifm-color-primary-darker: #0284c7;
+  --ifm-color-primary-darkest: #0369a1;
+  --ifm-color-primary-light: #7dd3fc;
+  --ifm-color-primary-lighter: #bae6fd;
+  --ifm-color-primary-lightest: #e0f2fe;
+
+  /* Brand color aliases so component-level CSS can pick the right
+   * brand color without re-encoding hex literals. */
+  --omb-navy-deep: #14274e;
+  --omb-navy: #394867;
+  --omb-blue-gray: #9ba4b4;
+  --omb-tan: #c5a38e;
+  --omb-sky: #38bdf8;
+
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --ifm-code-font-size: 92%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Match legacy --navbar-height (78px desktop / 64px mobile) so Docusaurus's
+     docs/blog layouts reserve the correct space below the fixed navbar. The
+     legacy CSS sets .navbar-custom { height: var(--navbar-height); } via its
+     own variable; we mirror the value into Infima's variable so docs sidebar
+     positioning, scroll-to-anchor offsets, and content top padding all align. */
+  --ifm-navbar-height: 78px;
+}
+
+@media (max-width: 996px) {
+  :root {
+    --ifm-navbar-height: 64px;
+  }
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #38bdf8;
+  --ifm-color-primary-dark: #0ea5e9;
+  --ifm-color-primary-darker: #0284c7;
+  --ifm-color-primary-darkest: #0369a1;
+  --ifm-color-primary-light: #7dd3fc;
+  --ifm-color-primary-lighter: #bae6fd;
+  --ifm-color-primary-lightest: #e0f2fe;
+
+  --ifm-background-color: #0a0a0a;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+}
+
+/**
+ * Marketing pages use full-bleed sections that fill the viewport. Docusaurus's
+ * default <main> for MDX pages has class "container container--fluid
+ * margin-vert--lg" which applies max-width: 1320px from Infima. We override
+ * to remove the constraint so hero backgrounds touch both viewport edges.
+ *
+ * The !important is needed because Infima's .container rule has equal
+ * specificity but is loaded after via the CSS bundle order.
+ */
+.marketing-page main,
+.marketing-page main.container,
+.marketing-page main.container--fluid {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.marketing-page .main-wrapper {
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+/* Docusaurus wraps MDX pages in `.row.mdxPageWrapper`. Infima's `.row`
+ * uses negative horizontal margins meant to offset its container's
+ * padding. Marketing pages have `padding: 0`, so the negative margin
+ * spills the row 12px past the viewport. Zero it out and the children
+ * have full-width sections of their own. */
+.marketing-page .mdxPageWrapper_j9I6,
+.marketing-page [class*='mdxPageWrapper'] {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.marketing-page [class*='mdxPageWrapper'] > .col {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/**
+ * Dark dropdown menu in the marketing navbar. Bootstrap's default
+ * .dropdown-menu is light; we restyle it to match the dark navbar so the
+ * Resources dropdown reads consistently with the surrounding nav.
+ */
+.navbar-custom .navbar-dropdown-menu {
+  background-color: #0d0d0d;
+  border: 1px solid #1f1f1f;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  min-width: 240px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  margin-top: 0.5rem;
+}
+
+.navbar-custom .navbar-dropdown-menu .dropdown-item {
+  color: #c8c8c8;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.95rem;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.navbar-custom .navbar-dropdown-menu .dropdown-item:hover,
+.navbar-custom .navbar-dropdown-menu .dropdown-item:focus {
+  color: #fff;
+  background-color: rgba(56, 189, 248, 0.08);
+}
+
+.navbar-custom .nav-link.dropdown-toggle::after {
+  vertical-align: 0.15em;
+  margin-left: 0.35em;
+}
+
+/* Prevent long navbar labels (e.g., "OvenMediaEngine Enterprise") from
+ * wrapping onto two lines at medium viewport widths where the desktop
+ * nav is still active but space is tight. */
+.navbar-custom .navbar-nav .nav-link {
+  white-space: nowrap;
+}
+
+.navbar-custom .navbar-dropdown-menu .dropdown-divider {
+  border-top-color: #1f1f1f;
+  margin: 0.4rem 0;
+}
+
+.navbar-custom .navbar-dropdown-menu .dropdown-header {
+  color: #6b6b6b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.25rem 0.35rem;
+  margin-bottom: 0;
+}
+
+.navbar-custom .navbar-dropdown-menu .dropdown-item-external {
+  color: #a6a6a6;
+}
+
+.navbar-custom .navbar-dropdown-menu .dropdown-item-external i {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.navbar-custom .navbar-dropdown-menu .dropdown-item-external:hover i,
+.navbar-custom .navbar-dropdown-menu .dropdown-item-external:focus i {
+  transform: translate(2px, -2px);
+  opacity: 1 !important;
+}
+
+/* ============================================================
+ * Docs & Blog page polish.
+ *
+ * Docusaurus's defaults (Infima) clash with our marketing
+ * design system: prose container is too narrow, sidebar/TOC
+ * fonts feel oversized, and link accents fight the brand
+ * palette. The rules below tighten typography, widen the page
+ * to ~1620px, and align all hover/active accents to the
+ * brand sky-blue (--ifm-color-primary).
+ * ============================================================ */
+
+/* Docs/blog use a calmer dark-gray reading surface than the marketing
+ * pages. Marketing keeps its near-black + gradient look (mood / brand);
+ * the manual gets Vercel/Stripe-style neutral so long-form reading is
+ * comfortable. The navbar overlays its own background, so this only
+ * affects the article surface. */
+html.plugin-docs,
+html.plugin-blog,
+html.plugin-docs body,
+html.plugin-blog body {
+  background-color: #0f1216;
+  /* Legacy marketing CSS sets `overflow-x: hidden !important` on
+   * html/body to keep hero sections from causing horizontal scroll.
+   * That rule, however, makes html/body a scrolling ancestor and
+   * breaks `position: sticky` on the docs sidebar and TOC. `clip`
+   * gives the same visual effect (no horizontal overflow) without
+   * introducing a scroll context. Modern browsers (Chrome 90+,
+   * Firefox 81+, Safari 16+) support it. */
+  overflow-x: clip !important;
+}
+
+/* Widen the docs/blog content container so the page uses the
+ * available viewport instead of the 1320px Infima default.
+ *
+ * Layouts differ:
+ *   - Docs: `<main>` wraps the container.
+ *   - Blog: `<main>` IS a `.col.col--7` inside an OUTER container.
+ * Select `.main-wrapper` as the common ancestor so both hit the rule. */
+html.plugin-docs .main-wrapper .container,
+html.plugin-blog .main-wrapper .container,
+html.plugin-docs .main-wrapper .container--fluid,
+html.plugin-blog .main-wrapper .container--fluid {
+  max-width: 1760px !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+/* Prose images get a uniform layout (centered block, generous vertical
+ * rhythm) but no white background or padding. Diagrams that need a
+ * white canvas have it baked into the file by
+ * scripts/flatten-transparent-images.py, so they composite cleanly on
+ * the dark surface without a CSS frame. */
+html.plugin-docs .markdown img,
+html.plugin-blog .markdown img {
+  display: block;
+  margin: 1.5rem auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Hide the per-doc "Previous / Next" pagination block at the bottom of
+ * every docs page. Docusaurus has no global config flag to disable it;
+ * `pagination_prev`/`pagination_next: null` in frontmatter only disables
+ * one direction per page. CSS is the lightest-touch way to remove the
+ * widget site-wide without swizzling the theme.
+ *
+ * "Edit this page" is handled separately by dropping `editUrl` from the
+ * three docs plugin configs in docusaurus.config.ts. */
+.pagination-nav {
+  display: none !important;
+}
+
+/* ---- Left sidebar (LiveKit/Stripe-style: monochrome, subtle, calm) ---- */
+.theme-doc-sidebar-container {
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  background: transparent;
+  /* The aside is a flex child of `.docRoot` and stretches to match the
+   * main column's height. On short pages (e.g., 0.20.3 release notes)
+   * the aside ends up only a few hundred pixels tall, so its
+   * `clip-path: inset(0)` clips the sticky viewport before the menu
+   * can render at full height. Force a floor that fits a full 100vh
+   * sticky viewport plus the navbar offset (the aside is pulled up by
+   * `margin-top: -navbarHeight`). Flex stretch still wins on tall
+   * pages, so this only kicks in when the main column is too short. */
+  min-height: calc(100vh + var(--ifm-navbar-height));
+}
+
+/* Bootstrap's global `a { text-decoration: underline }` (loaded via the
+ * marketing navbar CDN) bleeds into the docs sidebar and TOC. Strip the
+ * underline on those navigation surfaces — they're not prose. */
+.theme-doc-sidebar-container a,
+.theme-doc-sidebar-container a:hover,
+.theme-doc-sidebar-container .menu__link,
+.theme-doc-sidebar-container .menu__link:hover,
+[class*='tableOfContents_'] a,
+[class*='tableOfContents_'] a:hover,
+.table-of-contents__link,
+.table-of-contents__link:hover {
+  text-decoration: none !important;
+}
+
+/* Sidebar viewport: give it its own scroll context.
+ *
+ * Docusaurus ships `sidebarViewport` with `position: sticky; max-height:
+ * 100vh` but NO `overflow`. When the menu is taller than the viewport
+ * (e.g., Enterprise has 171 pages and a 30-entry Release Notes list),
+ * the menu visually overflows the viewport and the rest depends on
+ * page-level scrolling, which makes active items appear inconsistently
+ * across pages. Adding `overflow-y: auto` keeps the entire menu
+ * reachable inside the viewport via the mouse wheel, identically on
+ * every page. */
+.theme-doc-sidebar-container [class*='sidebarViewport_'] {
+  overflow-y: auto !important;
+  /* When `overflow-y` is `auto`, CSS promotes a `visible` `overflow-x`
+   * to `auto` too — so wide menu rows (long labels, deep nesting) leak
+   * a horizontal scrollbar at the bottom. Clamp it. */
+  overflow-x: hidden !important;
+}
+
+/* ---- Minimal scrollbars (sidebar + right TOC) ----
+ * Default browser scrollbars are heavy; a 5px translucent rail matches
+ * the docs page's calm tone. WebKit + Firefox covered separately. */
+.theme-doc-sidebar-container .menu,
+.theme-doc-sidebar-container nav[class*='menu_'],
+[class*='tableOfContents_'] {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+
+.theme-doc-sidebar-container .menu::-webkit-scrollbar,
+.theme-doc-sidebar-container nav[class*='menu_']::-webkit-scrollbar,
+[class*='tableOfContents_']::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.theme-doc-sidebar-container .menu::-webkit-scrollbar-track,
+.theme-doc-sidebar-container nav[class*='menu_']::-webkit-scrollbar-track,
+[class*='tableOfContents_']::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.theme-doc-sidebar-container .menu::-webkit-scrollbar-thumb,
+.theme-doc-sidebar-container nav[class*='menu_']::-webkit-scrollbar-thumb,
+[class*='tableOfContents_']::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+.theme-doc-sidebar-container .menu:hover::-webkit-scrollbar-thumb,
+.theme-doc-sidebar-container nav[class*='menu_']:hover::-webkit-scrollbar-thumb,
+[class*='tableOfContents_']:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.theme-doc-sidebar-container .menu::-webkit-scrollbar-thumb:hover,
+.theme-doc-sidebar-container nav[class*='menu_']::-webkit-scrollbar-thumb:hover,
+[class*='tableOfContents_']::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.theme-doc-sidebar-menu .menu__list {
+  font-size: 0.85rem;
+}
+
+/* Indent nested lists slightly more so the tree structure reads at a glance. */
+.theme-doc-sidebar-menu .menu__list .menu__list {
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.theme-doc-sidebar-menu .menu__link {
+  font-size: 0.85rem;
+  font-weight: 400;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0;
+  border-left: 2px solid transparent;
+  color: #a0a0a0;
+  line-height: 1.4;
+  transition: color 0.12s ease, border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.theme-doc-sidebar-menu .menu__link:hover {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+/* Active item: yellow left bar + white bold text. No fill background —
+ * cleaner LiveKit/Stripe style. */
+.theme-doc-sidebar-menu .menu__link--active {
+  background-color: transparent;
+  border-left-color: var(--ifm-color-primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.theme-doc-sidebar-menu .menu__link--active:hover {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.theme-doc-sidebar-menu .menu__list-item-collapsible {
+  border-radius: 0;
+}
+
+.theme-doc-sidebar-menu .menu__list-item-collapsible:hover {
+  background-color: transparent;
+}
+
+.theme-doc-sidebar-menu .menu__caret::before,
+.theme-doc-sidebar-menu .menu__link--sublist-caret::after {
+  opacity: 0.4;
+  /* Docusaurus's default chevron is 1.25rem with a 2rem background size;
+   * that reads as bulky next to a small sidebar item. Shrink the chevron
+   * but keep the same SVG so it stays crisp. */
+  width: 0.85rem;
+  height: 0.85rem;
+  background-size: 1.4rem;
+}
+
+.theme-doc-sidebar-menu .menu__caret {
+  padding: 0.4rem;
+}
+
+/* Manual title at the very top of the sidebar (e.g., "OvenMediaEngine
+ * Enterprise"). Emitted as `type: 'html'` instead of a wrapper category,
+ * so the real menu items underneath stay at depth 1. Yellow left accent
+ * doubles as a "you are reading this manual" indicator since the html
+ * item has no active state to inherit. */
+.theme-doc-sidebar-menu .menu__list-item:has(> .sidebar-manual-title) {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.theme-doc-sidebar-menu .sidebar-manual-title {
+  display: block;
+  padding: 0.55rem 0.75rem 0.9rem calc(0.75rem - 3px);
+  border-left: 3px solid var(--ifm-color-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Strip the wrapping LI's `menuHtmlItem` padding + Infima sibling margin
+ * so the SPAN owns 100% of the spacing. This avoids margin-collapse and
+ * specificity battles with Infima/Docusaurus defaults. */
+.theme-doc-sidebar-menu .menu__list-item:has(> .sidebar-group-label) {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.theme-doc-sidebar-menu .sidebar-group-label {
+  display: block;
+  padding: 1.75rem 0.75rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
+  /* Brand blue-gray (#9BA4B4) — neutral secondary tone from the
+   * OvenMedia Labs palette. Reads as a calm divider against the sky
+   * active state and the white prose. */
+  color: var(--omb-blue-gray);
+}
+
+/* Section divider underline beneath the label. Same blue-gray hue, low
+ * alpha so it reads as a designed divider rather than a heavy border. */
+.theme-doc-sidebar-menu .sidebar-group-label::after {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-top: 0.45rem;
+  background: linear-gradient(
+    to right,
+    rgba(155, 164, 180, 0.4),
+    rgba(155, 164, 180, 0) 80%
+  );
+}
+
+/* The group label that immediately follows the manual title (typically
+ * the first one, e.g., "ABOUT") gets a shorter top break — the manual
+ * title is already a strong visual boundary, so a full 1.75rem above
+ * the next label would read as wasted space. */
+.theme-doc-sidebar-menu .menu__list-item:has(> .sidebar-manual-title)
+  + .menu__list-item > .sidebar-group-label {
+  padding-top: 0.8rem;
+}
+
+/* ---- Blog sidebar (right column on /blog) ----
+ * The blog plugin uses CSS-module classes (`sidebar_*`, `sidebarItemTitle_*`,
+ * `sidebarItemList_*`) instead of the docs theme classes. Wildcard-match
+ * them so typography stays consistent with the docs sidebar. */
+html.plugin-blog [class*='sidebar_'] [class*='sidebarItemTitle'] {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6b6b6b;
+  margin-bottom: 0.75rem !important;
+}
+
+html.plugin-blog [class*='sidebar_'] [class*='sidebarItemList'] a {
+  font-size: 0.875rem;
+  color: #b8b8b8;
+  text-decoration: none;
+  padding: 0.3rem 0;
+  display: block;
+  line-height: 1.4;
+  transition: color 0.15s ease;
+}
+
+html.plugin-blog [class*='sidebar_'] [class*='sidebarItemList'] a:hover {
+  color: var(--ifm-color-primary);
+}
+
+/* Blog post title (h1) and list-item titles (h2). Tame the oversized
+ * default and color links white with a yellow hover, matching marketing
+ * page accents. CSS-module hash matched via attribute wildcard. */
+html.plugin-blog h1[class*='title_'],
+html.plugin-blog h2[class*='title_'] {
+  font-size: 1.75rem !important;
+  line-height: 1.25 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+html.plugin-blog h2[class*='title_'] {
+  font-size: 1.4rem !important;
+}
+
+html.plugin-blog [class*='title_'] a {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+html.plugin-blog [class*='title_'] a:hover {
+  color: var(--ifm-color-primary);
+}
+
+/* Year group heading in the recent-posts sidebar. The default is a large
+ * heading; reduce it to a small section label. */
+html.plugin-blog [class*='yearGroupHeading'] {
+  font-size: 0.95rem !important;
+  font-weight: 700;
+  color: #d0d0d0;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ---- Right table of contents ---- */
+.theme-doc-toc-desktop {
+  font-size: 0.8rem;
+}
+
+.table-of-contents {
+  font-size: 0.8rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+  padding-left: 0.75rem;
+}
+
+.table-of-contents__link {
+  color: #999;
+  line-height: 1.5;
+  padding: 0.2rem 0;
+  transition: color 0.15s ease;
+}
+
+.table-of-contents__link:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.table-of-contents__link--active,
+.table-of-contents__link--active code {
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+}
+
+/* ---- Markdown body ---- */
+/* Root cause of the narrow body column: Bootstrap 5 (loaded globally for
+ * the marketing navbar/footer) ships a `.row > *` universal rule that
+ * forces `width: 100%; max-width: 100%` on every child of any `.row`,
+ * including Docusaurus's docs/blog Infima row. The Infima `.col` then
+ * gets clamped, and `flex-wrap: wrap` on the row stacks columns vertically.
+ * Undo the Bootstrap rule on docs/blog pages and restore Infima's flex
+ * row behavior. */
+html.plugin-docs .main-wrapper .row,
+html.plugin-blog .main-wrapper .row {
+  flex-wrap: nowrap !important;
+  margin: 0 !important;
+}
+
+html.plugin-docs .main-wrapper .row > *,
+html.plugin-blog .main-wrapper .row > * {
+  width: auto !important;
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-top: 0 !important;
+  flex-shrink: 1 !important;
+}
+
+/* Body columns grow to fill the row, regardless of `main` position.
+ *
+ * Docs: body column is `<div class="col docItemCol_X">` inside main.
+ * Blog: body column is `<main class="col col--7">` (single post) or a
+ *       similar list page wrapper.
+ * Match both patterns. */
+html.plugin-docs [class*='docItemCol'],
+html.plugin-blog main.col--7,
+html.plugin-blog main.col--9,
+html.plugin-blog .main-wrapper .col--7,
+html.plugin-blog .main-wrapper .col--9 {
+  flex: 1 1 0% !important;
+  max-width: none !important;
+  /* Flex items default to `min-width: auto`, which lets a long-line code
+   * block stretch the column past the viewport. Force `0` so the column
+   * stays within its grid track and the `<pre>` scrolls internally. */
+  min-width: 0 !important;
+}
+
+/* Sidebar column (docs: TOC; blog: recent posts or TOC). 240px keeps the
+ * narrow column consistent across products. */
+html.plugin-docs .main-wrapper .col--3,
+html.plugin-blog .main-wrapper .col--3,
+html.plugin-blog .main-wrapper .col--2 {
+  flex: 0 0 240px !important;
+  max-width: 240px !important;
+}
+
+html.plugin-docs .main-wrapper .col--3 {
+  margin-left: 1.5rem !important;
+}
+
+html.plugin-docs [class*='docItemContainer'],
+html.plugin-blog [class*='docItemContainer'],
+html.plugin-docs .theme-doc-markdown,
+html.plugin-docs .theme-doc-markdown > article,
+html.plugin-docs .markdown,
+html.plugin-blog .theme-doc-markdown,
+html.plugin-blog .theme-doc-markdown > article,
+html.plugin-blog .markdown {
+  max-width: none !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* Heading scale: tighter, more LiveKit/Stripe-like. No section dividers
+ * between h2s (the old border-top was visually noisy); rely on spacing. */
+.markdown h1:first-child,
+.markdown > h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.markdown h2 {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  border-top: none;
+  padding-top: 0;
+  letter-spacing: -0.005em;
+}
+
+.markdown h3 {
+  font-size: 1.1rem;
+  line-height: 1.35;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #e8e8e8;
+}
+
+.markdown h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #d8d8d8;
+  margin-top: 1.5rem;
+}
+
+.markdown > p,
+.markdown > ul,
+.markdown > ol,
+.markdown > blockquote,
+.markdown li {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #d6d6d6;
+}
+
+.markdown a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.3);
+  transition: border-color 0.15s ease;
+}
+
+.markdown a:hover {
+  border-bottom-color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+/* Breadcrumbs — soften the default styling */
+.theme-doc-breadcrumbs {
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+}
+
+.theme-doc-breadcrumbs .breadcrumbs__link {
+  color: #888;
+}
+
+.theme-doc-breadcrumbs .breadcrumbs__item--active .breadcrumbs__link {
+  background-color: rgba(56, 189, 248, 0.08);
+  color: var(--ifm-color-primary);
+}
+
+/* ---- Tables (LiveKit/Stripe-style: minimal, row dividers only) ----
+ * GitBook ports come as raw <table> markup. Defaults from Infima/Bootstrap
+ * apply heavy borders + gray fill. Strip that and use thin row dividers. */
+html.plugin-docs .markdown table,
+html.plugin-blog .markdown table {
+  display: table;
+  width: 100%;
+  margin: 1.25rem 0;
+  border-collapse: collapse;
+  background: transparent;
+  font-size: 0.875rem;
+}
+
+html.plugin-docs .markdown table thead,
+html.plugin-blog .markdown table thead {
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+html.plugin-docs .markdown table th,
+html.plugin-blog .markdown table th {
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #a8a8a8;
+  text-align: left;
+  padding: 0.6rem 0.85rem;
+  background: transparent;
+  border: none;
+}
+
+html.plugin-docs .markdown table td,
+html.plugin-blog .markdown table td {
+  padding: 0.65rem 0.85rem;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #d6d6d6;
+  vertical-align: top;
+  background: transparent;
+}
+
+html.plugin-docs .markdown table tr:last-child td,
+html.plugin-blog .markdown table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Zebra stripes are too busy for a docs context; suppress them. */
+html.plugin-docs .markdown table tr:nth-child(2n),
+html.plugin-blog .markdown table tr:nth-child(2n) {
+  background: transparent;
+}
+
+/* ---- Inline code (LiveKit/Stripe-style: subtle gray pill) ---- */
+html.plugin-docs .markdown code:not(pre code),
+html.plugin-blog .markdown code:not(pre code) {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--ifm-color-primary-light);
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: 500;
+  border: none;
+}
+
+/* ---- Fenced code blocks ---- */
+html.plugin-docs .markdown pre,
+html.plugin-blog .markdown pre {
+  background: #0d0d0d !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin: 1.25rem 0;
+}
+
+html.plugin-docs .markdown pre code,
+html.plugin-blog .markdown pre code {
+  background: transparent !important;
+  color: #e8e8e8 !important;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+/* Code block toolbar (copy button) — calmer */
+html.plugin-docs .theme-code-block,
+html.plugin-blog .theme-code-block {
+  box-shadow: none !important;
+  margin-bottom: 1.25rem;
+}
+
+html.plugin-docs .theme-code-block .clean-btn,
+html.plugin-blog .theme-code-block .clean-btn {
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #a8a8a8;
+}
+
+/* ---- Admonitions (note / info / tip / warning / danger) ----
+ * Add a subtle bordered card with a tinted left bar so they read as
+ * structured callouts, not loose paragraphs. */
+html.plugin-docs .theme-admonition,
+html.plugin-blog .theme-admonition {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left-width: 3px;
+  border-radius: 6px;
+  padding: 0.85rem 1.1rem;
+  margin: 1.25rem 0;
+  background-color: rgba(255, 255, 255, 0.02);
+  /* Infima's `.alert` bumps font-size up to ~1.1rem which reads as
+   * shouting next to body prose. Match the surrounding paragraph size
+   * so admonitions feel like inline callouts, not separate posters. */
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+html.plugin-docs .theme-admonition p,
+html.plugin-blog .theme-admonition p {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+html.plugin-docs .theme-admonition-note,
+html.plugin-blog .theme-admonition-note {
+  border-left-color: #6e7681;
+  background-color: rgba(110, 118, 129, 0.06);
+}
+html.plugin-docs .theme-admonition-info,
+html.plugin-blog .theme-admonition-info {
+  border-left-color: #4a9eff;
+  background-color: rgba(74, 158, 255, 0.06);
+}
+html.plugin-docs .theme-admonition-tip,
+html.plugin-blog .theme-admonition-tip {
+  border-left-color: #56d364;
+  background-color: rgba(86, 211, 100, 0.06);
+}
+html.plugin-docs .theme-admonition-warning,
+html.plugin-blog .theme-admonition-warning {
+  border-left-color: #d29922;
+  background-color: rgba(210, 153, 34, 0.07);
+}
+html.plugin-docs .theme-admonition-danger,
+html.plugin-blog .theme-admonition-danger {
+  border-left-color: #f85149;
+  background-color: rgba(248, 81, 73, 0.07);
+}
+
+/* ---- Tabs (Ubuntu 18 / Fedora 28 / ...) ----
+ * Bordered container card with active-tab underline. */
+html.plugin-docs .tabs-container,
+html.plugin-blog .tabs-container {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 0;
+  margin: 1.25rem 0;
+  overflow: hidden;
+}
+
+html.plugin-docs .tabs,
+html.plugin-blog .tabs {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.02);
+  padding: 0 0.5rem;
+  margin: 0;
+}
+
+html.plugin-docs .tabs__item,
+html.plugin-blog .tabs__item {
+  color: #a0a0a0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.12s ease, border-color 0.12s ease;
+}
+
+html.plugin-docs .tabs__item:hover,
+html.plugin-blog .tabs__item:hover {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+html.plugin-docs .tabs__item--active,
+html.plugin-blog .tabs__item--active {
+  color: #ffffff;
+  border-bottom-color: var(--ifm-color-primary);
+  background-color: transparent;
+}
+
+/* Inner tab panel body padding */
+html.plugin-docs .tabs-container > div[role='tabpanel'],
+html.plugin-blog .tabs-container > div[role='tabpanel'] {
+  padding: 1rem 1.1rem;
+}
+
+/* ============================================================
+ * REST API reference styling
+ *
+ * GitBook ports use `## Endpoint Title` + `> #### Request` /
+ * `> #### Responses` blockquote labels + `<details><summary>GET ...`
+ * disclosure blocks. Default rendering reads as a loose pile of
+ * elements. Group it visually: endpoint dividers, caption labels,
+ * carded disclosures, and colored method/status badges.
+ * ============================================================ */
+
+/* Endpoint H2: strong top divider + extra space. Each H2 starts a new
+ * endpoint card-region. */
+html.plugin-docs .markdown h2 {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.75rem;
+  margin-top: 2.75rem;
+}
+
+html.plugin-docs .markdown h2:first-of-type,
+html.plugin-docs .markdown > h2:first-child {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+/* `> #### Request` / `> #### Responses` — blockquote with H4.
+ * Render the inner H4 as a small uppercase caption label, suppress the
+ * blockquote chrome. */
+html.plugin-docs .markdown blockquote {
+  border-left: none;
+  padding: 0;
+  margin: 1.5rem 0 0.5rem;
+  background: transparent;
+  color: inherit;
+}
+
+html.plugin-docs .markdown blockquote h4 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  border: none;
+}
+
+html.plugin-docs .markdown blockquote > * + * {
+  margin-top: 0;
+}
+
+/* Disclosure card: each `<details>` becomes a clean bordered block. */
+html.plugin-docs .markdown details {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  margin: 0.5rem 0 1rem;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.015);
+  overflow: hidden;
+  /* Tone the disclosed body down to admonition-style 0.95rem — by default
+   * Infima's `.alert`-derived classes pump it to ~1.1rem which overpowers
+   * the surrounding prose. */
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+html.plugin-docs .markdown details > div,
+html.plugin-docs .markdown details > p {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+html.plugin-docs .markdown details > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.7rem 1rem 0.7rem 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid transparent;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85rem;
+  color: #d8d8d8;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: background-color 0.12s ease;
+  position: relative;
+}
+
+/* Force-hide every browser's default disclosure marker. `list-style: none`
+ * alone is not enough on Safari/Chrome (WebKit) — they keep `::-webkit-details-marker`,
+ * and `::marker` is the modern spec equivalent. Hide both. */
+html.plugin-docs .markdown details > summary::-webkit-details-marker {
+  display: none;
+}
+
+html.plugin-docs .markdown details > summary::marker {
+  content: '';
+  display: none;
+}
+
+html.plugin-docs .markdown details > summary:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Open state — strengthen the divider between summary and body. */
+html.plugin-docs .markdown details[open] > summary {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Disclosure caret (chevron) — absolute-positioned CSS triangle.
+ * Flex `align-self: center` was inconsistent across browsers on
+ * `<summary>::before`; absolute + translateY(-50%) guarantees center. */
+html.plugin-docs .markdown details > summary::before {
+  content: '';
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border-left: 5px solid #888;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transform: translateY(-50%);
+  transform-origin: center;
+  transition: transform 0.15s ease;
+}
+
+html.plugin-docs .markdown details[open] > summary::before {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* Disclosure body (the content after summary). */
+html.plugin-docs .markdown details[open] > *:not(summary) {
+  padding: 0.5rem 1rem;
+}
+
+/* Tighten code blocks inside disclosures so they don't feel doubled. */
+html.plugin-docs .markdown details[open] > pre,
+html.plugin-docs .markdown details[open] > div > pre {
+  margin: 0.75rem 0;
+}
+
+/* HTTP method / status code badges. The migration script wraps the
+ * leading token in `<span class="http-method http-method-{token}">`. */
+.http-method {
+  display: inline-block;
+  padding: 0.1em 0.55em;
+  font-family: var(--ifm-font-family-monospace);
+  font-weight: 700;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.http-method-get,
+.http-method-200, .http-method-201, .http-method-202, .http-method-204 {
+  background: rgba(86, 211, 100, 0.14);
+  color: #56d364;
+}
+
+.http-method-post,
+.http-method-300, .http-method-301, .http-method-302, .http-method-304 {
+  background: rgba(74, 158, 255, 0.14);
+  color: #4a9eff;
+}
+
+.http-method-put,
+.http-method-patch,
+.http-method-400, .http-method-401, .http-method-403, .http-method-404, .http-method-409, .http-method-422 {
+  background: rgba(210, 153, 34, 0.14);
+  color: #d29922;
+}
+
+.http-method-delete,
+.http-method-500, .http-method-502, .http-method-503, .http-method-504 {
+  background: rgba(248, 81, 73, 0.14);
+  color: #f85149;
+}
+
+.http-method-head,
+.http-method-options {
+  background: rgba(160, 160, 160, 0.14);
+  color: #b8b8b8;
+}
+
+/* ---- GitBook cards-table grid ----
+ * Migration script converts `<table data-view="cards">` blocks into
+ * `<div class="gitbook-cards-grid"><div class="gitbook-card">...`. Render
+ * them as a responsive card grid that matches the GitBook visual. */
+html.plugin-docs .gitbook-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+html.plugin-docs .gitbook-card {
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+  color: #e8e8e8;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+
+html.plugin-docs .gitbook-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+html.plugin-docs .gitbook-card strong {
+  display: block;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+ * Blog post (detail page) — focused reading layout.
+ *
+ * Goals:
+ *   1. Hide the left "Recent posts" sidebar on single-post pages.
+ *      It's noise when the reader has already committed to one post.
+ *   2. Narrow the prose column to ~720px so line length stays in the
+ *      sweet spot (60-80ch). The global container is 1760px wide
+ *      for the marketing-style docs/list layouts, which is too wide
+ *      for long-form reading.
+ *   3. Compact the author block into a single horizontal row at the
+ *      top of the post (avatar + name + title). The default stacks
+ *      avatar above name above social icons, which eats vertical
+ *      space and competes with the article title.
+ *   4. Style inline code with a subtle background pill so tokens
+ *      like `#EXT-X-VERSION:3` stand out from prose.
+ * ============================================================ */
+
+/* 1. Hide the left blog sidebar (Recent posts column) on detail pages.
+ * The blog sidebar renders as `<aside class="col col--3">`, no class-module
+ * hash. Target the bare `aside` inside the blog post layout. */
+html.plugin-blog.blog-post-page .main-wrapper aside {
+  display: none !important;
+}
+
+/* 2. Narrow the prose column. The body column on a single post is
+ * `<main class="col col--7">` inside a row. Force a fixed width via
+ * flex-basis (no grow) so the row's `justify-content: center` actually
+ * centers main + TOC as a pair. `flex-grow: 0` is the critical bit;
+ * without it main expands to fill the row and centering is a no-op. */
+html.plugin-blog.blog-post-page .main-wrapper main[class*='col'] {
+  flex: 0 1 760px !important;
+  max-width: 760px !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+/* When the right TOC is present, the main column is paired with a
+ * narrower TOC column. Keep that pairing but center the whole row.
+ * Important required because the global `.main-wrapper .row` rule above
+ * resets row flex behavior and can win specificity. */
+html.plugin-blog.blog-post-page .main-wrapper .container > .row {
+  justify-content: center !important;
+  gap: 2.5rem;
+}
+
+/* Mobile: the desktop layout pins 240px for the right TOC, which on a
+ * 375px viewport leaves ~30px for the post and snaps the title to one
+ * character per line. Hide the right TOC below the Infima medium
+ * breakpoint and let main fill the row. The TOC content stays
+ * accessible via Docusaurus's collapsible mobile "On this page". */
+@media (max-width: 996px) {
+  html.plugin-blog.blog-post-page .main-wrapper .col--2 {
+    display: none !important;
+  }
+  html.plugin-blog.blog-post-page .main-wrapper main[class*='col'] {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* 3. Compact author row at the top of a post. The upstream layout
+ * uses an Infima `.row` with each author taking col--12 (single
+ * author) and stacks avatar + name + title + socials vertically.
+ * Flip it into a horizontal flex so the byline reads as one line. */
+html.plugin-blog.blog-post-page header [class*='authorCol'] {
+  width: auto !important;
+  /* Cap at viewport so the avatar block can't push the page wider than
+   * the post column on mobile. `max-width: none` was the desktop intent
+   * (collapse the full-width col--12) but it let the column outgrow the
+   * 375px viewport when the author name + subtitle ran long. */
+  max-width: 100% !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+}
+
+html.plugin-blog.blog-post-page header .avatar {
+  align-items: center;
+  gap: 0.75rem;
+}
+
+html.plugin-blog.blog-post-page header .avatar__photo,
+html.plugin-blog.blog-post-page header .avatar__photo-link img {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+html.plugin-blog.blog-post-page header .avatar__intro {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+html.plugin-blog.blog-post-page header .avatar__name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+html.plugin-blog.blog-post-page header .avatar__subtitle {
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Hide author social icons in the post header — they belong on the
+ * author profile page, not above every article. */
+html.plugin-blog.blog-post-page header [class*='authorSocials'],
+html.plugin-blog.blog-post-page header .author__socials {
+  display: none !important;
+}
+
+/* Tighten the spacing between title, meta, author, and hero image. */
+html.plugin-blog.blog-post-page header > h1 {
+  margin-bottom: 0.5rem !important;
+}
+
+html.plugin-blog.blog-post-page header > .margin-vert--md {
+  margin-top: 0.25rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+/* 4. Inline code styling. The default has no background, so prose
+ * tokens disappear. Add a subtle pill + monospace so they pop. */
+html.plugin-blog.blog-post-page .markdown :not(pre) > code {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 0.1em 0.4em;
+  font-size: 0.88em;
+  color: var(--omb-sky, #38bdf8);
+}
+
+/* 5. Improve the prose itself: comfortable line-height, larger first
+ * paragraph as a lede, and gentler heading hierarchy. */
+html.plugin-blog.blog-post-page .markdown {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+html.plugin-blog.blog-post-page .markdown > p:first-of-type {
+  font-size: 1.2rem;
+  line-height: 1.65;
+  color: #e8eaed;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html.plugin-blog.blog-post-page .markdown h2 {
+  font-size: 1.6rem !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 0.75rem !important;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+html.plugin-blog.blog-post-page .markdown h3 {
+  font-size: 1.25rem !important;
+  margin-top: 1.75rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* 6. Brighten the right TOC's inactive items so the outline is
+ * actually scannable, not just a list of dots. */
+html.plugin-blog.blog-post-page .table-of-contents__link {
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* ---- Blog post footer (tags) ----
+ * The post footer is just an inline tag list. Hide the bold "Tags:"
+ * label (the pills are self-explanatory) and restyle the pills to
+ * match the horizontal card tags in the list view, so the same visual
+ * language flows from /blog -> /blog/<slug>. */
+html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row {
+  margin-top: 2.5rem !important;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row > .col > b {
+  display: none;
+}
+
+html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tags_'] {
+  margin-left: 0 !important;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* Pill itself - mirrors the list-view tag style */
+html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_'] a {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none;
+  line-height: 1.6;
+  background: transparent;
+  transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_'] a:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  background: rgba(56, 189, 248, 0.06);
+  text-decoration: none;
+}
+
+/* ============================================================
+ * Buttons: kill the implicit <p> wrapper inside <a class="btn">.
+ *
+ * MDX auto-wraps any inline children of a multi-line <a> tag in a
+ * <p>, which inherits the page's default 1rem bottom margin. That
+ * pushes the button's text to the top, inflates its height, and
+ * turns `rounded-pill` (border-radius: 50rem) into a real ellipse
+ * because the radius becomes larger than half the height.
+ *
+ * Easier to fix here than to rewrite every marketing MDX <a> into
+ * a single line. .btn already controls its own padding.
+ * ============================================================ */
+.btn > p,
+.btn > p:last-child {
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
+}
+
+/* ============================================================
+ * Marketing "From the Blog" cards (LatestBlogPosts component).
+ *
+ * Three-up text-first cards. No thumbnails — the marketing pages
+ * are visually dense already, and a text-only card keeps the rhythm.
+ * ============================================================ */
+.latest-blog-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: inherit;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.latest-blog-card:hover {
+  background: rgba(56, 189, 248, 0.04);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: inherit;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.latest-blog-meta {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ifm-color-emphasis-600);
+  display: inline-flex;
+  align-items: center;
+}
+
+.latest-blog-title {
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: var(--text-main, #ffffff);
+  /* Clamp to 3 lines so all cards line up. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.latest-blog-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.5;
+}
