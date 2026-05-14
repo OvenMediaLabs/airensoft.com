@@ -32,6 +32,16 @@ source_url() {
     esac
 }
 
+# Per-product docs folder name in the upstream repo. Enterprise moved
+# its docs to `docs-site-enterprise/` so the OvenMediaEngine merge into
+# Enterprise wouldn't overwrite it.
+source_docs_folder() {
+    case "$1" in
+        ome-enterprise) echo "docs-site-enterprise" ;;
+        *)              echo "docs-site" ;;
+    esac
+}
+
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
@@ -53,12 +63,14 @@ sync_one() {
     git fetch "$remote" master --quiet
 
     # Drop the existing prefix from the working tree + index, then
-    # read-tree the upstream's docs-site/ in its place. `-u` updates the
-    # working tree to match.
+    # read-tree the upstream's docs folder in its place. `-u` updates
+    # the working tree to match.
+    local docs_folder
+    docs_folder=$(source_docs_folder "$source")
     if [ -e "$prefix" ]; then
         git rm -rq "$prefix"
     fi
-    git read-tree --prefix="$prefix/" -u "$remote/master^{tree}:docs-site"
+    git read-tree --prefix="$prefix/" -u "$remote/master^{tree}:$docs_folder"
 
     local upstream_sha
     upstream_sha=$(git rev-parse --short "$remote/master")
