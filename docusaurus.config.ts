@@ -72,7 +72,7 @@ const config: Config = {
   baseUrl: '/',
 
   organizationName: 'OvenMediaLabs',
-  projectName: 'airensoft.com',
+  projectName: 'ovenmedialabs.com',
   trailingSlash: false,
 
   // Build fails on any broken link / anchor / markdown image. Caught
