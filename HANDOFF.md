@@ -123,6 +123,20 @@ OvenMediaLabs (구 AirenSoft)는 마케팅 사이트(현재 `ovenmedialabs.com`,
 19. **Production 빌드 + 배포 파이프라인 최종 확인** — GH Pages 동작.
 20. **main 머지 + 브랜치 정리**.
 
+### F. 컷오버 후 정리 (rename)
+21. **GitHub repo rename `airensoft.com` → `ovenmedialabs.com`** — GitHub redirect는 자동이지만 hardcoded URL은 stale. 영향:
+    - [scripts/preview-docs.sh](scripts/preview-docs.sh) `SITE_REPO` 변수
+    - 3개 upstream `docs-site/preview.sh` 동일 변수 (sweep PR)
+    - 3개 upstream `docs-site/README.md`의 "the airensoft.com repo (keeps its legacy name)" 문구
+    - `.github/workflows/deploy.yml`, CNAME 등 hardcoded 위치 grep 확인
+22. **`docs-site/` → `docs/` 폴더 rename** (3 upstream 모두) — 통합 완료 후:
+    - 3개 upstream에서 폴더 이름 변경 (`git mv docs-site docs`)
+    - 각 upstream `docs/preview.sh` 안의 `docs-site` 모든 언급 update (코멘트, README 인용 등)
+    - downstream [scripts/sync-docs.sh](scripts/sync-docs.sh)의 `docs-site` 경로 → `docs` 변경
+    - downstream `docs/<source>/` 매핑은 그대로 유지 (downstream 폴더명은 변경 안 함)
+    - 각 upstream `docs/README.md`의 `docs-site/` 언급 update
+    - 두 rename 같이 진행하면 sweep PR 한 번에 처리 가능
+
 ## 6. 핵심 파일 / 디렉토리
 
 ```
