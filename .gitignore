@@ -27,3 +27,6 @@ yarn-error.log*
 # Kept until the upstream diagram PRs land + a sync resyncs the new
 # images, then this directory can be deleted entirely.
 .alpha-backup/
+
+# Personal handoff notes (not for the repo)
+/HANDOFF.md
