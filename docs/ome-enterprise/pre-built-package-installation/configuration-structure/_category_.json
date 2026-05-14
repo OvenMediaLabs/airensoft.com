@@ -1,6 +1,6 @@
 {
-  "label": "Configuration Structure",
-  "position": 29,
+  "label": "Virtual Host",
+  "position": 142,
   "link": {
     "type": "doc",
     "id": "README"
