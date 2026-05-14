@@ -271,6 +271,9 @@ const config: Config = {
         path: 'docs/ome',
         routeBasePath: 'docs/ome',
         sidebarPath: './sidebars-ome.ts',
+        // Top-level README is contributor-facing (preview script
+        // pointer); not a doc page.
+        exclude: ['README.md'],
       },
     ],
     [
@@ -280,6 +283,7 @@ const config: Config = {
         path: 'docs/ome-enterprise',
         routeBasePath: 'docs/ome-enterprise',
         sidebarPath: './sidebars-ome-enterprise.ts',
+        exclude: ['README.md'],
       },
     ],
     [
@@ -289,6 +293,7 @@ const config: Config = {
         path: 'docs/ovenplayer',
         routeBasePath: 'docs/ovenplayer',
         sidebarPath: './sidebars-ovenplayer.ts',
+        exclude: ['README.md'],
       },
     ],
   ],
