@@ -1,6 +1,7 @@
 import {themes as prismThemes, type PrismTheme} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import {sectionHeaderSidebarGenerator} from './src/lib/sidebar-section-headers';
 
 /**
  * Custom Prism theme: low-saturation, brand-aligned, easy on the eyes.
@@ -231,6 +232,17 @@ const config: Config = {
         blog: {
           showReadingTime: true,
           routeBasePath: 'blog',
+          // Keep Docusaurus's default `GlobExcludeDefault` patterns
+          // (which skip `_*` files/folders, hence `_template/`) and add
+          // `README.md` so the contributor guide colocated with posts
+          // doesn't get rendered as a post itself.
+          exclude: [
+            '**/_*.{js,jsx,ts,tsx,md,mdx}',
+            '**/_*/**',
+            '**/*.test.{js,jsx,ts,tsx}',
+            '**/__tests__/**',
+            'README.md',
+          ],
           blogTitle: 'OvenMedia Labs Blog',
           blogDescription: 'Sub-second latency live streaming insights from OvenMedia Labs.',
           feedOptions: {
@@ -271,9 +283,11 @@ const config: Config = {
         path: 'docs/ome',
         routeBasePath: 'docs/ome',
         sidebarPath: './sidebars-ome.ts',
-        // Top-level README is contributor-facing (preview script
-        // pointer); not a doc page.
-        exclude: ['README.md'],
+        sidebarItemsGenerator: sectionHeaderSidebarGenerator,
+        // README.md and STYLE.md are contributor-facing (preview script
+        // pointer + authoring guide); they ship in the upstream `docs/`
+        // tree but must not appear in the public sidebar/routes.
+        exclude: ['README.md', 'STYLE.md'],
       },
     ],
     [
@@ -283,7 +297,8 @@ const config: Config = {
         path: 'docs/ome-enterprise',
         routeBasePath: 'docs/ome-enterprise',
         sidebarPath: './sidebars-ome-enterprise.ts',
-        exclude: ['README.md'],
+        sidebarItemsGenerator: sectionHeaderSidebarGenerator,
+        exclude: ['README.md', 'STYLE.md'],
       },
     ],
     [
@@ -293,7 +308,8 @@ const config: Config = {
         path: 'docs/ovenplayer',
         routeBasePath: 'docs/ovenplayer',
         sidebarPath: './sidebars-ovenplayer.ts',
-        exclude: ['README.md'],
+        sidebarItemsGenerator: sectionHeaderSidebarGenerator,
+        exclude: ['README.md', 'STYLE.md'],
       },
     ],
   ],
