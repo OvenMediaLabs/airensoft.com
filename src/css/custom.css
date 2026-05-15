@@ -217,6 +217,16 @@ html.plugin-blog body {
   }
 }
 
+/* /search page (the local-search plugin's results page) has no
+ * sidebar or other layout that compensates for the fixed navbar, so
+ * the page title is clipped at scroll-top across viewports. Apply the
+ * navbar-height offset on every width. The html class is generated
+ * from the plugin id (`plugin-@easyops-cn/docusaurus-search-local`),
+ * which contains `@` / `/` — match via attribute selector. */
+html[class*='easyops'] body {
+  padding-top: var(--ifm-navbar-height);
+}
+
 /* Widen the docs/blog content container so the page uses the
  * available viewport instead of the 1320px Infima default.
  *
@@ -1467,5 +1477,157 @@ html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_']
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.5;
+}
+
+/* ---- Search (local search plugin) ----------------------------------
+ * The plugin ships its own CSS-module styles for the navbar dropdown
+ * and the `/search` results page; class names are hashed (e.g.
+ * `searchResultItem_abc123`). We target via `[class*='…']` attribute
+ * selectors to override font + spacing without depending on the hash.
+ */
+
+/* All search surfaces inherit the site sans-serif. The plugin defaults
+ * leave inputs/results to the browser-default serif on some setups. */
+[class*='searchBar'] input,
+[class*='searchQueryInput'],
+[class*='searchContextInput'],
+[class*='hitTitle'],
+[class*='hitPath'],
+[class*='searchResultItem'] {
+  font-family: var(--ifm-font-family-base);
+}
+
+/* /search results page — typography pass.
+ * - tighter result rows (more like Stripe/LiveKit search pages)
+ * - drop the italic on summary (looked accidental)
+ * - swap heavy underlines for a subtle hover affordance
+ * - dim the breadcrumb path so the title is the focus
+ * - row separator uses the calm border tone we use elsewhere
+ */
+[class*='searchResultItem'] {
+  padding: 1.25rem 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+[class*='searchResultItem'] > h2 {
+  font-size: 1.15rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  line-height: 1.35;
+}
+
+[class*='searchResultItem'] > h2 a {
+  color: var(--ifm-color-primary);
+  text-decoration: none !important;
+}
+
+[class*='searchResultItem'] > h2 a:hover {
+  text-decoration: underline !important;
+}
+
+[class*='searchResultItemPath'] {
+  color: var(--omb-blue-gray, #8b95a3);
+  font-size: 0.8rem !important;
+  margin: 0.4rem 0 0 !important;
+}
+
+[class*='searchResultItemSummary'] {
+  font-style: normal !important;
+  font-size: 0.9rem !important;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0.5rem 0 0 !important;
+  line-height: 1.55;
+}
+
+/* `mark` highlight inside title/summary — softer than the default
+ * bright yellow. */
+[class*='searchResultItem'] mark,
+[class*='searchResultItemSummary'] mark {
+  background-color: rgba(255, 222, 89, 0.18);
+  color: inherit;
+  padding: 0 0.15em;
+  border-radius: 2px;
+}
+
+/* Top of /search page: align query input with the rest of the page
+ * typography and give it room to breathe. */
+[class*='searchQueryInput'],
+[class*='searchContextInput'] {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: var(--ifm-background-surface-color) !important;
+}
+
+/* Mobile/tablet search behavior. Default state: search shrinks to an
+ * icon-only input so the navbar row stays tidy. Focused state (Mail-app
+ * pattern): brand + hamburger fade out, the input takes over the whole
+ * navbar width, and a "Cancel" button appears at the right edge to
+ * dismiss back to the default state.
+ *
+ * Driven entirely by `:has()` — Chrome 105+ / Safari 15.4+ / Firefox
+ * 121+ (covers iOS Safari, Chrome mobile, all modern desktop).
+ */
+@media (max-width: 1199px) {
+  /* Default: icon-only input. */
+  .navbar__search-input {
+    width: 2.5rem;
+    padding-right: 0.5rem;
+    cursor: pointer;
+  }
+  .navbar__search-input:focus {
+    cursor: text;
+  }
+
+  /* The mobile cancel button is hidden until search is focused.
+   * X icon matched roughly to the hamburger toggler's footprint so
+   * the right edge of the navbar doesn't shift between focused and
+   * unfocused states. */
+  .mobile-search-cancel {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    color: var(--ifm-color-content-secondary);
+    background: transparent;
+    border: none;
+    margin-left: 0.5rem;
+  }
+  .mobile-search-cancel:hover {
+    color: var(--ifm-color-content);
+  }
+
+  /* While the search input is focused, transform the navbar into a
+   * dedicated search row. */
+  .navbar-custom:has(.navbar__search-input:focus) .navbar-brand,
+  .navbar-custom:has(.navbar__search-input:focus) .navbar-toggler {
+    display: none;
+  }
+  .navbar-custom:has(.navbar__search-input:focus) .mobile-search-wrapper {
+    flex: 1;
+    margin: 0 !important;
+  }
+  .navbar-custom:has(.navbar__search-input:focus) .navbar__search,
+  .navbar-custom:has(.navbar__search-input:focus) [class*='searchBarContainer'] {
+    flex: 1;
+    margin-left: 0;
+  }
+  .navbar-custom:has(.navbar__search-input:focus) .navbar__search-input {
+    width: 100%;
+    cursor: text;
+  }
+  .navbar-custom:has(.navbar__search-input:focus) .mobile-search-cancel {
+    display: inline-flex;
+  }
+}
+
+/* /search page: align the query input and context-select heights
+ * (plugin defaults render them with slightly different intrinsic
+ * heights so they look misaligned side-by-side). */
+[class*='searchQueryInput'],
+[class*='searchContextInput'] {
+  height: 2.5rem !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box;
 }
 
