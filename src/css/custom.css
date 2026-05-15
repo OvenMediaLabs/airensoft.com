@@ -751,8 +751,8 @@ html.plugin-blog .markdown {
 .markdown > ol,
 .markdown > blockquote,
 .markdown li {
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-size: 0.85rem;
+  line-height: 1.65;
   color: #d6d6d6;
 }
 
@@ -1235,9 +1235,11 @@ html.plugin-docs .gitbook-card strong {
  * ============================================================ */
 
 /* 1. Hide the left blog sidebar (Recent posts column) on detail pages.
- * The blog sidebar renders as `<aside class="col col--3">`, no class-module
- * hash. Target the bare `aside` inside the blog post layout. */
-html.plugin-blog.blog-post-page .main-wrapper aside {
+ * The blog sidebar renders as `<aside class="col col--3">` — a direct
+ * child of `.row`. Target that one specifically; a bare `aside` selector
+ * also hides every nested aside in the post body (e.g. the in-content
+ * author card), which we don't want. */
+html.plugin-blog.blog-post-page .main-wrapper .container > .row > aside {
   display: none !important;
 }
 
@@ -1501,6 +1503,28 @@ html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_']
   overflow: hidden;
   line-height: 1.5;
 }
+
+/* Mermaid diagram surface. Docusaurus's theme-mermaid renders each
+ * diagram inside `.docusaurus-mermaid-container` and documents this
+ * class as the styling hook. Mermaid SVGs are transparent by design
+ * (only individual boxes/notes carry fills), so on dark sites the
+ * signal text and arrow labels disappear into the body background.
+ * Wrap the SVG in a light "card" — the standard pattern used by
+ * Stripe, Tailwind, and other dark docs that embed Mermaid. */
+.docusaurus-mermaid-container {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1.5rem 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.docusaurus-mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
 
 /* ---- Search (local search plugin) ----------------------------------
  * The plugin ships its own CSS-module styles for the navbar dropdown

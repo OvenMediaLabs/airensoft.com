@@ -83,11 +83,14 @@ const config: Config = {
   onBrokenAnchors: 'throw',
 
   markdown: {
+    mermaid: true,
     hooks: {
       onBrokenMarkdownLinks: 'throw',
       onBrokenMarkdownImages: 'throw',
     },
   },
+
+  themes: ['@docusaurus/theme-mermaid'],
 
   i18n: {
     defaultLocale: 'en',
@@ -353,6 +356,19 @@ const config: Config = {
 
   themeConfig: {
     image: 'images/og/og_oml.png',
+    mermaid: {
+      // `neutral` theme — monochrome, modern, no lavender/yellow.
+      // The SVG bg is transparent, but every diagram is wrapped in a
+      // `.docusaurus-mermaid-container` white card (see custom.css) so
+      // the dark text stays legible on the dark site.
+      theme: {light: 'neutral', dark: 'neutral'},
+      options: {
+        // Wrap long note text instead of clipping it past the
+        // measured box width (Mermaid's default sizing under-measures
+        // when text contains parentheses/punctuation).
+        sequence: {wrap: true},
+      },
+    },
     metadata: [
       {name: 'keywords', content: 'ovenmedia, oven media, ovenmedia labs, airensoft, ovenmediaengine, ome, ome enterprise, ovenplayer, ovenlivekit, sub second latency streaming, webrtc streaming, llhls streaming, srt streaming, open source streaming server'},
     ],
