@@ -201,6 +201,22 @@ html.plugin-blog body {
   overflow-x: clip !important;
 }
 
+/* Offset doc/blog body content by navbar height on mobile only.
+ * Legacy marketing CSS forces `.navbar-custom { position: fixed }`
+ * which takes the navbar out of flow — Docusaurus's default
+ * `.navbar--fixed-top` is `position: sticky` so content naturally
+ * pushes below, but the fixed override removes that pushing. On
+ * desktop the doc layout (sidebar + main) already accounts for the
+ * navbar through other offsets; on mobile the article's H1 ends up
+ * clipped behind the navbar. This puts that space back, but only
+ * at < 997px to avoid an oversized blank strip on desktop. */
+@media (max-width: 996px) {
+  html.plugin-docs body,
+  html.plugin-blog body {
+    padding-top: var(--ifm-navbar-height);
+  }
+}
+
 /* Widen the docs/blog content container so the page uses the
  * available viewport instead of the 1320px Infima default.
  *
@@ -260,16 +276,55 @@ html.plugin-blog .markdown img {
 
 /* Bootstrap's global `a { text-decoration: underline }` (loaded via the
  * marketing navbar CDN) bleeds into the docs sidebar and TOC. Strip the
- * underline on those navigation surfaces — they're not prose. */
+ * underline on those navigation surfaces — they're not prose. The
+ * `.navbar-sidebar` selector covers the mobile docs sidebar drawer
+ * (Docusaurus's NavbarMobileSidebar SecondaryMenu) where the same
+ * `.menu__link` markup appears outside `.theme-doc-sidebar-container`. */
 .theme-doc-sidebar-container a,
 .theme-doc-sidebar-container a:hover,
 .theme-doc-sidebar-container .menu__link,
 .theme-doc-sidebar-container .menu__link:hover,
+.navbar-sidebar a,
+.navbar-sidebar a:hover,
+.navbar-sidebar .menu__link,
+.navbar-sidebar .menu__link:hover,
 [class*='tableOfContents_'] a,
 [class*='tableOfContents_'] a:hover,
 .table-of-contents__link,
 .table-of-contents__link:hover {
   text-decoration: none !important;
+}
+
+/* Hide the "← Back to main menu" button that Docusaurus renders at the
+ * top of NavbarMobileSidebar's SecondaryMenu. We open the drawer
+ * directly into the secondary view (doc sidebar) from our "Pages"
+ * button; there is no useful primary view to return to in this flow
+ * (the marketing nav lives in the Bootstrap collapse, not in this
+ * drawer). */
+.navbar-sidebar__back {
+  display: none !important;
+}
+
+/* Mobile docs drawer polish. Default Docusaurus opens the sidebar from
+ * `top: 0` and the in-drawer brand bar duplicates the navbar logo. We
+ * dock the drawer under the navbar instead so the real navbar (logo +
+ * Bootstrap hamburger) stays visible. The in-drawer brand bar (logo +
+ * close X) is dropped entirely — backdrop tap or pressing "Pages"
+ * again closes the drawer, so the dedicated close button isn't worth
+ * the navbar-height it consumes at the top of the menu. */
+@media (max-width: 996px) {
+  .navbar-sidebar {
+    top: var(--ifm-navbar-height) !important;
+  }
+  .navbar-sidebar__brand {
+    display: none !important;
+  }
+  /* `.navbar-sidebar__items` defaults to `height: calc(100% - navbar-height)`
+   * assuming the brand bar consumes navbar-height inside the drawer.
+   * With the brand bar gone the items should fill the full drawer height. */
+  .navbar-sidebar__items {
+    height: 100% !important;
+  }
 }
 
 /* Sidebar viewport: give it its own scroll context.
@@ -693,6 +748,17 @@ html.plugin-blog .markdown {
 .theme-doc-breadcrumbs .breadcrumbs__item--active .breadcrumbs__link {
   background-color: rgba(56, 189, 248, 0.08);
   color: var(--ifm-color-primary);
+}
+
+/* Hide breadcrumbs on mobile. The Pages button already exposes the
+ * full sidebar (which highlights the current page), so the breadcrumb
+ * trail is redundant — and the [Pages][On this page] sticky bar would
+ * otherwise hide it on scroll anyway, causing a flicker that adds no
+ * information. */
+@media (max-width: 996px) {
+  .theme-doc-breadcrumbs {
+    display: none;
+  }
 }
 
 /* ---- Tables (LiveKit/Stripe-style: minimal, row dividers only) ----
@@ -1402,3 +1468,4 @@ html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_']
   overflow: hidden;
   line-height: 1.5;
 }
+
