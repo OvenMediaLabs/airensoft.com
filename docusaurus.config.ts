@@ -235,6 +235,13 @@ const config: Config = {
         blog: {
           showReadingTime: true,
           routeBasePath: 'blog',
+          // We render our own list view (see swizzled BlogPostItem) and
+          // a TOC + author card on the right column of post pages, so
+          // the default left-column "Recent posts" sidebar would just
+          // duplicate the main list / clutter the read view. Setting
+          // count to 0 disables the sidebar entirely instead of hiding
+          // it with CSS after the fact.
+          blogSidebarCount: 0,
           // Keep Docusaurus's default `GlobExcludeDefault` patterns
           // (which skip `_*` files/folders, hence `_template/`) and add
           // `README.md` so the contributor guide colocated with posts
