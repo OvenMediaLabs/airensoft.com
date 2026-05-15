@@ -38,7 +38,7 @@ import styles from './styles.module.css';
  * (`tocCollapsibleButtonExpanded_<hash>`) and trigger a click on
  * that button to drive the collapse.
  */
-function useCloseTOCOnOutsideClick(navRef: React.RefObject<HTMLDivElement>) {
+function useCloseTOCOnOutsideClick(navRef: React.RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       const nav = navRef.current;
