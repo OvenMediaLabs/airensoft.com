@@ -311,6 +311,44 @@ const config: Config = {
         exclude: ['README.md'],
       },
     ],
+    // Client-side search. Indexes docs + blog at build time, ships the
+    // index as JSON in the bundle, runs in-browser. No external service
+    // (Algolia, Typesense). Plugin injects a SearchBar into the navbar
+    // and a `/search` results page automatically.
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,                  // hash the index file for cache busting
+        indexDocs: true,
+        indexBlog: true,
+        indexPages: true,              // include marketing pages so /ome, /company, etc. surface in search
+        language: ['en', 'ko'],
+        // ⌘K / Ctrl+K shortcut: the modern docs-site pattern is to
+        // jump focus to the search input from anywhere on the page,
+        // with a visible <kbd> hint in the bar. We don't want either
+        // — Bootstrap navbar layout doesn't have room for the hint
+        // pill, and the shortcut is unfamiliar to non-power users.
+        searchBarShortcut: false,
+        docsRouteBasePath: ['/docs/ome', '/docs/ome-enterprise', '/docs/ovenplayer'],
+        // We register three plugin-content-docs instances (ome / ome-enterprise
+        // / ovenplayer) with no `default` instance — the SearchBar's
+        // `useActiveVersion` call fails without an explicit pick. Point it
+        // at `ome` (the open-source flagship); the search index still
+        // covers all three products via `docsRouteBasePath` above.
+        docsPluginIdForPreferredVersion: 'ome',
+        // Do NOT use `searchContextByPaths`. The plugin auto-detects
+        // the current page's path (e.g. `/docs/ome/...`) and silently
+        // scopes search to that context, hiding blog and marketing
+        // pages — even with `useAllContextsWithNoSearchContext: true`
+        // (that flag only fires when the page lives outside every
+        // configured context, which is rare in our setup). Source
+        // labeling for results is handled instead by
+        // `scripts/label-search-results.js`, which prepends the
+        // product name to each indexed document's breadcrumb.
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+      },
+    ],
   ],
 
   themeConfig: {

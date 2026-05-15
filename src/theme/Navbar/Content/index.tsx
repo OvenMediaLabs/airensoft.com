@@ -13,6 +13,7 @@ import {useLocation} from '@docusaurus/router';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import SearchBar from '@theme/SearchBar';
 import {resourcesDropdownItems} from '@site/src/config/navbarResources';
 
 type NavbarItem = {
@@ -160,8 +161,43 @@ export default function NavbarContent(): ReactNode {
         </picture>
       </Link>
 
+      {/* SearchBar lives OUTSIDE the Bootstrap collapse so it stays
+          visible on mobile (sibling to the hamburger). On desktop it
+          renders an input pill; on mobile the plugin's SearchBar
+          collapses to a magnifier icon and opens an overlay on tap.
+          Wrapped in `order-*` utilities so on desktop it sits at the
+          end of the nav row (after the items in the collapse), while
+          on mobile it sits between the brand and the toggler. */}
+      <div className="d-flex align-items-center order-xl-3 ms-auto ms-xl-2 me-2 me-xl-0 mobile-search-wrapper">
+        <SearchBar />
+        {/* Mobile-only cancel button. CSS reveals it when the search
+            input is focused (and at the same time hides brand +
+            toggler so the input gets the whole navbar row). onMouseDown
+            preventDefault keeps the input focused long enough for the
+            click handler to run before iOS dismisses it. */}
+        <button
+          type="button"
+          className="clean-btn mobile-search-cancel"
+          aria-label="Cancel search"
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => {
+            const input = document.querySelector(
+              '.navbar__search-input',
+            ) as HTMLInputElement | null;
+            if (input) {
+              input.value = '';
+              input.blur();
+            }
+          }}>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+
       <button
-        className="navbar-toggler"
+        className="navbar-toggler order-xl-4"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#mainNav"
@@ -173,8 +209,8 @@ export default function NavbarContent(): ReactNode {
         <div className="toggler-icon-bar"></div>
       </button>
 
-      <div className="collapse navbar-collapse" id="mainNav">
-        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+      <div className="collapse navbar-collapse order-xl-2" id="mainNav">
+        <ul className="navbar-nav ms-auto mb-2 mb-xl-0">
           {items.map((item, i) => {
             const isDropdown =
               item.customMenu || (item.items && item.items.length > 0);

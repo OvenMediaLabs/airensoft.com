@@ -156,13 +156,12 @@ h7, .h7 {
 .nav-link:hover { color: var(--text-main) !important; }
 .nav-link.active { color: var(--brand-secondary) !important; font-weight: 600; }
 
-@media (min-width: 992px) and (max-width: 1200px) {
-	.nav-link { margin: 0 0.25rem; }
-	.navbar-brand { margin-right: 1rem; }
-}
+/* Navbar uses navbar-expand-xl, so the "mobile" breakpoint for the
+ * navbar runs through 1199px. Match it here so the in-flow navbar
+ * collapse styling kicks in at the same width as Bootstrap's toggler. */
 
 /* [IMPORTANT] Mobile Responsive Logic Restored */
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
     /* 1. Navbar Height Adjustment */
     .navbar-custom { 
         --navbar-height: 64px; 
