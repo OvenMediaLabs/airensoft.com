@@ -168,7 +168,7 @@ export default function NavbarContent(): ReactNode {
           Wrapped in `order-*` utilities so on desktop it sits at the
           end of the nav row (after the items in the collapse), while
           on mobile it sits between the brand and the toggler. */}
-      <div className="d-flex align-items-center order-xl-3 ms-auto ms-xl-2 me-2 me-xl-0 mobile-search-wrapper">
+      <div className="d-flex align-items-center order-lg-3 ms-auto ms-lg-2 me-2 me-lg-0 mobile-search-wrapper">
         <SearchBar />
         {/* Mobile-only cancel button. CSS reveals it when the search
             input is focused (and at the same time hides brand +
@@ -197,7 +197,7 @@ export default function NavbarContent(): ReactNode {
       </div>
 
       <button
-        className="navbar-toggler order-xl-4"
+        className="navbar-toggler order-lg-4"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#mainNav"
@@ -209,8 +209,8 @@ export default function NavbarContent(): ReactNode {
         <div className="toggler-icon-bar"></div>
       </button>
 
-      <div className="collapse navbar-collapse order-xl-2" id="mainNav">
-        <ul className="navbar-nav ms-auto mb-2 mb-xl-0">
+      <div className="collapse navbar-collapse order-lg-2" id="mainNav">
+        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
           {items.map((item, i) => {
             const isDropdown =
               item.customMenu || (item.items && item.items.length > 0);

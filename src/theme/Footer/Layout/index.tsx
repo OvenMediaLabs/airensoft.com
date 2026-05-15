@@ -68,7 +68,7 @@ export default function FooterLayout(): ReactNode {
                   <h6 className="footer-heading">Company</h6>
                   <ul className="list-unstyled">
                     <li><Link to="/company" className="footer-link">About Us</Link></li>
-                    <li><Link to="/contact" className="footer-link">Contact</Link></li>
+                    <li><Link to="/company#contact" className="footer-link">Contact</Link></li>
                     <li><Link to="/agplv3" className="footer-link">License Compliance</Link></li>
                     <li><Link to="/eula" className="footer-link">EULA</Link></li>
                   </ul>
