@@ -160,6 +160,49 @@ h7, .h7 {
     filter: brightness(120%);
 }
 
+/* On phone-sized viewports the desktop 40px logo + the search button +
+ * the hamburger toggler can't all fit on one navbar row, so the search
+ * and toggler wrap below. Scale the brand container to a fraction of
+ * the viewport so it always leaves enough room for the search and
+ * toggler — including at ultra-narrow (~280px) widths where the desktop
+ * width would still wrap. The desktop 40px size remains the upper bound.
+ *
+ * Picture wraps the <img> and the "(Formerly AirenSoft)" subtext; we
+ * size the picture explicitly and let both children fill it. The
+ * subtext is clipped with an ellipsis if it would otherwise expand the
+ * picture wider than the logo image and re-trigger the wrap. */
+@media (max-width: 767.98px) {
+    .navbar-brand {
+        flex-shrink: 1;
+        min-width: 0;
+    }
+    .navbar-brand picture {
+        /* Brand width is the smallest of:
+         *   1. 40vw — the preferred share of the viewport
+         *   2. 200px — the desktop logo width (upper bound)
+         *   3. 100vw - 10rem — the slack left after subtracting the
+         *      container padding, search button, toggler, and their
+         *      margins. Without this third bound, ultra-narrow widths
+         *      (< 280px) re-trigger the row-wrap because 40vw is still
+         *      too wide once the fixed elements take their share.
+         * The result: logo scales smoothly with viewport, never grows
+         * past the desktop size, and never pushes the row to wrap. */
+        display: block;
+        width: min(40vw, 200px, calc(100vw - 10rem));
+    }
+    .navbar-brand img {
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    .navbar-brand picture p {
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
 .navbar-toggler[aria-expanded="true"] .toggler-icon-bar:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
 .navbar-toggler[aria-expanded="true"] .toggler-icon-bar:nth-child(2) { opacity: 0; }
 .navbar-toggler[aria-expanded="true"] .toggler-icon-bar:nth-child(3) { bottom: 50%; transform: translateY(50%) rotate(-45deg); }

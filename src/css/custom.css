@@ -239,6 +239,17 @@ html[class*='easyops'] body {
   padding-right: 2rem !important;
 }
 
+/* Below the Infima medium breakpoint the 2rem horizontal padding eats
+ * 64px from the viewport — on a 320px phone that leaves only 256px for
+ * brand + search + hamburger, forcing the navbar to wrap to two rows.
+ * Halve it on mobile so the three navbar items stay on one line. */
+@media (max-width: 767.98px) {
+  .navbar-custom > .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
 /* Tone down the search input so it doesn't visually outweigh the
  * brand. Infima's default 12.5rem width + heavy pill border made it
  * read as the most prominent navbar element. Shrink to ~10rem and
