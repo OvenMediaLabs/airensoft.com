@@ -291,6 +291,18 @@ html.plugin-blog .markdown img {
   border-radius: 8px;
 }
 
+/* Blog post hero (frontmatter `image:`) rendered at the very top of
+ * the article body. Wider rounding + edge-to-edge width make it read
+ * as a deliberate cover rather than an in-article figure. Sits flush
+ * to the metadata above and the first body paragraph below. */
+html.plugin-blog .markdown img.blog-hero {
+  width: 100%;
+  margin: 0 0 1.75rem 0;
+  border-radius: 12px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
 /* Hide the per-doc "Previous / Next" pagination block at the bottom of
  * every docs page. Docusaurus has no global config flag to disable it;
  * `pagination_prev`/`pagination_next: null` in frontmatter only disables

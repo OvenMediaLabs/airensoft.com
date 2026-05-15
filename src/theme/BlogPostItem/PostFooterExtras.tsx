@@ -1,9 +1,10 @@
 /**
  * Marketing extras appended to the bottom of every single blog post:
  *
- *   1. Product CTA banner — drives readers toward OvenMediaEngine
- *      (get-started + GitHub star) so the blog earns its keep as a
- *      top-of-funnel surface.
+ *   1. Product CTA — short OME intro + two paths (Open source /
+ *      Enterprise) so the blog earns its keep as a top-of-funnel
+ *      surface. Tone is intentionally subtle (no loud gradient) and
+ *      points the reader to whichever edition fits their use case.
  *   2. "You might also like" — three related posts, scored by tag
  *      overlap with the current post (falling back to most-recent).
  *   3. "View all posts" link back to /blog.
@@ -67,27 +68,38 @@ function formatShortDate(iso: string): string {
 function ProductCTA(): ReactNode {
   return (
     <aside className={styles.cta} aria-labelledby="cta-heading">
-      <div className={styles.ctaText}>
-        <p className={styles.ctaEyebrow}>Build with OvenMediaEngine</p>
+      <header className={styles.ctaHeader}>
+        <p className={styles.ctaEyebrow}>OvenMediaEngine</p>
         <h3 id="cta-heading" className={styles.ctaTitle}>
-          Sub-second latency streaming, open source.
+          Sub-second live streaming server. WebRTC, LL-HLS, and SRT in one
+          engine.
         </h3>
-        <p className={styles.ctaBody}>
-          Live streaming with WebRTC, LL-HLS and SRT — production-ready,
-          GPU accelerated, and free to self-host.
-        </p>
-      </div>
-      <div className={styles.ctaActions}>
-        <Link
-          to="/ome"
-          className={`${styles.ctaButton} ${styles.ctaButtonPrimary}`}>
-          Get started
-        </Link>
-        <Link
-          to="https://github.com/OvenMediaLabs/OvenMediaEngine"
-          className={`${styles.ctaButton} ${styles.ctaButtonGhost}`}>
-          ★ Star on GitHub
-        </Link>
+      </header>
+      <div className={styles.ctaCards}>
+        <div className={styles.ctaCard}>
+          <p className={styles.ctaCardLabel}>Open source</p>
+          <p className={styles.ctaCardBody}>
+            Free and self-hosted. Deploy on your own infrastructure.
+          </p>
+          <Link to="/ome" className={styles.ctaCardButton}>
+            Get started →
+          </Link>
+        </div>
+        <div className={styles.ctaCard}>
+          <p className={styles.ctaCardLabel}>Enterprise</p>
+          <p className={styles.ctaCardBody}>Production-ready, with:</p>
+          <ul className={styles.ctaCardList}>
+            <li>High availability</li>
+            <li>Operational ease</li>
+            <li>Hardened security</li>
+            <li>Customization &amp; integration</li>
+            <li>Direct engineer support</li>
+            <li>…and more</li>
+          </ul>
+          <Link to="/ome-enterprise" className={styles.ctaCardButton}>
+            Explore Enterprise →
+          </Link>
+        </div>
       </div>
     </aside>
   );
