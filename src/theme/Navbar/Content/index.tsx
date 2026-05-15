@@ -20,6 +20,9 @@ type NavbarItem = {
   to?: string;
   href?: string;
   label?: string;
+  // Phosphor icon class (e.g. 'ph-newspaper'). Renders as a small
+  // leading glyph in dropdown rows.
+  icon?: string;
   position?: 'left' | 'right';
   target?: string;
   items?: NavbarItem[];
@@ -74,11 +77,14 @@ function DropdownItem({item}: {item: NavbarItem}) {
     return (
       <li>
         <a
-          className="dropdown-item dropdown-item-external d-flex align-items-center justify-content-between"
+          className="dropdown-item dropdown-item-external d-flex align-items-center"
           href={item.href}
           target={item.target ?? '_blank'}
           rel="noopener noreferrer">
-          <span>{item.label}</span>
+          {item.icon && (
+            <i className={`ph ${item.icon} dropdown-item-leading`}></i>
+          )}
+          <span className="me-auto">{item.label}</span>
           <i className="ph ph-arrow-up-right ms-2 small opacity-50"></i>
         </a>
       </li>
@@ -86,8 +92,13 @@ function DropdownItem({item}: {item: NavbarItem}) {
   }
   return (
     <li>
-      <Link className="dropdown-item" to={item.to ?? '/'}>
-        {item.label}
+      <Link
+        className="dropdown-item d-flex align-items-center"
+        to={item.to ?? '/'}>
+        {item.icon && (
+          <i className={`ph ${item.icon} dropdown-item-leading`}></i>
+        )}
+        <span>{item.label}</span>
       </Link>
     </li>
   );
