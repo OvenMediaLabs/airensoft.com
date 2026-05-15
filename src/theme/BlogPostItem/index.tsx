@@ -2,9 +2,8 @@
  * Swizzled BlogPostItem.
  *
  * - Detail view: keep original Container / Header / Content / Footer.
- * - List view: render a horizontal card (thumbnail + title + meta + excerpt + tags)
- *   without the author block. Authors are intentionally omitted in list view
- *   because every post is published by the OvenMedia Labs account.
+ * - List view: render a horizontal card (thumbnail + title + meta + author
+ *   + excerpt + tags).
  */
 
 import React, {type ReactNode} from 'react';
@@ -39,6 +38,7 @@ function ListCard({children}: {children: ReactNode}): ReactNode {
     date,
     readingTime,
     tags,
+    authors,
   } = metadata;
 
   const image = assets.image ?? frontMatter.image;
@@ -69,6 +69,18 @@ function ListCard({children}: {children: ReactNode}): ReactNode {
             <>
               <span className={styles.metaDot}>·</span>
               <span>{readingTimeLabel}</span>
+            </>
+          )}
+          {authors.length > 0 && (
+            <>
+              <span className={styles.metaDot}>·</span>
+              <span>
+                by{' '}
+                {authors
+                  .map((a) => a.name)
+                  .filter(Boolean)
+                  .join(', ')}
+              </span>
             </>
           )}
         </div>

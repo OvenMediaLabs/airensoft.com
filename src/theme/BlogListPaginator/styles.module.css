@@ -1,0 +1,80 @@
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 2.5rem 0 1rem;
+  font-size: 0.9rem;
+}
+
+.step,
+.pages > li > a,
+.pages > li > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 0.6rem;
+  border-radius: 8px;
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  background: transparent;
+  transition: border-color 0.15s ease, color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.step:hover,
+.pages > li > a:hover {
+  color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  text-decoration: none;
+  background-color: rgba(56, 189, 248, 0.06);
+}
+
+.stepDisabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.pages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.pageCurrent > span {
+  color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  background-color: rgba(56, 189, 248, 0.08);
+  font-weight: 600;
+  cursor: default;
+}
+
+.gap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  color: var(--ifm-color-emphasis-500);
+  user-select: none;
+}
+
+/* Mobile: shrink button targets a hair, keep them tappable. */
+@media (max-width: 480px) {
+  .pager {
+    gap: 0.3rem;
+  }
+  .step,
+  .pages > li > a,
+  .pages > li > span {
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 0.45rem;
+    font-size: 0.85rem;
+  }
+}

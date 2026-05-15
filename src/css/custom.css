@@ -297,9 +297,13 @@ html.plugin-blog .markdown img {
  * one direction per page. CSS is the lightest-touch way to remove the
  * widget site-wide without swizzling the theme.
  *
+ * Scoped to `html.plugin-docs` — an unscoped `.pagination-nav` rule
+ * also kills the blog list page's "Older entries / Newer entries"
+ * pagination, which we very much want to keep.
+ *
  * "Edit this page" is handled separately by dropping `editUrl` from the
  * three docs plugin configs in docusaurus.config.ts. */
-.pagination-nav {
+html.plugin-docs .pagination-nav {
   display: none !important;
 }
 
@@ -1245,16 +1249,17 @@ html.plugin-docs .gitbook-card strong {
  *      like `#EXT-X-VERSION:3` stand out from prose.
  * ============================================================ */
 
-/* 1. Hide the left blog sidebar (Recent posts column) on detail pages.
- * The blog sidebar renders as `<aside class="col col--3">` — a direct
- * child of `.row`. Target that one specifically; a bare `aside` selector
- * also hides every nested aside in the post body (e.g. the in-content
- * author card), which we don't want. */
-html.plugin-blog.blog-post-page .main-wrapper .container > .row > aside {
-  display: none !important;
+/* Cap the blog LIST page's content width so card text + thumbnail don't
+ * stretch all the way to the viewport edges. We let main use col--12
+ * (`BlogLayout` swizzle) so there's no asymmetric "missing sidebar"
+ * gutter, then constrain the row here for a centered, readable column. */
+html.plugin-blog.blog-list-page .main-wrapper .container > .row {
+  max-width: 1100px;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
-/* 2. Narrow the prose column. The body column on a single post is
+/* 1. Narrow the prose column. The body column on a single post is
  * `<main class="col col--7">` inside a row. Force a fixed width via
  * flex-basis (no grow) so the row's `justify-content: center` actually
  * centers main + TOC as a pair. `flex-grow: 0` is the critical bit;
@@ -1290,7 +1295,7 @@ html.plugin-blog.blog-post-page .main-wrapper .container > .row {
   }
 }
 
-/* 3. Compact author row at the top of a post. The upstream layout
+/* 2. Compact author row at the top of a post. The upstream layout
  * uses an Infima `.row` with each author taking col--12 (single
  * author) and stacks avatar + name + title + socials vertically.
  * Flip it into a horizontal flex so the byline reads as one line. */
@@ -1355,7 +1360,7 @@ html.plugin-blog.blog-post-page header > .margin-vert--md {
   margin-bottom: 0.75rem !important;
 }
 
-/* 4. Inline code styling. The default has no background, so prose
+/* 3. Inline code styling. The default has no background, so prose
  * tokens disappear. Add a subtle pill + monospace so they pop. */
 html.plugin-blog.blog-post-page .markdown :not(pre) > code {
   background: rgba(255, 255, 255, 0.06);
@@ -1366,7 +1371,7 @@ html.plugin-blog.blog-post-page .markdown :not(pre) > code {
   color: var(--omb-sky, #38bdf8);
 }
 
-/* 5. Improve the prose itself: comfortable line-height, larger first
+/* 4. Improve the prose itself: comfortable line-height, larger first
  * paragraph as a lede, and gentler heading hierarchy. */
 html.plugin-blog.blog-post-page .markdown {
   font-size: 1.05rem;
@@ -1397,7 +1402,7 @@ html.plugin-blog.blog-post-page .markdown h3 {
   margin-bottom: 0.5rem !important;
 }
 
-/* 6. Brighten the right TOC's inactive items so the outline is
+/* 5. Brighten the right TOC's inactive items so the outline is
  * actually scannable, not just a list of dots. */
 html.plugin-blog.blog-post-page .table-of-contents__link {
   color: var(--ifm-color-emphasis-700);
