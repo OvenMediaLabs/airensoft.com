@@ -1,0 +1,55 @@
+.wrapper {
+  /* Horizontal scroll container around the markdown table. Putting the
+   * overflow on a wrapping <div> (instead of the <table> directly) is
+   * what makes iOS Safari/Chrome accept touch-swipes as scroll input —
+   * tables don't reliably engage touch-pan even with overflow set.
+   *
+   * Scroll-shadow technique (Lea Verou): two "cover" gradients that
+   * scroll with the content (background-attachment: local) sit on top
+   * of two "shadow" gradients anchored to the visible edges
+   * (background-attachment: scroll). When scrolled to the start the
+   * left cover hides the left shadow but the right shadow shows
+   * ("more →"); at the end the reverse; in the middle, both show.
+   * Mobile browsers hide scrollbars at rest, so this is the only
+   * visual cue that there's more content sideways. */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  margin: 1.25rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  background-color: transparent;
+  background-image:
+    linear-gradient(to right, #0f1216, rgba(15, 18, 22, 0) 70%),
+    linear-gradient(to left, #0f1216, rgba(15, 18, 22, 0) 70%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 70%),
+    linear-gradient(to left, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 70%);
+  background-repeat: no-repeat;
+  background-size: 32px 100%, 32px 100%, 16px 100%, 16px 100%;
+  background-position: left center, right center, left center, right center;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.wrapper::-webkit-scrollbar {
+  height: 6px;
+  -webkit-appearance: none;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 3px;
+}
+
+.wrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.wrapper > table {
+  /* The wrapper handles vertical margin now; remove the table's own. */
+  margin: 0;
+  /* Let the table grow to its intrinsic content width when it's wider
+   * than the viewport (so the wrapper actually has something to
+   * scroll), but at least fill the wrapper on wide screens. */
+  width: auto;
+  min-width: 100%;
+}
