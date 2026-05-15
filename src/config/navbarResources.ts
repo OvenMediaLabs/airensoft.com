@@ -11,21 +11,39 @@ export type ResourcesItem = {
   to?: string;
   href?: string;
   label?: string;
+  // Phosphor icon class (e.g. 'ph-newspaper'). Renders as a small
+  // leading glyph next to the label. Headers/dividers ignore this.
+  icon?: string;
   target?: string;
   type?: 'divider' | 'header';
 };
 
 export const resourcesDropdownItems: ResourcesItem[] = [
+  {type: 'header', label: 'From the team'},
+  {to: '/blog', label: 'Blog', icon: 'ph-article'},
+  {type: 'divider'},
   {type: 'header', label: 'Documentation'},
-  {to: '/docs/ome', label: 'OvenMediaEngine'},
-  {to: '/docs/ome-enterprise', label: 'OvenMediaEngine Enterprise'},
-  {to: '/docs/ovenplayer', label: 'OvenPlayer'},
-  {to: '/blog', label: 'Blog'},
+  // All three docs items intentionally share the same "open book" icon
+  // so the column reads as "this group is documentation" and the label
+  // is the only differentiator. Product-specific icons looked too much
+  // like product logos.
+  {to: '/docs/ome', label: 'OvenMediaEngine', icon: 'ph-book-open-text'},
+  {
+    to: '/docs/ome-enterprise',
+    label: 'OvenMediaEngine Enterprise',
+    icon: 'ph-book-open-text',
+  },
+  {to: '/docs/ovenplayer', label: 'OvenPlayer', icon: 'ph-book-open-text'},
   {type: 'divider'},
   {type: 'header', label: 'Source & Community'},
-  {label: 'GitHub', href: 'https://github.com/AirenSoft'},
-  {label: 'OvenMediaEngine on GitHub', href: 'https://github.com/AirenSoft/OvenMediaEngine'},
-  {label: 'OvenPlayer on GitHub', href: 'https://github.com/AirenSoft/OvenPlayer'},
-  {label: 'OvenLiveKit on GitHub', href: 'https://github.com/AirenSoft/OvenLiveKit-Web'},
-  {label: 'Community Discussions', href: 'https://github.com/AirenSoft/OvenMediaEngine/discussions'},
+  {
+    label: 'GitHub',
+    href: 'https://github.com/OvenMediaLabs',
+    icon: 'ph-github-logo',
+  },
+  {
+    label: 'Community Discussions',
+    href: 'https://github.com/AirenSoft/OvenMediaEngine/discussions',
+    icon: 'ph-chats-circle',
+  },
 ];
