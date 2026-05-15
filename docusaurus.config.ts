@@ -284,10 +284,9 @@ const config: Config = {
         routeBasePath: 'docs/ome',
         sidebarPath: './sidebars-ome.ts',
         sidebarItemsGenerator: sectionHeaderSidebarGenerator,
-        // README.md and STYLE.md are contributor-facing (preview script
-        // pointer + authoring guide); they ship in the upstream `docs/`
-        // tree but must not appear in the public sidebar/routes.
-        exclude: ['README.md', 'STYLE.md'],
+        // README.md is the contributor authoring guide; it ships in the
+        // upstream docs/ tree but must not appear in the public sidebar.
+        exclude: ['README.md'],
       },
     ],
     [
@@ -298,7 +297,7 @@ const config: Config = {
         routeBasePath: 'docs/ome-enterprise',
         sidebarPath: './sidebars-ome-enterprise.ts',
         sidebarItemsGenerator: sectionHeaderSidebarGenerator,
-        exclude: ['README.md', 'STYLE.md'],
+        exclude: ['README.md'],
       },
     ],
     [
@@ -309,7 +308,7 @@ const config: Config = {
         routeBasePath: 'docs/ovenplayer',
         sidebarPath: './sidebars-ovenplayer.ts',
         sidebarItemsGenerator: sectionHeaderSidebarGenerator,
-        exclude: ['README.md', 'STYLE.md'],
+        exclude: ['README.md'],
       },
     ],
   ],
