@@ -178,17 +178,17 @@ h7, .h7 {
     }
     .navbar-brand picture {
         /* Brand width is the smallest of:
-         *   1. 35vw — the preferred share of the viewport (≈ 1/3)
+         *   1. 40vw — the preferred share of the viewport
          *   2. 200px — the desktop logo width (upper bound)
          *   3. 100vw - 10rem — the slack left after subtracting the
          *      container padding, search button, toggler, and their
          *      margins. Without this third bound, ultra-narrow widths
-         *      (< 280px) re-trigger the row-wrap because 35vw is still
+         *      (< 280px) re-trigger the row-wrap because 40vw is still
          *      too wide once the fixed elements take their share.
          * The result: logo scales smoothly with viewport, never grows
          * past the desktop size, and never pushes the row to wrap. */
         display: block;
-        width: min(35vw, 200px, calc(100vw - 10rem));
+        width: min(40vw, 200px, calc(100vw - 10rem));
     }
     .navbar-brand img {
         height: auto;
