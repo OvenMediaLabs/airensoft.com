@@ -42,11 +42,11 @@ export default function NavbarLayout({children}: Props): ReactNode {
         // class but their selectors apply through different chains so they
         // coexist without conflict.
         'navbar',
-        // navbar-expand-xl (mobile mode at < 1200px) instead of -lg
-        // (< 992px) so the logo + nav items + search bar fit
-        // comfortably on desktop. The 992–1200px range now uses the
-        // mobile collapse layout, which keeps the brand at full size.
-        'navbar-expand-xl',
+        // navbar-expand-lg (mobile mode at < 992px). The desktop
+        // layout — brand + 4 nav items + search — fits comfortably
+        // above 992px now that Contact merged into Company and the
+        // logo is a fixed 32px.
+        'navbar-expand-lg',
         'navbar-custom',
         'navbar--fixed-top',
         hideOnScroll && [

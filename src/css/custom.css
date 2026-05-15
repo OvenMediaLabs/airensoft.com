@@ -227,6 +227,29 @@ html[class*='easyops'] body {
   padding-top: var(--ifm-navbar-height);
 }
 
+/* Stop the navbar's container from snapping to Bootstrap's stepped
+ * max-widths (540 / 720 / 960 / 1140 / 1320). Without this the brand
+ * jumps horizontally each time the viewport crosses a breakpoint, and
+ * its left edge no longer lines up with the body content. Match the
+ * body content's max-width + horizontal padding (set below for
+ * `.main-wrapper .container`) so the brand tracks the content column. */
+.navbar-custom > .container {
+  max-width: 1760px !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+/* Tone down the search input so it doesn't visually outweigh the
+ * brand. Infima's default 12.5rem width + heavy pill border made it
+ * read as the most prominent navbar element. Shrink to ~10rem and
+ * give it a quieter, lower-contrast surface. */
+@media (min-width: 992px) {
+  .navbar__search-input {
+    width: 10rem;
+    font-size: 0.85rem;
+  }
+}
+
 /* Widen the docs/blog content container so the page uses the
  * available viewport instead of the 1320px Infima default.
  *
@@ -1566,7 +1589,27 @@ html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_']
  * Driven entirely by `:has()` — Chrome 105+ / Safari 15.4+ / Firefox
  * 121+ (covers iOS Safari, Chrome mobile, all modern desktop).
  */
-@media (max-width: 1199px) {
+/* Mobile cancel button is desktop-hidden by default. Only the mobile
+ * media-query rule below opts it back in (and only when search is
+ * focused). Keep this outside the media query so the desktop layout
+ * doesn't show a stray X next to the search input. */
+.mobile-search-cancel {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  color: var(--ifm-color-content-secondary);
+  background: transparent;
+  border: none;
+  margin-left: 0.5rem;
+}
+.mobile-search-cancel:hover {
+  color: var(--ifm-color-content);
+}
+
+@media (max-width: 991px) {
   /* Default: icon-only input. */
   .navbar__search-input {
     width: 2.5rem;
@@ -1575,26 +1618,6 @@ html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_']
   }
   .navbar__search-input:focus {
     cursor: text;
-  }
-
-  /* The mobile cancel button is hidden until search is focused.
-   * X icon matched roughly to the hamburger toggler's footprint so
-   * the right edge of the navbar doesn't shift between focused and
-   * unfocused states. */
-  .mobile-search-cancel {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    color: var(--ifm-color-content-secondary);
-    background: transparent;
-    border: none;
-    margin-left: 0.5rem;
-  }
-  .mobile-search-cancel:hover {
-    color: var(--ifm-color-content);
   }
 
   /* While the search input is focused, transform the navbar into a

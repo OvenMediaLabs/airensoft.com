@@ -386,7 +386,6 @@ const config: Config = {
           items: [],
         } as any,
         {to: '/company', label: 'Company', position: 'right'},
-        {to: '/contact', label: 'Contact', position: 'right'},
       ],
     },
     footer: {
@@ -415,7 +414,7 @@ const config: Config = {
           title: 'Company',
           items: [
             {label: 'About', to: '/company'},
-            {label: 'Contact', to: '/contact'},
+            {label: 'Contact', to: '/company#contact'},
             {label: 'AGPLv3', to: '/agplv3'},
             {label: 'EULA', to: '/eula'},
           ],
