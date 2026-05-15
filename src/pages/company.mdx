@@ -5,6 +5,8 @@ hide_table_of_contents: true
 wrapperClassName: marketing-page
 ---
 
+import Heading from '@theme/Heading';
+
 <section id="hero-section" className="hero-bg-company full-page-section d-flex align-items-center position-relative text-center delay-100">
   <div className="hero-overlay"></div>
   <div className="container position-relative z-1">
@@ -199,12 +201,12 @@ wrapperClassName: marketing-page
   </div>
 </section>
 
-<section id="contact" className="full-page-section d-flex flex-column position-relative bg-body">
+<section className="full-page-section d-flex flex-column position-relative bg-body">
   <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
     <div className="container">
       <div className="row justify-content-center mb-5 reveal-up">
         <div className="col-lg-8 text-center">
-          <h2 className="display-4 fw-bold text-main mb-3 copy-title">Contact Us</h2>
+          <Heading as="h2" id="contact" className="display-4 fw-bold text-main mb-3 copy-title">Contact Us</Heading>
         </div>
       </div>
 
