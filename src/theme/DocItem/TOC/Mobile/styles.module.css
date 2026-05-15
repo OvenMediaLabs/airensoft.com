@@ -1,0 +1,78 @@
+/* The wrapper hides on desktop because the desktop layout shows the
+ * sidebar inline; only the < 997px viewport needs this nav bar. */
+.mobileDocNav {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  position: sticky;
+  top: var(--ifm-navbar-height);
+  z-index: 10;
+  /* Break out of the body column's horizontal padding so the bar
+   * spans the full viewport — reads as an extension of the navbar
+   * above instead of a centered widget inside the body. The
+   * `50% - 50vw` trick is robust against any combination of
+   * container / col paddings above. */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+  /* Match the doc body background so the bar is visually invisible
+   * but still blocks page content from scrolling through the gap
+   * between the two pills (otherwise the H1 title leaks through as
+   * it scrolls past). The hex matches `html.plugin-docs body` in
+   * src/css/custom.css. */
+  background-color: #0f1216;
+}
+
+/* TOC takes the remaining width so it stays readable when expanded.
+ * Pages button keeps its natural compact width (icon + label) — it
+ * just opens a drawer, no need to fill space. */
+.mobileDocNav :global(.theme-doc-toc-mobile) {
+  flex: 1 1 0;
+  margin: 0 !important;
+}
+
+/* "Pages" button visually matches the TOCCollapsibleButton (same
+ * radius, padding, font size). Background uses `--ifm-background-surface-color`
+ * — solid one-shade-up from body — so the pill stays readable when
+ * scrolled mid-page (the default `--ifm-menu-color-background-active`
+ * is near-transparent and lets body text bleed through). The TOC
+ * wrapper (`tocCollapsible_<hash>` CSS-module class on the
+ * `.theme-doc-toc-mobile` element) gets the same opaque background. */
+.pagesButton,
+.mobileDocNav :global(.theme-doc-toc-mobile),
+.mobileDocNav :global([class*='tocCollapsible']) {
+  background-color: var(--ifm-background-surface-color) !important;
+}
+
+.pagesButton {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  border-radius: var(--ifm-global-radius);
+  padding: 0.4rem 0.8rem;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.pagesIcon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.5rem;
+  opacity: 0.7;
+}
+
+/* Desktop: hide the whole nav row. Docusaurus's original mobile TOC
+ * styles also hide at >= 997px; keep the same breakpoint. */
+@media (min-width: 997px) {
+  .mobileDocNav {
+    display: none;
+  }
+}
+
+@media print {
+  .mobileDocNav {
+    display: none;
+  }
+}

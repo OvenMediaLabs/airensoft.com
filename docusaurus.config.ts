@@ -321,7 +321,11 @@ const config: Config = {
     ],
     colorMode: {
       defaultMode: 'dark',
-      disableSwitch: false,
+      // The site renders dark-mode-only — Bootstrap's data-bs-theme is
+      // pinned to "dark" via headTags and an inline pre-paint script,
+      // independent of Docusaurus's color mode. Exposing a toggle leaves
+      // the page in an inconsistent half-light state on click, so hide it.
+      disableSwitch: true,
       respectPrefersColorScheme: false,
     },
     navbar: {
