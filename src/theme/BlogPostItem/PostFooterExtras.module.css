@@ -7,111 +7,120 @@
 }
 
 /* ---------- Product CTA ---------- */
+/* Subtle surface, not a loud gradient banner. The CTA's job is to
+ * present two paths (Open source / Enterprise) quietly at the end of
+ * the post — it shouldn't compete with the article it follows. */
 .cta {
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  padding: 1.75rem 1.75rem;
-  border-radius: 14px;
-  background:
-    radial-gradient(120% 140% at 0% 0%, rgba(56, 189, 248, 0.35) 0%, transparent 55%),
-    radial-gradient(120% 140% at 100% 100%, rgba(197, 163, 142, 0.25) 0%, transparent 55%),
-    linear-gradient(135deg, #1e3a72 0%, #2c4a8a 100%);
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
+  padding: 1.5rem 1.5rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02) 0%,
-    transparent 100%
-  );
-  pointer-events: none;
-}
-
-.ctaText {
-  position: relative;
-  z-index: 1;
+.ctaHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 .ctaEyebrow {
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #38bdf8;
+  letter-spacing: 0.12em;
+  color: var(--ifm-color-primary);
   font-weight: 700;
-  margin: 0 0 0.5rem;
+  margin: 0;
 }
 
 .ctaTitle {
-  font-size: 1.5rem;
-  line-height: 1.25;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 0.5rem;
-}
-
-.ctaBody {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.05rem;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--ifm-heading-color);
   margin: 0;
-  max-width: 60ch;
 }
 
-.ctaActions {
-  position: relative;
-  z-index: 1;
+.ctaCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.ctaCard {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.1rem 1.15rem 1.15rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.18);
 }
 
-.ctaButton {
+.ctaCardLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ifm-heading-color);
+  margin: 0;
+}
+
+.ctaCardBody {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0;
+}
+
+.ctaCardList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ctaCardList li {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ifm-color-emphasis-700);
+  padding-left: 0.9rem;
+  position: relative;
+}
+
+.ctaCardList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--ifm-color-primary);
+  opacity: 0.65;
+}
+
+.ctaCardButton {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 0.55rem 1.1rem;
+  align-self: flex-start;
+  padding: 0.4rem 0.9rem;
   border-radius: 999px;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 600;
   text-decoration: none;
   line-height: 1.4;
-  transition: transform 0.12s ease, background-color 0.15s ease, border-color 0.15s ease;
-  border: 1px solid transparent;
-}
-
-.ctaButton:hover {
-  text-decoration: none;
-  transform: translateY(-1px);
-}
-
-.ctaButtonPrimary {
-  background: #38bdf8;
-  color: #0b1220;
-}
-
-.ctaButtonPrimary:hover {
-  background: #5ccdfb;
-  color: #0b1220;
-}
-
-.ctaButtonGhost {
+  border: 1px solid rgba(56, 189, 248, 0.4);
   background: transparent;
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.22);
+  color: var(--ifm-color-primary);
+  margin-top: auto;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease;
 }
 
-.ctaButtonGhost:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.4);
-  color: #ffffff;
+.ctaCardButton:hover {
+  background: rgba(56, 189, 248, 0.08);
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  text-decoration: none;
 }
 
 /* ---------- Related ---------- */
@@ -230,8 +239,8 @@
   .cta {
     padding: 1.25rem;
   }
-  .ctaTitle {
-    font-size: 1.25rem;
+  .ctaCards {
+    grid-template-columns: 1fr;
   }
   .relatedGrid {
     grid-template-columns: 1fr;
