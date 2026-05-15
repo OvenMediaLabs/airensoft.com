@@ -1,0 +1,7 @@
+{
+  "label": "Enterprise Only",
+  "position": 4,
+  "customProps": {
+    "sidebarHeader": true
+  }
+}

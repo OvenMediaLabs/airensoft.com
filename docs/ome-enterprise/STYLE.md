@@ -34,7 +34,7 @@ description: Configure on-the-fly recording of WebRTC streams.
 - `title` — page title shown in browser tab and as H1
 - `sidebar_position` — order within the section (smaller = higher)
 - `description` — SEO meta description; appears in search snippets
-- `slug` (optional) — override URL path; useful for `intro.md` (`slug: /`)
+- `slug` (optional) — override URL path; useful for `about/intro.md` (`slug: /`)
 
 ## Admonition types
 
