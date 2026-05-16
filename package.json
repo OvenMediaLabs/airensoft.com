@@ -5,7 +5,8 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build && node scripts/label-search-results.js",
+    "build": "docusaurus build",
+    "postbuild": "node scripts/label-search-results.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
