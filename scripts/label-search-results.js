@@ -10,12 +10,19 @@
  * "… › title". Cheaper than swizzling the SuggestionTemplate.
  *
  * Idempotent: skips docs already prefixed.
+ *
+ * Wired in as the npm `postbuild` lifecycle script (package.json), so
+ * `npm run build` runs it automatically after `docusaurus build` fully
+ * exits. It can't be a Docusaurus plugin `postBuild` hook: the search
+ * index (`@easyops-cn/docusaurus-search-local`) isn't written to the
+ * build dir until after plugin postBuild runs, and Docusaurus gives no
+ * "after all plugins" ordering guarantee. Also runnable standalone:
+ *
+ *     node scripts/label-search-results.js
  */
 
 const fs = require('fs');
 const path = require('path');
-
-const BUILD_DIR = path.resolve(__dirname, '..', 'build');
 
 // Order matters — longest/most specific URL prefix first so
 // `/docs/ome-enterprise/` doesn't get matched by `/docs/ome/`.
@@ -53,20 +60,31 @@ function processFile(filepath) {
   return modified;
 }
 
-function main() {
-  if (!fs.existsSync(BUILD_DIR)) {
-    console.error(`label-search-results: build dir not found at ${BUILD_DIR}`);
-    process.exit(1);
+function labelSearchResults(buildDir) {
+  if (!fs.existsSync(buildDir)) {
+    throw new Error(
+      `label-search-results: build dir not found at ${buildDir}`,
+    );
   }
   let total = 0;
-  for (const f of fs.readdirSync(BUILD_DIR)) {
+  for (const f of fs.readdirSync(buildDir)) {
     if (!f.startsWith('search-index') || !f.endsWith('.json')) continue;
-    const filepath = path.join(BUILD_DIR, f);
+    const filepath = path.join(buildDir, f);
     const n = processFile(filepath);
     total += n;
     console.log(`  ${f}: labeled ${n} document(s)`);
   }
   console.log(`label-search-results: labeled ${total} documents total`);
+  return total;
 }
 
-main();
+module.exports = {labelSearchResults};
+
+if (require.main === module) {
+  try {
+    labelSearchResults(path.resolve(__dirname, '..', 'build'));
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+}

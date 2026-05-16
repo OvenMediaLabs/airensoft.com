@@ -359,6 +359,13 @@ const config: Config = {
         explicitSearchResultPath: true,
       },
     ],
+    // Local build hook: regenerate src/data/blog-index.json from blog/
+    // frontmatter before bundling (loadContent), so "From the Labs" and
+    // related-posts always reflect the latest published posts. Search
+    // index labeling can't run here (the index isn't written until
+    // after plugin postBuild) — it's the npm `postbuild` script
+    // instead. See the plugin file for the full rationale.
+    './plugins/oml-build-hooks.js',
   ],
 
   themeConfig: {
