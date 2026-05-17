@@ -15,11 +15,11 @@ With this approach, OvenMediaEngine **connects directly to an external RTSP (med
 
 ### Create an RTSP Pull Stream and enter information
 
-![](../../../images/image-415.png)
+![](../../../images/publish-via-rtsp-pull-cctv-create-an-rtsp-pull-stream-and-enter-information.png)
 
 1. Stream List on the Web Console (main page), click \[+] in the page, then select \[Add RTSP pull stream] from the menu.
 
-![](../../../images/image-416.png)
+![](../../../images/publish-via-rtsp-pull-cctv-create-an-rtsp-pull-stream-and-enter-information-2.png)
 
 2. Enter a \[Stream Name] that is easy to identify, and the \[RTSP URL] to connect to.
 
@@ -35,7 +35,7 @@ A typical RTSP URL format is `rtsp://{ID}:{Password}@{IP}:{Port}/path`, but form
 
 ### Ensuring stability with Advanced Settings (Optional)
 
-![](../../../images/image-417.png)
+![](../../../images/publish-via-rtsp-pull-cctv-ensuring-stability-with-advanced-settings-optional.png)
 
 * You can additionally use \[Advanced Settings] to configure streaming behavior optimized for your network environment.
 
@@ -53,11 +53,11 @@ If you are using RTSP Pull Streams for the first time, we recommend creating the
 
 ### Verify stream output and status
 
-![](../../../images/image-418.png)
+![](../../../images/publish-via-rtsp-pull-cctv-verify-stream-output-and-status.png)
 
 3. Stream List on the Web Console, verify that the media source pulled via RTSP is being delivered successfully through OvenMediaEngine Enterprise.
 
-![](../../../images/image-424.png)
+![](../../../images/publish-via-rtsp-pull-cctv-verify-stream-output-and-status-2.png)
 
 4. You can view various metadata on the stream details page.
 

@@ -39,7 +39,7 @@ To verify the DRM settings, click the Settings icon at the top right of the Web 
 
 ### Checking applied DRM in OvenPlayer
 
-![](../../../images/image-250.png)
+![](../../../images/pallycon-drm-configuration-checking-applied-drm-in-ovenplayer.png)
 
 [OvenPlayer Demo](https://demo.ovenplayer.com/) now includes the Enable DRM option. You can test the applied DRM using the Egress URL provided by OvenMediaEngine Enterprise.
 

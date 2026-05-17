@@ -7,7 +7,7 @@ The REST APIs provided by OvenMediaEngine allow you to query or change settings 
 
 ## API Server Port Settings
 
-![](../../../images/image-239.png)
+![](../../../images/rest-api-settings-api-server-port-settings.png)
 
 By default, the OvenMediaEngine API Server is disabled, so to use the API, you need to enable the feature by clicking the toggle button on the right side of the REST API Settings page. You can also review and modify the `Port` and Configuration for the REST APIs used by each `Application` on that page.
 
@@ -17,7 +17,7 @@ By default, the OvenMediaEngine API Server is disabled, so to use the API, you n
 
 ## Managers Settings
 
-![](../../../images/image-147.png)
+![](../../../images/rest-api-settings-managers-settings.png)
 
 * `Name`: Enter the `Domain` or `IP` that can access the API Server.
   * _You can add multiple Domains or IPs by clicking the `+` button on the right._

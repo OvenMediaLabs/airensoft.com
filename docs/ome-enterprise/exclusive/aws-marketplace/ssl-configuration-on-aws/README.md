@@ -16,12 +16,12 @@ OvenMediaEngine Enterprise on AWS provides features that make this configuration
 
 ### Configure SSL in the Web Console
 
-![](../../../images/image-430.png)
+![](../../../images/ssl-configuration-on-aws-configure-ssl-in-the-web-console.png)
 
 1. Click the \[Settings] icon in the upper-right corner of the Web Console to open the Settings page, then select **\[SSL Configuration]** from the left menu.
 2. In the Configuration Method section, click \[Change Configuration] to switch to edit mode.
 
-![](../../../images/image-433.png)
+![](../../../images/ssl-configuration-on-aws-configure-ssl-in-the-web-console-2.png)
 
 3. Choose an SSL configuration method that fits your service environment.
 
@@ -31,7 +31,7 @@ OvenMediaEngine Enterprise on AWS provides features that make this configuration
 
 #### OvenMediaEngine Enterprise–Provided Subdomain with Auto-Managed SSL Certificate \[Recommended]
 
-![](../../../images/image-432.png)
+![](../../../images/ssl-configuration-on-aws-configure-ssl-in-the-web-console-3.png)
 
 * Without any complex setup, OvenMediaEngine Enterprise automatically provisions a dedicated subdomain and SSL certificate required for SSL configuration, and manages certificate renewals starting 20 days before expiration.
 
@@ -40,7 +40,7 @@ OvenMediaEngine Enterprise on AWS provides features that make this configuration
 
 #### Your Own Domain with Your Own Certificate
 
-![](../../../images/image-431.png)
+![](../../../images/ssl-configuration-on-aws-configure-ssl-in-the-web-console-4.png)
 
 * Register your domain and SSL certificate directly in OvenMediaEngine Enterprise. With this option, the instance IP (Public IPv4 address) is shown \[SSL Configuration] page on the Web Console. To map your domain to this instance, update your domain’s DNS records in your DNS management console to point to the displayed IP.
 * Please ensure that your SSL certificate is renewed manually before it expires.
@@ -65,7 +65,7 @@ You must first associate an **AWS Elastic IP** (EIP) with the instance to keep i
 
 ### Access via HTTPS
 
-![](../../../images/image-420.png)
+![](../../../images/ssl-configuration-on-aws-access-via-https.png)
 
 4. Once SSL is applied successfully, you can access the Web Console using the URL shown on the \[SSL Configuration] page.
    * For example, **`https://`**`aws-xxxxxxx.cloud.ovenmedia.io:8443`.
@@ -74,15 +74,15 @@ You must first associate an **AWS Elastic IP** (EIP) with the instance to keep i
 
 ### Verify SSL playback and check URLs
 
-![](../../../images/image-434.png)
+![](../../../images/ssl-configuration-on-aws-verify-ssl-playback-and-check-urls.png)
 
 5. Following "[Post-Setup Verification for OvenMediaEngine Enterprise](../getting-started-on-aws/README.md#post-setup-verification-for-ovenmediaengine-enterprise)", publish a media source to `rtmp://``{Domain}``:1935/{app}/{stream}`, then confirm Stream List on the Web Console that the stream is being delivered properly.
 
-![](../../../images/image-435.png)
+![](../../../images/ssl-configuration-on-aws-verify-ssl-playback-and-check-urls-2.png)
 
 6. If playback works normally even after selecting `TLS` in the stream detail view, the SSL setup is complete.
 
-![](../../../images/image-436.png)
+![](../../../images/ssl-configuration-on-aws-verify-ssl-playback-and-check-urls-3.png)
 
 7. In the \[URLs] tab, you can view the TLS-enabled Ingress URL and Egress URL at a glance. Your service is now ready to deliver stable and secure streaming over encrypted connections.
 

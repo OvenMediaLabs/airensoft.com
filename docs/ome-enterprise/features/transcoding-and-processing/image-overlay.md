@@ -360,7 +360,7 @@ The examples below either use explicit values or leverage macros and expressions
 ...
 ```
 
-![](../../images/image-103.png)
+![](../../images/image-overlay-usage-examples.png)
 
 #### #02. Overlay the original image centered on the screen.
 
@@ -380,7 +380,7 @@ The examples below either use explicit values or leverage macros and expressions
 ...
 ```
 
-![](../../images/image-104.png)
+![](../../images/image-overlay-usage-examples-2.png)
 
 #### #03. Overlay the image at 50% size at the top-right of the screen.
 
@@ -400,4 +400,4 @@ The examples below either use explicit values or leverage macros and expressions
 ...
 ```
 
-![](../../images/image-105.png)
+![](../../images/image-overlay-usage-examples-3.png)

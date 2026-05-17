@@ -7,7 +7,7 @@ The Live Sources Settings page allows you to manage the various Ingress Protocol
 
 ## RTMP Settings | 0.9.0.0+
 
-![](../../../images/image-142.png)
+![](../../../images/live-sources-ingress-settings-rtmp-settings-0-9-0-0.png)
 
 On the RTMP in the Live Source Settings, you can view the RTMP Ingress Protocol information and set whether to enable RTMP per `Application`. And you can modify the `Port` and `Worker Count` on that page. The `Worker Count` is an option that allows you to set the number of threads used for sending and receiving over the Socket.
 
@@ -27,7 +27,7 @@ If you need to receive only authenticated RTMP from OvenMediaEngine Enterprise, 
 
 ## WebRTC/WHIP Settings | 0.12.0.0+/0.15.1.0+
 
-![](../../../images/image-214.png)
+![](../../../images/live-sources-ingress-settings-webrtc-whip-settings-0-12-0-0-0-15-1-0.png)
 
 On the WebRTC/WHIP in the Live Source Settings, you can manage WebRTC and WHIP Ingress Protocol information and whether to enable WebRTC and WHIP per `Application`. You can also modify the `Signalling Port`, `ICE Candidate Port`, `TLC Port`, etc. on that page.
 
@@ -43,7 +43,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/webrtc](https://
 
 ## SRT Settings | 0.12.0.0+
 
-![](../../../images/image-215.png)
+![](../../../images/live-sources-ingress-settings-srt-settings-0-12-0-0.png)
 
 On the SRT in the Live Source Settings, you can see the SRT Ingress Protocol information and whether to utilize SRT per `Application`, and you can edit the `Port` and `Worker Count` on that page. The `Worker Count` option allows you to set the number of threads used to send and receive over the Socket. In the Applications section, you can select Virtual Hosts and Applications and see that the SRT Provider is enabled in the selected location.
 
@@ -59,7 +59,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/srt](https://ove
 
 ## MPEG-2 TS Settings | 0.10.4.0+
 
-![](../../../images/image-141.png)
+![](../../../images/live-sources-ingress-settings-mpeg-2-ts-settings-0-10-4-0.png)
 
 On the MPEG-2 TS in the Live Source Settings, you can see the MPEG-2 TS Ingress Protocol information and whether to use MPEG-2 TS per `Application`, and you can modify the `Port` and `Worker Count` on that page. The `Worker Count` is an option that allows you to set the number of threads used for transmission and reception through the Socket.
 
@@ -75,7 +75,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/mpeg-2-ts-beta](
 
 ## Check Scheduled Channels Activation | 0.16.4.0+
 
-![](../../../images/image-217.png)
+![](../../../images/live-sources-ingress-settings-check-scheduled-channels-activation-0-16-4-0.png)
 
 On the Scheduled Channel in the Live Source Settings, you can view whether Scheduled Channels are enabled for each `Application`. Also, you can see the path to the Media Source and Schedule File.
 
@@ -92,7 +92,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/scheduled-channe
 
 ## Check Multiplex Channels Activation | 0.16.5.0+
 
-![](../../../images/image-218.png)
+![](../../../images/live-sources-ingress-settings-check-multiplex-channels-activation-0-16-5-0.png)
 
 On the Multiplex Channel in the Live Source Settings, you can check whether Multiplex Channels are enabled for each `Application` and the path to the Mux File.
 

@@ -26,7 +26,7 @@ If you need to adjust the policy (such as retention period or size limit) for yo
 
 ### Edit the Log Cleanup Script
 
-![](../../../images/image-393.png)
+![](../../../images/automatic-log-cleanup-edit-the-log-cleanup-script.png)
 
 1. Connect to your instance via SSH (following the [EC2 connection official guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/connect.html)), then open the script with the command below:
 

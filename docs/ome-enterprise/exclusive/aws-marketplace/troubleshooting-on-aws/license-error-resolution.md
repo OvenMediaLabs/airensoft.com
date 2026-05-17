@@ -3,7 +3,7 @@ title: License Error Resolution
 sidebar_position: 46
 ---
 
-![](../../../images/image-44.png)
+![](../../../images/license-error-resolution.png)
 
 If you see a license-related alert, such as "Cannot retrieve license information" immediately after logging in to the Web Console, the license may not have been issued successfully due to a temporary **network/connectivity issue** during instance provisioning or a communication issue with the **license server**.
 
@@ -15,7 +15,7 @@ If you see a license-related alert, such as "Cannot retrieve license information
 
 1. A **valid License Key** is required to use OvenMediaEngine Enterprise properly. Please click \[OK] in the pop-up to go to the License Settings page and reissue the License Key.
 
-![](../../../images/image-45.png)
+![](../../../images/license-error-resolution-issue-a-license-key.png)
 
 2. Click **\[Issue License]** and wait a moment. The system will automatically issue and apply a new License Key.
 
@@ -23,7 +23,7 @@ If you see a license-related alert, such as "Cannot retrieve license information
 
 ### Verify the New License Key Is Applied
 
-![](../../../images/image-46.png)
+![](../../../images/license-error-resolution-verify-the-new-license-key-is-applied.png)
 
 3. If the license authentication alert/error message disappears, the License Key has been applied successfully. You can then use all OvenMediaEngine Enterprise features normally.
 4. Run a basic streaming test by following the "[Post-Setup Verification for OvenMediaEngine Enterprise](../getting-started-on-aws/README.md#post-setup-verification-for-ovenmediaengine-enterprise)" procedure.

@@ -11,7 +11,7 @@ On the ABR and Transcoding Settings page, you can check the settings of the Live
 
 ### Check Transcode Webhook Activation
 
-![](../../../images/image-145.png)
+![](../../../images/abr-and-transcoding-settings-check-transcode-webhook-activation.png)
 
 ABR and Transcoding Settings 페이지에서 Transcode Webhook의 활성화 여부 및 설정 내용을 확인할 수 있습니다.
 
@@ -38,7 +38,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding/transcodewebhook
 
 If you enable `HardwareAcceleration` option in `Server.xml`, Hardware Codec will be used automatically when creating a stream, and fall back to Software Codec if Hardware Codec cannot be used due to insufficient hardware resources.
 
-![](../../../images/image-146.png)
+![](../../../images/abr-and-transcoding-settings-check-gpu-acceleration-activation.png)
 
 On the ABR and Transcoding Settings page, you can verify that GPU-based hardware decoding and encoding ([Hardware-Accelerated Video Encoding](../../../features/transcoding-and-processing/hardware-encoder-support.md)), one of the features supported by OvenMediaEngine Enterprise at the Enterprise-grade, is enabled and its settings are checked.
 
@@ -62,7 +62,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding/gpu-usage](https
 
 ## List of Output Profiles
 
-![](../../../images/image-221.png)
+![](../../../images/abr-and-transcoding-settings-list-of-output-profiles.png)
 
 On the ABR and Transcoding Settings page, you can see a list of `Output Profiles` set for your `Application`.
 
@@ -81,7 +81,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding#outputprofiles](
 
 You can check the ABR Settings for each Output Profile of the `Application` on the ABR and Transcoding Settings page.
 
-![](../../../images/image-222.png)
+![](../../../images/abr-and-transcoding-settings-check-adaptive-bitrate-streaming-abr-settings-0-14.png)
 
 You can set up ABR by adding `Playlists` or a Playlist with multiple `Renditions` to `OutputProfiles`. An `OutputProfile` can have multiple playlists, and each playlist can be accessed by F`ileName`.
 
@@ -137,7 +137,7 @@ List of codecs supported by Live Transcoder: [https://ovenmedialabs.com/docs/ome
 
 ### Check Audio Encoding Profile Settings
 
-![](../../../images/image-223.png)
+![](../../../images/abr-and-transcoding-settings-check-audio-encoding-profile-settings.png)
 
 `Audio Profile` is used when encoding ingress audio and is required to egress under policies or standards of web browsers.
 
@@ -165,7 +165,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding#audio](https://o
 
 ### Check Video Encoding Profile Settings
 
-![](../../../images/image-224.png)
+![](../../../images/abr-and-transcoding-settings-check-video-encoding-profile-settings.png)
 
 `Video Profile` is used when encoding ingress video and is required to egress under policies or standards of web browsers.
 
@@ -201,7 +201,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/transcoding#video](https://o
 
 ### Check Image Encoding Profile Settings
 
-![](../../../images/image-225.png)
+![](../../../images/abr-and-transcoding-settings-check-image-encoding-profile-settings.png)
 
 `Image Profile` is an option to generate a thumbnail of the stream and the `Bypass` option, which extracts the original as is, cannot be used.
 

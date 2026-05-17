@@ -3,7 +3,7 @@ title: Configuration Files
 sidebar_position: 64
 ---
 
-![](../../../images/image-173.png)
+![](../../../images/configuration-files.png)
 
 You can access this page by clicking the XML icon on the right side of the Web Console navigation bar. From this page, you can review various settings by viewing the Configuration Files and contents that OvenMediaEngine Enterprise references.
 

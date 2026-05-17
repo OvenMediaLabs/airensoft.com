@@ -9,7 +9,7 @@ Web Console Publishing is a feature that allows you to share the OvenMediaEngine
 
 You can create and manage Web Console Publishing URLs from the Publishing page in the Web Console.
 
-![](../../../images/퍼블리싱네비게이션.JPG)
+![](../../../images/web-console-publishing-navigation.jpg)
 
 1. Access the Publishing page using the navigation at the top right of the screen.
 
@@ -17,11 +17,11 @@ You can create and manage Web Console Publishing URLs from the Publishing page i
 
 You can create a Publishing URL to share the Web Console externally. Created URLs can be modified or deleted as needed.
 
-![](../../../images/퍼블리싱URL생성.JPG)
+![](../../../images/web-console-publishing-url-create.jpg)
 
 1. Click the New Publishing button at the top of the publishing page to display the Publishing URL creation dialog.
 
-![](../../../images/퍼블리싱URL생성팝업.JPG)
+![](../../../images/web-console-publishing-url-create-popup.jpg)
 
 2. Configure the following values in the dialog to create a Publishing URL:
 
@@ -29,7 +29,7 @@ You can create a Publishing URL to share the Web Console externally. Created URL
 
 ### Managing Publishing URLs
 
-![](../../../images/퍼블리싱URL목록.JPG)
+![](../../../images/web-console-publishing-url-list.jpg)
 
 1. You can check the list of created Publishing URLs and their configuration.
 2. You can verify the Publishing URL to be shared.
@@ -42,26 +42,26 @@ When accessing a Publishing URL, the external sharing mode Web Console's stream 
 
 ### Stream List Page
 
-![](../../../images/퍼블리싱된스트림목록화면.JPG)
+![](../../../images/web-console-publishing-stream-list.jpg)
 
 * The list of streams corresponding to the configured Source Ids is displayed.
 * If the configured Permission is `Read Write`, the functions to create/delete Managed Streams, create/modify/delete Scheduled Channels, and create/delete Multiplex Channels are enabled.
 
 ### Stream Details Page
 
-![](../../../images/퍼블리싱된스트림상세화면.JPG)
+![](../../../images/web-console-publishing-stream-detail.jpg)
 
 * If the configured Permission is `Read Write`, the functions to start/stop Recording, start/stop Push Publishing, and start/stop (LL)-HLS Dump are enabled.
 
 ### Event Monitoring and Event Timeline Page
 
-<div>![](../../../images/퍼블리싱된이벤트모니터링화면.JPG) ![](../../../images/퍼블리싱된이벤트타임라인화면.JPG)</div>
+<div>![](../../../images/web-console-publishing-event-monitoring.jpg) ![](../../../images/web-console-publishing-event-timeline.jpg)</div>
 
 * Event Monitoring (List) for streams corresponding to the configured Source Ids are displayed.
 
 ### Access Restriction Error Page
 
-![](../../../images/퍼블리싱접근제한화면.JPG)
+![](../../../images/web-console-publishing-access-control.jpg)
 
 An access restriction error page is displayed when the Publishing URL authentication fails. Publishing URL authentication failure occurs in the following cases:
 

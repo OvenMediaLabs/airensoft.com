@@ -5,13 +5,13 @@ sidebar_position: 56
 
 ## Managed Streams and Instant Streams
 
-![](../../../../images/image-179.png)
+![](../../../../images/managed-and-instant-streams-managed-streams-and-instant-streams.png)
 
 Managed and Instant Streams are categorized in the Stream List, so you can easily distinguish them. Also, if you select Managed or Instant Stream and go to the Stream Monitoring screen, you can easily check it by the icon marked on the upper left of the OvenPlayer where the corresponding Stream is playing.
 
 ## Stream Monitoring Tab
 
-![](../../../../images/image-181.png)
+![](../../../../images/managed-and-instant-streams-stream-monitoring-tab.png)
 
 * **Stream Playback**: You can play the stream through the embedded OvenPlayer after selecting the options, such as Output Stream, Playlist, Protocol, etc. on the left side of the Stream Monitoring screen.
 * **Status**: You can check the Ingress/Egress metadata and statistics of the stream.
@@ -34,7 +34,7 @@ Managed and Instant Streams are categorized in the Stream List, so you can easil
 
 ### Metadata and Statistics
 
-![](../../../../images/image-182.png)
+![](../../../../images/managed-and-instant-streams-metadata-and-statistics.png)
 
 * **Ingress**: You can check the Ingress metadata and statistics such as Protocol, Source location, Track, Input Traffic, etc.
 * **Egress**: You can check the Egress metadata and statistics such as Output Profile, Track, Output Traffic, etc.
@@ -42,13 +42,13 @@ Managed and Instant Streams are categorized in the Stream List, so you can easil
 
 ## Play Stream
 
-![](../../../../images/image-183.png)
+![](../../../../images/managed-and-instant-streams-play-stream.png)
 
 Depending on the playback options you have chosen, such as Output Stream or Playlist (depending on OvenMediaEngine settings), Protocol selection (LLHLS or WebRTC), Certificate availability (TLS or Non-TLS), etc., a Playback URL of the Stream is displayed. You can play it through OvenPlayer or an external player using the Playback URL.
 
 ### Playback URL
 
-![](../../../../images/image-185.png)
+![](../../../../images/managed-and-instant-streams-playback-url.png)
 
 * **Ingress URL**: You can check the input stream URL address that is activated and available for use in OvenMediaEngine
 * **Egress URL**: You can see the stream playback URL address for each Output Stream, Playlist, and Protocol set in OvenMediaEngine.
@@ -63,13 +63,13 @@ You can easily copy the URL by clicking the Copy icon at the end of each URL.
 
 ### Failed to Play Stream
 
-<div>![](../../../../images/Screenshot-2024-03-18-at-04.18.36.JPG) ![](../../../../images/Screenshot-2024-03-18-at-04.09.35.JPG)</div>
+<div>![](../../../../images/managed-and-instant-streams-failed-to-play-stream.jpg) ![](../../../../images/managed-and-instant-streams-failed-to-play-stream-2.jpg)</div>
 
 The selected Playback URL can be played using OvenPlayer included in OvenMediaEngine Enterprise, but if playback fails, the system automatically provides the cause and solution at the bottom of OvenPlayer. If you encounter any problems, please refer to the information.
 
 ## Recording Status
 
-![](../../../../images/image-106.png)
+![](../../../../images/managed-and-instant-streams-recording-status.png)
 
 Recording is a function that records when the stream is Live. When the stream is recording, you can see at a glance that it is recording through the Recording marking in the Stream List.
 
@@ -86,7 +86,7 @@ In addition, you can use and control Recording using the API.
 
 ### Start Recording | 0.17.1.2+
 
-![](../../../../images/image-187.png)
+![](../../../../images/managed-and-instant-streams-start-recording-0-17-1-2.png)
 
 You can check the detailed recording status through the Recording tab in Stream Monitoring and control Recording using the Start/Stop Recording function.
 
@@ -110,7 +110,7 @@ aws\_access\_key\_id='xxx', aws\_secret\_access\_key='xxx', endpoint='https://ob
 
 ## Push Publishing Status
 
-![](../../../../images/image-107.png)
+![](../../../../images/managed-and-instant-streams-push-publishing-status.png)
 
 Push Publishing is a function that retransmits a stream ingested into OvenMediaEngine Enterprise to other platforms. While the stream is being Push Published, you can see the Push Publishing mark in the Stream List to know at a glance that it is being restreamed.
 
@@ -127,7 +127,7 @@ Also, you can use and control Push Publishing using the API.
 
 ### Start Push Publishing | 0.17.1.2+
 
-![](../../../../images/image-189.png)
+![](../../../../images/managed-and-instant-streams-start-push-publishing-0-17-1-2.png)
 
 You can check the detailed re-streaming status through the Push tab in Stream Monitoring and control pushes using the Start/Stop Push Publishing function.
 
@@ -140,7 +140,7 @@ You can check the detailed re-streaming status through the Push tab in Stream Mo
 
 ## (LL)-HLS Dump Status
 
-![](../../../../images/image-134.png)
+![](../../../../images/managed-and-instant-streams-ll-hls-dump-status.png)
 
 (LL)-HLS Dump is a feature that dumps the `.m3u8` and all track segments when the stream is played back as (LL)-HLS, allowing you to provide the file to VoD immediately up to the dumped point, while Live. You can check the detailed (LL)-HLS Dump status through the Dump tab on the Stream Monitor page while the stream is being dumped.
 
@@ -157,7 +157,7 @@ In addition, you can use and control (LL)-HLS Dump using the API.
 
 ### Start (LL)-HLS Dump | 0.17.1.2+
 
-![](../../../../images/image-190.png)
+![](../../../../images/managed-and-instant-streams-start-ll-hls-dump-0-17-1-2.png)
 
 You can check the detailed (LL)-HLS Dump status through the Dump tab in Stream Monitoring and control the Dump using the Start/Stop (LL)-HLS Dump function.
 

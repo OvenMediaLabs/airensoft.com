@@ -62,6 +62,6 @@ The content of the `<AuthInfo.xml>` file is in the form of `<AuthInfo><Auth>` wi
 
 When streaming RTMP using OBS, you can use the RTMP Authentication feature by enabling the `Use autentication` item in OBS Settings:
 
-![](../../images/image-139.png)
+![](../../images/rtmp-authentication-using-rtmp-authentication-in-obs.png)
 
 If you made an `AuthInfo.xml` file following the guide above and specified `<AuthFile>` in OvenMediaEngine Enterprise, enter the `<ID>` recorded in the `AuthInfo.xml` file for the OBS's Username and `<Password>` for the OBS's Password, then proceed to Start Streaming. If the authentication information matches, OvenMediaEngine Enterprise will receive the RTMP media source from OBS.

@@ -7,7 +7,7 @@ Transport Layer Security (TLS) is a protocol for securing Internet communication
 
 ## Check TLS Encryption Activation
 
-![](../../../images/image-232.png)
+![](../../../images/tls-encryption-settings-check-tls-encryption-activation.png)
 
 On the TLS Encryption Settings, you can check whether TLS is enabled and the TLS path configured for each Virtual Host. This feature allows you to verify that each Virtual Host is properly configured with the necessary security certificates, enhancing the overall security and trustworthiness of your streaming environment.
 

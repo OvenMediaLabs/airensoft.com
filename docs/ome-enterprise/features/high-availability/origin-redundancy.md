@@ -5,7 +5,7 @@ sidebar_position: 116
 
 When an HTTP-based CDN or cache system supports origin failover for high availability (HA), OvenMediaEngine Enterprise, acting as an origin server, provides redundancy features that enable both the Main and Backup Servers to deliver identical content.
 
-![](../../images/Asset-1-4x.png)
+![](../../images/origin-redundancy.png)
 
 When a CDN supports origin failover, it automatically switches to the backup server if a failure occurs on the Main Server. To support this, the Main and Backup Servers must provide identical content in the same manner. This guide explains how OvenMediaEngine Enterprise, installed on different servers, can be configured to provide the same Low-Latency HLS (LL-HLS) and HLS content.
 

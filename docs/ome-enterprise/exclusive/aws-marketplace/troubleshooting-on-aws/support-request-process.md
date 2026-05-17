@@ -13,7 +13,7 @@ OvenMediaEngine Enterprise on AWS provides the \[Download Logs] feature, which a
 
 ### Go to the Logs page
 
-![](../../../images/image-390.png)
+![](../../../images/support-request-process-go-to-the-logs-page.png)
 
 1. If you need Technical Support, click the \[Log] icon in the upper-right corner of the Web Console to open the Logs page.
 
@@ -21,7 +21,7 @@ OvenMediaEngine Enterprise on AWS provides the \[Download Logs] feature, which a
 
 ### Download logs
 
-![](../../../images/image-391.png)
+![](../../../images/support-request-process-download-logs.png)
 
 2. Click **\[Download Logs]** in the upper-right corner of the Logs page to download key logs from the server as a single file (`.zip`) to your PC.
 

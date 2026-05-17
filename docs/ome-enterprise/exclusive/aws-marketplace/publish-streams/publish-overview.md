@@ -7,7 +7,7 @@ OvenMediaEngine Enterprise’s most important core operation is to receive Media
 
 ## Managed Stream and Instant Stream
 
-![](../../../images/image-411.png)
+![](../../../images/publish-overview-managed-stream-and-instant-stream.png)
 
 ### Managed Stream Overview
 
@@ -44,7 +44,7 @@ For more details and advanced options, please refer to the [Managed and Instant 
 
 ## RTSP Pull Stream
 
-![](../../../images/image-412.png)
+![](../../../images/publish-overview-rtsp-pull-stream.png)
 
 ### RTSP Pull Stream Overview
 
@@ -64,7 +64,7 @@ For usage instructions, please refer to the [Publish via RTSP Pull (CCTV)](publi
 
 ## Scheduled Channel
 
-![](../../../images/image-413.png)
+![](../../../images/publish-overview-scheduled-channel.png)
 
 ### Scheduled Channel Overview
 
@@ -105,7 +105,7 @@ For more details and advanced options, please refer to the [Scheduled Channels](
 
 ## Multiplex Channel
 
-![](../../../images/image-414.png)
+![](../../../images/publish-overview-multiplex-channel.png)
 
 ### Multiplex Channel Overview
 

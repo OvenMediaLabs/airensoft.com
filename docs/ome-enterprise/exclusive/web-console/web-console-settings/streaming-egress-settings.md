@@ -95,7 +95,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/streaming/webrtc-publishing]
 
 Apple announced Low-Latency HLS (LLHLS), which enables streaming with a latency of about 2 to 6 seconds while maintaining scalability, and OvenMediaEngine provides low-latency streaming using LLHLS starting from version 0.14.0.
 
-![](../../../images/image-228.png)
+![](../../../images/streaming-egress-settings-low-latency-hls-llhls-settings-0-14-0-0.png)
 
 The LLHLS Streaming Settings page allows you to check and modify the LLHLS Protocol information and activation status to be used for each `Application`.&#x20;
 
@@ -112,7 +112,7 @@ The LLHLS Streaming Settings page allows you to check and modify the LLHLS Proto
 * `Part HoldBack`: Sets the segment length to be sent in advance in fractional seconds.
 * `Cross Domain`: Controls the domain in which the player works through `<CorssDomain>`. For more information, please refer to the [LLHLS CrossDomain](https://ovenmedialabs.com/docs/ome/streaming/low-latency-hls#crossdomain).
 
-![](../../../images/image-229.png)
+![](../../../images/streaming-egress-settings-low-latency-hls-llhls-settings-0-14-0-0-2.png)
 
 * `Cache Control`: You can specify how long content is cached on the Edge Server or CDN Cache Server by adding a Cache-Control header to the HTTP response. For more information, see the [#control-origin-cache](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention") guide.
 * `Create Default Playlist`: You can control whether each playback protocol (LL-HLS, Legacy HLS, WebRTC) creates a default playlist (llhls, playlist, webrtc). For more information, see the [#default-playlist-creation-settings](../../../features/workflow-integration-and-external-system-connectivity/delay-buffer.md "mention") guide.
@@ -133,7 +133,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/streaming/low-latency-hls](h
 
 You can create as long playlists as you want by enabling the Digital Video Recorder (DVR) option in the LLHLS Publisher in `Server.xml`. This option allows the Player to rewind the stream while it is live _(Live Rewind)_.
 
-![](../../../images/스크린샷-67.png)
+![](../../../images/streaming-egress-settings-check-llhls-dvr-activation-0-14-18-0.png)
 
 You can check the option information and activation status through the DVR item on the LLHLS Streaming Settings.
 
@@ -152,7 +152,7 @@ LLHLS DVR Guide: [https://ovenmedialabs.com/docs/ome/streaming/low-latency-hls#l
 
 LLHLS Dump is a feature that allows you to dump the `.m3u8` and all track segments when the stream is played back as LLHLS so that the file can be served to VoD immediately up to the dumped point even while it is live. You can use this feature by enabling the Dump option in LLHLS Publisher in `Server.xml`.
 
-![](../../../images/스크린샷-67.png)
+![](../../../images/streaming-egress-settings-check-llhls-dvr-activation-0-14-18-0.png)
 
 You can see the option information and activation status through the DUMP on the LLHLS Streaming Settings page.
 
@@ -181,7 +181,7 @@ Currently, DRM is only supported for H.264 and AAC codecs. H.265 support will be
 :::
 
 
-![](../../../images/스크린샷-68.png)
+![](../../../images/streaming-egress-settings-check-llhls-drm-activation-0-16-0-0.png)
 
 You can check the option information and activation status through the DRM on the LLHLS Streaming Settings page. OvenMediaEngine Enterprise also supports not only DRM Vendor integration but also [Commercial DRM Provider Integration](../../../features/access-control-and-security/digital-rights-management-drm/pallycon-drm-configuration.md), such as PallyCon DRM.
 
@@ -197,7 +197,7 @@ LLHLS DRM Guide: [https://ovenmedialabs.com/docs/ome/streaming/low-latency-hls#d
 
 Since HLS based on MPEG-2 TS containers still provides broad compatibility, including support for older devices, the OME Enterprise team decided to support HLS version 3+ based on MPEG-2 TS containers starting with [OvneMediaEngine Enterprise 16.6.0](../../../about/release-notes/0.16.6.md#01660-1-july-5-2024) (updated on July 5, 2024).
 
-![](../../../images/image-230.png)
+![](../../../images/streaming-egress-settings-legacy-hls-hlsv3-ts-container-settings-0-16-6-0.png)
 
 The Legacy HLS Streaming Settings page allows you to check and modify the HLS Protocol information and activation status to be used for each `Application`.
 
@@ -215,7 +215,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/streaming/hls](https://ovenm
 
 #### See the Legacy HLS Publisher Options:
 
-![](../../../images/image-231.png)
+![](../../../images/streaming-egress-settings-legacy-hls-hlsv3-ts-container-settings-0-16-6-0-2.png)
 
 * `Segment Duration`: Sets the length of the segment in seconds. Therefore, a shorter value allows the stream to start faster. However, a value that is too short will make legacy HLS players unstable. Apple recommends 6 seconds for this value.
 * `Segment Count`: The number of segments listed in the playlist. 5 is recommended for HLS players.

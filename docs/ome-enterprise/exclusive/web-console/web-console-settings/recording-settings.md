@@ -7,7 +7,7 @@ OvenMediaEngine's Recording feature allows you to record all or selected tracks 
 
 ## Check Recording Activation
 
-![](../../../images/image-237.png)
+![](../../../images/recording-settings-check-recording-activation.png)
 
 Recording Settings 페이지에서 각 Application에서 Stream 녹화를 위한 File Publisher의 활성화 상태와 구성 세부 정보를 확인할 수 있습니다.
 

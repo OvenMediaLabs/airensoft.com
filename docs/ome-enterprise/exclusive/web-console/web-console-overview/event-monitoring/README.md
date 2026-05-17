@@ -15,7 +15,7 @@ Event monitoring is disabled by default at initial installation and can be activ
 
 ### Query Filter and Event Log List
 
-![](../../../../images/모니터링-모자이크.JPG)
+![](../../../../images/event-monitoring-mosaic.jpg)
 
 1. Navigate to the Monitoring page using the navigation at the top of the screen.
 2. You can filter and query event logs.
@@ -29,11 +29,11 @@ If there are many accumulated event logs, it may take a long time to synchronize
 :::
 
 
-![](../../../../images/image-83.png)
+![](../../../../images/event-monitoring-query-filter-and-event-log-list.png)
 
 ### Event Log
 
-![](../../../../images/목록설명.JPG)
+![](../../../../images/event-monitoring-list-overview.jpg)
 
 Each item of the event log displayed on the screen is as follows:
 
@@ -56,7 +56,7 @@ You can enter the event timeline page by clicking the source ID.
 
 On the event timeline page, you can check the list of events that occurred on that source and detailed information at the time the events occurred.
 
-![](../../../../images/타임라인.JPG)
+![](../../../../images/event-monitoring-timeline.jpg)
 
 1. Displays the ID of the selected source.
 2. Displays the period of the timeline. This period is set to the period queried on the event list page.
@@ -68,13 +68,13 @@ On the event timeline page, you can check the list of events that occurred on th
 
 6. Certain events allow you to check detailed information at the time of occurrence in `JSON` format:
 
-![](../../../../images/스냅샷-1.JPG)
+![](../../../../images/event-monitoring-snapshot-1.jpg)
 
 ## Input Stream Alert Notifications | 0.18.1.2+
 
 On the stream details page, you can check alert notifications of the input stream from the last 24 hours. These are displayed for [stream event categories](event-specification.md#stream-events-streamevent) with event levels of `Warning` and `Error` .&#x20;
 
-![](../../../../images/인풋스트림이상알림-1.JPG)
+![](../../../../images/event-monitoring-input-stream-anomaly-alert-1.jpg)
 
 1. You can check alert notifications by clicking the icon. The number of unread notifications is displayed beside the icon.
 2. Click to mark the notification as acknowledged.

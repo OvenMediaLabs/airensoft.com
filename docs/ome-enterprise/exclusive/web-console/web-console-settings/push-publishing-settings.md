@@ -7,7 +7,7 @@ Push Publishing is a feature that allows you to re-stream a specific stream that
 
 ## Check Push Publishing Activation
 
-![](../../../images/image-238.png)
+![](../../../images/push-publishing-settings-check-push-publishing-activation.png)
 
 You can check if the Push Publishing feature is enabled for each `Application` on the Push Publishing Settings. As you can see in the image above, Push Publishing is available for `RTMP`, `MPEG-2 TS`, and `SRT` as Ingress Protocols, and you can check if the Push Publishing feature is enabled for each Protocol on that page.
 

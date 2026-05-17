@@ -19,7 +19,7 @@ In this example, we use OBS Studio, one of the most commonly used live encoder a
 
 ### Publish with a Live Encoder (OBS Studio)
 
-![](../../../images/image-56.png)
+![](../../../images/publish-via-rtmp-e-rtmp-publish-with-a-live-encoder-obs-studio.png)
 
 1. Launch Open Broadcaster Software (OBS) Studio.
    * If OBS Studio is not installed, download it from the official page ([https://obsproject.com/download](https://obsproject.com/download)).
@@ -30,7 +30,7 @@ In this example, we use OBS Studio, one of the most commonly used live encoder a
 
 ### Configure Streaming in OBS
 
-![](../../../images/image-425.png)
+![](../../../images/publish-via-srt-configure-streaming-in-obs.png)
 
 4. On the left side of the Settings window, select the \[Stream] tab.
 5. Under \[Service], select **\[Custom]**, then enter the SRT Ingress URL in the Server field.
@@ -44,7 +44,7 @@ If you are not sure about the SRT Input URL pattern, create a \[Managed Stream] 
 :::
 
 
-![](../../../images/image-57.png)
+![](../../../images/publish-via-rtmp-e-rtmp-configure-streaming-in-obs-2.png)
 
 
 
@@ -65,7 +65,7 @@ Setting B-frames to 0 (`bframes=0`) helps reduce playback stuttering in `WebRTC`
 
 ### Check Stream Status and Playback in the Web Console
 
-![](../../../images/image-426.png)
+![](../../../images/publish-via-srt-check-stream-status-and-playback-in-the-web-consol.png)
 
 9. In the Web Console, check whether the stream published from OBS or the OvenPlayer Demo appears in the list.
 

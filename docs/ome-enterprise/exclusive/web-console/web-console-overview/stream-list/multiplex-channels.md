@@ -7,13 +7,13 @@ sidebar_position: 58
 
 Multiplex Channel feature within OvenMediaEngine Enterprise to combine multiple ingressing streams into one to form an [Adaptive Bitrate Streaming _(_&#x41;BR)](../../web-console-settings/abr-and-transcoding-settings.md#check-adaptive-bitrate-streaming-abr-settings--01430) or to duplicate an external stream and send it to another Application.
 
-![](../../../../images/image-200.png)
+![](../../../../images/multiplex-channels.png)
 
 Multiplex Channels are recognizable as they are categorized in the Stream List. Additionally, when you select a stream and go to Stream Monitoring, you can easily see which channel that stream is playing on via the Multiplex Channel icon displayed at the top left of OvenPlayer.
 
 ## Multiplex Channel Tab
 
-![](../../../../images/image-201.png)
+![](../../../../images/multiplex-channels-multiplex-channel-tab.png)
 
 * **Stream Playback**: You can play the Multiplex Channel stream through the embedded OvenPlayer after selecting the options, such as Output Stream, Playlist, Protocol, etc. on the left side of the Stream Monitoring screen.
 * **Status**: You can check the Ingress/Egress metadata and statistics of the Multiplex Channel.
@@ -35,7 +35,7 @@ Multiplex Channels are recognizable as they are categorized in the Stream List. 
 
 ### Metadata and Statistics
 
-![](../../../../images/image-202.png)
+![](../../../../images/multiplex-channels-metadata-and-statistics.png)
 
 * **Ingress**: You can check the Ingress metadata and statistics such as Protocol, Source location, Track, Input Traffic, etc.
   * _In the case of the Multiplex Channel, various ingress streams come in, so all tracks of each stream are displayed._
@@ -44,7 +44,7 @@ Multiplex Channels are recognizable as they are categorized in the Stream List. 
 
 ## Multiplex
 
-![](../../../../images/image-204.png)
+![](../../../../images/multiplex-channels-2.png)
 
 ### Mux File
 
@@ -78,7 +78,7 @@ Due to the concept of Multiplex Channels that combine multiple streams into a si
 
 ### Playlists
 
-![](../../../../images/image-205.png)
+![](../../../../images/multiplex-channels-playlists.png)
 
 The Playlist is a feature that allows you to bundle multiple streams and use them like ABR, and you must compose a playlist based on the track names of the streams loaded into the multiplex channel.
 
@@ -100,13 +100,13 @@ Detailed Guide:  [https://ovenmedialabs.com/docs/ome/live-source/multiplex-chann
 
 ## Play Stream
 
-![](../../../../images/image-206.png)
+![](../../../../images/multiplex-channels-play-stream.png)
 
 Depending on the playback options you have chosen, such as Output Stream or Playlist (depending on OvenMediaEngine settings), Protocol selection (LLHLS or WebRTC), Certificate availability (TLS or Non-TLS), etc., a Playback URL of the Stream is displayed. You can use the playback URL to play it via OvenPlayer or an external player.
 
 ### Playback URL
 
-![](../../../../images/image-207.png)
+![](../../../../images/multiplex-channels-playback-url.png)
 
 * **Ingress URL**: OvenMediaEngine ingresses streams based on the Mux File you configured, so there is no separate Ingress URL displayed.
 * **Egress URL**: You can check the playback address for each Playlist set in the Multiplex Channel of OvenMediaEngine.
@@ -121,7 +121,7 @@ You can easily copy the URL by clicking the Copy icon at the end of each URL.
 
 ## Recording Status
 
-![](../../../../images/image-111.png)
+![](../../../../images/multiplex-channels-recording-status.png)
 
 Recording is a function that records when the Multiplex Channel is Live. When the Multiplex Channel is recording, a Recording mark is added to the Stream List, so you can see at a glance that it is recording. If you want to check the detailed recording status, use the Recording tab in Stream Monitoring.
 
@@ -142,7 +142,7 @@ Please refer to the [#start-recording-or-0.17.1.2](managed-and-instant-streams.m
 
 ## Push Publishing Status
 
-![](../../../../images/image-112.png)
+![](../../../../images/multiplex-channels-push-publishing-status.png)
 
 Push Publishing is a feature that rebroadcasts streams contained in the Multiplex Channel to another platform. While the Multiplex Channel is push publishing, you can see at a glance that it is being re-streamed by seeing a Push Publishing mark in the Stream List. You can also check the detailed Push Publishing status through the Push Publishing tab in the Stream Monitoring screen.
 

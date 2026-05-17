@@ -19,14 +19,14 @@ In this example, we use OBS Studio (Option A), one of the most commonly used liv
 
 ### \[Option A] Publish from a Live Encoder (OBS Studio)
 
-![](../../../images/image-56.png)
+![](../../../images/publish-via-rtmp-e-rtmp-publish-with-a-live-encoder-obs-studio.png)
 
 1. Launch Open Broadcaster Software (OBS) Studio.
    * If OBS Studio is not installed, download it from the official page ([https://obsproject.com/download](https://obsproject.com/download)).
 2. Add a media source you want to publish (e.g., Media Source, Camera. or Screen Capture).
 3. Click \[Settings] in the bottom-right corner of OBS.
 
-![](../../../images/image-422.png)
+![](../../../images/publish-via-webrtc-whip-option-a-publish-from-a-live-encoder-obs-studio.png)
 
 4. In the left menu of Settings, select the \[Stream] tab.
 5. Under \[Service], select **\[WHIP]**, then enter one of the WebRTC/WHIP Ingress URL patterns below in the Server field.
@@ -45,7 +45,7 @@ If you are not sure about the WebRTC Input or WHIP URL pattern, create a \[Manag
 :::
 
 
-![](../../../images/image-57.png)
+![](../../../images/publish-via-rtmp-e-rtmp-configure-streaming-in-obs-2.png)
 
 6. Next, in the \[Output] tab, we recommend setting the **`Keyframe Interval`** to **1-second** and **`B-frames`** to **0** for smooth sub-second latency and low-latency streaming.
 
@@ -64,7 +64,7 @@ Setting B-frames to 0 (`bframes=0`) helps reduce playback stuttering in `WebRTC`
 
 ### \[Option B] Publish using the OvenPlayer Demo
 
-![](../../../images/image-58.png)
+![](../../../images/publish-via-webrtc-whip-option-b-publish-using-the-ovenplayer-demo.png)
 
 1. For Non-TLS, open: [http://demo.ovenplayer.com/demo\_input.html](http://demo.ovenplayer.com/demo_input.html) or For TLS, open: [https://demo.ovenplayer.com/demo\_input.html](https://demo.ovenplayer.com/demo_input.html).
 2. In the \[WebRTC Ingress URL] field, enter one of the WebRTC/WHIP Ingress URL patterns below, depending on whether you use Non-TLS or TLS.
@@ -88,7 +88,7 @@ If you are not sure about the WebRTC Input or WHIP URL pattern, create a \[Manag
 
 ### Check Stream Status and Playback in the Web Console
 
-![](../../../images/image-423.png)
+![](../../../images/publish-via-webrtc-whip-check-stream-status-and-playback-in-the-web-consol.png)
 
 * In the Web Console, check whether the stream published from OBS or the OvenPlayer Demo appears in the list.
 

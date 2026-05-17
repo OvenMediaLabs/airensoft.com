@@ -5,7 +5,7 @@ sidebar_position: 66
 
 ## Restart OvenMediaEngine
 
-![](../../../images/image-177.png)
+![](../../../images/restart-ovenmediaengine.png)
 
 You can restart OvenMediaEngine immediately by clicking the `Restart` button at the top right corner of OvenMediaEngine Enterprise. Upon restart, all the latest changes and configurations will be applied to OvenMediaEngine.
 
@@ -23,13 +23,13 @@ All client connections from other Applications remain intact, except for the spe
 
 ### Restart the Application from the Stream List
 
-![](../../../images/image-178.png)
+![](../../../images/restart-the-application-from-the-stream-list.png)
 
 * You can restart the `Application` by selecting it in the upper left of the Stream List and clicking the `Restart` button.
 
 ### Restart the Application from the Server Settings
 
-![](../../../images/image-175.png)
+![](../../../images/restart-the-application-from-the-server-settings.png)
 
 1. Click the `Settings` button on the right side of the Web Console navigation bar to enter the Server Settings page.
 2. You can then restart the `Application` by scrolling down and clicking the `Restart` button on the right side of the `Application Name` in the Virtual Hosts Settings under Applications.

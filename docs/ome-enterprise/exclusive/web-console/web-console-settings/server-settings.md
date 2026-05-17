@@ -15,7 +15,7 @@ Please wait a moment as it will be updated in the future so that users can direc
 
 ## Server Settings
 
-![](../../../images/image-210.png)
+![](../../../images/server-settings.png)
 
 This is the screen that appears when you access the Server section in Settings, and it is a function that allows you to check and modify the currently set server information.
 
@@ -35,7 +35,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/configuration#server](https:
 
 ## Modules Settings
 
-![](../../../images/image-211.png)
+![](../../../images/server-settings-modules-settings.png)
 
 This feature allows you to view and modify the Module information currently set on the server.
 
@@ -53,7 +53,7 @@ P2P Guide: [https://ovenmedialabs.com/docs/ome/p2p-delivery](https://ovenmediala
 
 ## View Virtual Hosts Information
 
-![](../../../images/image-212.png)
+![](../../../images/server-settings-view-virtual-hosts-information.png)
 
 Virtual Host is a way to run two or more streaming servers on one system. OvenMediaEngine supports IP-based Virtual Host and Domain-based Virtual Host.
 

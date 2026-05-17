@@ -7,19 +7,19 @@ sidebar_position: 55
 
 Managed Stream refers to the Stream List in OvenMediaEngine Enterprise where users pre-specify stream names and use them.
 
-![](../../../../images/image-121.png)
+![](../../../../images/stream-list-managed-streams.png)
 
 As you can see in the image above, the Stream List lets you see at a glance whether a user has created a Managed Stream and whether it has received a stream.
 
 ### Create a Managed Stream
 
-![](../../../../images/image-119.png)
+![](../../../../images/stream-list-create-a-managed-stream.png)
 
 As shown in the image above, when you first access OvenMediaEngine Enterprise, there is no Managed Stream created. You can make a Managed Stream by clicking the Plus button, located in the upper right corner. Managed Streams will be displayed in the Stream List until you delete them.
 
 ### Delete a Managed Stream
 
-![](../../../../images/image-118.png)
+![](../../../../images/stream-list-delete-a-managed-stream.png)
 
 You can delete a Managed Stream by clicking the X button in the upper right corner of Stream Box.
 
@@ -29,7 +29,7 @@ To completely stop streaming, you need to stop transmitting media sources from c
 
 ## Instant Streams
 
-![](../../../../images/image-122.png)
+![](../../../../images/stream-list-instant-streams.png)
 
 Instant Stream is a feature that detects streams sent to OvenMediaEngine Enterprise that are not designated as Managed Streams, automatically classifies them as Instant, and provides a list for monitoring.
 
@@ -39,7 +39,7 @@ You cannot directly delete the Instant Stream from OvenMediaEngine Enterprise, a
 
 Scheduled Channel is a feature in OvenMediaEngine Enterprise that allows you to stream on a set schedule using pre-recorded media files or live.
 
-![](../../../../images/image-123.png)
+![](../../../../images/stream-list-scheduled-channels.png)
 
 
 :::info
@@ -51,7 +51,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/scheduled-channe
 
 ### Create a Scheduled Channel
 
-![](../../../../images/image-124.png)
+![](../../../../images/stream-list-create-a-scheduled-channel.png)
 
 As you can see in the image above, you can create a Scheduled Channel from the Web Console Home.
 
@@ -88,13 +88,13 @@ stream://vhost\_name/app\_name/stream\_name
 
 ### Modify a Scheduled Channel
 
-![](../../../../images/image-125.png)
+![](../../../../images/stream-list-modify-a-scheduled-channel.png)
 
 You can edit a Scheduled Channel Box created by a user by clicking the Edit icon in the Web Console Home.
 
 ### Delete a Scheduled Channel
 
-![](../../../../images/image-126.png)
+![](../../../../images/stream-list-delete-a-scheduled-channel.png)
 
 You can delete a Scheduled Channel Box created by a user by clicking the X mark in the Web Console Home.
 
@@ -102,7 +102,7 @@ You can delete a Scheduled Channel Box created by a user by clicking the X mark 
 
 You can use the Multiplex Channel feature within OvenMeidaEngine Enterprise to combine multiple ingressing streams into one stream to form an [Adaptive Bitrate Streaming _(_&#x41;BR)](../../web-console-settings/abr-and-transcoding-settings.md#check-adaptive-bitrate-streaming-abr-settings--01430) or to duplicate an external stream and send it to another Application. Multiplex Channel can also take already encoded tracks from other Local Streams and compose them into its tracks, which can be useful when changing codecs or re-tuning quality.
 
-![](../../../../images/image-127.png)
+![](../../../../images/stream-list-multiplex-channels.png)
 
 
 :::info
@@ -114,7 +114,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/multiplex-channe
 
 ### Create a Multiplex Channel
 
-![](../../../../images/image-128.png)
+![](../../../../images/stream-list-create-a-multiplex-channel.png)
 
 As you can see in the image above, you can create a Multiplex Channel from the Web Console Home.
 
@@ -145,7 +145,7 @@ Playlists configured on a Multipelx Channel exist only on that Multipelx Channel
 
 ### Delete a Multiplex Channel
 
-![](../../../../images/image-129.png)
+![](../../../../images/stream-list-delete-a-multiplex-channel.png)
 
 You can delete a Multiplex Channel Box created by a user by clicking the X mark in the Web Console Home.
 
@@ -155,7 +155,7 @@ OvenMediaEngine Enterprise can generate Thumbnails from your live streams to org
 
 ### If the Thumbnail is not displayed
 
-![](../../../../images/image-110.png)
+![](../../../../images/stream-list-if-the-thumbnail-is-not-displayed.png)
 
 If the thumbnail feature is not enabled in OvenMediaEngine when broadcasting a stream, a guide will be displayed in the thumbnail area. You can set the thumbnails by referring to the guide.
 
@@ -169,8 +169,8 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/thumbnail](https://ovenmedia
 
 ## Waiting for Streaming
 
-![](../../../../images/image-132.png)
+![](../../../../images/stream-list-waiting-for-streaming.png)
 
-![](../../../../images/image-133.png)
+![](../../../../images/stream-list-waiting-for-streaming-2.png)
 
 Managed Streams, Scheduled Channels, and Multiplex Channels, when there is no ingress stream and it is waiting, it is displayed as `No Signal` and `No data`.

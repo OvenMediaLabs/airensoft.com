@@ -17,7 +17,7 @@ If you are using the default Subdomain and Auto-Managed SSL Certificate provided
 
 1. In the Web Console, click the \[Settings] icon in the upper-right corner to open the Settings page.   &#x20;Then, select \[SSL Configuration] from the left menu to open the SSL configuration page.
 
-![](../../../images/image-48.png)
+![](../../../images/recover-https-ssl-access-check-ip-and-domain-mapping-status.png)
 
 2. If the Instance IP and the configured Domain do not match, the system detects it and displays an **IP Address Mismatch** alert.
 
@@ -35,7 +35,7 @@ To prevent recurring issues, **assign an AWS Elastic IP** (EIP) and **pin the In
 
 ### Reconnect IP and Domain
 
-![](../../../images/image-49.png)
+![](../../../images/recover-https-ssl-access-reconnect-ip-and-domain.png)
 
 3. On the \[SSL Configuration] page, click **\[Fix IP Address Mismatch]** next to the error message. The system automatically detects the new Instance IP (Public IPv4 address) and updates the Domain mapping information.
 4. Once the update is complete, Web Console access and the Streaming service should be restored.
@@ -64,7 +64,7 @@ If you are using a domain you own along with your own SSL certificate, you must 
 
 ### Check IP Address
 
-![](../../../images/image-51.png)
+![](../../../images/recover-https-ssl-access-check-ip-address.png)
 
 1. In the Web Console, click the \[Settings] icon in the upper-right corner to open the Settings page.   &#x20;Then, select \[SSL Configuration] from the left menu to open the SSL configuration page.
 

@@ -17,7 +17,7 @@ As shown below, a `SignedPolicy URL` includes the `Policy` and `Signature` as a 
 scheme://domain.com:port/app/stream?policy=<>&signature=<>
 ```
 
-![](../../../images/image-233.png)
+![](../../../images/access-control-settings-signed-policy-settings-0-12-0-0.png)
 
 You can check whether the Signed Policy is enabled and its settings for each `VirtualHost` in the Signed Policy section of Access Control Settings.
 
@@ -46,7 +46,7 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/access-control/signedpolicy]
 
 `AdmissionWebhooks` are HTTP Callbacks that query the Control Server to control Publishing and Playback acceptance requests. You can leverage `AdmissionWebhooks` for a variety of purposes, including Customer Authentication, Tracking Published Streams, Hiding App/Stream Names, Logging, and more.
 
-![](../../../images/image-234.png)
+![](../../../images/access-control-settings-admission-webhooks-settings-0-12-2-0.png)
 
 You can view whether Admission Webhooks are enabled and the settings for each `VirtualHost` in the Admission Webhooks section in Access Control Settings.
 

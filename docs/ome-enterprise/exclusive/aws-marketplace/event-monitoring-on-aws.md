@@ -5,7 +5,7 @@ sidebar_position: 42
 
 ## View Event Monitoring
 
-![](../../images/image-428.png)
+![](../../images/event-monitoring-on-aws-view-event-monitoring.png)
 
 OvenMediaEngine Enterprise on AWS has Event Monitoring enabled by default.
 
@@ -19,7 +19,7 @@ For more details on Event Monitoring, please refer to the [Event Monitoring](../
 :::
 
 
-![](../../images/image-437.png)
+![](../../images/event-monitoring-on-aws-view-event-monitoring-2.png)
 
 You can click the \[Alarm] icon in the stream detail view to check the `Warning` and `Error` alarms that occurred in the selected Stream during the last 24 hours.
 
@@ -35,7 +35,7 @@ You can click the \[Alarm] icon displaying the number of alarms to view the alar
 
 ## Configure Event Monitoring
 
-![](../../images/image-429.png)
+![](../../images/event-monitoring-on-aws-configure-event-monitoring.png)
 
 * Click the \[Settings] icon in the upper-right corner of the Web Console to open the Settings page, then select **\[Monitoring]** from the left menu to adjust detailed settings.
   * After completing the configuration, be sure to click \[Update Configuration] in the upper-right corner to save your changes.

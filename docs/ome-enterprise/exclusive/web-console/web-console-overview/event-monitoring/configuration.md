@@ -42,7 +42,7 @@ If you modify `Server.xml`, you need to restart OvenMediaEngine and the Web Cons
 
 You can enable the event monitoring function through the UI on the Web Console's Server Settings page.
 
-![](../../../../images/설정.JPG)
+![](../../../../images/event-monitoring-configuration.jpg)
 
 1. Navigate to the Settings → Server page using the navigation at the top-right of the screen.
 2. Set the values in the monitoring section.   \

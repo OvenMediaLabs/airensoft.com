@@ -7,13 +7,13 @@ sidebar_position: 57
 
 Scheduled Channel is a feature that allows you to set a Live Channel by referencing pre-recorded Media Files or Live Streams, and the Live Channel is configured and played back according to the Schedule File.
 
-![](../../../../images/image-191.png)
+![](../../../../images/scheduled-channels.png)
 
 Scheduled Channels are distinguishable as they are categorized in the Stream List, but if you select the stream and go to the Stream Monitoring screen, you can easily check whether the Scheduled Channel is currently referencing a Media File or Live by marking it with the path at the top left of the OvenPlayer where the Stream is playing.
 
 ## Scheduled Channel Tab
 
-![](../../../../images/image-192.png)
+![](../../../../images/scheduled-channels-scheduled-channel-tab.png)
 
 * **Stream Playback**: You can play the Scheduled Channel stream through the embedded OvenPlayer after selecting the options, such as Output Stream, Playlist, Protocol, etc. on the left side of the Stream Monitoring screen.
 * **Status**: You can check the Ingress/Egress metadata and statistics of the Scheduled Channel.
@@ -35,7 +35,7 @@ Scheduled Channels are distinguishable as they are categorized in the Stream Lis
 
 ### Metadata and Statistics
 
-![](../../../../images/image-195.png)
+![](../../../../images/scheduled-channels-metadata-and-statistics.png)
 
 * **Ingress**: You can check the Ingress metadata and statistics such as Protocol, Source location, Track, Input Traffic, etc.
 * **Egress**: You can check the Egress metadata and statistics such as Output Profile, Track, Output Traffic, etc.
@@ -43,7 +43,7 @@ Scheduled Channels are distinguishable as they are categorized in the Stream Lis
 
 ## Schedules
 
-![](../../../../images/image-194.png)
+![](../../../../images/scheduled-channels-schedules.png)
 
 ### Schedule File
 
@@ -67,13 +67,13 @@ Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/scheduled-channe
 
 ## Play Stream
 
-![](../../../../images/image-196.png)
+![](../../../../images/scheduled-channels-play-stream.png)
 
 Depending on the playback options you have chosen, such as Output Stream or Playlist (depending on OvenMediaEngine settings), Protocol selection (LLHLS or WebRTC), Certificate availability (TLS or Non-TLS), etc., a Playback URL of the Stream is displayed. You can play it through OvenPlayer or an external player using the Playback URL.
 
 ### Playback URL
 
-![](../../../../images/image-197.png)
+![](../../../../images/scheduled-channels-playback-url.png)
 
 * **Ingress URL**: OvenMediaEngine ingresses streams according to the Schedule File you set, there is no Ingress URL displayed separately.
 * **Egress URL**: You can see the stream playback URL address for each Output Stream, Playlist, and Protocol set in OvenMediaEngine.
@@ -88,7 +88,7 @@ You can easily copy the URL by clicking the Copy icon at the end of each URL.
 
 ## Recording Status
 
-![](../../../../images/image-108.png)
+![](../../../../images/scheduled-channels-recording-status.png)
 
 Recording is a function that records when a Scheduled Channel is Live according to its schedule. When the Scheduled Channel is recording, a Recording mark is added to the Stream Box in the Stream List so that you can see at a glance that it is recording. You can also check the detailed recording status through the Recording tab in Stream Monitoring.
 
@@ -109,7 +109,7 @@ Please refer to the [#start-recording-or-0.17.1.2](managed-and-instant-streams.m
 
 ## Push Publishing Status
 
-![](../../../../images/image-109.png)
+![](../../../../images/scheduled-channels-push-publishing-status.png)
 
 Push Publishing is a feature that retransmits a Scheduled Channel stream to another platform. While the Scheduled Channel is being re-streamed, you can see at a glance that it is being re-broadcasted by seeing a Push Publishing mark in the Stream List. You can also check the detailed Push Publishing status through the Push Publishing tab in the Stream Monitoring screen.
 

@@ -4,7 +4,7 @@ title: Introduction
 sidebar_position: 1
 ---
 
-![](../images/Asset-1banner.png)
+![](../images/introduction.png)
 
 ## What is OvenMediaEngine Enterprise?
 
