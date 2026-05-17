@@ -1,0 +1,17 @@
+/*
+ * Faithful copy of @docusaurus/theme-classic
+ * DocSidebarItem/Link/styles.module.css (v3.10.1). Kept local so the
+ * eject swizzle in ./index.tsx is self-contained; re-diff on upgrade.
+ */
+
+.menuExternalLink {
+  align-items: center;
+}
+
+.linkLabel {
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

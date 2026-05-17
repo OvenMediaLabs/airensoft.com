@@ -624,6 +624,62 @@ html.plugin-docs .pagination-nav {
   padding-top: 0.8rem;
 }
 
+/* ---- "Enterprise only" sidebar marker ----
+ * Rendered by the DocSidebarItem/Link swizzle when a page carries
+ * `enterprise_only: true`. A small crown glyph at the end of the line;
+ * the wording lives in the native `title`/aria-label on hover, so the
+ * sidebar row stays short. Muted by default, full strength on
+ * hover/active so it reads as an accent, not noise. */
+.theme-doc-sidebar-menu .menu__link .enterprise-only-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 0.35em;
+  vertical-align: -0.15em;
+  color: var(--ifm-color-primary);
+  opacity: 0.6;
+}
+
+.theme-doc-sidebar-menu .menu__link:hover .enterprise-only-icon,
+.theme-doc-sidebar-menu .menu__link--active .enterprise-only-icon {
+  opacity: 1;
+}
+
+.theme-doc-sidebar-menu .enterprise-only-icon svg {
+  display: block;
+}
+
+/* Instant CSS tooltip — the native `title` is unusable here (browser-
+ * hardcoded ~1s show delay). Anchored top/right of the icon so the
+ * bubble grows up-and-left, staying inside the sidebar's clipped
+ * (overflow x/y) scroll viewport. */
+.theme-doc-sidebar-menu .enterprise-only-icon::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  z-index: 50;
+  white-space: nowrap;
+  pointer-events: none;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: #1f2937;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity 0.08s ease, transform 0.08s ease;
+}
+
+.theme-doc-sidebar-menu .enterprise-only-icon:hover::after {
+  opacity: 1;
+  transform: none;
+}
+
 /* ---- Blog sidebar (right column on /blog) ----
  * The blog plugin uses CSS-module classes (`sidebar_*`, `sidebarItemTitle_*`,
  * `sidebarItemList_*`) instead of the docs theme classes. Wildcard-match
