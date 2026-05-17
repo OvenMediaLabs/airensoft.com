@@ -3,6 +3,44 @@
 This folder holds the **MDX source** for the OvenMediaEngine Enterprise user
 guide published at <https://ovenmedialabs.com/docs/ome-enterprise/>.
 
+## Shared pages: single-sourced from the open-source manual (`dup:`)
+
+Many pages here are identical in substance to the open-source
+OvenMediaEngine manual. **Do not hand-copy them.** Such a page is a tiny
+stub whose frontmatter carries a `dup:` key pointing at the OSS source;
+its body is generated from that source when the site is published.
+
+```yaml
+---
+title: RTMP
+sidebar_position: 81
+dup: /docs/ome/live-source/rtmp
+---
+```
+
+- The page has **no body** — anything you write is overwritten by the
+  OSS body at publish time.
+- Links and images in the copied body are rewritten automatically for
+  the Enterprise tree (file renames are handled too).
+- To change a shared page's content, **edit the OSS manual**, not the
+  stub here.
+- An **Enterprise-only** page (no OSS counterpart) is authored normally,
+  with no `dup:` — see [Editing](#editing) below.
+
+### OSS-only links
+
+If a shared OSS page links to something that intentionally has **no
+Enterprise page** (e.g. open-source build steps), add a line to
+[`oss-only-redirects.txt`](./oss-only-redirects.txt) so the link is
+pointed at the right Enterprise page (or the OSS site) instead.
+
+### A broken `dup:` is caught before merge
+
+If a `dup:` page links an OSS page that is neither `dup:`'d here nor
+listed in `oss-only-redirects.txt`, the **Check docs build** PR check
+fails with the exact file and link. Fix the mapping or add a redirect —
+nothing broken ships.
+
 ## Editing
 
 Each page is a markdown / MDX file under this directory; the folder
@@ -178,7 +216,3 @@ Env var overrides:
 - `OML_PREVIEW_PORT` (default `3000`)
 - `OML_PREVIEW_BRANCH` (which branch of the ovenmedialabs.com repo to clone)
 - `OML_PREVIEW_CACHE` (cache root path)
-
-## Questions?
-
-Ping `#docs` on Slack, or file an issue on this repo with the `docs` label.

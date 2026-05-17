@@ -1,7 +1,7 @@
 ---
 title: Live Source
 sidebar_position: 80
+dup: /docs/ome/live-source
 ---
 
-OvenMediaEngine supports multiple protocols for input from various live sources, without compromising basic usability. This allows you to publish a variety of live sources with sub-second latency. See the sub-page for more information.
-
+{/* Body generated from /docs/ome/live-source by ovenmedialabs.com (scripts/gen-enterprise-shared.js). Edit the OSS source, not this file. */}
