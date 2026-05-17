@@ -11,7 +11,15 @@ Upon signing in, you will be directed to the Web Console Home, where each sectio
 
 ![](../../../images/web-console-home-navigation.png)
 
-<table><thead><tr><th width="93">Icon</th><th width="141">Move to</th><th>Description</th></tr></thead><tbody><tr><td>BI</td><td>Home</td><td>Go to the Web Console Home.</td></tr><tr><td><img src="../../../images/Screenshot-2024-03-18-at-00.48.46 (1).JPG" alt="" data-size="original" /></td><td>Notifications</td><td>You can view real-time system notifications.</td></tr><tr><td><img src="../../../images/Screenshot-2024-03-18-at-00.48.54 (1).JPG" alt="" data-size="original" /></td><td>Logs</td><td>You can access real-time OvenMediaEngine's logs.</td></tr><tr><td><img src="../../../images/web-console-home-navigation.jpg" alt="" data-size="original" /></td><td>Configuration Files</td><td>You can view the Configuration Files (`.xml`) of OvenMediaEngine.</td></tr><tr><td><img src="../../../images/web-console-home-navigation-2.png" alt="" data-size="original" /></td><td>Settings</td><td>You can check the settings of OvenMediaEngine.<br /><em>※ The settings will be updated in the future to allow direct editing of XML in OvenMediaEngine Enterprise.</em></td></tr><tr><td><img src="../../../images/web-console-home-navigation-2.jpg" alt="" data-size="original" /></td><td>Restart engine</td><td>You can restart OvenMediaEngine.</td></tr><tr><td><img src="../../../images/web-console-home-navigation-3.jpg" alt="" data-size="original" /></td><td>Account</td><td>You can change your password or sign out.</td></tr></tbody></table>
+| Icon | Move to | Description |
+| --- | --- | --- |
+| BI | Home | Go to the Web Console Home. |
+| ![](../../../images/web-console-home-nav-notifications.jpg) | Notifications | You can view real-time system notifications. |
+| ![](../../../images/web-console-home-nav-logs.jpg) | Logs | You can access real-time OvenMediaEngine's logs. |
+| ![](../../../images/web-console-home-nav-configuration-files.jpg) | Configuration Files | You can view the Configuration Files (`.xml`) of OvenMediaEngine. |
+| ![](../../../images/web-console-home-nav-settings.png) | Settings | You can check the settings of OvenMediaEngine.<br /><em>※ The settings will be updated in the future to allow direct editing of XML in OvenMediaEngine Enterprise.</em> |
+| ![](../../../images/web-console-home-nav-restart.jpg) | Restart engine | You can restart OvenMediaEngine. |
+| ![](../../../images/web-console-home-nav-account.jpg) | Account | You can change your password or sign out. |
 
 ## List of Streams
 
