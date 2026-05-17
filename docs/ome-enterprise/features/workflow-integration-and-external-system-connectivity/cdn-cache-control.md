@@ -1,5 +1,6 @@
 ---
 title: CDN Cache Control
+enterprise_only: true
 sidebar_position: 126
 ---
 

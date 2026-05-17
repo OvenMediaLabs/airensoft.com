@@ -1,5 +1,6 @@
 ---
 title: Delay Buffer
+enterprise_only: true
 sidebar_position: 132
 ---
 

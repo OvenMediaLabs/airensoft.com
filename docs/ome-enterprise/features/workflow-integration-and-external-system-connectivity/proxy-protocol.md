@@ -1,5 +1,6 @@
 ---
 title: Proxy Protocol
+enterprise_only: true
 sidebar_position: 127
 ---
 

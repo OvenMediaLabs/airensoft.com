@@ -1,5 +1,6 @@
 ---
 title: Skip Frames
+enterprise_only: true
 sidebar_position: 98
 ---
 

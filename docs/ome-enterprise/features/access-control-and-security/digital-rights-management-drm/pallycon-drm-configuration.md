@@ -1,5 +1,6 @@
 ---
 title: PallyCon DRM Configuration
+enterprise_only: true
 sidebar_position: 111
 ---
 

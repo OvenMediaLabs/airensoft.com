@@ -1,5 +1,6 @@
 ---
 title: API Storage
+enterprise_only: true
 sidebar_position: 119
 ---
 

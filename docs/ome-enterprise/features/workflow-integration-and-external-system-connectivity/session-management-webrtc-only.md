@@ -1,5 +1,6 @@
 ---
 title: Session Management (WebRTC Only)
+enterprise_only: true
 sidebar_position: 136
 ---
 

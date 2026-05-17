@@ -1,5 +1,6 @@
 ---
 title: Image Overlay
+enterprise_only: true
 sidebar_position: 97
 ---
 

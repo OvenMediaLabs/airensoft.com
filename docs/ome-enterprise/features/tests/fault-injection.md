@@ -1,5 +1,6 @@
 ---
 title: Fault Injection
+enterprise_only: true
 sidebar_position: 170
 ---
 

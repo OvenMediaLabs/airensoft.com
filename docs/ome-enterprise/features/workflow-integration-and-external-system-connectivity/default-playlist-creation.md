@@ -1,5 +1,6 @@
 ---
 title: Default Playlist Creation
+enterprise_only: true
 sidebar_position: 134
 ---
 

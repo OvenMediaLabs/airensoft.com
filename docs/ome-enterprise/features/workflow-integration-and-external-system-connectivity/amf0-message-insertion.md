@@ -1,5 +1,6 @@
 ---
 title: AMF0 Message Insertion
+enterprise_only: true
 sidebar_position: 129
 ---
 

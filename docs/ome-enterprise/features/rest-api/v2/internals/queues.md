@@ -1,5 +1,6 @@
 ---
 title: Queues
+enterprise_only: true
 sidebar_position: 168
 ---
 

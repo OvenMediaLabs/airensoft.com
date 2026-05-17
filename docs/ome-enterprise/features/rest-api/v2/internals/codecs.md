@@ -1,5 +1,6 @@
 ---
 title: Codecs
+enterprise_only: true
 sidebar_position: 167
 ---
 

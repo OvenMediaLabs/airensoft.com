@@ -1,5 +1,6 @@
 ---
 title: Query String Handling
+enterprise_only: true
 sidebar_position: 133
 ---
 

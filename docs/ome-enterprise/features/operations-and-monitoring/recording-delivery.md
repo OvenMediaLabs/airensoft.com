@@ -1,5 +1,6 @@
 ---
 title: Recording Delivery
+enterprise_only: true
 sidebar_position: 120
 ---
 

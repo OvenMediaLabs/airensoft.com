@@ -1,5 +1,6 @@
 ---
 title: Current
+enterprise_only: true
 sidebar_position: 165
 ---
 

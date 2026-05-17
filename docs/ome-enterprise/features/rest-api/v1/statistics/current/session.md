@@ -1,5 +1,6 @@
 ---
 title: Session
+enterprise_only: true
 sidebar_position: 158
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: SHA-2 Support
+enterprise_only: true
 sidebar_position: 113
 ---
 

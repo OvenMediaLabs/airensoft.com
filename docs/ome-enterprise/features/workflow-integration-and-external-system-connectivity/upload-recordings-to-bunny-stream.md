@@ -1,5 +1,6 @@
 ---
 title: Upload Recordings to Bunny Stream
+enterprise_only: true
 sidebar_position: 137
 ---
 

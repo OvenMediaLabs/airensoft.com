@@ -1,5 +1,6 @@
 ---
 title: Event Forwarding Exclusions
+enterprise_only: true
 sidebar_position: 138
 ---
 

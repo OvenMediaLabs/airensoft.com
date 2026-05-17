@@ -1,5 +1,6 @@
 ---
 title: onCuePoint Message Insertion
+enterprise_only: true
 sidebar_position: 131
 ---
 

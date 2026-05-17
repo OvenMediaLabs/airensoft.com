@@ -25,7 +25,8 @@ dup: /docs/ome/live-source/rtmp
 - To change a shared page's content, **edit the OSS manual**, not the
   stub here.
 - An **Enterprise-only** page (no OSS counterpart) is authored normally,
-  with no `dup:` — see [Editing](#editing) below.
+  with no `dup:`. To flag it as Enterprise-exclusive in the sidebar, add
+  `enterprise_only: true` — see [Frontmatter](#frontmatter) below.
 
 ### OSS-only links
 
@@ -62,6 +63,12 @@ description: Configure on-the-fly recording of WebRTC streams.
 - `sidebar_position` — order within the section (smaller = higher)
 - `description` — SEO meta description; appears in search snippets
 - `slug` (optional) — override URL path; useful for `about/intro.md` (`slug: /`)
+- `enterprise_only` (optional) — set to `true` on a page that documents
+  an Enterprise-exclusive feature. The docs site then shows a small
+  "Enterprise only" marker next to that page in the sidebar (hover for
+  the wording). It is an explicit per-page opt-in, like `dup:` — **not**
+  inferred from the absence of `dup:`. A `dup:` page is shared with the
+  open-source manual, so it must never set `enterprise_only`.
 
 ### Admonitions
 

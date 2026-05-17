@@ -1,5 +1,6 @@
 ---
 title: SEI Insertion
+enterprise_only: true
 sidebar_position: 128
 ---
 

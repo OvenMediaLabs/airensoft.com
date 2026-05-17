@@ -1,5 +1,6 @@
 ---
 title: RTMP Authentication
+enterprise_only: true
 sidebar_position: 112
 ---
 

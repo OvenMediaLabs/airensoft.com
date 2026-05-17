@@ -1,5 +1,6 @@
 ---
 title: Hardware Encoder Support
+enterprise_only: true
 sidebar_position: 93
 ---
 
