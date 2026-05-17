@@ -55,10 +55,31 @@ jobs:
         # the same end state regardless of which upstream triggered.
         run: bash scripts/sync-docs.sh
 
+      # `concurrency` coalesces competing *sync* runs, but it does not
+      # serialize this push against OTHER writers to main (a merged PR,
+      # the deploy bot). Between this job's checkout and its push, main
+      # can advance — a bare `git push` then fails non-fast-forward and
+      # the freshly-built `chore: sync` commit is silently dropped. So
+      # on rejection, rebase the sync commit onto the latest main and
+      # retry. A rebase conflict (someone hand-edited docs/<src>/) is a
+      # real problem: fail loudly instead of pushing a guessed merge.
       - name: Push if changes
         run: |
-          if git log @{upstream}..HEAD --oneline | grep -q .; then
-            git push
-          else
+          if ! git log @{upstream}..HEAD --oneline | grep -q .; then
             echo "no new commits to push"
+            exit 0
           fi
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "pushed on attempt $attempt"
+              exit 0
+            fi
+            echo "push rejected (attempt $attempt) — rebasing onto latest origin/main"
+            if ! git pull --rebase origin main; then
+              git rebase --abort 2>/dev/null || true
+              echo "::error::sync commit does not rebase cleanly onto origin/main"
+              exit 1
+            fi
+          done
+          echo "::error::could not push after 5 attempts (persistent contention on main)"
+          exit 1
