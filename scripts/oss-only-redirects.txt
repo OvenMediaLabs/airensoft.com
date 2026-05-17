@@ -1,0 +1,20 @@
+# OSS-only link redirects for scripts/gen-enterprise-shared.py
+#
+# When a `dup:` Enterprise page copies an OSS body that links to an OSS
+# page which is INTENTIONALLY OSS-only (no Enterprise twin), the copied
+# link has nowhere to go on the Enterprise side. List those here so the
+# generator rewrites them on purpose instead of aborting (fail-closed).
+#
+# Any OSS-only link NOT listed here makes the sync stop loudly — that is
+# deliberate, so genuine mistakes / renames are caught, not deployed.
+#
+# Format, one per line:
+#   <oss path>  =>  <enterprise path>     # send reader to that ENT page
+#   <oss path>  =>  @oss-site             # send reader to the OSS site section
+#
+# Paths are repo-relative. Comments start with '#'. Blank lines ignored.
+
+# GPU build instructions are N/A on Enterprise (we ship pre-built).
+# The Enterprise hardware-encoder page is the right destination for an
+# enterprise reader who follows a "GPU Acceleration" reference.
+docs/ome/transcoding/gpu-usage.md => docs/ome-enterprise/features/transcoding-and-processing/hardware-encoder-support.md
