@@ -23,13 +23,14 @@
  *     twin (path recomputed for the new location). File renames
  *     (webrtc.md -> webrtc-whip.md) are absorbed for free because the map
  *     is the union of every `dup:` header.
- *   - link to an intentionally OSS-only page -> handled per
- *     scripts/oss-only-redirects.txt (a chosen Enterprise page, or the
- *     OSS section of the site).
+ *   - link to an intentionally OSS-only page -> handled per the enterprise
+ *     repo's docs-enterprise/oss-only-redirects.txt (a chosen Enterprise
+ *     page, or the OSS section of the site).
  *   - link to an OSS page that is neither -> FAIL-CLOSED: abort with the
- *     offending file+link so sync-docs.sh (set -e) stops before anything
- *     is committed/deployed. Fail-closed is all-or-nothing: on any
- *     unresolved link NOTHING is written.
+ *     offending file+link. This runs as the npm `prebuild` step, so the
+ *     failure fails `npm run build` and is surfaced in CI before deploy —
+ *     including the enterprise repo's docs-build PR check. Fail-closed is
+ *     all-or-nothing: on any unresolved link NOTHING is written.
  *   - images stay single-sourced: the link is rewritten to a relative
  *     path into `docs/ome/`'s image (same repo, same build) -- no copy.
  *
@@ -49,7 +50,10 @@ const path = require('node:path');
 const REPO = path.resolve(__dirname, '..');
 const OME = 'docs/ome';
 const ENT = 'docs/ome-enterprise';
-const REDIRECTS_FILE = path.join('scripts', 'oss-only-redirects.txt');
+// Lives in the enterprise repo (docs-enterprise/oss-only-redirects.txt) so
+// enterprise doc authors manage it alongside their docs; it arrives here
+// under docs/ome-enterprise/ via the docs sync.
+const REDIRECTS_FILE = path.join(ENT, 'oss-only-redirects.txt');
 
 const IMG_EXTS = new Set(
   ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.avif', '.bmp']);

@@ -84,27 +84,6 @@ sync_one() {
     echo "  synced @ $upstream_sha"
 }
 
-# OSS is the single source of truth. Any docs/ome-enterprise page that
-# carries a `dup:` frontmatter key has its BODY regenerated from the OSS
-# twin (links/images rewritten for the Enterprise tree). See
-# scripts/gen-enterprise-shared.js. This is a complete no-op until the
-# upstream Enterprise pages actually carry `dup:`, so it is safe on every
-# sync. A fail-closed error aborts the script (set -e) BEFORE the push in
-# sync-docs.yml, turning a would-be broken-link deploy into a located,
-# loud sync failure instead.
-regenerate_enterprise_shared() {
-    echo "▶ regenerate ome-enterprise shared pages from ome"
-    node scripts/gen-enterprise-shared.js
-
-    git add docs/ome-enterprise
-    if git diff --cached --quiet; then
-        echo "  no shared-page changes"
-        return
-    fi
-    git commit -m "chore: regenerate ome-enterprise shared pages from ome" >/dev/null
-    echo "  regenerated"
-}
-
 if [ $# -eq 0 ]; then
     for source in $SOURCES; do
         sync_one "$source"
@@ -114,8 +93,3 @@ else
         sync_one "$source"
     done
 fi
-
-# Always run after the sync loop: the generator is idempotent and a
-# complete no-op when no `dup:` pages exist, so running it unconditionally
-# is correct whether or not ome / ome-enterprise were part of this call.
-regenerate_enterprise_shared
