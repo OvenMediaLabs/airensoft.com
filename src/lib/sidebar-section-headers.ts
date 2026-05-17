@@ -37,8 +37,14 @@ type SidebarItem =
       customProps?: Record<string, unknown>;
     };
 
+// Minimal shape of the per-doc metadata Docusaurus passes to a
+// `sidebarItemsGenerator` (`SidebarItemsGeneratorDoc` is not re-exported
+// from the public package surface — same reasoning as the types above).
+type GeneratorDoc = {id: string; frontMatter?: Record<string, unknown>};
+
 type GeneratorOption = (args: {
   defaultSidebarItemsGenerator: (a: unknown) => Promise<SidebarItem[]>;
+  docs?: GeneratorDoc[];
   [key: string]: unknown;
 }) => Promise<SidebarItem[]>;
 
@@ -56,11 +62,14 @@ function escapeHtml(s: string): string {
   })[c] as string);
 }
 
-function flatten(items: SidebarItem[]): SidebarItem[] {
+function flatten(
+  items: SidebarItem[],
+  enterpriseOnly: ReadonlySet<string>,
+): SidebarItem[] {
   const out: SidebarItem[] = [];
   for (const item of items) {
     if (item.type === 'category') {
-      const transformedChildren = flatten(item.items);
+      const transformedChildren = flatten(item.items, enterpriseOnly);
       if (isSectionHeader(item)) {
         out.push({
           type: 'html',
@@ -71,6 +80,16 @@ function flatten(items: SidebarItem[]): SidebarItem[] {
       } else {
         out.push({...item, items: transformedChildren});
       }
+    } else if (
+      (item.type === 'doc' || item.type === 'ref') &&
+      enterpriseOnly.has(item.id)
+    ) {
+      // Carry the opt-in flag onto the sidebar item so the swizzled
+      // DocSidebarItem/Link can render the "Enterprise only" marker.
+      out.push({
+        ...item,
+        customProps: {...item.customProps, enterpriseOnly: true},
+      });
     } else {
       out.push(item);
     }
@@ -83,5 +102,12 @@ export const sectionHeaderSidebarGenerator: GeneratorOption = async ({
   ...args
 }) => {
   const items = await defaultSidebarItemsGenerator(args);
-  return flatten(items);
+  // A page opts into the sidebar "Enterprise only" marker with an
+  // `enterprise_only: true` frontmatter key (authored upstream, like
+  // `dup:`). Explicit opt-in — NOT derived from the absence of `dup:`.
+  const docs = (args.docs as GeneratorDoc[] | undefined) ?? [];
+  const enterpriseOnly = new Set(
+    docs.filter(d => d.frontMatter?.enterprise_only === true).map(d => d.id),
+  );
+  return flatten(items, enterpriseOnly);
 };
