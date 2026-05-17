@@ -5,7 +5,6 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "prebuild": "node scripts/gen-enterprise-shared.js",
     "build": "docusaurus build",
     "postbuild": "node scripts/label-search-results.js",
     "swizzle": "docusaurus swizzle",

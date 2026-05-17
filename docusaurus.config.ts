@@ -286,6 +286,12 @@ const config: Config = {
   ],
 
   plugins: [
+    // Expand `dup:` Enterprise stubs from the OSS manual at plugin
+    // module-load — before any plugin's loadContent (incl.
+    // @docusaurus/plugin-content-docs) and on BOTH `docusaurus build`
+    // and `docusaurus start`, so shared pages are filled for the
+    // published site, CI checks, and local preview alike.
+    './plugins/gen-enterprise-shared-plugin.js',
     [
       '@docusaurus/plugin-content-docs',
       {
