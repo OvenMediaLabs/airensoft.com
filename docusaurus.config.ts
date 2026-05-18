@@ -2,6 +2,7 @@ import {themes as prismThemes, type PrismTheme} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import {sectionHeaderSidebarGenerator} from './src/lib/sidebar-section-headers';
+import {createDocsRedirects, explicitRedirects} from './src/redirects';
 
 /**
  * Custom Prism theme: low-saturation, brand-aligned, easy on the eyes.
@@ -325,6 +326,18 @@ const config: Config = {
         sidebarPath: './sidebars-ovenplayer.ts',
         sidebarItemsGenerator: sectionHeaderSidebarGenerator,
         exclude: ['README.md'],
+      },
+    ],
+    // Legacy GitBook → new docs 301s. Squarespace forwards the three
+    // old domains here (Maintain paths), carrying GitBook's version /
+    // locale / "guide" path segments; this generates a static stub for
+    // each legacy path variant that redirects to the live page. Rules
+    // and the 3 explicit renames live in src/redirects.ts.
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        createRedirects: createDocsRedirects,
+        redirects: explicitRedirects,
       },
     ],
     // Client-side search. Indexes docs + blog at build time, ships the
