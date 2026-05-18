@@ -6,6 +6,33 @@ wrapperClassName: marketing-page
 ---
 
 import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
+import Head from '@docusaurus/Head';
+
+<Head>
+  <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      '@id': 'https://ovenmedialabs.com/ome-enterprise#software',
+      name: 'OvenMediaEngine Enterprise',
+      applicationCategory: 'MultimediaApplication',
+      applicationSubCategory: 'Live Streaming Server',
+      operatingSystem: 'Linux, Docker',
+      description:
+        'The tailored sub-second latency live streaming server, fine-tuned and supported for enterprise requirements.',
+      url: 'https://ovenmedialabs.com/ome-enterprise',
+      softwareHelp: 'https://ovenmedialabs.com/docs/ome-enterprise',
+      isAccessibleForFree: false,
+      offers: {
+        '@type': 'Offer',
+        category: 'Commercial',
+        availability: 'https://schema.org/InStock',
+        url: 'https://ovenmedialabs.com/company#contact',
+      },
+      publisher: {'@id': 'https://ovenmedialabs.com/#organization'},
+    })}
+  </script>
+</Head>
 
 <section id="hero-section" className="hero-bg-omee full-page-section d-flex align-items-center position-relative text-center delay-100">
   <div className="hero-overlay"></div>

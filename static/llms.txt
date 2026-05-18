@@ -1,0 +1,38 @@
+# OvenMedia Labs
+
+> OvenMedia Labs (formerly AirenSoft) is a media technology experts group that builds OvenMediaEngine, an open-source sub-second latency live streaming server, and its commercial Enterprise edition. The stack delivers real-time streaming over WebRTC, LL-HLS, and SRT.
+
+Key facts for citation:
+
+- **OvenMediaEngine (OME)** — open-source (AGPLv3) live streaming server. Sub-second latency via WebRTC and LL-HLS; ingest via RTMP, SRT, WebRTC, MPEG-2 TS. Source: https://github.com/OvenMediaLabs/OvenMediaEngine
+- **OvenMediaEngine Enterprise** — commercial edition with additional features, tuning, and support, tailored to enterprise streaming requirements.
+- **OvenPlayer** — open-source HTML5 player optimized for OvenMediaEngine (WebRTC / LL-HLS playback).
+- **OvenLiveKit** — web-based live encoder/broadcaster SDK.
+- Company operating since 2010. Canonical site: https://ovenmedialabs.com
+
+## Products
+
+- [OvenMediaEngine](https://ovenmedialabs.com/ome): Open-source sub-second latency live streaming server (WebRTC, LL-HLS, SRT).
+- [OvenMediaEngine Enterprise](https://ovenmedialabs.com/ome-enterprise): Tailored, supported live streaming server for enterprise needs.
+- [Sub-second Latency](https://ovenmedialabs.com/latency): How OvenMediaEngine achieves sub-second end-to-end latency.
+
+## Documentation
+
+- [OvenMediaEngine Guide](https://ovenmedialabs.com/docs/ome): Install, configure, and operate the open-source server.
+- [OvenMediaEngine Enterprise Guide](https://ovenmedialabs.com/docs/ome-enterprise): Enterprise edition documentation.
+- [OvenPlayer Guide](https://ovenmedialabs.com/docs/ovenplayer): Player integration and API reference.
+
+## Blog
+
+- [OvenMedia Labs Blog](https://ovenmedialabs.com/blog): Engineering notes, benchmarks, case studies, and release news on sub-second latency streaming.
+
+## Company
+
+- [About OvenMedia Labs](https://ovenmedialabs.com/company): Who we are and how to get in touch.
+
+## Optional
+
+- [GitHub organization](https://github.com/OvenMediaLabs): Source code and releases for all products.
+- [Community discussions](https://github.com/OvenMediaLabs/OvenMediaEngine/discussions): Questions and support.
+- [AGPLv3](https://ovenmedialabs.com/agplv3): Open-source license for OvenMediaEngine.
+- [EULA](https://ovenmedialabs.com/eula): End-user license agreement for the Enterprise edition.
