@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
-    "postbuild": "node scripts/label-search-results.js",
+    "postbuild": "node scripts/label-search-results.js && node scripts/inject-docs-description.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

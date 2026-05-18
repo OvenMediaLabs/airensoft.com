@@ -56,6 +56,53 @@ const omeCodeTheme: PrismTheme = {
 // editor just never sees marketing chrome while previewing docs.
 const PREVIEW_SOURCE = process.env.OML_PREVIEW_SOURCE || '';
 
+// Site-wide structured data. Organization establishes the entity
+// ("OvenMedia Labs, formerly AirenSoft, makes OvenMediaEngine") for
+// Google's knowledge graph and AI answer engines; WebSite wires the
+// in-site search box into the sitelinks search action. Page-type
+// schema (BreadcrumbList on docs, BlogPosting on posts) is emitted
+// automatically by Docusaurus; SoftwareApplication for the products
+// lives in the respective marketing pages.
+const SITE_URL = 'https://ovenmedialabs.com';
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: 'OvenMedia Labs',
+      alternateName: 'AirenSoft',
+      url: SITE_URL,
+      logo: `${SITE_URL}/images/ico/android-chrome-512x512.png`,
+      description:
+        'Media Technology Experts Group. Developers of OvenMediaEngine and OvenMediaEngine Enterprise.',
+      foundingDate: '2010',
+      sameAs: [
+        'https://github.com/OvenMediaLabs',
+        'https://www.linkedin.com/company/ovenmedialabs',
+        'https://x.com/OvenMediaEngine',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: 'OvenMedia Labs',
+      description:
+        'Sub-second latency live streaming, powered by OvenMediaEngine.',
+      publisher: {'@id': `${SITE_URL}/#organization`},
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: {
+          '@type': 'EntryPoint',
+          urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+        },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  ],
+};
+
 const config: Config = {
   title: 'OvenMedia Labs',
   tagline: 'Sub-second latency live streaming, powered by OvenMediaEngine.',
@@ -171,6 +218,15 @@ const config: Config = {
     ] : []),
 
     {
+      // Site-wide Organization + WebSite JSON-LD. Emitted on every
+      // page (incl. preview/CI builds) — structured data is not
+      // tracking and should always be present.
+      tagName: 'script',
+      attributes: {type: 'application/ld+json'},
+      innerHTML: JSON.stringify(structuredData),
+    },
+
+    {
       tagName: 'link',
       attributes: {
         rel: 'preconnect',
@@ -281,6 +337,20 @@ const config: Config = {
           changefreq: 'weekly',
           priority: 0.5,
           filename: 'sitemap.xml',
+          // Keep the sitemap to real, indexable destinations. The
+          // /search and /404 utility routes must never be listed; the
+          // blog tag / author / archive / paginated listing pages are
+          // thin index pages that dilute crawl focus and don't deserve
+          // their own search result. Canonical content (marketing
+          // pages, docs, individual blog posts) stays in.
+          ignorePatterns: [
+            '/search',
+            '/404',
+            '/blog/archive',
+            '/blog/tags/**',
+            '/blog/authors/**',
+            '/**/page/**',
+          ],
         },
       } satisfies Preset.Options,
     ],

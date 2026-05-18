@@ -1,7 +1,14 @@
+# Allow all crawlers, including AI/answer engines (GPTBot, ClaudeBot,
+# PerplexityBot, OAI-SearchBot, Google-Extended) — being cited in AI
+# answers is desirable for a docs/product site.
+#
+# Do NOT disallow /assets or /images: Docusaurus ships its runtime
+# JS/CSS and every processed content image under /assets, and the OG
+# image / favicon / hero art under /images. Blocking them breaks
+# rendering, image search, and social/AI link previews.
 User-agent: *
 Allow: /
-Disallow: /404.html
-Disallow: /assets/
-Disallow: /images/
+Disallow: /search
+Disallow: /404
 
-Sitemap: https://www.airensoft.com/sitemap.xml
+Sitemap: https://ovenmedialabs.com/sitemap.xml

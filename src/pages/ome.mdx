@@ -6,6 +6,31 @@ wrapperClassName: marketing-page
 ---
 
 import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
+import Head from '@docusaurus/Head';
+
+<Head>
+  <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      '@id': 'https://ovenmedialabs.com/ome#software',
+      name: 'OvenMediaEngine',
+      alternateName: 'OME',
+      applicationCategory: 'MultimediaApplication',
+      applicationSubCategory: 'Live Streaming Server',
+      operatingSystem: 'Linux, Docker',
+      description:
+        'Open-source sub-second latency live streaming server with WebRTC, LL-HLS, and SRT.',
+      url: 'https://ovenmedialabs.com/ome',
+      downloadUrl: 'https://github.com/OvenMediaLabs/OvenMediaEngine',
+      softwareHelp: 'https://ovenmedialabs.com/docs/ome',
+      license: 'https://www.gnu.org/licenses/agpl-3.0.html',
+      isAccessibleForFree: true,
+      offers: {'@type': 'Offer', price: '0', priceCurrency: 'USD'},
+      publisher: {'@id': 'https://ovenmedialabs.com/#organization'},
+    })}
+  </script>
+</Head>
 
 <section id="hero-section" className="hero-bg-ome full-page-section d-flex align-items-center position-relative text-center delay-100">
   <div className="hero-overlay"></div>
@@ -16,7 +41,7 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
       </div>
       <div className="col-lg-12">
         <h1 className="display-1 fw-bold text-main mb-4 lh-tight reveal-up">
-          <span className="text-gradient-surf">OvenMediaEngine</span>
+          <span className="text-gradient-surf">OvenMediaEngine</span> — open-source sub-second streaming server <span className="d-block fs-3 fw-normal text-mono-light mt-3">WebRTC · LL-HLS · SRT</span>
         </h1>
         <p className="lead text-mono-light mb-5 reveal-up delay-200 col-lg-8 mx-auto">
           Sub-second latency streaming server with WebRTC, LL-HLS, and SRT, giving you full control to build and own your real-time media platform.
