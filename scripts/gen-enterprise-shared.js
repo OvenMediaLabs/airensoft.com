@@ -232,15 +232,35 @@ function main(argv) {
   for (const entRel of Object.keys(entToOss).sort()) {
     const ossRel = entToOss[entRel];
     const [entFm] = splitFrontmatter(read(entRel));
-    const [, ossBody] = splitFrontmatter(read(ossRel));
+    const [ossFm, ossBody] = splitFrontmatter(read(ossRel));
     const newBody = rewriteBody(
       ossBody.replace(/^\n+/, ''), ossRel, entRel, ossToEnt, redirects, unresolved);
     const banner =
       '{/* AUTO-GENERATED from /' + ossRel + ' by ' +
       'scripts/gen-enterprise-shared.js — edit the OSS source, not this file. */}';
+    // A dup: page renders the OSS body, so its meta description should
+    // mirror the OSS page's too. The Enterprise frontmatter is kept
+    // (title / sidebar_position / dup differ from OSS), so we don't
+    // pull OSS frontmatter wholesale — we only inherit `description`,
+    // and only when the Enterprise stub hasn't authored its own. The
+    // OSS copy says "OvenMediaEngine"; this is the Enterprise edition,
+    // so swap the product name (idempotent via the negative lookahead).
+    // No OSS description -> inject nothing; the downstream postbuild
+    // pass / Docusaurus excerpt still covers it.
+    let entFmOut = entFm;
+    if (!/^description:[ \t]*\S/m.test(entFm)) {
+      const dm = ossFm && ossFm.match(/^description:[ \t]*(.+?)[ \t]*$/m);
+      if (dm) {
+        const entDesc = 'description: ' + dm[1].replace(
+          /OvenMediaEngine(?! Enterprise)/g, 'OvenMediaEngine Enterprise');
+        entFmOut = /^title:.*$/m.test(entFmOut)
+          ? entFmOut.replace(/^(title:.*)$/m, `$1\n${entDesc}`)
+          : `${entFmOut}\n${entDesc}`;
+      }
+    }
     plan.push([
       path.join(REPO, entRel),
-      `---\n${entFm}\n---\n\n${banner}\n\n${newBody.replace(/\s+$/, '')}\n`,
+      `---\n${entFmOut}\n---\n\n${banner}\n\n${newBody.replace(/\s+$/, '')}\n`,
     ]);
   }
 
