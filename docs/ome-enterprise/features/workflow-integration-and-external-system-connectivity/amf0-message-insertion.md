@@ -1,5 +1,6 @@
 ---
 title: AMF0 Message Insertion
+description: "Insert AMF0 messages when re-streaming OvenMediaEngine Enterprise live streams over RTMP push publishing."
 enterprise_only: true
 sidebar_position: 129
 ---

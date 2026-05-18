@@ -1,5 +1,6 @@
 ---
 title: Access Control Settings
+description: "Review Ingress/Egress access control settings for OvenMediaEngine Enterprise in the Web Console."
 sidebar_position: 73
 ---
 

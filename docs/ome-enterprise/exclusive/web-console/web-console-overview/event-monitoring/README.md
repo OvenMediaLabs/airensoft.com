@@ -1,5 +1,6 @@
 ---
 title: Event Monitoring
+description: "Monitor application, stream, and REST API events in OvenMediaEngine Enterprise from the Web Console."
 sidebar_position: 59
 ---
 

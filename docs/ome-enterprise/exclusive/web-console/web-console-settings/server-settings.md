@@ -1,5 +1,6 @@
 ---
 title: Server Settings
+description: "Review OvenMediaEngine Enterprise server and module settings from the Web Console."
 sidebar_position: 68
 ---
 

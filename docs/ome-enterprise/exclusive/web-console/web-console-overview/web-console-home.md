@@ -1,5 +1,6 @@
 ---
 title: Web Console Home
+description: "OvenMediaEngine Enterprise Web Console Home — an overview of each section after signing in."
 sidebar_position: 54
 ---
 

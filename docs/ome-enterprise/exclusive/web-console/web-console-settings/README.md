@@ -1,5 +1,6 @@
 ---
 title: Web Console Settings
+description: "Review OvenMediaEngine Enterprise feature settings from the Web Console Settings pages."
 sidebar_position: 67
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Multicast
+description: "Ingest MPEG-2 TS over UDP multicast into OvenMediaEngine Enterprise with the Multicast Provider."
 enterprise_only: true
 sidebar_position: 88
 ---

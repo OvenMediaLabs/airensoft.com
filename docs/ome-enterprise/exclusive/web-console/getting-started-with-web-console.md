@@ -1,5 +1,6 @@
 ---
 title: Getting Started with Web Console
+description: "Set up the OvenMediaEngine Enterprise Web Console via its environment variable file and start the service."
 sidebar_position: 50
 ---
 

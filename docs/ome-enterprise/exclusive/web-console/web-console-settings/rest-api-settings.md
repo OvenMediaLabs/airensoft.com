@@ -1,5 +1,6 @@
 ---
 title: REST API Settings
+description: "Review and change OvenMediaEngine REST API settings for VirtualHost and Application/Stream from the Web Console."
 sidebar_position: 77
 ---
 

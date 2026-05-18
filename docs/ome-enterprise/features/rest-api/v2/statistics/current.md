@@ -1,5 +1,6 @@
 ---
 title: Current
+description: "Get current OvenMediaEngine Enterprise statistics for virtual hosts, applications, and streams via the v2 REST API."
 enterprise_only: true
 sidebar_position: 165
 ---

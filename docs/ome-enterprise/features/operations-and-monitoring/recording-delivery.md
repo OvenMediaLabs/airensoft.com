@@ -1,5 +1,6 @@
 ---
 title: Recording Delivery
+description: "Record OvenMediaEngine Enterprise live streams and deliver the recorded files to object storage."
 enterprise_only: true
 sidebar_position: 120
 ---

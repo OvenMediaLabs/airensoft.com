@@ -1,5 +1,6 @@
 ---
 title: Upload Recordings to Bunny Stream
+description: "Upload OvenMediaEngine Enterprise live recordings to Bunny Stream for global delivery."
 enterprise_only: true
 sidebar_position: 137
 ---

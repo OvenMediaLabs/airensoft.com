@@ -1,5 +1,6 @@
 ---
 title: SHA-2 Support
+description: "Use SHA-2 as the hash algorithm for OvenMediaEngine Enterprise Alert, SignedPolicy, and AdmissionWebhooks authentication."
 enterprise_only: true
 sidebar_position: 113
 ---

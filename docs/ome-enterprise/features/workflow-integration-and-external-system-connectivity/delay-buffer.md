@@ -1,5 +1,6 @@
 ---
 title: Delay Buffer
+description: "Add forced latency to all OvenMediaEngine Enterprise publishers with the Delay Buffer to handle live incidents."
 enterprise_only: true
 sidebar_position: 132
 ---

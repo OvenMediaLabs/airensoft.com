@@ -1,5 +1,6 @@
 ---
 title: License Error Resolution
+description: "Resolve OvenMediaEngine Enterprise license errors such as 'Cannot retrieve license information' on AWS."
 sidebar_position: 46
 ---
 

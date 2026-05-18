@@ -1,5 +1,6 @@
 ---
 title: Hardware Encoder Support
+description: "Enable hardware-accelerated video encoding in OvenMediaEngine Enterprise automatically with the RPM/DEB packages."
 enterprise_only: true
 sidebar_position: 93
 ---

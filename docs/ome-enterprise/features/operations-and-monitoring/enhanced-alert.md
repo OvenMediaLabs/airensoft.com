@@ -1,5 +1,6 @@
 ---
 title: Enhanced Alert
+description: "Detect stream and system anomalies and send notifications with OvenMediaEngine Enterprise Enhanced Alert."
 enterprise_only: true
 sidebar_position: 121
 ---

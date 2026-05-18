@@ -1,5 +1,6 @@
 ---
 title: Restart
+description: "Restart OvenMediaEngine from the Web Console to apply the latest OvenMediaEngine Enterprise configuration changes."
 sidebar_position: 66
 ---
 

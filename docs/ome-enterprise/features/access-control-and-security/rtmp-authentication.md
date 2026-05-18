@@ -1,5 +1,6 @@
 ---
 title: RTMP Authentication
+description: "Limit unauthorized RTMP ingest to OvenMediaEngine Enterprise with username/password RTMP authentication."
 enterprise_only: true
 sidebar_position: 112
 ---

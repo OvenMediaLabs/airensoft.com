@@ -1,5 +1,6 @@
 ---
 title: OSS Notice
+description: "Open-source software acknowledgements and licenses for OvenMediaEngine Enterprise."
 sidebar_position: 171
 ---
 

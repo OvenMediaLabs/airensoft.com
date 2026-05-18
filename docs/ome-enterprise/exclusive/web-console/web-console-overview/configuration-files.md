@@ -1,5 +1,6 @@
 ---
 title: Configuration Files
+description: "Review OvenMediaEngine Enterprise settings as XML from the Web Console Configuration Files page."
 sidebar_position: 64
 ---
 

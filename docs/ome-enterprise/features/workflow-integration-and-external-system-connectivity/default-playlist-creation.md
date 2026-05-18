@@ -1,5 +1,6 @@
 ---
 title: Default Playlist Creation
+description: "Control creation of the default LLHLS, HLS, and WebRTC playlists per protocol in OvenMediaEngine Enterprise."
 enterprise_only: true
 sidebar_position: 134
 ---

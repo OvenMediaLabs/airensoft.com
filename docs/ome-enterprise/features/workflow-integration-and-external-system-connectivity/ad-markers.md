@@ -1,5 +1,6 @@
 ---
 title: Ad Markers
+description: "Insert CUE-OUT/IN ad markers into OvenMediaEngine Enterprise LL-HLS and HLS playlists via the REST API."
 enterprise_only: true
 sidebar_position: 130
 ---

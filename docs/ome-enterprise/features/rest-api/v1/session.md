@@ -1,5 +1,6 @@
 ---
 title: Session
+description: "Manage named WebRTC playback sessions in OvenMediaEngine Enterprise through the v1 REST API."
 enterprise_only: true
 sidebar_position: 159
 ---

@@ -1,5 +1,6 @@
 ---
 title: Troubleshooting on AWS
+description: "Troubleshoot OvenMediaEngine Enterprise on AWS — streaming interruptions, playback failures, and WebRTC/HLS issues."
 sidebar_position: 45
 ---
 

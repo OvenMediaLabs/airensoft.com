@@ -1,5 +1,6 @@
 ---
 title: Session
+description: "Query named WebRTC playback session statistics in OvenMediaEngine Enterprise through the v1 REST API."
 enterprise_only: true
 sidebar_position: 158
 ---

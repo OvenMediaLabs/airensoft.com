@@ -1,5 +1,6 @@
 ---
 title: Fault Injection
+description: "Verify OvenMediaEngine Enterprise stability and error handling by intentionally injecting faults via the API."
 enterprise_only: true
 sidebar_position: 170
 ---

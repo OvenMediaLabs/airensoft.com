@@ -1,5 +1,6 @@
 ---
 title: Query String Handling
+description: "Control Low-Latency HLS and Legacy HLS behavior with default query strings in OvenMediaEngine Enterprise."
 enterprise_only: true
 sidebar_position: 133
 ---

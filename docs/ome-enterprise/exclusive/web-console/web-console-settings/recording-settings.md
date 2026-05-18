@@ -1,5 +1,6 @@
 ---
 title: Recording Settings
+description: "Configure recording of live tracks, including StreamMap-based auto recording, from the OvenMediaEngine Enterprise Web Console."
 sidebar_position: 75
 ---
 

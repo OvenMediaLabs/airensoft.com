@@ -1,5 +1,6 @@
 ---
 title: Digital Rights Management (DRM)
+description: "Protect OvenMediaEngine Enterprise content with Digital Rights Management (DRM) against unauthorized use and copying."
 sidebar_position: 109
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Publish via RTMP/E-RTMP
+description: "Publish a stream to OvenMediaEngine Enterprise on AWS via RTMP/E-RTMP, then verify playback and status."
 sidebar_position: 41
 ---
 

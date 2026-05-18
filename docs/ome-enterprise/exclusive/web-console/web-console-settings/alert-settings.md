@@ -1,5 +1,6 @@
 ---
 title: Alert Settings
+description: "Configure the Alert module to detect anomalies and notify you, from the OvenMediaEngine Enterprise Web Console."
 sidebar_position: 78
 ---
 

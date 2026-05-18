@@ -1,5 +1,6 @@
 ---
 title: Change Password
+description: "Change your OvenMediaEngine Enterprise Web Console account password."
 sidebar_position: 53
 ---
 

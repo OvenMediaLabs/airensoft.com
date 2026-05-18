@@ -1,5 +1,6 @@
 ---
 title: Event Monitoring on AWS
+description: "View event monitoring for OvenMediaEngine Enterprise on AWS, which is enabled by default."
 sidebar_position: 42
 ---
 

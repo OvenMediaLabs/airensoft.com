@@ -1,5 +1,6 @@
 ---
 title: Publish via SRT
+description: "Publish a stream to OvenMediaEngine Enterprise on AWS via SRT using an MPEG-2 TS container for live contribution."
 sidebar_position: 40
 ---
 

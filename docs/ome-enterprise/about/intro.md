@@ -1,6 +1,7 @@
 ---
 slug: /
 title: Introduction
+description: "OvenMediaEngine Enterprise is a sub-second latency live streaming server for enterprises, built on the open-source OvenMediaEngine."
 sidebar_position: 1
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Quick ABR Setup
+description: "Configure adaptive bitrate quickly with predefined encoding presets in the OvenMediaEngine Enterprise Web Console."
 sidebar_position: 65
 ---
 

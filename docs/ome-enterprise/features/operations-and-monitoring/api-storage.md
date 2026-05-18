@@ -1,5 +1,6 @@
 ---
 title: API Storage
+description: "Persist VirtualHost and Application changes made via the OvenMediaEngine Enterprise REST API with API Storage."
 enterprise_only: true
 sidebar_position: 119
 ---

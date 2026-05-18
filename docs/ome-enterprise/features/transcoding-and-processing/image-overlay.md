@@ -1,5 +1,6 @@
 ---
 title: Image Overlay
+description: "Superimpose logos, watermarks, and banners on OvenMediaEngine Enterprise streams in real time with Image Overlay."
 enterprise_only: true
 sidebar_position: 97
 ---

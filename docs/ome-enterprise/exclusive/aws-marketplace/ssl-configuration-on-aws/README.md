@@ -1,5 +1,6 @@
 ---
 title: SSL Configuration on AWS
+description: "Configure SSL for OvenMediaEngine Enterprise on AWS so browsers allow camera/microphone access and secure playback."
 sidebar_position: 43
 ---
 

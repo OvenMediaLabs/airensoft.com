@@ -1,5 +1,6 @@
 ---
 title: Origin Redundancy
+description: "Provide origin failover for HTTP CDN/cache systems with OvenMediaEngine Enterprise origin redundancy."
 enterprise_only: true
 sidebar_position: 116
 ---

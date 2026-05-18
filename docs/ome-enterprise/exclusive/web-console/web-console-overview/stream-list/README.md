@@ -1,5 +1,6 @@
 ---
 title: Stream List
+description: "Manage Managed Streams in the OvenMediaEngine Enterprise Web Console stream list."
 sidebar_position: 55
 ---
 

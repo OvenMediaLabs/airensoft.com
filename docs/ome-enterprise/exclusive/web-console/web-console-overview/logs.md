@@ -1,5 +1,6 @@
 ---
 title: Logs
+description: "View OvenMediaEngine logs from the Web Console to monitor OvenMediaEngine Enterprise operation."
 sidebar_position: 63
 ---
 

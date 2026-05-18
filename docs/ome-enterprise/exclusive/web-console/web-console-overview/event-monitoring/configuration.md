@@ -1,5 +1,6 @@
 ---
 title: Configuration
+description: "Configure OvenMediaEngine Enterprise event monitoring via Server.xml or the Web Console."
 sidebar_position: 60
 ---
 

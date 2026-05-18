@@ -1,5 +1,6 @@
 ---
 title: Push Publishing Settings
+description: "Configure Push Publishing to re-stream OvenMediaEngine Enterprise streams to other systems, from the Web Console."
 sidebar_position: 76
 ---
 

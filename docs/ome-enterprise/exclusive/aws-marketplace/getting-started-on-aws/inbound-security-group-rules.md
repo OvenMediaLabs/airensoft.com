@@ -1,5 +1,6 @@
 ---
 title: Inbound Security Group Rules
+description: "The vendor-recommended inbound security group ports for OvenMediaEngine Enterprise on AWS and the purpose of each."
 sidebar_position: 34
 ---
 

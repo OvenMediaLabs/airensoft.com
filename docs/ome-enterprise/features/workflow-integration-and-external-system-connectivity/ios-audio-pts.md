@@ -1,5 +1,6 @@
 ---
 title: iOS Audio PTS
+description: "Prevent iOS audio dropouts on OvenMediaEngine Enterprise playback with the iOS Audio PTS option."
 enterprise_only: true
 sidebar_position: 135
 ---

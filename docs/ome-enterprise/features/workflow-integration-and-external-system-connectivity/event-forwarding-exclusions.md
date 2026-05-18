@@ -1,5 +1,6 @@
 ---
 title: Event Forwarding Exclusions
+description: "Control whether events are forwarded to the next processing step per application in OvenMediaEngine Enterprise."
 enterprise_only: true
 sidebar_position: 138
 ---

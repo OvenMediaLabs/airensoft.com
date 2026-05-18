@@ -1,5 +1,6 @@
 ---
 title: Codecs
+description: "Query and manage hardware codec devices on OvenMediaEngine Enterprise through the v2 REST API."
 enterprise_only: true
 sidebar_position: 167
 ---

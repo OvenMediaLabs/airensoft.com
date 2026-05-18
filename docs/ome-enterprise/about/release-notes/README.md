@@ -1,5 +1,6 @@
 ---
 title: Release Notes
+description: "OvenMediaEngine Enterprise release notes — the latest features, improvements, and bug fixes across all versions."
 sidebar_position: 2
 ---
 

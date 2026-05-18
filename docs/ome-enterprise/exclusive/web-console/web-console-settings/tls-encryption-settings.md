@@ -1,5 +1,6 @@
 ---
 title: TLS Encryption Settings
+description: "Configure TLS encryption for OvenMediaEngine Enterprise from the Web Console to secure communications."
 sidebar_position: 72
 ---
 

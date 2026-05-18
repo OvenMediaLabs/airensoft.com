@@ -1,5 +1,6 @@
 ---
 title: Web Console Publishing
+description: "Share OvenMediaEngine Enterprise Web Console stream list, stream detail, and event monitoring pages with others."
 sidebar_position: 62
 ---
 

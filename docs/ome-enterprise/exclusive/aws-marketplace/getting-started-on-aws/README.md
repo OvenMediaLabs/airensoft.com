@@ -1,5 +1,6 @@
 ---
 title: Getting Started on AWS
+description: "Subscribe to and deploy OvenMediaEngine Enterprise on Amazon EC2 from AWS Marketplace."
 sidebar_position: 33
 ---
 

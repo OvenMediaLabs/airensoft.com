@@ -1,5 +1,6 @@
 ---
 title: Publish via RTSP Pull (CCTV)
+description: "Turn RTSP sources such as CCTV and IP cameras into real-time streams with OvenMediaEngine Enterprise RTSP Pull on AWS."
 sidebar_position: 38
 ---
 

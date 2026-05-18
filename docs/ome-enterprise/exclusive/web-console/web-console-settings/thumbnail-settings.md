@@ -1,5 +1,6 @@
 ---
 title: Thumbnail Settings
+description: "Configure JPEG/PNG live thumbnail extraction for OvenMediaEngine Enterprise from the Web Console."
 sidebar_position: 74
 ---
 

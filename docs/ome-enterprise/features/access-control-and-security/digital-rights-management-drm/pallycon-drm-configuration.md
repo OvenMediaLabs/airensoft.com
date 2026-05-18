@@ -1,5 +1,6 @@
 ---
 title: PallyCon DRM Configuration
+description: "Apply PallyCon DRM to OvenMediaEngine Enterprise LLHLS streams by configuring the DRM Info File."
 enterprise_only: true
 sidebar_position: 111
 ---

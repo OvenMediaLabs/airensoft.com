@@ -1,5 +1,6 @@
 ---
 title: onCuePoint Message Insertion
+description: "Insert onCuePoint AMF0 messages when re-streaming OvenMediaEngine Enterprise streams over RTMP."
 enterprise_only: true
 sidebar_position: 131
 ---

@@ -1,5 +1,6 @@
 ---
 title: Managed and Instant Streams
+description: "Distinguish and manage Managed and Instant streams in the OvenMediaEngine Enterprise Web Console."
 sidebar_position: 56
 ---
 

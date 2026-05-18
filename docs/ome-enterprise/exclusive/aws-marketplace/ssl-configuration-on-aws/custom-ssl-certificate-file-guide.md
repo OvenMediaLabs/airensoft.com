@@ -1,5 +1,6 @@
 ---
 title: Custom SSL Certificate File Guide
+description: "Which certificate files to upload when using your own domain and certificate for OvenMediaEngine Enterprise on AWS."
 sidebar_position: 44
 ---
 

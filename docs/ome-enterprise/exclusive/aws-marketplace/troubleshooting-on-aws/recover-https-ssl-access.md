@@ -1,5 +1,6 @@
 ---
 title: Recover HTTPS (SSL) Access
+description: "Recover HTTPS/SSL access for OvenMediaEngine Enterprise on AWS after an instance public IP change breaks domain mapping."
 sidebar_position: 47
 ---
 

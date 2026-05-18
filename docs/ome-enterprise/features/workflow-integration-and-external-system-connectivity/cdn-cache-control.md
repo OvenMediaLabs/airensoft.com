@@ -1,5 +1,6 @@
 ---
 title: CDN Cache Control
+description: "Control edge and CDN caching of OvenMediaEngine Enterprise content with a Cache-Control header."
 enterprise_only: true
 sidebar_position: 126
 ---

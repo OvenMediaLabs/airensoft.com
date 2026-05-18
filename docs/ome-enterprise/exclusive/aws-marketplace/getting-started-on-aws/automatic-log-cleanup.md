@@ -1,5 +1,6 @@
 ---
 title: Automatic Log Cleanup
+description: "Automatically clean up accumulated logs on OvenMediaEngine Enterprise for AWS to prevent excessive disk usage."
 sidebar_position: 35
 ---
 

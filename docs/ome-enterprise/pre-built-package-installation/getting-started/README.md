@@ -1,5 +1,6 @@
 ---
 title: Getting Started
+description: "Install OvenMediaEngine Enterprise on Ubuntu, RHEL, or Docker — getting started for each platform."
 sidebar_position: 26
 ---
 

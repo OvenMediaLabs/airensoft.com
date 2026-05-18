@@ -1,5 +1,6 @@
 ---
 title: Scheduled Channels
+description: "Build scheduled live channels from pre-recorded files or live streams in the OvenMediaEngine Enterprise Web Console."
 sidebar_position: 57
 ---
 

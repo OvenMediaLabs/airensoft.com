@@ -56,12 +56,21 @@ Every page should have YAML frontmatter at the top:
 title: Stream Recording
 sidebar_position: 4
 description: Configure on-the-fly recording of WebRTC streams.
+enterprise_only: true   # only on Enterprise-exclusive pages — omit on dup: / shared pages
 ---
 ```
 
 - `title` — page title shown in browser tab and as H1
 - `sidebar_position` — order within the section (smaller = higher)
-- `description` — SEO meta description; appears in search snippets
+- `description` — **required** on normally-authored pages. A
+  one-sentence meta description (~120–155 chars) stating what the page
+  covers; include "OvenMediaEngine Enterprise". This is what search
+  engines show in snippets and what AI answer engines quote, so
+  **always write one.** If omitted, the site falls back to a
+  low-quality auto-excerpt, which hurts search and AI discoverability.
+  **Exception:** a `dup:` page may omit it — the publish step inherits
+  the OSS page's description automatically, with the product name
+  adjusted. Set one on a `dup:` page only to override that.
 - `slug` (optional) — override URL path; useful for `about/intro.md` (`slug: /`)
 - `enterprise_only` (optional) — set to `true` on a page that documents
   an Enterprise-exclusive feature. The docs site then shows a small

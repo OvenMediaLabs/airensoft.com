@@ -1,5 +1,6 @@
 ---
 title: Publish Overview
+description: "How OvenMediaEngine Enterprise on AWS ingests media sources and delivers them as sub-second streams."
 sidebar_position: 37
 ---
 

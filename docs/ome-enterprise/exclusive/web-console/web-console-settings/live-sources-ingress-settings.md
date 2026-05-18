@@ -1,5 +1,6 @@
 ---
 title: Live Sources (Ingress) Settings
+description: "Manage OvenMediaEngine ingress protocols from the OvenMediaEngine Enterprise Web Console."
 sidebar_position: 69
 ---
 

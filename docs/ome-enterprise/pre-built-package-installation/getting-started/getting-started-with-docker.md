@@ -1,5 +1,6 @@
 ---
 title: Getting Started with Docker
+description: "Get started with OvenMediaEngine Enterprise using a Docker image."
 sidebar_position: 28
 ---
 

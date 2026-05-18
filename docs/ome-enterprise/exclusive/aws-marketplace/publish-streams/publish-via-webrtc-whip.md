@@ -1,5 +1,6 @@
 ---
 title: Publish via WebRTC/WHIP
+description: "Publish a media source to OvenMediaEngine Enterprise on AWS via WebRTC/WHIP from a browser or WHIP encoder."
 sidebar_position: 39
 ---
 

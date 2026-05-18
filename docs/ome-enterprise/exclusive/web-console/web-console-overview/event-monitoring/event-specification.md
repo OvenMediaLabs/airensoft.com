@@ -1,5 +1,6 @@
 ---
 title: Event Specification
+description: "OvenMediaEngine Enterprise event log file (events.log) specification and daily rolling behavior."
 sidebar_position: 61
 ---
 

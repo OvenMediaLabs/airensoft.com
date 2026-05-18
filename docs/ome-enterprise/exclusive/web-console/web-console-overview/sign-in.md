@@ -1,5 +1,6 @@
 ---
 title: Sign In
+description: "Access and sign in to the OvenMediaEngine Enterprise Web Console using its URL pattern."
 sidebar_position: 52
 ---
 

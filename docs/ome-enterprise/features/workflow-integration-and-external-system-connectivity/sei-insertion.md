@@ -1,5 +1,6 @@
 ---
 title: SEI Insertion
+description: "Insert Supplemental Enhancement Information (SEI) into OvenMediaEngine Enterprise live video at frame-level precision."
 enterprise_only: true
 sidebar_position: 128
 ---

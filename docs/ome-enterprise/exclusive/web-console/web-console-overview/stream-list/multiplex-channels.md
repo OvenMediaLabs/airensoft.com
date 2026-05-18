@@ -1,5 +1,6 @@
 ---
 title: Multiplex Channels
+description: "Combine multiple ingress streams into one ABR or multiplexed channel in the OvenMediaEngine Enterprise Web Console."
 sidebar_position: 58
 ---
 

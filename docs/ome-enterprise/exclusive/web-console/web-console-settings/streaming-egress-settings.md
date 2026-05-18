@@ -1,5 +1,6 @@
 ---
 title: Streaming (Egress) Settings
+description: "Manage OvenMediaEngine egress (playback) protocols from the OvenMediaEngine Enterprise Web Console."
 sidebar_position: 71
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Skip Frames
+description: "Reduce OvenMediaEngine Enterprise processing load with the Skip Frames sampling filter."
 enterprise_only: true
 sidebar_position: 98
 ---

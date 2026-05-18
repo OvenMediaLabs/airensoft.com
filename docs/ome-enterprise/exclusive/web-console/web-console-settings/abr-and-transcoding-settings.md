@@ -1,5 +1,6 @@
 ---
 title: ABR and Transcoding Settings
+description: "Configure ABR and transcoding for OvenMediaEngine Enterprise from the Web Console."
 sidebar_position: 70
 ---
 

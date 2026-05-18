@@ -1,5 +1,6 @@
 ---
 title: Queues
+description: "Monitor Provider, Media Router, Transcoder, and Publisher queue status in OvenMediaEngine Enterprise via the v2 REST API."
 enterprise_only: true
 sidebar_position: 168
 ---

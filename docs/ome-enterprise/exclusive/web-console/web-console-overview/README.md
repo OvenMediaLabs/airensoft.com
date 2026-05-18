@@ -1,5 +1,6 @@
 ---
 title: Web Console Overview
+description: "Overview of the OvenMediaEngine Enterprise Web Console for managing and monitoring streaming."
 sidebar_position: 51
 ---
 

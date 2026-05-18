@@ -1,5 +1,6 @@
 ---
 title: Getting Started with Linux
+description: "Get started with OvenMediaEngine Enterprise on Linux — prerequisites and installation."
 sidebar_position: 27
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Proxy Protocol
+description: "Handle stream input behind a load balancer with PROXY protocol support in OvenMediaEngine Enterprise."
 enterprise_only: true
 sidebar_position: 127
 ---

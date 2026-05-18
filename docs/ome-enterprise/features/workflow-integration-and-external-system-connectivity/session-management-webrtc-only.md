@@ -1,5 +1,6 @@
 ---
 title: Session Management (WebRTC Only)
+description: "Assign and manage named WebRTC playback sessions in OvenMediaEngine Enterprise for operational convenience."
 enterprise_only: true
 sidebar_position: 136
 ---

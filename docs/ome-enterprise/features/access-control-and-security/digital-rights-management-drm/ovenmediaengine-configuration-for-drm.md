@@ -1,5 +1,6 @@
 ---
 title: OvenMediaEngine Configuration for DRM
+description: "Configure OvenMediaEngine Enterprise for DRM by setting the DRM Info File (.xml) path relative to Server.xml."
 enterprise_only: true
 sidebar_position: 110
 ---

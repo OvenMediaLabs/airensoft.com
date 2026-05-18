@@ -1,5 +1,6 @@
 ---
 title: Support Request Process
+description: "How to request support for OvenMediaEngine Enterprise on AWS when unexpected service issues occur."
 sidebar_position: 48
 ---
 
