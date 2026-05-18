@@ -680,6 +680,55 @@ html.plugin-docs .pagination-nav {
   transform: none;
 }
 
+/* Same "Enterprise only" crown reused inside page content (the Feature
+ * Index table), with the same instant CSS tooltip as the sidebar. The
+ * sidebar rules above are scoped to `.theme-doc-sidebar-menu`; these
+ * mirror them for the rendered doc body (`.markdown`). Tooltip is
+ * centered over the icon (content has no clipped scroll viewport). */
+.markdown .enterprise-only-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: -0.15em;
+  margin-left: 0.3em;
+  color: var(--ifm-color-primary);
+  opacity: 0.7;
+}
+
+.markdown .enterprise-only-icon:hover {
+  opacity: 1;
+}
+
+.markdown .enterprise-only-icon svg {
+  display: block;
+}
+
+.markdown .enterprise-only-icon::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  z-index: 50;
+  white-space: nowrap;
+  pointer-events: none;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: #1f2937;
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transform: translateX(-50%) translateY(2px);
+  transition: opacity 0.08s ease, transform 0.08s ease;
+}
+
+.markdown .enterprise-only-icon:hover::after {
+  opacity: 1;
+  transform: translateX(-50%);
+}
+
 /* ---- Blog sidebar (right column on /blog) ----
  * The blog plugin uses CSS-module classes (`sidebar_*`, `sidebarItemTitle_*`,
  * `sidebarItemList_*`) instead of the docs theme classes. Wildcard-match
