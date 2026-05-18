@@ -8,3 +8,91 @@
     max-width: 75% !important;
   }
 }
+
+/* Auto child-page grid for category index docs.
+ *
+ * `.childNav` is a border-only outer box mirroring the blog product
+ * CTA's framing, so the grid reads as one distinct region clearly
+ * separated from the prose above on content-bearing category pages
+ * (no fill, so the inner cards stay crisp).
+ *
+ * `.childCard` surface/border/hover tokens are copied verbatim from the
+ * blog "You might also like" cards (`.relatedCard` in
+ * src/theme/BlogPostItem/PostFooterExtras.module.css) so the two read
+ * identically — just denser (2-up, smaller type) since these are
+ * title-only. Local CSS-module class names, so the globally-loaded
+ * Bootstrap `.card`/`.row` rules never touch these. */
+.childNav {
+  margin-top: 3rem;
+  padding: 1.2rem 1.3rem 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.childNavTitle {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.childGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.childCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  min-height: 0;
+  padding: 0.55rem 0.85rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--ifm-heading-color);
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.childCardLabel {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.childCardArrow {
+  flex: none;
+  font-size: 0.85rem;
+  line-height: 1;
+  color: var(--ifm-color-emphasis-500);
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.childCard:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+  background: rgba(56, 189, 248, 0.04);
+  color: var(--ifm-heading-color);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.childCard:hover .childCardArrow {
+  color: var(--ifm-color-primary);
+  transform: translateX(2px);
+}
+
+@media (max-width: 768px) {
+  .childGrid {
+    grid-template-columns: 1fr;
+  }
+}
