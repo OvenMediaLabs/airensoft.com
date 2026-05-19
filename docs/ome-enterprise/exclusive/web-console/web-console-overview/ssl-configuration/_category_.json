@@ -1,0 +1,8 @@
+{
+  "label": "SSL Configuration",
+  "position": 65,
+  "link": {
+    "type": "doc",
+    "id": "README"
+  }
+}

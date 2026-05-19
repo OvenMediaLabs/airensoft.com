@@ -1,7 +1,7 @@
 ---
 title: Quick ABR Setup
 description: "Configure adaptive bitrate quickly with predefined encoding presets in the OvenMediaEngine Enterprise Web Console."
-sidebar_position: 65
+sidebar_position: 67
 ---
 
 You can configure ABR by selecting predefined video encoding presets in the Quick ABR Setup page.
