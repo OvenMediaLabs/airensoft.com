@@ -23,10 +23,18 @@ docusaurus.config.ts  Site config (broken-link policy is throw mode)
 
 ```bash
 npm ci
-npm start            # http://localhost:3000
+npm start            # http://localhost:3000  (enterprise pages generated — working tree gets dirty)
+npm run preview      # http://localhost:3000  (enterprise pages show as stubs — working tree stays clean)
 npm run build        # production build with full broken-link checks
 npm run typecheck
 ```
+
+`npm start` runs the enterprise shared-page generator on startup, so
+`docs/ome-enterprise/` files with a `dup:` frontmatter key are filled
+from the OSS source. This dirties the working tree intentionally — use
+`git checkout -- docs/ome-enterprise/` to discard when done. Use
+`npm run preview` when you only need to inspect the site and want to
+keep the working tree clean (enterprise pages render as stubs).
 
 For docs editing, prefer the upstream repo's `docs/preview.sh` — it boots this
 site with only the product you're editing surfaced.
