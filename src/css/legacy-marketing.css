@@ -33,6 +33,11 @@
     --blue-mono-deep: #5B7A9C;  /* (91 122 156) */
     --blue-mono: #708FB0;       /* (112 143 176) */
     --blue-mono-light: #86A5C2; /* (134 165 194) */
+
+    /* Typography & Easing */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+    --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html, body { 
@@ -119,19 +124,19 @@ h7, .h7 {
     position: fixed !important;
     top: 0; left: 0; right: 0;
     z-index: 1050;
+    background: transparent !important;
     border-bottom: 1.5px solid color-mix(in srgb, var(--text-main), transparent 85%);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: border-color 0.3s ease;
 }
 
 .navbar-custom::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-color: color-mix(in srgb, var(--bg-dark), transparent 75%);
+    background-color: color-mix(in srgb, var(--bg-dark), transparent 60%);
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     z-index: -1;
-    /* The pseudo must not block taps that should reach navbar items. */
     pointer-events: none;
 }
 
@@ -396,8 +401,9 @@ h7, .h7 {
     body:not(.snap-scrolling) .footer-section {
         padding: 0;
     }
-    main { padding-top: var(--navbar-height); }
+    html:not(.marketing-page) main { padding-top: var(--navbar-height); }
 }
+
 
 .footer-section > .flex-grow-1 { flex-grow: 0 !important; }
 .border-bottom-pc-only { border-bottom: none !important; }
@@ -1076,70 +1082,41 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     background-color: color-mix(in srgb, var(--bg-middle), transparent 50%) !important;
 }
 
+.blog-section { padding: 96px 2rem; }
+.blog-section-inner { max-width: 1240px; margin: 0 auto; }
+.blog-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+.blog-head .left h3 { font: 700 26px/1.15 var(--font-sans); color: var(--text-main); margin: 0 0 6px; letter-spacing: -0.02em; }
+.blog-head .left p  { font: 300 14.5px/1.5 var(--font-sans); color: var(--blue-mono-light); margin: 0; }
+.blog-head a.all {
+    color: var(--brand-secondary); text-decoration: none; font: 600 13px/1 var(--font-sans);
+    display: inline-flex; align-items: center; gap: 4px; padding: 10px 16px;
+    border: 1px solid color-mix(in srgb, var(--brand-secondary), transparent 70%); border-radius: 99px;
+    transition: all 0.3s;
+}
+.blog-head a.all:hover { background: var(--brand-secondary); color: var(--bg-body); }
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 900px) { .blog-grid { grid-template-columns: 1fr; } }
 .blog-card {
-    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change: transform, border-color, box-shadow, opacity;
-    position: relative; 
-    z-index: 1; 
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px;
+    padding: 24px 22px 26px; display: flex; flex-direction: column; gap: 14px;
+    text-decoration: none; transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
 }
-
-.blog-card .card-body {
-    flex: 1 1 auto;      
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.blog-card:hover {
+    background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.4);
+    transform: translateY(-2px); text-decoration: none;
 }
-.blog-card .card-title {
-    font-size: 1rem !important;
-    line-height: 1.5 !important;
-    height: 3em !important;           
-    margin-bottom: 0.75rem !important;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
+.blog-card .meta { display: flex; align-items: center; gap: 10px; font: 500 11px/1 var(--font-mono); color: var(--text-sub2); letter-spacing: 0.02em; }
+.blog-card .meta .sep { width: 3px; height: 3px; background: var(--text-sub2); border-radius: 50%; flex-shrink: 0; }
+.blog-card .meta .tag { color: var(--brand-secondary); font-weight: 700; text-transform: uppercase; }
+.blog-card h4 {
+    font: 700 16px/1.35 var(--font-sans); color: var(--text-main); margin: 0; letter-spacing: -0.005em;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
-@media (max-width: 991px) {
-    .row.mobile-horizontal-scroll .blog-card .card-img-top {
-        height: 220px !important; 
-    }
-    .row.mobile-horizontal-scroll .blog-card .card-body {
-        padding: 0.75rem !important;
-    }
+.blog-card p  {
+    font: 400 13px/1.5 var(--font-sans); color: var(--blue-mono-light); margin: 0;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; flex: 1;
 }
-
-.blog-card::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    background-color: var(--brand-secondary); opacity: 0; z-index: -1; 
-    transition: opacity 0.5s ease; pointer-events: none;
-}
-
-@media (hover:hover) {
-    .blog-card:hover { 
-        transform: translateY(-8px); 
-        border-color: var(--brand-secondary) !important;
-        box-shadow: 0 20px 40px -10px color-mix(in srgb, var(--brand-secondary), transparent 80%);
-        z-index: 10; 
-    }
-    .blog-card:hover::before { opacity: 0.2; }
-}
-.transition-img { 
-    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); 
-} 
-.blog-card:hover .transition-img { 
-    transform: scale(1.08); 
-}
-
-/*  [ADD] Read More Card Style */
-.blog-card.read-more-card {
-    background-color: var(--bg-body);
-}
+.blog-card .read { font: 600 12px/1 var(--font-sans); color: var(--brand-secondary); margin-top: 4px; display: inline-flex; align-items: center; gap: 4px; }
 
 .blog-card.read-more-card .card-body {
     justify-content: center !important; 
@@ -1165,19 +1142,7 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 }
 /*.transition-img { transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); } .blog-card:hover .transition-img { transform: scale(1.08); }*/
 
-/* Scroll Indicator */
-.scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; z-index: 10; opacity: 0.8; transition: opacity 0.3s; cursor: pointer; } 
-.scroll-indicator:hover { opacity: 1; }
-.mouse { width: 26px; height: 42px; border: 2px solid color-mix(in srgb, var(--text-main), transparent 50%); border-radius: 20px; position: relative; margin-bottom: 6px; }
-.wheel { width: 4px; height: 8px; background-color: color-mix(in srgb, var(--text-main), transparent 50%); border-radius: 2px; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); animation: scroll-wheel 3s infinite; }
-.arrow-scroll span { display: block; width: 10px; height: 10px; border-bottom: 2px solid color-mix(in srgb, var(--text-main), transparent 30%); border-right: 2px solid color-mix(in srgb, var(--text-main), transparent 50%); transform: rotate(45deg); margin: -2px auto; animation: scroll-arrow 3s infinite; }
-.arrow-scroll span:nth-child(2) { animation-delay: 0.2s; } .arrow-scroll span:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes scroll-wheel { 0% { top: 6px; opacity: 1; height: 8px; } 100% { top: 24px; opacity: 0; height: 4px; } }
-@keyframes scroll-arrow { 0% { opacity: 0; transform: rotate(45deg) translate(-5px, -5px); } 50% { opacity: 1; } 100% { opacity: 0; transform: rotate(45deg) translate(5px, 5px); } }
-
 .reveal-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; } .reveal-up.active { opacity: 1; transform: translateY(0); }
-.delay-100 { transition-delay: 0.1s; } .delay-200 { transition-delay: 0.2s; } .delay-300 { transition-delay: 0.3s; } .delay-400 { transition-delay: 0.4s; }
 .social-icon img { transition: transform 0.3s; opacity: 0.7; } .social-icon:hover img { transform: scale(1.1); opacity: 1; }
 
 /* Grayscale Map */

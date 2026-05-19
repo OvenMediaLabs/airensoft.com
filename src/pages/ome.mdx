@@ -32,7 +32,7 @@ import Head from '@docusaurus/Head';
   </script>
 </Head>
 
-<section id="hero-section" className="hero-bg-ome full-page-section d-flex align-items-center position-relative text-center delay-100">
+<section id="hero-section" className="hero-bg-ome full-page-section d-flex align-items-center position-relative text-center">
   <div className="hero-overlay"></div>
   <div className="container position-relative z-1">
     <div className="row justify-content-center">
@@ -43,10 +43,10 @@ import Head from '@docusaurus/Head';
         <h1 className="display-1 fw-bold text-main mb-4 lh-tight reveal-up">
           <span className="text-gradient-surf">OvenMediaEngine</span> — open-source sub-second streaming server <span className="d-block fs-3 fw-normal text-mono-light mt-3">WebRTC · LL-HLS · SRT</span>
         </h1>
-        <p className="lead text-mono-light mb-5 reveal-up delay-200 col-lg-8 mx-auto">
+        <p className="lead text-mono-light mb-5 reveal-up col-lg-8 mx-auto">
           Sub-second latency streaming server with WebRTC, LL-HLS, and SRT, giving you full control to build and own your real-time media platform.
         </p>
-        <div className="d-flex flex-column flex-sm-row justify-content-center gap-2 reveal-up delay-300 mb-4 px-4 px-sm-0">
+        <div className="d-flex flex-column flex-sm-row justify-content-center gap-2 reveal-up mb-4 px-4 px-sm-0">
           <a href="https://github.com/OvenMediaLabs/OvenMediaEngine" target="_blank" rel="noopener noreferrer" className="btn btn-md btn-brand-outline px-3 rounded-pill w-sm-auto" style={{minWidth: '240px'}}>
             <i className="ph ph-github-logo fs-5"></i>&nbsp;&nbsp;GitHub
           </a>
@@ -54,17 +54,13 @@ import Head from '@docusaurus/Head';
             <i className="ph ph-book-open fs-5"></i>&nbsp;&nbsp;Guide
           </a>
         </div>
-        <div className="mt-2 reveal-up delay-400">
+        <div className="mt-2 reveal-up">
           <a href="/agplv3" className="text-bi-yellow2 small text-decoration-underline lh-1">
             ※ Open-source, licensed under the AGPLv3.<span className="d-none d-sm-block">Please refer to the Compliance Notice for obligations and details.</span>
           </a>
         </div>
       </div>
     </div>
-  </div>
-  <div className="scroll-indicator d-none d-lg-flex">
-    <div className="mouse"><div className="wheel"></div></div>
-    <div className="arrow-scroll"><span></span><span></span><span></span></div>
   </div>
 </section>
 
@@ -76,7 +72,7 @@ import Head from '@docusaurus/Head';
         <p className="lead text-sub col-lg-8 mx-auto">Complete your pipeline with our optimized player and encoder.</p>
       </div>
 
-      <div className="row g-0 align-items-stretch overflow-hidden rounded-4 border border-surface reveal-up delay-100">
+      <div className="row g-0 align-items-stretch overflow-hidden rounded-4 border border-surface reveal-up">
         <div className="col-lg-6 bg-body-50 p-4 p-lg-5 border-bottom border-bottom-lg-0 border-end-lg bg-brand-gradient-dark-20">
           <div className="d-flex flex-column h-100 align-items-start">
             <h3 id="ovenplayer" className="fw-bold text-main mb-3 copy-title">OvenPlayer</h3>
@@ -112,7 +108,7 @@ import Head from '@docusaurus/Head';
         <p className="lead text-sub col-lg-8 mx-auto">Don't just take our word for it. Test the sub-second latency yourself.<span className="d-none d-sm-block">OvenSpace is a live demo service built with OvenMediaEngine Streaming Suite.</span></p>
       </div>
 
-      <div className="row justify-content-center reveal-up delay-100">
+      <div className="row justify-content-center reveal-up">
         <div className="col-lg-10">
           <div className="macbook-frame position-relative rounded-4 overflow-hidden border border-darker mb-4 shadow-lg" style={{boxShadow: '0 20px 80px rgba(238, 111, 42, 0.15)'}}>
             <div className="window-header align-items-center">
@@ -152,7 +148,7 @@ import Head from '@docusaurus/Head';
       </div>
 
       <div className="row g-lg-3 g-2 row-cols-1 row-cols-md-2 row-cols-lg-3 mobile-horizontal-scroll">
-        <div className="col reveal-up delay-100">
+        <div className="col reveal-up">
           <div className="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-secondary">
             <i className="ph ph-timer fs-3 text-secondary mb-3"></i>
             <h4 className="h5 text-main fw-bold mt-2 mb-2">Sub-Second Latency</h4>
@@ -162,7 +158,7 @@ import Head from '@docusaurus/Head';
             </div>
           </div>
         </div>
-        <div className="col reveal-up delay-200">
+        <div className="col reveal-up">
           <div className="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-secondary">
             <i className="ph ph-sliders fs-3 text-secondary mb-3"></i>
             <h4 className="h5 text-main fw-bold mt-2 mb-2">Adaptive Bitrate (ABR)</h4>
@@ -172,7 +168,7 @@ import Head from '@docusaurus/Head';
             </div>
           </div>
         </div>
-        <div className="col reveal-up delay-300">
+        <div className="col reveal-up">
           <div className="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-secondary">
             <i className="ph ph-tree-structure fs-3 text-secondary mb-3"></i>
             <h4 className="h5 text-main fw-bold mt-2 mb-2">High Scalability</h4>
@@ -182,7 +178,7 @@ import Head from '@docusaurus/Head';
             </div>
           </div>
         </div>
-        <div className="col reveal-up delay-100">
+        <div className="col reveal-up">
           <div className="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-secondary">
             <i className="ph ph-plugs fs-3 text-secondary mb-3"></i>
             <h4 className="h5 text-main fw-bold mt-2 mb-2">Various Ingests</h4>
@@ -192,7 +188,7 @@ import Head from '@docusaurus/Head';
             </div>
           </div>
         </div>
-        <div className="col reveal-up delay-200">
+        <div className="col reveal-up">
           <div className="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-secondary">
             <i className="ph ph-brackets-curly fs-3 text-secondary mb-3"></i>
             <h4 className="h5 text-main fw-bold mt-2 mb-2">REST API</h4>
@@ -202,7 +198,7 @@ import Head from '@docusaurus/Head';
             </div>
           </div>
         </div>
-        <div className="col reveal-up delay-300">
+        <div className="col reveal-up">
           <div className="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-secondary">
             <i className="ph ph-video fs-3 text-secondary mb-3"></i>
             <h4 className="h5 text-main fw-bold mt-2 mb-2">Essential Features</h4>
@@ -226,7 +222,7 @@ import Head from '@docusaurus/Head';
       </div>
 
       <div className="row g-4 align-items-stretch mobile-horizontal-scroll">
-        <div className="col-lg-6 reveal-up delay-100">
+        <div className="col-lg-6 reveal-up">
           <div className="tech-card-pro opensource h-100 p-4 p-md-5 rounded-4 bg-body d-flex flex-column position-relative">
             <div className="mb-4 border-bottom border-lighter">
               <span className="badge bg-brand text-dark px-3 py-2 mb-3">Looking for OME Partners</span>
@@ -247,7 +243,7 @@ import Head from '@docusaurus/Head';
           </div>
         </div>
 
-        <div className="col-lg-6 reveal-up delay-100">
+        <div className="col-lg-6 reveal-up">
           <div className="tech-card-pro opensource h-100 p-4 p-md-5 rounded-4 bg-body d-flex flex-column position-relative">
             <div className="mb-4 border-bottom border-lighter">
               <span className="badge bg-brand text-dark px-3 py-2 mb-3">OME Support Program</span>
@@ -270,7 +266,7 @@ import Head from '@docusaurus/Head';
           </div>
         </div>
       </div>
-      <div className="text-center mt-4 reveal-up delay-200">
+      <div className="text-center mt-4 reveal-up">
         <a href="https://github.com/OvenMediaLabs/OvenMediaEngine/discussions" target="_blank" rel="noopener noreferrer" className="text-bi-yellow2 text-decoration-underline lh-1"><span className="d-none d-sm-inline">Just have a question?</span> Join our Community Discussions &rarr;</a>
       </div>
     </div>
