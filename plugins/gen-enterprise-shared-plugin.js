@@ -19,7 +19,7 @@
  */
 const {main} = require('../scripts/gen-enterprise-shared.js');
 
-if (main([]) !== 0) {
+if (process.env.GEN_ENT_SKIP !== '1' && main([]) !== 0) {
   throw new Error(
     'gen-enterprise-shared: fail-closed (see the error logged above). ' +
     'Fix the dup: mapping or add a docs-enterprise/oss-only-redirects.txt entry.',

@@ -5,6 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
+    "preview": "GEN_ENT_SKIP=1 docusaurus start",
     "build": "docusaurus build",
     "postbuild": "node scripts/label-search-results.js && node scripts/inject-docs-description.js",
     "swizzle": "docusaurus swizzle",
