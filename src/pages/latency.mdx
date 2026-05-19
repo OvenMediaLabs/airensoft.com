@@ -7,7 +7,7 @@ wrapperClassName: marketing-page
 
 import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
 
-<section id="hero-section" className="hero-bg-ome full-page-section d-flex align-items-center position-relative text-center delay-100">
+<section id="hero-section" className="hero-bg-ome full-page-section d-flex align-items-center position-relative text-center">
   <div className="hero-overlay"></div>
   <div className="container position-relative z-1">
     <div className="row justify-content-center">
@@ -15,20 +15,16 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
         <div className="hero-badge2 mb-4 px-4 reveal-up mx-auto fw-bold small">Technology Deep Dive</div>
       </div>
       <div className="col-lg-12">
-        <h1 className="display-1 fw-bold text-main mb-4 lh-tight reveal-up delay-100">Real-Time is<br /><span className="text-gradient-surf">Not 10 Seconds Late.</span></h1>
-        <p className="lead text-sub mb-5 reveal-up delay-200 col-lg-8 mx-auto">In the era of live interaction, <strong>Live</strong> should mean <strong>Now</strong>.<br className="d-none d-md-block" /> Understand why latency occurs and how we achieved Sub-Second Latency.</p>
+        <h1 className="display-1 fw-bold text-main mb-4 lh-tight reveal-up">Real-Time is<br /><span className="text-gradient-surf">Not 10 Seconds Late.</span></h1>
+        <p className="lead text-sub mb-5 reveal-up col-lg-8 mx-auto">In the era of live interaction, <strong>Live</strong> should mean <strong>Now</strong>.<br className="d-none d-md-block" /> Understand why latency occurs and how we achieved Sub-Second Latency.</p>
 
-        <div className="d-flex flex-column flex-sm-row justify-content-center gap-2 reveal-up delay-300 mb-4 px-4 px-sm-0">
+        <div className="d-flex flex-column flex-sm-row justify-content-center gap-2 reveal-up mb-4 px-4 px-sm-0">
           <a href="/blog" className="btn btn-md btn-brand-outline px-3 rounded-pill w-sm-auto" style={{minWidth: '240px'}}>
             <i className="ph ph-article-medium fs-5"></i>&nbsp;&nbsp;Read the Blog
           </a>
         </div>
       </div>
     </div>
-  </div>
-  <div className="scroll-indicator d-none d-lg-flex">
-    <div className="mouse"><div className="wheel"></div></div>
-    <div className="arrow-scroll"><span></span><span></span><span></span></div>
   </div>
 </section>
 
@@ -49,7 +45,7 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
           </div>
         </div>
 
-        <div className="col-lg-6 reveal-up delay-100">
+        <div className="col-lg-6 reveal-up">
           <h4 className="text-main fw-bold mb-5 ps-lg-4">Latency Reality Check</h4>
 
           <div className="ps-lg-4">
@@ -114,7 +110,7 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
       </div>
 
       <div className="row g-4 justify-content-center mobile-horizontal-scroll">
-        <div className="col-lg-4 col-md-6 reveal-up delay-100">
+        <div className="col-lg-4 col-md-6 reveal-up">
           <div className="tech-card-pro h-100 p-4 p-md-5 rounded-4 bg-surface border border-darker d-flex flex-column hover-card3 text-center align-items-center justify-content-center border-0">
             <div className="pro-icon-box mb-4 d-inline-flex align-items-center justify-content-center" style={{'--tech-icon': '#0A1122', width: '80px', height: '80px'}}>
               <i className="ph ph-gavel fs-2 text-main"></i>
@@ -124,7 +120,7 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
           </div>
         </div>
 
-        <div className="col-lg-4 col-md-6 reveal-up delay-200">
+        <div className="col-lg-4 col-md-6 reveal-up">
           <div className="tech-card-pro h-100 p-4 p-md-5 rounded-4 bg-surface border border-darker d-flex flex-column hover-card3 text-center align-items-center justify-content-center border-0">
             <div className="pro-icon-box mb-4 d-inline-flex align-items-center justify-content-center" style={{'--tech-icon': '#0A1122', width: '80px', height: '80px'}}>
               <i className="ph ph-game-controller fs-2 text-main"></i>
@@ -134,7 +130,7 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
           </div>
         </div>
 
-        <div className="col-lg-4 col-md-6 reveal-up delay-300">
+        <div className="col-lg-4 col-md-6 reveal-up">
           <div className="tech-card-pro h-100 p-4 p-md-5 rounded-4 bg-surface border border-darker d-flex flex-column hover-card3 text-center align-items-center justify-content-center border-0">
             <div className="pro-icon-box mb-4 d-inline-flex align-items-center justify-content-center" style={{'--tech-icon': '#0A1122', width: '80px', height: '80px'}}>
               <i className="ph ph-chats-circle fs-2 text-main"></i>
@@ -163,7 +159,7 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
       </div>
 
       <div className="row g-4 mobile-horizontal-scroll">
-        <div className="col-lg-4 reveal-up delay-100">
+        <div className="col-lg-4 reveal-up">
           <div className="p-4 rounded h-100 hover-card4 d-flex flex-column card-glow glow-secondary light">
             <div className="d-flex align-items-center justify-content-between mb-4">
               <h3 className="h4 text-main fw-bold mb-0">WebRTC</h3>
@@ -178,7 +174,7 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
           </div>
         </div>
 
-        <div className="col-lg-4 reveal-up delay-200">
+        <div className="col-lg-4 reveal-up">
           <div className="p-4 rounded h-100 hover-card4 d-flex flex-column card-glow glow-secondary2 light">
             <div className="d-flex align-items-center justify-content-between mb-4">
               <h3 className="h4 text-main fw-bold mb-0">LL-HLS</h3>
@@ -193,7 +189,7 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
           </div>
         </div>
 
-        <div className="col-lg-4 reveal-up delay-300">
+        <div className="col-lg-4 reveal-up">
           <div className="p-4 rounded h-100 hover-card4 d-flex flex-column card-glow glow-secondary3 light">
             <div className="d-flex align-items-center justify-content-between mb-4">
               <h3 className="h4 text-main fw-bold mb-0">SRT</h3>

@@ -52,50 +52,36 @@ export default function LatestBlogPosts({
   const posts = POSTS.slice(0, limit);
 
   return (
-    <section
-      id="blog"
-      className="full-page-section d-flex flex-column align-items-center bg-body position-relative">
-      <div className="w-100 py-5">
-        <div className="container">
-          <div className="d-flex justify-content-between align-items-end mb-4 reveal-up">
-            <div>
-              <h2 className="fw-bold text-main mb-1">{heading}</h2>
-              <p className="text-sub small mb-0">{subhead}</p>
-            </div>
-            <Link
-              to="/blog"
-              className="btn btn-sm btn-secondary-outline3 rounded-pill d-none d-md-block">
-              Read More &rarr;
-            </Link>
+    <section id="blog" className="blog-section">
+      <div className="blog-section-inner">
+        <div className="blog-head">
+          <div className="left">
+            <h3>{heading}</h3>
+            <p>{subhead}</p>
           </div>
+          <Link
+            to="/blog"
+            className="btn btn-sm btn-secondary-outline3 rounded-pill d-none d-md-block">
+            Read More &rarr;
+          </Link>
+        </div>
 
-          <div className="row g-3 g-md-4">
-            {posts.map((post) => (
-              <div key={post.slug} className="col-12 col-md-4">
-                <Link
-                  to={post.permalink}
-                  className="latest-blog-card h-100 d-flex flex-column p-4 rounded text-decoration-none">
-                  <span className="latest-blog-meta">
-                    {formatDate(post.date)}
-                    {post.tags[0] && (
-                      <>
-                        <span className="mx-2 opacity-50">·</span>
-                        <span>{post.tags[0]}</span>
-                      </>
-                    )}
-                  </span>
-                  <h3 className="latest-blog-title fw-bold mb-2 mt-2">
-                    {post.title}
-                  </h3>
-                  {post.description && (
-                    <p className="latest-blog-excerpt text-sub small mb-0">
-                      {post.description}
-                    </p>
-                  )}
-                </Link>
+        <div className="blog-grid">
+          {posts.map((post) => (
+            <Link key={post.slug} to={post.permalink} className="blog-card">
+              <div className="meta">
+                <span>{formatDate(post.date)}</span>
+                {post.tags[0] && (
+                  <>
+                    <span className="sep" />
+                    <span className="tag">{post.tags[0]}</span>
+                  </>
+                )}
               </div>
-            ))}
-          </div>
+              <h4>{post.title}</h4>
+              {post.description && <p>{post.description}</p>}
+            </Link>
+          ))}
         </div>
       </div>
     </section>

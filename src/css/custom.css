@@ -283,7 +283,7 @@ html[class*='easyops'] body {
  * body content's max-width + horizontal padding (set below for
  * `.main-wrapper .container`) so the brand tracks the content column. */
 .navbar-custom > .container {
-  max-width: 1760px !important;
+  max-width: 1440px !important;
   padding-left: 2rem !important;
   padding-right: 2rem !important;
 }
@@ -302,11 +302,43 @@ html[class*='easyops'] body {
 /* Tone down the search input so it doesn't visually outweigh the
  * brand. Infima's default 12.5rem width + heavy pill border made it
  * read as the most prominent navbar element. Shrink to ~10rem and
- * give it a quieter, lower-contrast surface. */
+ * give it a quieter, lower-contrast surface.
+ *
+ * Inactive: subtle glass surface matching the navbar style.
+ * Active/focus: keep Infima's current look but swap the magnifying-glass
+ * icon fill to the navbar active colour (#38BDF8). The SVG uses
+ * `fill="currentColor"` which inherits the element's CSS `color`, so
+ * the inactive icon automatically picks up --text-sub. For focus we
+ * can't use the same trick (typed text must stay white), so we override
+ * the icon variable directly with the brand hex URL-encoded as %23. */
 @media (min-width: 992px) {
   .navbar__search-input {
     width: 10rem;
     font-size: 0.85rem;
+    --ifm-navbar-search-input-background-color: rgba(255, 255, 255, 0.18);
+    --ifm-navbar-search-input-icon: url('data:image/svg+xml;utf8,<svg fill="%2394A3B8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>');
+    border: 1px solid rgba(255, 255, 255, 0.27) !important;
+    color: var(--text-sub);
+    opacity: 0.6;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, opacity 0.2s;
+  }
+
+  .navbar__search-input:hover {
+    --ifm-navbar-search-input-background-color: rgba(255, 255, 255, 0.14);
+    opacity: 1;
+  }
+
+  .navbar__search-input::placeholder {
+    color: var(--text-sub) !important;
+    opacity: 1;
+  }
+
+  .navbar__search-input:focus {
+    opacity: 1;
+    --ifm-navbar-search-input-icon: url('data:image/svg+xml;utf8,<svg fill="%2338BDF8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>');
+    color: var(--ifm-navbar-search-input-color);
+    cursor: text;
   }
 }
 
@@ -318,8 +350,13 @@ html[class*='easyops'] body {
  *   - Blog: `<main>` IS a `.col.col--7` inside an OUTER container.
  * Select `.main-wrapper` as the common ancestor so both hit the rule. */
 html.plugin-docs .main-wrapper .container,
+html.plugin-docs .main-wrapper .container--fluid {
+  max-width: 1440px !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
 html.plugin-blog .main-wrapper .container,
-html.plugin-docs .main-wrapper .container--fluid,
 html.plugin-blog .main-wrapper .container--fluid {
   max-width: 1760px !important;
   padding-left: 2rem !important;

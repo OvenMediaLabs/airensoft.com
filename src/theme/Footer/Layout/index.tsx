@@ -29,7 +29,7 @@ export default function FooterLayout(): ReactNode {
               <div className="address-compact">
                 <p>
                   #1203, 157, Yangpyeong-ro, Yeongdeungpo-gu,
-                  <br />Seoul, 07270, South Korea
+                  <br />Seoul 07207, South Korea
                 </p>
                 <p>T. +82-2-6378-5227 &nbsp;|&nbsp; F. +82-2-6378-5228</p>
                 <p>contact@ovenmedialabs.com</p>

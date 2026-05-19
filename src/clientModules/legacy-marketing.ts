@@ -14,7 +14,7 @@
  *     scroll-to-top button on every route change via `onRouteDidUpdate`.
  *   - Cleans up event listeners on route change to avoid leaks.
  *   - Null-guards every DOM lookup so a missing element on a given route
- *     never throws (e.g. docs/blog routes have no `.scroll-indicator`).
+ *     never throws.
  *
  * Not ported (intentional):
  *   - Medium RSS blog grid fetcher: replaced by Docusaurus blog plugin.
@@ -106,24 +106,6 @@ function initRevealAnimations(): Cleanup | undefined {
   return () => observer.disconnect();
 }
 
-function initScrollIndicator(): Cleanup | undefined {
-  const indicators =
-    document.querySelectorAll<HTMLElement>('.scroll-indicator');
-  if (indicators.length === 0) return;
-
-  const handlers: Array<[HTMLElement, () => void]> = [];
-  indicators.forEach((indicator) => {
-    const handler = () => {
-      const section = indicator.closest('section');
-      section?.nextElementSibling?.scrollIntoView({behavior: 'smooth'});
-    };
-    indicator.addEventListener('click', handler);
-    handlers.push([indicator, handler]);
-  });
-
-  return () => handlers.forEach(([el, fn]) => el.removeEventListener('click', fn));
-}
-
 function initScrollToTop(): Cleanup | undefined {
   const btn = document.getElementById('btnScrollTop');
   if (!btn) return;
@@ -143,7 +125,6 @@ function reinitialize() {
     [
       initNavbarScroll(),
       initRevealAnimations(),
-      initScrollIndicator(),
       initScrollToTop(),
     ]
       .filter((fn): fn is Cleanup => typeof fn === 'function')
