@@ -7,7 +7,7 @@
  * (Docusaurus's standard dropdown-type item schema). Bootstrap's dropdown JS
  * (loaded globally via headTags) handles the open/close behavior.
  */
-import {type ReactNode} from 'react';
+import {type ReactNode, useEffect, useRef, useState} from 'react';
 import {useThemeConfig} from '@docusaurus/theme-common';
 import {useLocation} from '@docusaurus/router';
 import Link from '@docusaurus/Link';
@@ -33,6 +33,7 @@ type NavbarItem = {
   // entries from a named module instead of `items` (lets us include divider/
   // header rows that Docusaurus's themeConfig schema would reject).
   customMenu?: 'resources';
+  mobileLabel?: string;
   [key: string]: unknown;
 };
 
@@ -58,7 +59,7 @@ function NavLink({item, isActive}: {item: NavbarItem; isActive: boolean}) {
   );
 }
 
-function DropdownItem({item}: {item: NavbarItem}) {
+function DropdownItem({item, isActive = false}: {item: NavbarItem; isActive?: boolean}) {
   if (item.type === 'divider') {
     return (
       <li>
@@ -93,7 +94,7 @@ function DropdownItem({item}: {item: NavbarItem}) {
   return (
     <li>
       <Link
-        className="dropdown-item d-flex align-items-center"
+        className={`dropdown-item d-flex align-items-center${isActive ? ' active' : ''}`}
         to={item.to ?? '/'}>
         {item.icon && (
           <i className={`ph ${item.icon} dropdown-item-leading`}></i>
@@ -105,26 +106,160 @@ function DropdownItem({item}: {item: NavbarItem}) {
 }
 
 function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
+  const {pathname} = useLocation();
   const subItems: NavbarItem[] =
     item.customMenu === 'resources'
       ? (resourcesDropdownItems as NavbarItem[])
       : (item.items ?? []);
+  const linkItems = subItems.filter(
+    (sub) => sub.type !== 'divider' && sub.type !== 'header',
+  );
+  const isResourcesActive = linkItems.some(
+    (sub) => sub.to != null && pathUnder(sub.to, pathname),
+  );
+  const [externalClicked, setExternalClicked] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownToggleRef = useRef<HTMLAnchorElement>(null);
+  const showAccordionRef = useRef(false);
+
+  // Reset when the user navigates to a new internal page
+  useEffect(() => {
+    setExternalClicked(false);
+  }, [pathname]);
+
+  const showAccordion = isResourcesActive && !externalClicked;
+
+  useEffect(() => {
+    showAccordionRef.current = showAccordion;
+  }, [showAccordion]);
+
+  // Drive Bootstrap collapse open/close based on route
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const el = document.getElementById('mobileResourcesMenu');
+    if (!el) return;
+    const bs = (window as any).bootstrap;
+    if (!bs) return;
+    const instance =
+      bs.Collapse.getInstance(el) ?? new bs.Collapse(el, {toggle: false});
+    showAccordion ? instance.show() : instance.hide();
+  }, [showAccordion]);
+
+  // Track mobile accordion state for the active class
+  useEffect(() => {
+    const el = document.getElementById('mobileResourcesMenu');
+    if (!el) return;
+    const onShow = () => setIsExpanded(true);
+    const onHide = () => setIsExpanded(false);
+    el.addEventListener('show.bs.collapse', onShow);
+    el.addEventListener('hide.bs.collapse', onHide);
+    return () => {
+      el.removeEventListener('show.bs.collapse', onShow);
+      el.removeEventListener('hide.bs.collapse', onHide);
+    };
+  }, []);
+
+  // Auto-reopen Resources accordion when hamburger reopens (if on a Resources page)
+  useEffect(() => {
+    const mainNav = document.getElementById('mainNav');
+    if (!mainNav) return;
+    const onNavShown = () => {
+      if (!showAccordionRef.current) return;
+      const el = document.getElementById('mobileResourcesMenu');
+      if (!el) return;
+      const bs = (window as any).bootstrap;
+      if (!bs) return;
+      const inst =
+        bs.Collapse.getInstance(el) ?? new bs.Collapse(el, {toggle: false});
+      inst.show();
+    };
+    mainNav.addEventListener('shown.bs.collapse', onNavShown);
+    return () => mainNav.removeEventListener('shown.bs.collapse', onNavShown);
+  }, []);
+
+  // Track desktop dropdown open/close for the active class
+  useEffect(() => {
+    const toggle = dropdownToggleRef.current;
+    if (!toggle) return;
+    const onShow = () => setIsDropdownOpen(true);
+    const onHide = () => setIsDropdownOpen(false);
+    toggle.addEventListener('show.bs.dropdown', onShow);
+    toggle.addEventListener('hide.bs.dropdown', onHide);
+    return () => {
+      toggle.removeEventListener('show.bs.dropdown', onShow);
+      toggle.removeEventListener('hide.bs.dropdown', onHide);
+    };
+  }, []);
+
   return (
-    <li className="nav-item dropdown">
-      <a
-        className={`nav-link dropdown-toggle${isActive ? ' active' : ''}`}
-        href="#"
-        role="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false">
-        {item.label}
-      </a>
-      <ul className="dropdown-menu dropdown-menu-end navbar-dropdown-menu">
-        {subItems.map((sub, i) => (
-          <DropdownItem key={i} item={sub} />
-        ))}
-      </ul>
-    </li>
+    <>
+      {/* Desktop: full dropdown */}
+      <li className="nav-item dropdown d-none d-lg-block">
+        <a
+          ref={dropdownToggleRef}
+          className={`nav-link dropdown-toggle${(isResourcesActive || isDropdownOpen) ? ' active' : ''}`}
+          href="#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false">
+          {item.label}
+        </a>
+        <ul className="dropdown-menu dropdown-menu-end navbar-dropdown-menu">
+          {subItems.map((sub, i) => (
+            <DropdownItem
+              key={i}
+              item={sub}
+              isActive={sub.to != null && pathUnder(sub.to, pathname)}
+            />
+          ))}
+        </ul>
+      </li>
+
+      {/* Mobile: accordion collapse */}
+      <li className="nav-item d-lg-none">
+        <a
+          className={`nav-link d-flex align-items-center justify-content-between${(isResourcesActive || isExpanded) ? ' active' : ''}`}
+          href="#mobileResourcesMenu"
+          role="button"
+          data-bs-toggle="collapse"
+          aria-expanded={showAccordion ? 'true' : 'false'}
+          aria-controls="mobileResourcesMenu">
+          {item.label}
+          <i className="ph ph-caret-down mobile-nav-caret"></i>
+        </a>
+        <div
+          className={`collapse${showAccordion ? ' show' : ''}`}
+          id="mobileResourcesMenu">
+          <ul className="nav flex-column">
+            {linkItems.map((sub, i) => {
+              const label: string = sub.mobileLabel ?? sub.label ?? '';
+              return sub.href ? (
+                <li key={`mob-${i}`} className="nav-item">
+                  <a
+                    className="nav-link nav-link-sub d-flex align-items-center"
+                    href={sub.href}
+                    target={sub.target ?? '_blank'}
+                    rel="noopener noreferrer"
+                    onClick={() => setExternalClicked(true)}>
+                    <span>{label}</span>
+                    <i className="ph ph-arrow-up-right ms-2 mobile-nav-external-icon"></i>
+                  </a>
+                </li>
+              ) : (
+                <li key={`mob-${i}`} className="nav-item">
+                  <Link
+                    className={`nav-link nav-link-sub${isCurrentPath(sub.to, pathname) ? ' active' : ''}`}
+                    to={sub.to ?? '/'}>
+                    {label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </li>
+    </>
   );
 }
 
@@ -134,12 +269,16 @@ function isCurrentPath(itemTo: string | undefined, pathname: string): boolean {
   return normalize(itemTo) === normalize(pathname);
 }
 
+// True when pathname equals itemTo or is a sub-path of it (e.g. /docs/ome/intro
+// matches /docs/ome, but /docs/ome-enterprise does NOT match /docs/ome).
+function pathUnder(itemTo: string, pathname: string): boolean {
+  const base = itemTo.replace(/\/$/, '');
+  return pathname === base || pathname.startsWith(base + '/');
+}
+
 function isDropdownActive(item: NavbarItem, pathname: string): boolean {
   if (!item.items) return false;
-  return item.items.some((sub) => {
-    if (sub.to && pathname.startsWith(sub.to)) return true;
-    return false;
-  });
+  return item.items.some((sub) => sub.to != null && pathUnder(sub.to, pathname));
 }
 
 export default function NavbarContent(): ReactNode {

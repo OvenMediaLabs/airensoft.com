@@ -284,8 +284,9 @@ h7, .h7 {
     #ovenspace > div { padding-top: 2rem !important; }
 	#brief > div { padding-bottom: 2rem !important; }
     #community > div { padding-top: 2rem !important; }
-	#team > div { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+	#team > div { padding-top: 1rem !important; padding-bottom: 1rem !important; }
 	#phil > div { padding-top: 0rem !important; }
+	section#team { justify-content: center; }
 	
 	@media (min-width: 576px) and (max-width: 767.98px) {
 		.navbar-collapse {
@@ -813,6 +814,9 @@ h6, .h6 {
 }
 @media (min-width: 992px) {
     .p-pro { padding: 3.5rem 3rem !important; }
+    section#team { justify-content: center; row-gap: 1.5rem; }
+    section#team > div { flex-grow: 0 !important; }
+    #phil { margin-top: 0 !important; }
 }
 
 /* 4. Race Animation */
