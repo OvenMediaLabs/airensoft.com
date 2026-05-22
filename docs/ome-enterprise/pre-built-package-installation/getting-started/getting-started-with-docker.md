@@ -83,7 +83,7 @@ After the [installation](getting-started-with-docker.md#installation) is complet
 <strong>docker run -d --name=ovenmediaengine \
 </strong>-e OME_LICENSE_KEY=<Your.License.Key> \
 -e OME_HOST_IP=<Your.HOST.IP.Address> \
--p 1935:1935 -p 8080:8080 -p 9999:9999/udp -p 9000:9000 -p 80:80 -p 3478:3478 -p 10000-10009:10000-10009/udp \
+-p 1935:1935 -p 8080:8080 -p 9999:9999/udp -p 9000:9000 -p 80:80 -p 3478:3478 -p 10000:10000/udp -p 10000:10000/tcp \
 ovenmediaengine-enterprise
 ```
 
@@ -103,7 +103,7 @@ docker run -d --name=ovenmediaengine \
 --gpus all \
 -e OME_LICENSE_KEY=<Your.License.Key> \
 -e OME_HOST_IP=<Your.HOST.IP.Address> \
--p 1935:1935 -p 8080:8080 -p 9999:9999/udp -p 9000:9000 -p 80:80 -p 3478:3478 -p 10000-10009:10000-10009/udp \
+-p 1935:1935 -p 8080:8080 -p 9999:9999/udp -p 9000:9000 -p 80:80 -p 3478:3478 -p 10000:10000/udp -p 10000:10000/tcp \
 ovenmediaengine-enterprise
 ```
 
@@ -113,7 +113,7 @@ ovenmediaengine-enterprise
 ```sh
 docker ps
 CONTAINER ID   IMAGE                        COMMAND                  CREATED         STATUS         PORTS                                                                                                                                                                                                                                                                                                                                                 NAMES
-2269946c053e   ovenmediaengine-enterprise   "/opt/ovenmediaengin…"   5 minutes ago   Up 5 minutes   0.0.0.0:1935->1935/tcp, [::]:1935->1935/tcp, 0.0.0.0:80->80/tcp, [::]:80->80/tcp, 443/tcp, 0.0.0.0:3478->3478/tcp, [::]:3478->3478/tcp, 5000/tcp, 0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 4000-4005/udp, 8090/tcp, 0.0.0.0:9000->9000/tcp, [::]:9000->9000/tcp, 10010/udp, 0.0.0.0:9999-10009->9999-10009/udp, [::]:9999-10009->9999-10009/udp   ovenmediaengine
+2269946c053e   ovenmediaengine-enterprise   "/opt/ovenmediaengin…"   5 minutes ago   Up 5 minutes   0.0.0.0:1935->1935/tcp, [::]:1935->1935/tcp, 0.0.0.0:80->80/tcp, [::]:80->80/tcp, 443/tcp, 0.0.0.0:3478->3478/tcp, [::]:3478->3478/tcp, 5000/tcp, 0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 4000-4005/udp, 8090/tcp, 0.0.0.0:9000->9000/tcp, [::]:9000->9000/tcp, 0.0.0.0:10000->10000/tcp, [::]:10000->10000/tcp, 0.0.0.0:9999->9999/udp, [::]:9999->9999/udp, 0.0.0.0:10000->10000/udp, [::]:10000->10000/udp   ovenmediaengine
 
 docker stop ovenmediaengine
 docker rm ovenmediaengine
@@ -174,7 +174,7 @@ docker run -d --name=ovenmediaengine \
 -v $OME_DOCKER_HOME/ovenstudio/data:/opt/ovenmediaengine/ovenstudio/data \
 -v $OME_DOCKER_HOME/delivery/delivery.db:/opt/ovenmediaengine/delivery/delivery.db \
 -v $OME_DOCKER_HOME/delivery/conf:/opt/ovenmediaengine/delivery/conf \
--p 1935:1935 -p 8080:8080 -p 9999:9999/udp -p 9000:9000 -p 80:80 -p 3478:3478 -p 10000-10009:10000-10009/udp \
+-p 1935:1935 -p 8080:8080 -p 9999:9999/udp -p 9000:9000 -p 80:80 -p 3478:3478 -p 10000:10000/udp -p 10000:10000/tcp \
 ovenmediaengine-enterprise
 ```
 
@@ -200,7 +200,8 @@ services:
       - 9000:9000
       - 80:80
       - 3478:3478
-      - 10000-10009:10000-10009/udp
+      - 10000:10000/udp
+      - 10000:10000/tcp
 ```
 
 After the [installation](getting-started-with-docker.md#installation) is complete, you can run OvenMediaEngine Enterprise using the following command:
@@ -238,7 +239,8 @@ services:
       - 9000:9000
       - 80:80
       - 3478:3478
-      - 10000-10009:10000-10009/udp
+      - 10000:10000/udp
+      - 10000:10000/tcp
     deploy:
       resources:
         reservations:
@@ -319,7 +321,8 @@ services:
       - 9000:9000
       - 80:80
       - 3478:3478
-      - 10000-10009:10000-10009/udp
+      - 10000:10000/udp
+      - 10000:10000/tcp
     volumes:
       - $OME_DOCKER_HOME/origin_conf:/opt/ovenmediaengine/bin/origin_conf
       - $OME_DOCKER_HOME/logs:/var/log/ovenmediaengine
@@ -343,7 +346,7 @@ The default configuration uses the following ports, so you need to open it in yo
 
 ### OvenMediaEngine
 
-<table><thead><tr><th width="200">Port</th><th>Purpose</th></tr></thead><tbody><tr><td>1935/TCP</td><td>RTMP Input</td></tr><tr><td>9999/UDP</td><td>SRT Input</td></tr><tr><td>4000/UDP</td><td>MPEG-2 TS Input</td></tr><tr><td>9000/TCP</td><td>Origin Server (OVT)</td></tr><tr><td><p>80/TCP</p><p>443/TLS</p></td><td><p>Low Latency HLS (LLHLS) Streaming</p><p><em>* Streaming over non-TLS is not allowed with modern browsers.</em></p></td></tr><tr><td><p>80/TCP</p><p>443/TLS</p></td><td>WebRTC Signaling (both ingest and streaming)</td></tr><tr><td>3478/TCP</td><td>WebRTC TCP relay (TURN Server, both ingest and streaming)</td></tr><tr><td>10000 - 10009/UDP</td><td>WebRTC Ice candidate (both ingest and streaming)</td></tr><tr><td><p>80/TCP</p><p>443/TLS</p></td><td>Thumbnail Extraction</td></tr></tbody></table>
+<table><thead><tr><th width="200">Port</th><th>Purpose</th></tr></thead><tbody><tr><td>1935/TCP</td><td>RTMP Input</td></tr><tr><td>9999/UDP</td><td>SRT Input</td></tr><tr><td>4000/UDP</td><td>MPEG-2 TS Input</td></tr><tr><td>9000/TCP</td><td>Origin Server (OVT)</td></tr><tr><td><p>80/TCP</p><p>443/TLS</p></td><td><p>Low Latency HLS (LLHLS) Streaming</p><p><em>* Streaming over non-TLS is not allowed with modern browsers.</em></p></td></tr><tr><td><p>80/TCP</p><p>443/TLS</p></td><td>WebRTC Signaling (both ingest and streaming)</td></tr><tr><td>3478/TCP</td><td>WebRTC TCP relay (TURN Server, both ingest and streaming)</td></tr><tr><td><p>10000/UDP</p><p>10000/TCP</p></td><td>WebRTC Ice candidate (both ingest and streaming)</td></tr><tr><td><p>80/TCP</p><p>443/TLS</p></td><td>Thumbnail Extraction</td></tr></tbody></table>
 
 ### Web Console (OvenStudio)
 
