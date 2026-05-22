@@ -7,7 +7,7 @@
     "start": "docusaurus start",
     "preview": "GEN_ENT_SKIP=1 docusaurus start",
     "build": "docusaurus build",
-    "postbuild": "node scripts/label-search-results.js && node scripts/inject-docs-description.js",
+    "postbuild": "node scripts/label-search-results.js && node scripts/inject-docs-description.js && node scripts/inject-og-image.js",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

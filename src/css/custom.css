@@ -161,7 +161,7 @@
   flex-shrink: 0;
   opacity: 0.75;
   transform: translateY(2.5px);
-  transition: opacity 0.15s ease, color 0.15s ease;
+  transition: opacity 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
 /* Per-icon optical-alignment tweaks. Each Phosphor glyph sits at a
@@ -176,6 +176,7 @@
 .navbar-custom .navbar-dropdown-menu .dropdown-item:focus .dropdown-item-leading {
   opacity: 1;
   color: var(--ifm-color-primary);
+  transform: translate(2px, -2px);
 }
 
 .navbar-custom .nav-link.dropdown-toggle::after {
@@ -188,6 +189,17 @@
  * nav is still active but space is tight. */
 .navbar-custom .navbar-nav .nav-link {
   white-space: nowrap;
+}
+
+#hero-section.hero-with-notice {
+  flex: 1 1 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+}
+
+.navbar-custom .navbar-nav .nav-link.active {
+  color: #38BDF8 !important;
+  font-weight: 600;
 }
 
 .navbar-custom .navbar-dropdown-menu .dropdown-divider {
@@ -205,6 +217,12 @@
   margin-bottom: 0;
 }
 
+.navbar-custom .navbar-dropdown-menu .dropdown-item.active {
+  background-color: transparent;
+  color: #38BDF8 !important;
+  font-weight: 600;
+}
+
 .navbar-custom .navbar-dropdown-menu .dropdown-item-external {
   color: #a6a6a6;
 }
@@ -217,6 +235,42 @@
 .navbar-custom .navbar-dropdown-menu .dropdown-item-external:focus i {
   transform: translate(2px, -2px);
   opacity: 1 !important;
+}
+
+/* Mobile: Resources accordion sub-items */
+@media (max-width: 991px) {
+  .navbar-custom .mobile-nav-caret {
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+    opacity: 0.6;
+  }
+  .navbar-custom .nav-link[aria-expanded="true"] .mobile-nav-caret {
+    transform: rotate(-180deg);
+  }
+  .navbar-custom .nav-link-sub {
+    font-size: 0.82rem;
+    padding-left: 1.75rem !important;
+    opacity: 0.65;
+    border-bottom: none !important;
+  }
+  .navbar-custom .nav-link-sub::before {
+    content: '–';
+    margin-right: 0.45rem;
+    opacity: 0.5;
+  }
+  .navbar-custom .mobile-nav-external-icon {
+    font-size: 0.7rem;
+    opacity: 0.4;
+    flex-shrink: 0;
+  }
+  .navbar-custom .nav-link-sub:last-child {
+    border-bottom: 0.5px solid rgba(45, 45, 45, 0.75) !important;
+  }
+  .navbar-custom .nav-link-sub:hover,
+  .navbar-custom .nav-link-sub:focus,
+  .navbar-custom .nav-link-sub.active {
+    opacity: 1;
+  }
 }
 
 /* ============================================================

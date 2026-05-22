@@ -1,13 +1,46 @@
 ---
-title: Company | OvenMedia Labs
-description: Media Technology Experts Group. We define media technology for the real-time world.
+title: Company
+description: OvenMedia Labs Inc. (formerly AirenSoft Co., Ltd., rebranded February 2026) — Media Technology Experts Group. We define media technology for the real-time world.
+image: images/og/og_oml.png
 hide_table_of_contents: true
 wrapperClassName: marketing-page
 ---
 
 import Heading from '@theme/Heading';
+import Head from '@docusaurus/Head';
 
-<section id="hero-section" className="hero-bg-company full-page-section d-flex align-items-center position-relative text-center">
+<Head>
+  <script type="application/ld+json">{`
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "OvenMedia Labs Inc.",
+      "legalName": "OvenMedia Labs Inc.",
+      "alternateName": ["OvenMedia Labs", "AirenSoft Co., Ltd.", "AirenSoft"],
+      "description": "OvenMedia Labs Inc. (formerly AirenSoft Co., Ltd., rebranded February 2026) is a media technology company specializing in real-time streaming. Makers of OvenMediaEngine, an open-source sub-second latency streaming server.",
+      "foundingDate": "2010",
+      "url": "https://ovenmedialabs.com",
+      "logo": "https://ovenmedialabs.com/images/airen_ci/OML_Letter_W.png",
+      "email": "contact@ovenmedialabs.com",
+      "telephone": "+82-2-6378-5227",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "#1203, Twenty-First Valley, 157, Yangpyeong-ro, Yeongdeungpo-gu",
+        "addressLocality": "Seoul",
+        "postalCode": "07207",
+        "addressCountry": "KR"
+      },
+      "sameAs": [
+        "https://github.com/OvenMediaLabs",
+        "https://github.com/AirenSoft"
+      ]
+    }
+  `}</script>
+</Head>
+
+<div style={{height: '100vh', display: 'flex', flexDirection: 'column'}}>
+
+<section id="hero-section" className="hero-bg-company full-page-section hero-with-notice d-flex align-items-center position-relative text-center">
   <div className="hero-overlay"></div>
   <div className="container position-relative z-1">
     <div className="row justify-content-center">
@@ -24,6 +57,17 @@ import Heading from '@theme/Heading';
   </div>
 </section>
 
+<div className="w-100 bg-middle border-bottom border-surface py-3 flex-shrink-0">
+  <div className="container">
+    <div className="d-flex align-items-center justify-content-center gap-3 flex-wrap text-center">
+      <span className="badge bg-brand text-dark rounded-pill px-3 py-2 fw-bold extra-small flex-shrink-0">Feb 2026</span>
+      <span className="text-sub small"><strong className="text-main">OvenMedia Labs Inc.</strong> is the new name of <strong className="text-main">AirenSoft Co., Ltd.</strong> — the company behind OvenMediaEngine since 2010.</span>
+    </div>
+  </div>
+</div>
+
+</div>
+
 <section id="brief" className="full-page-section d-flex flex-column position-relative bg-body">
   <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
     <div className="container">
@@ -35,6 +79,7 @@ import Heading from '@theme/Heading';
           </div>
           <h2 className="display-4 fw-bold text-main mb-4">Makers of<br />OvenMediaEngine</h2>
           <p className="lead text-sub col-lg-10 mb-0 mb-lg-4">We are a group of media technology experts behind the open-source project <strong>OvenMediaEngine</strong>.<span className="d-none d-sm-inline"> We believe that our core technology should be accessible to everyone.</span></p>
+          <p className="text-sub small col-lg-10 mb-0 mb-lg-4 mt-3">Formerly operating as <strong>AirenSoft Co., Ltd.</strong> since 2010, the company rebranded to <strong>OvenMedia Labs Inc.</strong> in February 2026 to better reflect its product identity.</p>
 
           <div className="d-none d-md-block">
             <div className="stat-grid-box mt-5">
@@ -61,7 +106,7 @@ import Heading from '@theme/Heading';
           </div>
         </div>
 
-        <div className="col-lg-5 offset-lg-1 reveal-up">
+        <div className="col-lg-5 offset-lg-1 reveal-up d-none d-lg-block">
           <div className="p-4 p-md-5 bg-middle-50 border border-surface rounded-4 position-relative hover-card5 shadow-lg">
             <i className="ph ph-code-block fs-1 text-secondary mb-4"></i>
             <h4 className="h3 text-main fw-bold mb-3">R&amp;D Centric</h4>
@@ -126,7 +171,7 @@ import Heading from '@theme/Heading';
 </section>
 
 <section id="team" className="full-page-section d-flex flex-column position-relative bg-body py-5 bg-gradient3" style={{minHeight: '100vh'}}>
-  <div className="w-100 flex-grow-1 d-flex align-items-center">
+  <div className="w-100 d-flex align-items-center">
     <div className="container">
       <div className="row justify-content-center mb-4 mb-lg-5 reveal-up">
         <div className="col-lg-8 text-center">
@@ -168,7 +213,7 @@ import Heading from '@theme/Heading';
     </div>
   </div>
 
-  <div id="phil" className="w-100 flex-grow-1 d-flex align-items-center mt-n5">
+  <div id="phil" className="w-100 d-flex align-items-center mt-n5 mb-4">
     <div className="container">
       <div className="row g-4 row-cols-1 row-cols-md-3 mobile-horizontal-scroll">
         <div className="col reveal-up">
@@ -202,7 +247,7 @@ import Heading from '@theme/Heading';
     <div className="container">
       <div className="row justify-content-center mb-5 reveal-up">
         <div className="col-lg-8 text-center">
-          <Heading as="h2" id="contact" className="display-4 fw-bold text-main mb-3 copy-title">Contact Us</Heading>
+          <Heading as="h2" id="contact" className="display-4 fw-bold text-main mb-3 copy-title">Contact</Heading>
         </div>
       </div>
 
@@ -225,7 +270,7 @@ import Heading from '@theme/Heading';
 
       <hr className="border-surface my-5" />
 
-      <div className="row g-4 mobile-horizontal-scroll">
+      <div className="row g-4 mobile-horizontal-scroll mb-2">
         <div className="col-md-4 reveal-up">
           <div className="tech-card-pro p-4 d-flex flex-column align-items-center text-center h-100 justify-content-center">
             <i className="ph ph-envelope-simple fs-3 text-main mb-3 opacity-75"></i>
