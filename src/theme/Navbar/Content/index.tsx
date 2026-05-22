@@ -33,6 +33,7 @@ type NavbarItem = {
   // entries from a named module instead of `items` (lets us include divider/
   // header rows that Docusaurus's themeConfig schema would reject).
   customMenu?: 'resources';
+  mobileLabel?: string;
   [key: string]: unknown;
 };
 
@@ -232,7 +233,7 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
           id="mobileResourcesMenu">
           <ul className="nav flex-column">
             {linkItems.map((sub, i) => {
-              const label = sub.mobileLabel ?? sub.label;
+              const label: string = sub.mobileLabel ?? sub.label ?? '';
               return sub.href ? (
                 <li key={`mob-${i}`} className="nav-item">
                   <a
