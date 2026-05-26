@@ -10,5 +10,5 @@ This section provides details on the latest updates, improvements, and bug fixes
 
 ## Latest Version
 
-The latest version of [**OvenMediaEngine Enterprise is 0.20.6.1-1**](0.20.6.md) (Updated on April 30, 2026 UTC+9).
+The latest version of [**OvenMediaEngine Enterprise is 0.20.7.1-1**](0.20.7.md) (Updated on May 26, 2026 UTC+9).
 
