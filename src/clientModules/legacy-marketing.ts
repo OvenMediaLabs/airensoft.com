@@ -449,12 +449,14 @@ const module: ClientModule = {
           setTimeout(() => {
             const target = document.querySelector(location.hash);
             if (target) {
-              // Scroll to the parent section top so the full section is visible
-              // from just below the navbar, regardless of where the H2 sits
-              // inside the section.
-              const scrollTarget =
-                target.closest('section') ?? target.closest('.container') ?? target;
-              scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              // On marketing pages the target sits inside a <section>; scroll to
+              // that section's top so the full section is visible below the navbar.
+              // On docs pages there are no <section> wrappers — leave the scroll
+              // to the browser so scroll-padding-top handles the navbar offset.
+              const section = target.closest('section');
+              if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
             }
           }, 80);
         });

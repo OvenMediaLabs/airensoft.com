@@ -799,9 +799,10 @@ h6, .h6 {
 .enterprise .pro-icon-box { color: var(--company-primary); }
 .opensource .pro-icon-box { color: var(--brand-secondary); }
 
-.tech-card-pro a,
-.tech-card-pro a:hover {
+.tech-card-pro a:not(.btn),
+.tech-card-pro a:not(.btn):hover {
     text-decoration: none !important;
+    color: var(--text-sub) !important;
 }
 
 .pro-subtitle {
@@ -1843,6 +1844,12 @@ html { scroll-padding-top: var(--navbar-height, 80px); }
 }
 .copy-title {
     cursor: pointer;
+}
+
+/* Suppress Docusaurus hash-link hover icon for headings that use copy-title
+   but shouldn't show the built-in # anchor (e.g. #contact on company page). */
+.copy-title-no-hash .hash-link {
+    display: none !important;
 }
 
 /* Notice */
