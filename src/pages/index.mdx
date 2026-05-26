@@ -33,7 +33,10 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
       <span className="badge bg-company text-dark mb-3 px-3 py-2 rounded-pill fw-bold">The Tailored Live Streaming Solution</span>
       <h2 className="display-4 fw-bold text-main mb-3">OvenMediaEngine <span className="text-primary">Enterprise</span></h2>
       <p className="lead text-sub mb-5 col-lg-8 mx-auto">An installable live streaming server that lets you design, fine-tune, and scale real-time streaming exactly the way your business demands.</p>
-      <a className="btn btn-company-outline px-5" href="/ome-enterprise">Explore Enterprise Edition</a>
+      <div className="d-grid gap-3 d-md-flex justify-content-md-center align-items-md-center">
+        <a className="btn btn-company-outline px-5" href="/ome-enterprise" style={{minWidth: '280px'}}>Explore Enterprise Edition</a>
+        <a className="btn btn-brand-outline px-5" href="/ome-enterprise#marketplace" style={{minWidth: '280px'}}>Try it on Marketplace</a>
+      </div>
     </div>
   </div>
 
@@ -171,7 +174,7 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
   </div>
 </section>
 
-<LatestBlogPosts />
+<LatestBlogPosts anchor={false} />
 
 <section className="full-page-section d-flex flex-column bg-surface-50">
   <div className="d-flex align-items-center justify-content-center py-5">
