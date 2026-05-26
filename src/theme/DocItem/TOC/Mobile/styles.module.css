@@ -1,49 +1,36 @@
-/* The wrapper hides on desktop because the desktop layout shows the
- * sidebar inline; only the < 997px viewport needs this nav bar. */
+/* ── Pill bar (Pages + On this page) ───────────────────────────────── */
+
+/* Bar height as a variable so the spacer can reference it. */
+:local {
+  --mobile-toc-bar-height: 2.3rem;
+}
+
+/* position: fixed keeps the bar anchored below the navbar at all
+ * times — it never moves when scrolling and never jumps on re-renders
+ * (which `position: sticky` can do when a layout reflow happens to
+ * coincide with the sticky attach/detach threshold). */
 .mobileDocNav {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.5rem;
-  position: sticky;
-  top: var(--ifm-navbar-height);
+  position: fixed;
+  /* 8px gap from the navbar so the bar reads as a distinct element. */
+  top: calc(var(--ifm-navbar-height) + 8px);
+  left: 0;
+  right: 0;
   z-index: 10;
-  /* Break out of the body column's horizontal padding so the bar
-   * spans the full viewport — reads as an extension of the navbar
-   * above instead of a centered widget inside the body. The
-   * `50% - 50vw` trick is robust against any combination of
-   * container / col paddings above. */
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  margin-bottom: 1rem;
   padding: 0 0.5rem;
-  /* Match the doc body background so the bar is visually invisible
-   * but still blocks page content from scrolling through the gap
-   * between the two pills (otherwise the H1 title leaks through as
-   * it scrolls past). The hex matches `html.plugin-docs body` in
-   * src/css/custom.css. */
   background-color: #0f1216;
 }
 
-/* TOC takes the remaining width so it stays readable when expanded.
- * Pages button keeps its natural compact width (icon + label) — it
- * just opens a drawer, no need to fill space. */
-.mobileDocNav :global(.theme-doc-toc-mobile) {
-  flex: 1 1 0;
-  margin: 0 !important;
+/* Invisible placeholder that reserves the bar's height in the document
+ * flow so the article content starts below the fixed bar. */
+.mobileDocNavSpacer {
+  height: calc(var(--mobile-toc-bar-height, 2.3rem) + 8px);
+  margin-bottom: 1rem;
 }
 
-/* "Pages" button visually matches the TOCCollapsibleButton (same
- * radius, padding, font size). Background uses `--ifm-background-surface-color`
- * — solid one-shade-up from body — so the pill stays readable when
- * scrolled mid-page (the default `--ifm-menu-color-background-active`
- * is near-transparent and lets body text bleed through). The TOC
- * wrapper (`tocCollapsible_<hash>` CSS-module class on the
- * `.theme-doc-toc-mobile` element) gets the same opaque background. */
-.pagesButton,
-.mobileDocNav :global(.theme-doc-toc-mobile),
-.mobileDocNav :global([class*='tocCollapsible']) {
-  background-color: var(--ifm-background-surface-color) !important;
-}
+/* ── Shared pill appearance ─────────────────────────────────────────── */
 
 .pagesButton {
   flex: 0 0 auto;
@@ -54,6 +41,7 @@
   font-size: inherit;
   color: inherit;
   cursor: pointer;
+  background-color: var(--ifm-background-surface-color) !important;
 }
 
 .pagesIcon {
@@ -63,8 +51,47 @@
   opacity: 0.7;
 }
 
-/* Desktop: hide the whole nav row. Docusaurus's original mobile TOC
- * styles also hide at >= 997px; keep the same breakpoint. */
+/* ── "On this page" button + its absolute-positioned overlay ─────────
+ * The wrapper is the positioning context so the dropdown inherits the
+ * button's exact width without affecting document flow.             */
+
+.tocButtonWrapper {
+  flex: 1 1 0;
+  position: relative;
+  /* Overflow visible so the dropdown can extend below the bar. */
+  overflow: visible;
+  /* Minimum width so the label doesn't get squished on narrow screens. */
+  min-width: 0;
+}
+
+.tocButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--ifm-global-radius);
+  padding: 0.4rem 0.8rem;
+  font-size: inherit;
+  color: inherit;
+  cursor: pointer;
+  background-color: var(--ifm-background-surface-color) !important;
+}
+
+/* Caret rotates 180° when open. */
+.tocCaret {
+  display: inline-block;
+  font-size: 0.8rem;
+  opacity: 0.65;
+  transition: transform 0.2s ease;
+  margin-left: 0.4rem;
+  flex-shrink: 0;
+}
+
+.tocButtonOpen .tocCaret {
+  transform: rotate(180deg);
+}
+
+/* Desktop: hide the entire bar. */
 @media (min-width: 997px) {
   .mobileDocNav {
     display: none;
@@ -73,6 +100,122 @@
 
 @media print {
   .mobileDocNav {
+    display: none;
+  }
+}
+
+/* ── TOC overlay panel ──────────────────────────────────────────────── */
+
+/* Anchored to the button wrapper (position:relative).
+ * top: 100% + a 4px gap puts it just below the button pill.
+ * z-index: 200 — above page content (10), but below the navbar (1050)
+ * and the Pages sidebar (also within the navbar stacking context). */
+.tocOverlay {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-300), transparent 50%);
+  border-radius: var(--ifm-global-radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  max-height: 60vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+.tocOverlay::-webkit-scrollbar {
+  width: 4px;
+}
+.tocOverlay::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.tocList {
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem 0;
+}
+
+.tocListItem {
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Hierarchy levels ───────────────────────────────────────────────── */
+
+/* L1 — top-level headings (h2 by default): full weight, full opacity. */
+.tocItemL1 > .tocOverlayLink {
+  padding-left: 0.85rem;
+  font-weight: 500;
+  color: var(--ifm-color-content);
+  font-size: 0.875rem;
+}
+
+/* L2 — one level in (h3): indented, muted, smaller. */
+.tocItemL2 > .tocOverlayLink {
+  padding-left: 1.6rem;
+  font-size: 0.825rem;
+  color: var(--ifm-color-content-secondary);
+  position: relative;
+}
+
+/* Vertical guide line connecting L2 items to their parent. */
+.tocItemL2 > .tocOverlayLink::before {
+  content: '';
+  position: absolute;
+  left: 0.9rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: color-mix(in srgb, var(--ifm-color-emphasis-300), transparent 40%);
+}
+
+/* L3+ — deeper (h4+): further indented, more muted. */
+.tocItemL3 > .tocOverlayLink {
+  padding-left: 2.3rem;
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--ifm-color-content-secondary), transparent 25%);
+  position: relative;
+}
+
+.tocItemL3 > .tocOverlayLink::before {
+  content: '';
+  position: absolute;
+  left: 1.6rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: color-mix(in srgb, var(--ifm-color-emphasis-300), transparent 50%);
+}
+
+/* Base link style shared by all levels. */
+.tocOverlayLink {
+  display: block;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  padding-right: 0.85rem;
+  text-decoration: none;
+  line-height: 1.4;
+  transition: color 0.12s, background-color 0.12s;
+  /* Truncate very long headings gracefully. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tocOverlayLink:hover {
+  color: var(--ifm-color-content) !important;
+  background-color: rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+}
+
+/* Only show this overlay on mobile. */
+@media (min-width: 997px) {
+  .tocOverlay {
     display: none;
   }
 }

@@ -7,93 +7,140 @@
  * NavbarMobileSidebar drawer. This adds that path via a dedicated
  * button next to the TOC mobile control.
  *
- * On a doc page, NavbarSecondaryMenuDisplay defaults `shown = true`
- * when secondary content is available, so toggling the mobile sidebar
- * here opens directly into the doc sidebar — no extra "Menu" tap.
+ * "On this page" opens a position:absolute overlay panel anchored to
+ * the button wrapper so the dropdown width matches the button exactly
+ * and page content is never pushed down.
  *
- * The "On this page" TOC renders only when there are entries (and the
- * page hasn't opted out via `hide_table_of_contents`). The Pages
- * button is always rendered so that category index pages without
- * headings — which would otherwise lose all sidebar access — keep a
+ * The Pages button is always rendered so category index pages without
+ * headings (which would otherwise lose all sidebar access) keep a
  * path to navigation.
  */
-import {type ReactNode, useEffect, useRef} from 'react';
+import {type ReactNode, useCallback, useEffect, useRef, useState} from 'react';
 import clsx from 'clsx';
-import {ThemeClassNames} from '@docusaurus/theme-common';
+import {useThemeConfig} from '@docusaurus/theme-common';
 import {useNavbarMobileSidebar} from '@docusaurus/theme-common/internal';
 import {useDoc} from '@docusaurus/plugin-content-docs/client';
-
-import TOCCollapsible from '@theme/TOCCollapsible';
+import {useLocation} from '@docusaurus/router';
 
 import styles from './styles.module.css';
-
-/**
- * Close the expanded TOC dropdown on any click outside the chevron
- * toggle button (so tapping body content, TOC links, the Pages
- * button, etc. all collapse it). Only the chevron itself keeps its
- * natural toggle behavior.
- *
- * We can't read TOCCollapsible's internal state directly, so we
- * detect the expanded state from its button's CSS-module class
- * (`tocCollapsibleButtonExpanded_<hash>`) and trigger a click on
- * that button to drive the collapse.
- */
-function useCloseTOCOnOutsideClick(navRef: React.RefObject<HTMLDivElement | null>) {
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      const nav = navRef.current;
-      if (!nav) return;
-      const tocButton = nav.querySelector<HTMLButtonElement>(
-        '[class*="tocCollapsibleButton"]',
-      );
-      if (!tocButton) return;
-      // Don't interfere with the toggle button's own click.
-      if (tocButton.contains(e.target as Node)) return;
-      const isExpanded = Array.from(tocButton.classList).some((c) =>
-        c.includes('Expanded'),
-      );
-      if (isExpanded) {
-        tocButton.click();
-      }
-    };
-    document.addEventListener('click', handler);
-    return () => document.removeEventListener('click', handler);
-  }, [navRef]);
-}
 
 export default function DocItemTOCMobile(): ReactNode {
   const {toc, frontMatter} = useDoc();
   const mobileSidebar = useNavbarMobileSidebar();
+  const {pathname} = useLocation();
+  const themeConfig = useThemeConfig();
+
   const showTOC = !frontMatter.hide_table_of_contents && toc.length > 0;
+
+  // Filter TOC items by heading level (matches TOCCollapsible behaviour).
+  const minLevel =
+    frontMatter.toc_min_heading_level ??
+    themeConfig.tableOfContents.minHeadingLevel;
+  const maxLevel =
+    frontMatter.toc_max_heading_level ??
+    themeConfig.tableOfContents.maxHeadingLevel;
+  const filteredTOC = toc.filter(
+    (item) => item.level >= minLevel && item.level <= maxLevel,
+  );
+
+  const [tocOpen, setTocOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
-  useCloseTOCOnOutsideClick(navRef);
+
+  // Close TOC on route change.
+  useEffect(() => {
+    setTocOpen(false);
+  }, [pathname]);
+
+  // Close TOC when Pages sidebar opens.
+  useEffect(() => {
+    if (mobileSidebar.shown) setTocOpen(false);
+  }, [mobileSidebar.shown]);
+
+  // Close TOC when user clicks outside the bar.
+  useEffect(() => {
+    if (!tocOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (!navRef.current?.contains(e.target as Node)) {
+        setTocOpen(false);
+      }
+    };
+    document.addEventListener('click', handler);
+    return () => document.removeEventListener('click', handler);
+  }, [tocOpen]);
+
+  const handleTocToggle = useCallback(() => setTocOpen((p) => !p), []);
+  const closeTOC = useCallback(() => setTocOpen(false), []);
 
   return (
+    <>
+    {/* Spacer keeps the article layout intact while the bar is fixed. */}
+    <div className={styles.mobileDocNavSpacer} aria-hidden="true" />
     <div ref={navRef} className={styles.mobileDocNav}>
+      {/* Pages button — opens the docs-sidebar drawer */}
       <button
         type="button"
         className={clsx('clean-btn', styles.pagesButton)}
         aria-label="Browse pages"
         onClick={() => mobileSidebar.toggle()}>
         <span className={styles.pagesIcon} aria-hidden="true">
-          {/* 3-line list icon */}
           <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
             <path d="M2 3.5h12v1.5H2zM2 7.25h12v1.5H2zM2 11h12v1.5H2z" />
           </svg>
         </span>
         <span>Pages</span>
       </button>
+
+      {/* "On this page" button + overlay — only when TOC entries exist */}
       {showTOC && (
-        <TOCCollapsible
-          toc={toc}
-          minHeadingLevel={frontMatter.toc_min_heading_level}
-          maxHeadingLevel={frontMatter.toc_max_heading_level}
-          className={clsx(
-            ThemeClassNames.docs.docTocMobile,
-            styles.tocMobileInline,
+        <div className={styles.tocButtonWrapper}>
+          <button
+            type="button"
+            className={clsx(
+              'clean-btn',
+              styles.tocButton,
+              tocOpen && styles.tocButtonOpen,
+            )}
+            aria-label="On this page"
+            aria-expanded={tocOpen}
+            onClick={handleTocToggle}>
+            <span>On this page</span>
+            <i
+              className={clsx('ph ph-caret-down', styles.tocCaret)}
+              aria-hidden="true"
+            />
+          </button>
+
+          {/* Overlay — position:absolute inside the wrapper so it inherits
+              the button's width exactly and doesn't push content down. */}
+          {tocOpen && (
+            <div className={styles.tocOverlay} role="navigation" aria-label="Page sections">
+              <ul className={styles.tocList} role="list">
+                {filteredTOC.map((item) => {
+                  const depth = item.level - minLevel; // 0 = top level
+                  return (
+                    <li
+                      key={item.id}
+                      className={clsx(
+                        styles.tocListItem,
+                        depth === 0 && styles.tocItemL1,
+                        depth === 1 && styles.tocItemL2,
+                        depth >= 2 && styles.tocItemL3,
+                      )}>
+                      <a
+                        href={`#${item.id}`}
+                        className={styles.tocOverlayLink}
+                        dangerouslySetInnerHTML={{__html: item.value}}
+                        onClick={closeTOC}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           )}
-        />
+        </div>
       )}
     </div>
+    </>
   );
 }

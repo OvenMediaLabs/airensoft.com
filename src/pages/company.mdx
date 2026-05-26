@@ -60,7 +60,7 @@ import Head from '@docusaurus/Head';
 <div className="w-100 bg-middle border-bottom border-surface py-3 flex-shrink-0">
   <div className="container">
     <div className="d-flex align-items-center justify-content-center gap-3 flex-wrap text-center">
-      <span className="badge bg-brand text-dark rounded-pill px-3 py-2 fw-bold extra-small flex-shrink-0">Feb 2026</span>
+      <span className="badge bg-company text-dark rounded-pill px-3 py-2 fw-bold extra-small flex-shrink-0">Feb 2026</span>
       <span className="text-sub small"><strong className="text-main">OvenMedia Labs Inc.</strong> is the new name of <strong className="text-main">AirenSoft Co., Ltd.</strong> — the company behind OvenMediaEngine since 2010.</span>
     </div>
   </div>
@@ -77,19 +77,19 @@ import Head from '@docusaurus/Head';
             <i className="ph ph-fingerprint fs-4"></i>
             <span className="fw-bold text-uppercase small">Who We Are</span>
           </div>
-          <h2 className="display-4 fw-bold text-main mb-4">Makers of<br />OvenMediaEngine</h2>
+          <h2 id="about" className="display-4 fw-bold text-main mb-4 copy-title">Makers of<br />OvenMediaEngine</h2>
           <p className="lead text-sub col-lg-10 mb-0 mb-lg-4">We are a group of media technology experts behind the open-source project <strong>OvenMediaEngine</strong>.<span className="d-none d-sm-inline"> We believe that our core technology should be accessible to everyone.</span></p>
           <p className="text-sub small col-lg-10 mb-0 mb-lg-4 mt-3">Formerly operating as <strong>AirenSoft Co., Ltd.</strong> since 2010, the company rebranded to <strong>OvenMedia Labs Inc.</strong> in February 2026 to better reflect its product identity.</p>
 
           <div className="d-none d-md-block">
             <div className="stat-grid-box mt-5">
               <div className="stat-cell">
-                <h3 className="fw-bold text-main mb-0">15+</h3>
+                <h3 className="fw-bold text-main mb-0">16+</h3>
                 <span className="text-mono-light extra-small">Years Exp.</span>
               </div>
 
               <div className="stat-cell">
-                <h3 className="fw-bold text-main mb-0">6+</h3>
+                <h3 className="fw-bold text-main mb-0">7+</h3>
                 <span className="text-mono-light extra-small">&lt;1s Latency Exp.</span>
               </div>
 
@@ -118,12 +118,12 @@ import Head from '@docusaurus/Head';
   </div>
 </section>
 
-<section id="community" className="full-page-section d-flex flex-column position-relative bg-body">
+<section className="full-page-section d-flex flex-column position-relative bg-body">
   <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
     <div className="container">
       <div className="text-center mb-5 reveal-up">
         <span className="badge bg-brand text-dark mb-3 px-3 py-2 rounded-pill fw-bold">Global Impact</span>
-        <h2 className="display-4 fw-bold text-main mb-3 copy-title">Trusted by the Community</h2>
+        <h2 id="community" className="display-4 fw-bold text-main mb-3 copy-title">Trusted by the Community</h2>
         <p className="lead text-sub col-lg-8 mx-auto">Our technology powers thousands of media services worldwide.</p>
       </div>
 
@@ -144,7 +144,7 @@ import Head from '@docusaurus/Head';
             <div className="pro-icon-box mb-4 d-inline-flex align-items-center justify-content-center" style={{'--tech-icon': '#0A1122', width: '80px', height: '80px'}}>
               <i className="ph ph-download-simple fs-2 text-main"></i>
             </div>
-            <h3 className="display-5 fw-bold text-main mb-1">1M+</h3>
+            <h3 className="display-5 fw-bold text-main mb-1">1.1M+</h3>
             <p className="text-mono-light small mb-4">Total Docker Pulls</p>
             <a href="https://hub.docker.com/r/airensoft/ovenmediaengine" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary-outline3 rounded-pill px-4" style={{minWidth: '200px'}}>View on Docker Hub</a>
           </div>
@@ -162,20 +162,24 @@ import Head from '@docusaurus/Head';
         </div>
       </div>
 
-      <div className="text-center mt-5 reveal-up">
-        <p className="text-mono-deep extra-small lh-1">※ This information is current as of January 30, 2026 (UTC+9).</p>
+      <div className="d-flex align-items-center justify-content-center gap-2 flex-wrap text-center mt-5 reveal-up">
+        <span className="badge bg-company-tertiary text-dark px-2 py-1 fw-bold flex-shrink-0" style={{fontSize: '0.65rem'}}>New Repo URL</span>
+        <p className="text-mono small mb-0">Our Docker Hub repository is transitioning from <strong className="text-mono-light">airensoft/ovenmediaengine</strong> to <strong className="text-mono-light">ovenmedialabs/ovenmediaengine</strong>.</p>
+      </div>
+      <div className="text-center mt-2 reveal-up">
+        <p className="text-mono-deep extra-small lh-1 opacity-75">※ This information is current as of April 30, 2026 (UTC+9).</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<section id="team" className="full-page-section d-flex flex-column position-relative bg-body py-5 bg-gradient3" style={{minHeight: '100vh'}}>
-  <div className="w-100 d-flex align-items-center">
+<section className="full-page-section d-flex flex-column position-relative bg-body py-5 bg-gradient3 team-section" style={{minHeight: '100vh'}}>
+  <div className="w-100 d-flex align-items-center pb-3">
     <div className="container">
       <div className="row justify-content-center mb-4 mb-lg-5 reveal-up">
         <div className="col-lg-8 text-center">
-          <h2 className="display-4 fw-bold text-main mb-3 copy-title">Our Team and Philosophy</h2>
+          <h2 id="team" className="display-4 fw-bold text-main mb-3 copy-title">Our Team and Philosophy</h2>
         </div>
       </div>
 
@@ -213,7 +217,7 @@ import Head from '@docusaurus/Head';
     </div>
   </div>
 
-  <div id="phil" className="w-100 d-flex align-items-center mt-n5 mb-4">
+  <div id="phil" className="w-100 d-flex align-items-center mt-2 mb-4">
     <div className="container">
       <div className="row g-4 row-cols-1 row-cols-md-3 mobile-horizontal-scroll">
         <div className="col reveal-up">
@@ -247,7 +251,7 @@ import Head from '@docusaurus/Head';
     <div className="container">
       <div className="row justify-content-center mb-5 reveal-up">
         <div className="col-lg-8 text-center">
-          <Heading as="h2" id="contact" className="display-4 fw-bold text-main mb-3 copy-title">Contact</Heading>
+          <h2 id="contact" className="display-4 fw-bold text-main mb-3 copy-title">Contact</h2>
         </div>
       </div>
 
@@ -304,7 +308,7 @@ import Head from '@docusaurus/Head';
   <div className="container py-5">
     <div className="text-center mb-5 reveal-up">
       <span className="badge bg-company text-dark mb-3 px-3 py-2 rounded-pill fw-bold">Design Assets</span>
-      <h2 className="display-4 fw-bold text-main mb-3 copy-title">Design Guidelines</h2>
+      <h2 id="ci" className="display-4 fw-bold text-main mb-3 copy-title">Design Guidelines</h2>
       <p className="lead text-sub col-lg-8 mx-auto">Precise specifications for the OvenMedia Labs visual identity system.</p>
     </div>
 

@@ -160,22 +160,48 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
     };
   }, []);
 
-  // Auto-reopen Resources accordion when hamburger reopens (if on a Resources page)
+  // Hamburger open/close → Resources accordion sync (no double-animation):
+  //
+  //   show.bs.collapse  (hamburger starts opening, before any frame is painted)
+  //     → set Resources to its target state instantly, with no transition, so
+  //       it is already in the right position when the menu slides into view.
+  //
+  //   hidden.bs.collapse (hamburger fully hidden, off-screen)
+  //     → silently reset Resources to collapsed so the next open starts clean.
+  //       Done after the hamburger is invisible so there is no visible flicker.
   useEffect(() => {
     const mainNav = document.getElementById('mainNav');
     if (!mainNav) return;
-    const onNavShown = () => {
-      if (!showAccordionRef.current) return;
+
+    const setResourcesInstant = (open: boolean) => {
       const el = document.getElementById('mobileResourcesMenu');
       if (!el) return;
-      const bs = (window as any).bootstrap;
-      if (!bs) return;
-      const inst =
-        bs.Collapse.getInstance(el) ?? new bs.Collapse(el, {toggle: false});
-      inst.show();
+      // Bypass Bootstrap's transition by toggling the class directly.
+      // Do NOT call dispose() — that nulls Bootstrap's internal _element ref
+      // and causes "Cannot read properties of null (reading 'classList')" the
+      // next time the user clicks the Resources toggle.
+      el.classList.toggle('show', open);
     };
-    mainNav.addEventListener('shown.bs.collapse', onNavShown);
-    return () => mainNav.removeEventListener('shown.bs.collapse', onNavShown);
+
+    // Guard against event bubbling: collapse events from child elements
+    // (e.g. #mobileResourcesMenu) bubble up to #mainNav. Without the target
+    // check, clicking Resources would re-trigger this handler and fight with
+    // Bootstrap's own open animation.
+    const onNavShow   = (e: Event) => {
+      if ((e.target as HTMLElement)?.id !== 'mainNav') return;
+      setResourcesInstant(showAccordionRef.current);
+    };
+    const onNavHidden = (e: Event) => {
+      if ((e.target as HTMLElement)?.id !== 'mainNav') return;
+      setResourcesInstant(false);
+    };
+
+    mainNav.addEventListener('show.bs.collapse',   onNavShow);
+    mainNav.addEventListener('hidden.bs.collapse', onNavHidden);
+    return () => {
+      mainNav.removeEventListener('show.bs.collapse',   onNavShow);
+      mainNav.removeEventListener('hidden.bs.collapse', onNavHidden);
+    };
   }, []);
 
   // Track desktop dropdown open/close for the active class

@@ -126,8 +126,8 @@ function RelatedPosts({posts}: {posts: IndexedPost[]}): ReactNode {
                 {formatShortDate(p.date)}
                 {p.tags[0] && (
                   <>
-                    <span className={styles.relatedDot}>·</span>
-                    <span>{p.tags[0]}</span>
+                    <span className={styles.relatedDot} aria-hidden="true" />
+                    <span className={styles.relatedMetaTag}>{p.tags[0]}</span>
                   </>
                 )}
               </span>

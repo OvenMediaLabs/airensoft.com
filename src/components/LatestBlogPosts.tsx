@@ -44,19 +44,21 @@ export default function LatestBlogPosts({
   limit = DEFAULT_LIMIT,
   heading = 'From the Labs',
   subhead = 'Discover the research and ideas driving our streaming technology.',
+  anchor = true,
 }: {
   limit?: number;
   heading?: string;
   subhead?: string;
+  anchor?: boolean;
 }) {
   const posts = POSTS.slice(0, limit);
 
   return (
-    <section id="blog" className="blog-section">
+    <section className="blog-section">
       <div className="blog-section-inner">
         <div className="blog-head">
           <div className="left">
-            <h3>{heading}</h3>
+            <h2 {...(anchor ? { id: 'blog', className: 'copy-title' } : {})}>{heading}</h2>
             <p>{subhead}</p>
           </div>
           <Link

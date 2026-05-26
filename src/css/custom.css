@@ -304,6 +304,13 @@ html.plugin-blog body {
   overflow-x: clip !important;
 }
 
+/* Apply the same overflow-x: hidden → clip fix for marketing pages
+ * (e.g. EULA) that use position: sticky internally. */
+html.marketing-page,
+html.marketing-page body {
+  overflow-x: clip !important;
+}
+
 /* Offset doc/blog body content by navbar height on mobile only.
  * Legacy marketing CSS forces `.navbar-custom { position: fixed }`
  * which takes the navbar out of flow — Docusaurus's default
@@ -340,6 +347,12 @@ html[class*='easyops'] body {
   max-width: 1440px !important;
   padding-left: 2rem !important;
   padding-right: 2rem !important;
+  /* ::before has backdrop-filter which creates a stacking context. Without a
+     higher z-index on this container, the ::before stacking context can paint
+     above the navbar items. position: relative + z-index: 1 ensures brand,
+     links, and search always render above the glass background. */
+  position: relative;
+  z-index: 1;
 }
 
 /* Below the Infima medium breakpoint the 2rem horizontal padding eats
@@ -1659,10 +1672,82 @@ html.plugin-blog.blog-post-page .markdown h3 {
   margin-bottom: 0.5rem !important;
 }
 
-/* 5. Brighten the right TOC's inactive items so the outline is
- * actually scannable, not just a list of dots. */
+/* 5. Blog post TOC — styled to match the EULA .doc-nav-link design:
+ *    left-border indicator for active/hover, visual L1/L2/L3 hierarchy.
+ *    Docusaurus manages .table-of-contents__link--active automatically. */
+
+/* Drop the container's shared left border; each link carries its own. */
+html.plugin-blog.blog-post-page .table-of-contents {
+  border-left: none;
+  padding-left: 0;
+}
+
 html.plugin-blog.blog-post-page .table-of-contents__link {
+  display: block;
+  padding: 5px 0 5px 14px;
+  border-left: 2px solid transparent;
+  color: var(--text-sub);
+  font-size: 0.83rem;
+  line-height: 1.45;
+  text-decoration: none;
+  transition: color 0.2s ease, border-left-color 0.2s ease, background 0.2s ease;
+}
+
+html.plugin-blog.blog-post-page .table-of-contents__link:hover {
+  color: #fff;
+  border-left-color: var(--brand-secondary);
+  background: linear-gradient(90deg, rgba(57, 72, 103, 0.5) 0%, transparent 80%);
+  text-decoration: none;
+}
+
+/* Active state — border indicator + background always apply.
+ * Color is set here as the baseline; hierarchy :not() rules below
+ * only override color for *inactive* items so this always wins. */
+html.plugin-blog.blog-post-page .table-of-contents__link--active {
+  color: var(--brand-secondary);
+  border-left-color: var(--brand-accent);
+  background: linear-gradient(90deg, rgba(20, 39, 78, 0.7) 0%, transparent 80%);
+  font-weight: 500;
+}
+html.plugin-blog.blog-post-page .table-of-contents__link--active code {
+  color: var(--brand-secondary);
+}
+
+/* ── Hierarchy ──────────────────────────────────────────────────────────── */
+/* Sizing/indentation apply unconditionally.
+ * Color only applies when NOT active (avoids specificity clash). */
+
+/* L1 — H2 headings */
+html.plugin-blog.blog-post-page .table-of-contents > li > .table-of-contents__link {
+  font-size: 0.855rem;
+  font-weight: 500;
+}
+html.plugin-blog.blog-post-page .table-of-contents > li > .table-of-contents__link:not(.table-of-contents__link--active) {
   color: var(--ifm-color-emphasis-700);
+}
+
+/* L2 — H3 headings */
+html.plugin-blog.blog-post-page .table-of-contents ul > li > .table-of-contents__link {
+  padding-left: 26px;
+  font-size: 0.81rem;
+}
+html.plugin-blog.blog-post-page .table-of-contents ul > li > .table-of-contents__link:not(.table-of-contents__link--active) {
+  color: var(--text-sub);
+}
+
+/* L3 — H4 headings */
+html.plugin-blog.blog-post-page .table-of-contents ul ul > li > .table-of-contents__link {
+  padding-left: 38px;
+  font-size: 0.78rem;
+}
+html.plugin-blog.blog-post-page .table-of-contents ul ul > li > .table-of-contents__link:not(.table-of-contents__link--active) {
+  color: var(--text-sub2);
+}
+
+/* Hide the default Newer / Older post paginator — PostFooterExtras
+ * already handles discovery via "You might also like". */
+html.plugin-blog.blog-post-page .pagination-nav {
+  display: none !important;
 }
 
 /* ---- Blog post footer (tags) ----

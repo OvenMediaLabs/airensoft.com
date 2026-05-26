@@ -1,13 +1,7 @@
 ovenmedialabs:
-  name: OvenMedia Labs
+  name: OvenMedia Labs Dev Team
   title: Media Technology Experts Group
-  url: https://ovenmedialabs.com
-  image_url: /images/airen_ci/OML_Symbol_White.svg
-  page: true
-  socials:
-    github: OvenMediaLabs
-    linkedin: ovenmedialabs
-    x: OvenMediaEngine
+  email: contact@ovenmedialabs.com
 
 jeheon:
   name: Jeheon Han

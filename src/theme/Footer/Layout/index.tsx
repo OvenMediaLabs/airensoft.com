@@ -17,6 +17,18 @@ export default function FooterLayout(): ReactNode {
   const previewSource = (siteConfig.customFields as Record<string, string> | undefined)?.previewSource || '';
 
   return (
+    <>
+    {/* Scroll-to-top button — shown when scrolled > 400px via legacy-marketing.ts */}
+    <button
+      id="btnScrollTop"
+      className="btn-scroll-top"
+      aria-label="Back to top">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"
+        stroke="currentColor" strokeWidth="2.5"
+        strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <polyline points="18 15 12 9 6 15" />
+      </svg>
+    </button>
     <section className="full-page-section d-flex flex-column bg-black footer-section pb-0-mobile">
       <footer className="border-top border-darker">
         <div className="container mt-5">
@@ -98,5 +110,6 @@ export default function FooterLayout(): ReactNode {
         </div>
       </footer>
     </section>
+    </>
   );
 }

@@ -136,7 +136,12 @@ h7, .h7 {
     background-color: color-mix(in srgb, var(--bg-dark), transparent 60%);
     backdrop-filter: blur(10px) saturate(180%);
     -webkit-backdrop-filter: blur(10px) saturate(180%);
-    z-index: -1;
+    /* z-index: -1 removed — backdrop-filter on a negative-z-index child inside
+       a fixed stacking context captures only the parent's own compositing layer
+       (transparent background), NOT the page content behind the navbar. Without
+       the negative z-index, ::before paints first in DOM order (before navbar
+       children) so it's still visually behind brand/links, but its backdrop
+       correctly captures the hero/page content below the navbar. */
     pointer-events: none;
 }
 
@@ -261,7 +266,11 @@ h7, .h7 {
 		border-bottom: 0.5px solid rgba(45, 45, 45, 0.75);
 	}
 	.navbar-collapse.collapsing {
-        position: absolute; top: var(--navbar-height); left: 0; right: 0; z-index: 1000; overflow: hidden;
+        /* Keep position: fixed (not absolute) so the menu stays anchored to the
+           viewport during Bootstrap's height-collapse animation. Switching to
+           absolute repositions the element relative to the nearest ancestor,
+           causing a visible jump at the start/end of the close animation. */
+        position: fixed; top: var(--navbar-height); left: 0; right: 0; z-index: 1000; overflow: hidden;
     }
     .navbar-nav { padding-top: 0.5rem; padding-bottom: 0.5rem; }
 	.navbar-nav .nav-item:last-child .nav-link { margin-bottom: 0; border: none; }
@@ -284,9 +293,10 @@ h7, .h7 {
     #ovenspace > div { padding-top: 2rem !important; }
 	#brief > div { padding-bottom: 2rem !important; }
     #community > div { padding-top: 2rem !important; }
-	#team > div { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+	.team-section > div { padding-top: 0.5rem !important; }
+	#phil { margin-top: 0 !important; margin-bottom: 0.5rem !important; }
 	#phil > div { padding-top: 0rem !important; }
-	section#team { justify-content: center; }
+	section.team-section { justify-content: center; }
 	
 	@media (min-width: 576px) and (max-width: 767.98px) {
 		.navbar-collapse {
@@ -783,12 +793,16 @@ h6, .h6 {
     transition: all 0.3s ease;
 }
 .tech-card-pro:hover .pro-icon-box {
-    background: rgba(255, 255, 255, 0.05);
-/*	background-color: transparent;*/
+    background: var(--tech-icon, rgba(255, 255, 255, 0.03));
     transform: scale(1.1);
 }
 .enterprise .pro-icon-box { color: var(--company-primary); }
 .opensource .pro-icon-box { color: var(--brand-secondary); }
+
+.tech-card-pro a,
+.tech-card-pro a:hover {
+    text-decoration: none !important;
+}
 
 .pro-subtitle {
     font-size: clamp(0.75rem, 1vw, 1rem);
@@ -919,6 +933,7 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 .bg-surface { background-color: var(--bg-surface); } 
 .bg-surface-50 { background-color: color-mix(in srgb, var(--bg-surface), transparent 50%) !important; }
 .bg-company { background-color: var(--company-primary) !important; }
+.bg-company-tertiary { background-color: var(--company-tertiary) !important; }
 .bg-brand { background-color: var(--brand-secondary) !important; }
 .bg-ci-accent { background-color: var(--company-accent) !important; }
 .bg-bi-accent { background-color: var(--brand-accent) !important; }
@@ -1089,7 +1104,7 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 .blog-section { padding: 96px 2rem; }
 .blog-section-inner { max-width: 1240px; margin: 0 auto; }
 .blog-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
-.blog-head .left h3 { font: 700 26px/1.15 var(--font-sans); color: var(--text-main); margin: 0 0 6px; letter-spacing: -0.02em; }
+.blog-head .left h2 { font: 700 34px/1.15 var(--font-sans); color: var(--text-main); margin: 0 0 6px; letter-spacing: -0.02em; }
 .blog-head .left p  { font: 300 14.5px/1.5 var(--font-sans); color: var(--blue-mono-light); margin: 0; }
 .blog-head a.all {
     color: var(--brand-secondary); text-decoration: none; font: 600 13px/1 var(--font-sans);
@@ -1731,16 +1746,14 @@ html { scroll-padding-top: var(--navbar-height, 80px); }
         overflow: visible !important;
     }
 
-    html { scroll-padding-top: 100px; }
+    html:has(.page-legal) { scroll-padding-top: 100px; }
     body { scroll-behavior: smooth; }
 
     .doc-sidebar {
         position: -webkit-sticky;
         position: sticky;
         top: 120px;
-        height: calc(100vh - 140px);
-        overflow-y: auto;
-        padding-left: 20px; 
+        padding-left: 20px;
         border-left: 1px solid color-mix(in srgb, var(--bg-surface), transparent 75%);
         text-align: left;
     }
@@ -1768,7 +1781,6 @@ html { scroll-padding-top: var(--navbar-height, 80px); }
         background: linear-gradient(90deg, var(--bg-middle) 0%, transparent 100%);
     }
     
-    .doc-sidebar::-webkit-scrollbar { width: 0px; background: transparent; }
 
     .doc-content-wrapper {
         background-color: color-mix(in srgb, var(--bg-middle), transparent 75%);
