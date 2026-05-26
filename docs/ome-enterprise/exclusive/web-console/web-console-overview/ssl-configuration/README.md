@@ -62,7 +62,13 @@ OvenMediaEngine Enterprise provides features that make this configuration easy. 
 
 ![](../../../../images/web-console-ssl-configuration-05.png)
 
+:::info
 
+When HTTPS is enabled for the Web Console, the default port is `8443`. To change the port, see [Getting Started with Web Console](../../getting-started-with-web-console.md).
+
+For a full list of ports of OvenMediaEngine and Web Console, see [Ports used by default](../../../../pre-built-package-installation/getting-started/getting-started-with-linux.md#ports-used-by-default).
+
+:::
 
 
 ### Verify SSL playback and check URLs

@@ -350,4 +350,4 @@ The default configuration uses the following ports, so you need to open it in yo
 
 ### Web Console (OvenStudio)
 
-<table><thead><tr><th width="200">Port</th><th>Purpose</th></tr></thead><tbody><tr><td>8080/TCP</td><td>Running Web Console</td></tr></tbody></table>
+<table><thead><tr><th width="200">Port</th><th>Purpose</th></tr></thead><tbody><tr><td>8080/TCP</td><td>Web Console (HTTP)</td></tr><tr><td>8443/TCP</td><td>Web Console (HTTPS)</td></tr></tbody></table>
