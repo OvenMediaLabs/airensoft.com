@@ -294,21 +294,9 @@ html.plugin-blog,
 html.plugin-docs body,
 html.plugin-blog body {
   background-color: #0f1216;
-  /* Legacy marketing CSS sets `overflow-x: hidden !important` on
-   * html/body to keep hero sections from causing horizontal scroll.
-   * That rule, however, makes html/body a scrolling ancestor and
-   * breaks `position: sticky` on the docs sidebar and TOC. `clip`
-   * gives the same visual effect (no horizontal overflow) without
-   * introducing a scroll context. Modern browsers (Chrome 90+,
-   * Firefox 81+, Safari 16+) support it. */
-  overflow-x: clip !important;
-}
-
-/* Apply the same overflow-x: hidden → clip fix for marketing pages
- * (e.g. EULA) that use position: sticky internally. */
-html.marketing-page,
-html.marketing-page body {
-  overflow-x: clip !important;
+  /* legacy-marketing.css already sets overflow-x: clip globally on html/body,
+   * so no overflow override is needed here. Kept as a reminder that the
+   * docs/blog background differs from the marketing dark body background. */
 }
 
 /* Offset doc/blog body content by navbar height on mobile only.
@@ -450,10 +438,27 @@ html.plugin-blog .markdown img {
  * to the metadata above and the first body paragraph below. */
 html.plugin-blog .markdown img.blog-hero {
   width: 100%;
+  display: block;
   margin: 0 0 1.75rem 0;
   border-radius: 12px;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+}
+
+/* Image caption: ![Caption](./image.png) renders via the custom MDXComponents
+ * img override as <figure class="img-figure"><img /><figcaption>...</figcaption></figure>.
+ * Images with no alt text stay as plain <img> with no figure wrapper. */
+.img-figure {
+  margin: 0 0 1.25rem 0;
+}
+.img-figure img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+.img-figure figcaption {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-sub);
+  margin-top: 0;
 }
 
 /* Hide the per-doc "Previous / Next" pagination block at the bottom of
@@ -1053,26 +1058,54 @@ html.plugin-blog .markdown {
   text-decoration: none;
 }
 
-/* Breadcrumbs — soften the default styling */
+/* ── Breadcrumbs ──────────────────────────────────────────────────────────
+ * Both the breadcrumb <nav> and the article content (h1, prose) are
+ * direct children of the same <article> element — no extra offset between
+ * them. The pill left background edge therefore already sits at the exact
+ * same x-position as the h1 text: no negative margin is needed.
+ *
+ * (A negative margin would shift the pill background *past* the content
+ * edge, making the breadcrumb appear misaligned rather than fixing it.) */
 .theme-doc-breadcrumbs {
   margin-bottom: 1.25rem;
   font-size: 0.85rem;
+  margin-left: calc(
+    -0.5 * var(--ifm-breadcrumb-padding-horizontal) *
+           var(--ifm-breadcrumb-size-multiplier)
+  );
 }
 
-.theme-doc-breadcrumbs .breadcrumbs__link {
-  color: #888;
+/* Infima sets padding-left:0 on <ul class="breadcrumbs"> but the browser
+ * UA stylesheet uses padding-inline-start:40px (a different property) which
+ * doesn't get overridden. Reset both so the pill sits flush with the
+ * docs body content left edge. */
+.theme-doc-breadcrumbs .breadcrumbs {
+  padding-inline-start: 0;
 }
 
+/* Inactive items: subtle pill background, muted colour, no link chrome. */
+.theme-doc-breadcrumbs .breadcrumbs__item:not(.breadcrumbs__item--active) .breadcrumbs__link {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-sub, #888);
+  text-decoration: none;
+}
+
+/* Hover: slightly brighter — override Infima's blue hover background. */
+.theme-doc-breadcrumbs .breadcrumbs__item:not(.breadcrumbs__item--active) .breadcrumbs__link:hover,
+.theme-doc-breadcrumbs .breadcrumbs__item:not(.breadcrumbs__item--active) .breadcrumbs__link:any-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main, #e0e0e0);
+  text-decoration: none;
+}
+
+/* Active (current page) pill: sky-blue tint. */
 .theme-doc-breadcrumbs .breadcrumbs__item--active .breadcrumbs__link {
   background-color: rgba(56, 189, 248, 0.08);
   color: var(--ifm-color-primary);
 }
 
-/* Hide breadcrumbs on mobile. The Pages button already exposes the
- * full sidebar (which highlights the current page), so the breadcrumb
- * trail is redundant — and the [Pages][On this page] sticky bar would
- * otherwise hide it on scroll anyway, causing a flicker that adds no
- * information. */
+/* Hide breadcrumbs on mobile — the Pages button already shows position
+ * in the sidebar, so the trail is redundant at small widths. */
 @media (max-width: 996px) {
   .theme-doc-breadcrumbs {
     display: none;

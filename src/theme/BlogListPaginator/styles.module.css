@@ -47,11 +47,11 @@
   gap: 0.35rem;
 }
 
-.pageCurrent > span {
-  color: var(--ifm-color-primary);
+.pages > li.pageCurrent > span {
+  color: #0f1216;
   border-color: var(--ifm-color-primary);
-  background-color: rgba(56, 189, 248, 0.08);
-  font-weight: 600;
+  background-color: var(--ifm-color-primary);
+  font-weight: 700;
   cursor: default;
 }
 

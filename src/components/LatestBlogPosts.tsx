@@ -17,6 +17,33 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import blogIndex from '@site/src/data/blog-index.json';
 
+// Build a "dir/filename" → webpack-processed image URL map at compile time.
+// require.context scans the entire blog/ tree so every post's frontmatter
+// `image:` (now stored in blog-index.json) can be resolved to its hashed
+// asset URL without a runtime fetch — regardless of whether the file is
+// named "hero.png" or a Medium-style hashed filename.
+const imageMap: Record<string, string> = (() => {
+  try {
+    const ctx = (require as any).context(
+      '@site/blog',
+      true,
+      /\.(png|jpe?g|webp)$/,
+    );
+    const map: Record<string, string> = {};
+    (ctx.keys() as string[]).forEach((key) => {
+      // key is like "./2022-10-21-.../1-BRydy_...jpeg"
+      const m = key.match(/^\.\/(.+)$/);
+      if (m) {
+        const mod = ctx(key);
+        map[m[1]] = (mod as any)?.default ?? mod;
+      }
+    });
+    return map;
+  } catch {
+    return {};
+  }
+})();
+
 type IndexedPost = {
   slug: string;
   permalink: string;
@@ -25,6 +52,7 @@ type IndexedPost = {
   tags: string[];
   date: string;
   dir: string;
+  image: string;
 };
 
 const POSTS = blogIndex as IndexedPost[];
@@ -69,21 +97,32 @@ export default function LatestBlogPosts({
         </div>
 
         <div className="blog-grid">
-          {posts.map((post) => (
-            <Link key={post.slug} to={post.permalink} className="blog-card">
-              <div className="meta">
-                <span>{formatDate(post.date)}</span>
-                {post.tags[0] && (
-                  <>
-                    <span className="sep" />
-                    <span className="tag">{post.tags[0]}</span>
-                  </>
+          {posts.map((post) => {
+            const heroSrc =
+              post.dir && post.image
+                ? imageMap[`${post.dir}/${post.image}`]
+                : undefined;
+            return (
+              <Link key={post.slug} to={post.permalink} className="blog-card">
+                {heroSrc && (
+                  <div className="blog-card-thumb">
+                    <img src={heroSrc} alt="" loading="lazy" />
+                  </div>
                 )}
-              </div>
-              <h4>{post.title}</h4>
-              {post.description && <p>{post.description}</p>}
-            </Link>
-          ))}
+                <div className="meta">
+                  <span>{formatDate(post.date)}</span>
+                  {post.tags[0] && (
+                    <>
+                      <span className="sep" />
+                      <span className="tag">{post.tags[0]}</span>
+                    </>
+                  )}
+                </div>
+                <h4>{post.title}</h4>
+                {post.description && <p>{post.description}</p>}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -122,6 +122,8 @@ function buildBlogIndex() {
     const title = fm.title || '';
     const description = fm.description || '';
     const tags = 'tags' in fm ? fm.tags : [];
+    // Strip leading `./` so the path is just the filename (e.g. "hero.png")
+    const image = (fm.image || '').replace(/^\.\//, '');
 
     posts.push({
       slug,
@@ -131,6 +133,7 @@ function buildBlogIndex() {
       tags: Array.isArray(tags) ? tags : [tags],
       date,
       dir: name,
+      image,
     });
   }
 

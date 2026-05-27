@@ -91,9 +91,14 @@
   transform: rotate(180deg);
 }
 
-/* Desktop: hide the entire bar. */
+/* Desktop: hide the bar AND its spacer.
+ * The spacer reserves height in document flow so fixed bar doesn't
+ * overlap content on mobile — on desktop the bar is gone so the
+ * spacer must go too, otherwise it adds ~60px of blank gap above
+ * the article content between the breadcrumbs and the prose. */
 @media (min-width: 997px) {
-  .mobileDocNav {
+  .mobileDocNav,
+  .mobileDocNavSpacer {
     display: none;
   }
 }
