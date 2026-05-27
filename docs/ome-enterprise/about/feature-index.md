@@ -76,6 +76,7 @@ to upgrade to) supports the feature or option you need.
 | API Storage <Ent /> | Operations | 0.16.4.0 | [View](../features/operations-and-monitoring/api-storage.md) |
 | [Recording Delivery](#recording-delivery) <Ent /> | Operations | 0.16.5.0 | [View](../features/operations-and-monitoring/recording-delivery.md) |
 | [Enhanced Alert](#enhanced-alert) <Ent /> | Operations | 0.18.2.1 | [View](../features/operations-and-monitoring/enhanced-alert.md) |
+| Persistent Pull Streams <Ent /> | Operations | 0.20.7.1 | [View](../features/operations-and-monitoring/persistent-pull-streams.md) |
 | [CDN Cache Control](#cdn-cache-control) <Ent /> | Workflow Integration | 0.16.4.0 | [View](../features/workflow-integration-and-external-system-connectivity/cdn-cache-control.md) |
 | Delay Buffer <Ent /> | Workflow Integration | 0.16.4.0 | [View](../features/workflow-integration-and-external-system-connectivity/delay-buffer.md) |
 | P2P Delivery (Experiment) | Workflow Integration | 0.16.4.0 | [View](../features/workflow-integration-and-external-system-connectivity/p2p-delivery-experiment.md) |
