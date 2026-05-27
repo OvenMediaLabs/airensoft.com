@@ -416,7 +416,11 @@ function initCopyTitle(): Cleanup | undefined {
 
   return () => {
     handlers.forEach(([el, fn]) => el.removeEventListener('click', fn));
-    if (hideTimer) clearTimeout(hideTimer);
+    if (hideTimer) {
+      clearTimeout(hideTimer);
+      hideTimer = null;
+    }
+    if (dialog) dialog.classList.remove('show');
   };
 }
 

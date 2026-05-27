@@ -45,12 +45,13 @@ import Head from '@docusaurus/Head';
       <div className="col-lg-10">
         <h1 className="display-1 fw-bold text-main mb-4 lh-tight reveal-up">
           <span className="text-gradient-surf">OvenMediaEngine Enterprise</span>
+          <span className="d-block fs-3 fw-normal text-primary mt-3" style={{letterSpacing: '-0.02rem'}}>Now Available on AWS Marketplace</span>
         </h1>
         <p className="lead text-mono-light mb-5 reveal-up col-lg-10 mx-auto">Fine-tune everything from ingest to delivery with a tailored sub-second latency streaming server built around your enterprise requirements.</p>
 
         <div className="d-flex flex-column flex-sm-row justify-content-center gap-2 reveal-up mb-4 px-4 px-sm-0">
-          <a href="/company#contact" className="btn btn-md btn-brand-outline px-3 rounded-pill w-sm-auto" style={{minWidth: '240px'}}>
-            <i className="ph ph-paper-plane-tilt fs-5"></i>&nbsp;&nbsp;Contact
+          <a href="/ome-enterprise#marketplace" className="btn btn-md btn-brand-outline px-3 rounded-pill w-sm-auto" style={{minWidth: '240px'}}>
+            <i className="ph ph-tag fs-5"></i>&nbsp;&nbsp;Pricing
           </a>
           <a href="/docs/ome-enterprise" target="_blank" rel="noopener noreferrer" className="btn btn-md btn-secondary-outline px-3 rounded-pill w-sm-auto" style={{minWidth: '240px'}}>
             <i className="ph ph-book-open fs-5"></i>&nbsp;&nbsp;Guide
@@ -69,7 +70,7 @@ import Head from '@docusaurus/Head';
   <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
     <div className="container">
       <div className="text-center mb-5 reveal-up">
-        <h2 id="features" className="display-4 fw-bold text-main copy-title">Why OvenMediaEngine Enterprise?</h2>
+        <h2 id="features" className="display-4 fw-bold text-main mb-3 copy-title">Why OvenMediaEngine Enterprise?</h2>
         <p className="lead text-sub col-lg-8 mx-auto">Everything you need to fine-tune a sub-second latency server.</p>
       </div>
 
@@ -214,7 +215,7 @@ import Head from '@docusaurus/Head';
   <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
     <div className="container reveal-up">
       <div className="text-center mb-5">
-        <h2 id="version" className="display-4 fw-bold text-main copy-title">Open-Source Core, Enterprise Edge</h2>
+        <h2 id="version" className="display-4 fw-bold text-main mb-3 copy-title">Open-Source Core, Enterprise Edge</h2>
         <p className="lead text-sub col-lg-8 mx-auto">OvenMediaEngine Enterprise goes one step further, running on a newer, faster release track with up-to-date versions, advanced features, and priority fixes.</p>
       </div>
 
@@ -282,11 +283,49 @@ import Head from '@docusaurus/Head';
   </div>
 </section>
 
+<section id="pricing-cloud" className="full-page-section d-flex flex-column position-relative bg-middle">
+  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
+    <div className="container text-center reveal-up">
+
+      <div className="text-center mb-5">
+        <h2 id="marketplace" className="display-4 fw-bold text-main mb-3 copy-title">Already operating on <span className="text-primary">Cloud Marketplace</span></h2>
+        <p className="lead text-sub col-lg-8 mx-auto">Launch OvenMediaEngine Enterprise in minutes through AWS Marketplace, and scale cost-effectively as your traffic grows.</p>
+      </div>
+
+      <div className="row justify-content-center mb-5">
+        <div className="col-lg-10">
+          <div className="py-4 px-5 bg-body-50 rounded-4 aws-price-box text-center">
+            <div className="d-inline-block text-start">
+              <div className="text-mono-light small mb-1">Starting from</div>
+              <div className="d-flex align-items-baseline gap-2">
+                <span className="display-2 fw-bold" style={{color: '#FF9900'}}>$0.19</span>
+                <span className="lead text-main">/ instance / hour</span>
+              </div>
+            </div>
+            <div className="text-sub small mt-2">Pay only for uptime · No upfront commitment · Start streaming in minutes</div>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://aws.amazon.com/marketplace/pp/prodview-okn5l63yxarwm" target="_blank" rel="noopener noreferrer" className="btn btn-lg btn-aws-outline rounded-pill px-5">
+        <i className="ph ph-arrow-square-out me-2"></i>Launch via AWS Marketplace
+      </a>
+
+      <div className="mt-4">
+        <a href="#pricing" className="text-secondary text-decoration-none" style={{fontSize: '1rem'}}>
+          Or explore direct licensing <i className="ph ph-arrow-down ms-1 arrow-bounce"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section className="full-page-section d-flex flex-column position-relative bg-body">
   <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
     <div className="container">
       <div className="text-center mb-5 reveal-up">
-        <h2 id="pricing" className="display-4 fw-bold text-main copy-title">Simple Pricing</h2>
+        <h2 id="pricing" className="display-4 fw-bold text-main mb-3 copy-title">Simple Pricing</h2>
         <p className="lead text-sub col-lg-8 mx-auto">Choose the plan that fits your scale.</p>
       </div>
 
@@ -357,27 +396,6 @@ import Head from '@docusaurus/Head';
         <p className="text-secondary mb-4 lh-12">※ Discounts available for bulk purchases or long-term contracts.</p>
         <a href="mailto:contact@ovenmedialabs.com?subject=[OME Enterprise] License Inquiry" className="btn btn-lg btn-brand-outline rounded-pill px-5">Contact Sales</a>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="pricing-cloud" className="full-page-section d-flex flex-column position-relative bg-middle">
-  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
-    <div className="container text-center reveal-up justify-content-center">
-      <h2 id="marketplace" className="fw-bold text-main mb-3 copy-title">Already operating on Cloud Marketplace</h2>
-
-      <div className="d-flex justify-content-center h-100">
-        <div className="px-5 py-3 bg-body-50 rounded text-center d-flex flex-column justify-content-center mt-2 mb-3 border border-1 border-company-sec">
-          <div className="d-flex align-items-baseline">
-            <span className="lead text-main">Starting from</span>
-            <span className="display-6 fw-bold text-brand-accent ms-2">$0.19</span>
-            <span className="lead ms-2 text-main">/ instance / hour uptime</span>
-          </div>
-        </div>
-      </div>
-
-      <p className="lead text-mono-light fw-light mb-4 col-lg-8 mx-auto">Launch OvenMediaEngine Enterprise in minutes through <span className="text-primary">AWS Marketplace</span>, and scale cost-effectively as your traffic grows.</p>
-      <a href="https://aws.amazon.com/marketplace/pp/prodview-okn5l63yxarwm" target="_blank" rel="noopener noreferrer" className="btn btn-brand-outline rounded-pill px-5">Launch via AWS Marketplace</a>
     </div>
   </div>
 </section>

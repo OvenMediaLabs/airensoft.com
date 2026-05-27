@@ -40,12 +40,19 @@
     --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-html, body { 
+html, body {
     margin: 0;
-	padding: 0; 
-    width: 100%; 
+	padding: 0;
+    width: 100%;
     max-width: 100%;
-    overflow-x: hidden !important;
+    /* `clip` instead of `hidden`: both visually prevent horizontal overflow,
+       but `hidden` on html + body makes html the "principal document scroll
+       container" (CSS Overflow spec). Chrome/PC then scopes backdrop-filter
+       on position:fixed children to that container's render layer instead of
+       the true viewport, so the glass blur captures nothing visible.
+       `clip` cuts overflow without creating a scroll container, leaving the
+       viewport model intact and backdrop-filter working on all browsers. */
+    overflow-x: clip !important;
 }
 
 body { 
@@ -888,8 +895,13 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); 
     border: 1px solid var(--bg-surface); 
     display: flex; align-items: center; justify-content: center; 
-    z-index: 1040; opacity: 0; visibility: hidden; 
-    transform: translateY(10px); transition: all 0.3s ease; 
+    z-index: 1040; opacity: 0; visibility: hidden;
+    transform: translateY(10px);
+    /* Explicit properties instead of `transition: all`: including backdrop-filter
+       in a catch-all transition triggers Chrome's GPU compositor to rebucket the
+       element's layer on every frame, which can break the backdrop-filter capture.
+       List only the properties we actually animate. */
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
     box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer; 
 }
 .btn-scroll-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
@@ -1077,15 +1089,25 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     color: var(--bg-body); z-index: 10;
 }
 
-.btn-brand-outline { 
-    background-color: transparent; border: 1px solid var(--brand-secondary); color: var(--brand-secondary); 
-    transition: all 0.5s ease; 
+.btn-brand-outline {
+    background-color: transparent; border: 1px solid var(--brand-secondary); color: var(--brand-secondary);
+    transition: all 0.5s ease;
     --bs-btn-active-bg: color-mix(in srgb, var(--brand-secondary), transparent 50%); --bs-btn-active-border-color: var(--brand-secondary);
 }
-.btn-brand-outline:hover { 
-    border-color: var(--brand-secondary); background-color: var(--brand-secondary); 
+.btn-brand-outline:hover {
+    border-color: var(--brand-secondary); background-color: var(--brand-secondary);
     transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px color-mix(in srgb, var(--brand-secondary), transparent 85%);
     color: var(--bg-body); z-index: 10;
+}
+.btn-aws-outline {
+    background-color: transparent; border: 1px solid #FF9900; color: #FF9900;
+    transition: all 0.5s ease;
+    --bs-btn-active-bg: rgba(255, 153, 0, 0.5); --bs-btn-active-border-color: #FF9900;
+}
+.btn-aws-outline:hover {
+    border-color: #FF9900; background-color: #FF9900;
+    transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px rgba(255, 153, 0, 0.2);
+    color: var(--text-main); z-index: 10;
 }
 
 .hero-badge { display: inline-block; background: color-mix(in srgb, var(--company-primary), transparent 75%); color: var(--company-primary); padding: 6px 12px; border-radius: 99px; font-size: clamp(0.75rem, 1.5vw, 1.1rem); border: 1px solid color-mix(in srgb, var(--company-primary), transparent 50%); white-space: nowrap; }
@@ -1102,7 +1124,7 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     background-color: color-mix(in srgb, var(--bg-middle), transparent 50%) !important;
 }
 
-.blog-section { padding: 96px 2rem; }
+.blog-section { padding: 3rem 2rem 4rem; }
 .blog-section-inner { max-width: 1240px; margin: 0 auto; }
 .blog-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
 .blog-head .left h2 { font: 700 34px/1.15 var(--font-sans); color: var(--text-main); margin: 0 0 6px; letter-spacing: -0.02em; }
@@ -1125,6 +1147,21 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.4);
     transform: translateY(-2px); text-decoration: none;
 }
+.blog-card-thumb {
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.blog-card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.blog-card:hover .blog-card-thumb img { transform: scale(1.04); }
+
 .blog-card .meta { display: flex; align-items: center; gap: 10px; font: 500 11px/1 var(--font-mono); color: var(--text-sub2); letter-spacing: 0.02em; }
 .blog-card .meta .sep { width: 3px; height: 3px; background: var(--text-sub2); border-radius: 50%; flex-shrink: 0; }
 .blog-card .meta .tag { color: var(--brand-secondary); font-weight: 700; text-transform: uppercase; }
@@ -1507,6 +1544,29 @@ html { scroll-padding-top: var(--navbar-height, 80px); }
         transform: translate(-50%, -50%) scale(1);
         box-shadow: 0 0 0 0 color-mix(in srgb, var(--text-main), transparent 100%);
     }
+}
+
+/* AWS price box: auto-running border glow animation */
+.aws-price-box {
+  animation: aws-glow-pulse 1.5s ease-in-out infinite;
+  border: none !important;
+}
+@keyframes aws-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 153, 0, 0);
+  }
+  50% {
+    box-shadow: 0 0 32px 10px rgba(255, 153, 0, 0.2);
+  }
+}
+
+.arrow-bounce {
+  display: inline-block;
+  animation: arrow-bounce 1.4s ease-in-out infinite;
+}
+@keyframes arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
 }
 
 .ambient-glow {
