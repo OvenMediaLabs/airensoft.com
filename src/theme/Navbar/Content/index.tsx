@@ -327,14 +327,14 @@ export default function NavbarContent(): ReactNode {
           sits INSIDE the <picture> element so it stacks below the logo image as
           a subscript. Browsers tolerate non-spec children in <picture>; the
           rendering order matches the original site exactly. */}
-      <Link className="navbar-brand d-flex align-items-center" to={brandTo}>
+      <Link className="navbar-brand d-flex flex-column align-items-start" to={brandTo}>
         <picture style={{pointerEvents: 'none'}}>
           <source srcSet={logoSrc} type="image/svg+xml" />
           <img src={logoPng} alt="OvenMedia Labs" className="sharp-img" />
-          <p className="super-small text-end text-sub mb-0 opacity-75">
-            (Formerly AirenSoft)
-          </p>
         </picture>
+        <span className="super-small text-end text-sub opacity-75 w-100 d-block" style={{pointerEvents: 'none'}}>
+          (Formerly AirenSoft)
+        </span>
       </Link>
 
       {/* SearchBar lives OUTSIDE the Bootstrap collapse so it stays

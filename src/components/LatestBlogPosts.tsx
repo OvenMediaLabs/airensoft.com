@@ -119,7 +119,7 @@ export default function LatestBlogPosts({
                   )}
                 </div>
                 <h4>{post.title}</h4>
-                {post.description && <p>{post.description}</p>}
+                {post.description && <span className="blog-card-desc">{post.description}</span>}
               </Link>
             );
           })}

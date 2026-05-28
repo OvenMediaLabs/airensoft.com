@@ -636,14 +636,14 @@ html.plugin-docs .pagination-nav {
  * cleaner LiveKit/Stripe style. */
 .theme-doc-sidebar-menu .menu__link--active {
   background-color: transparent;
-  border-left-color: var(--ifm-color-primary);
-  color: #ffffff;
+  border-left-color: var(--brand-secondary);
+  color: var(--brand-secondary);
   font-weight: 600;
 }
 
 .theme-doc-sidebar-menu .menu__link--active:hover {
   background-color: transparent;
-  color: #ffffff;
+  color: var(--brand-secondary);
 }
 
 .theme-doc-sidebar-menu .menu__list-item-collapsible {
@@ -671,9 +671,7 @@ html.plugin-docs .pagination-nav {
 
 /* Manual title at the very top of the sidebar (e.g., "OvenMediaEngine
  * Enterprise"). Emitted as `type: 'html'` instead of a wrapper category,
- * so the real menu items underneath stay at depth 1. Yellow left accent
- * doubles as a "you are reading this manual" indicator since the html
- * item has no active state to inherit. */
+ * so the real menu items underneath stay at depth 1. */
 .theme-doc-sidebar-menu .menu__list-item:has(> .sidebar-manual-title) {
   padding: 0 !important;
   margin: 0 !important;
@@ -681,11 +679,7 @@ html.plugin-docs .pagination-nav {
 
 .theme-doc-sidebar-menu .sidebar-manual-title {
   display: block;
-  padding: 0.55rem 0.75rem 0.9rem calc(0.75rem - 3px);
-  border-left: 3px solid var(--ifm-color-primary);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #ffffff;
+  padding: 0.65rem 0.75rem 0.9rem;
 }
 
 /* Strip the wrapping LI's `menuHtmlItem` padding + Infima sibling margin
