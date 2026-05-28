@@ -39,19 +39,6 @@ If you have configured the Host IP, the following additional information is incl
 
 :::info
 
-To manually enable HTTPS for the Web Console, set `OS_SERVER_HTTPS_ENABLED=true` and configure the SSL certificate paths using the variables above.
-
-:::
-
-:::tip
-
-To automatically configure HTTPS for both the Web Console and OvenMediaEngine at once, see [SSL Configuration](web-console-overview/ssl-configuration/README.md).
-
-:::
-
-
-:::info
-
 If you prefer to use a different version of Java that you manage, modify the **`JAVA_HOME`** path accordingly and restart the Web Console.
 
 * **JAVA 17+**
@@ -87,6 +74,28 @@ You can also change the password through the UI using options like "[Change Pass
 
 :::
 
+
+## Enabling HTTPS
+
+To manually enable HTTPS for the Web Console, edit `system.env` and set the following variables:
+
+```bash
+OS_SERVER_HTTPS_ENABLED=true
+OS_SERVER_HTTPS_PORT=8443
+OS_SERVER_HTTPS_CERT=/path/to/cert.crt
+OS_SERVER_HTTPS_KEY=/path/to/cert.key
+OS_SERVER_HTTPS_CHAIN_CERT=/path/to/chain.crt
+```
+
+All three certificate paths are required. The files must be in PEM format. For supported file names and formats by certificate authority, see the [Custom SSL Certificate File Guide](web-console-overview/ssl-configuration/custom-ssl-certificate-file-guide.md).
+
+Once configured, restart the Web Console for the changes to take effect. The Web Console will then be accessible at `https://Your.Host.Address:8443`.
+
+:::tip
+
+To automatically configure HTTPS for both the Web Console and OvenMediaEngine at once, see [SSL Configuration](web-console-overview/ssl-configuration/README.md).
+
+:::
 
 ## Apply Changes
 

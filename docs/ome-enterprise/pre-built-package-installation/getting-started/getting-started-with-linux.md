@@ -183,6 +183,12 @@ The host address can be changed if you need to update the value automatically co
 sudo ./install-ovenmediaengine-enterprise.sh -c -H 'Your.Host.Address'
 ```
 
+:::info
+
+In private network or VPN environments, setting the Host Address explicitly ensures that the Web Console displays accurate ingest and playback URLs.
+
+:::
+
 
 ## Ports used by default
 
@@ -195,3 +201,11 @@ The default configuration uses the following ports, so you need to open it in yo
 ### Web Console (OvenStudio)
 
 <table><thead><tr><th width="200">Port</th><th>Purpose</th></tr></thead><tbody><tr><td>8080/TCP</td><td>Web Console (HTTP)</td></tr><tr><td>8443/TCP</td><td>Web Console (HTTPS)</td></tr></tbody></table>
+
+## Next Steps
+
+OvenMediaEngine Enterprise is now running. Here are the suggested next steps:
+
+- [Your First Streaming](./getting-started-first-streaming.md): Publish a live stream and verify playback.
+- [Going Secure with TLS](./getting-started-tls-configuration.md): Enable HTTPS for secure WebRTC and HLS playback in browsers.
+- [Adaptive Bitrate Streaming](./getting-started-abr.md): Configure adaptive bitrate streaming for multiple quality renditions.

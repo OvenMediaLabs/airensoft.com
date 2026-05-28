@@ -80,8 +80,8 @@ After the [installation](getting-started-with-docker.md#installation) is complet
 
 
 ```sh
-<strong>docker run -d --name=ovenmediaengine \
-</strong>-e OME_LICENSE_KEY=<Your.License.Key> \
+docker run -d --name=ovenmediaengine \
+-e OME_LICENSE_KEY=<Your.License.Key> \
 -e OME_HOST_IP=<Your.HOST.IP.Address> \
 -p 1935:1935 -p 8080:8080 -p 9999:9999/udp -p 9000:9000 -p 80:80 -p 3478:3478 -p 10000:10000/udp -p 10000:10000/tcp \
 ovenmediaengine-enterprise
@@ -351,3 +351,11 @@ The default configuration uses the following ports, so you need to open it in yo
 ### Web Console (OvenStudio)
 
 <table><thead><tr><th width="200">Port</th><th>Purpose</th></tr></thead><tbody><tr><td>8080/TCP</td><td>Web Console (HTTP)</td></tr><tr><td>8443/TCP</td><td>Web Console (HTTPS)</td></tr></tbody></table>
+
+## Next Steps
+
+OvenMediaEngine Enterprise is now running. Here are the suggested next steps:
+
+- [Your First Streaming](./getting-started-first-streaming.md): Publish a live stream and verify playback.
+- [Going Secure with TLS](./getting-started-tls-configuration.md): Enable HTTPS for secure WebRTC and HLS playback in browsers.
+- [Adaptive Bitrate Streaming](./getting-started-abr.md): Configure adaptive bitrate streaming for multiple quality renditions.
