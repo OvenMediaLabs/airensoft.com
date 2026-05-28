@@ -95,6 +95,10 @@ function initNavbarScroll(): Cleanup | undefined {
       document.body.scrollTop ||
       document.documentElement.scrollTop;
 
+    // Progressive tint: 8% at the top → 82% at 250 px+ of scroll
+    const tintPct = 8 + Math.min(scrollPosition / 250, 1) * 74;
+    navbar.style.setProperty('--navbar-tint-pct', `${Math.round(tintPct)}%`);
+
     if (scrollPosition > 20) {
       navbar.classList.add('scrolled');
     } else if (

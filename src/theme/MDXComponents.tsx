@@ -21,8 +21,28 @@ function Img({src, alt, ...props}: React.ImgHTMLAttributes<HTMLImageElement>) {
   return <img src={src} alt="" {...props} />;
 }
 
+// Markdown wraps standalone images in <p>. Since Img renders as <figure>
+// (block-level), <p><figure> is invalid HTML5. When the only meaningful
+// child of a <p> is an Img element (which will render to <figure>),
+// drop the <p> wrapper so the figure sits directly in flow.
+function P({children}: {children?: React.ReactNode}) {
+  const all = React.Children.toArray(children);
+  const meaningful = all.filter(
+    (c) => !(typeof c === 'string' && (c as string).trim() === ''),
+  );
+  if (
+    meaningful.length === 1 &&
+    React.isValidElement(meaningful[0]) &&
+    (meaningful[0] as React.ReactElement).type === Img
+  ) {
+    return <>{children}</>;
+  }
+  return <p>{children}</p>;
+}
+
 export default {
   ...OriginalMDXComponents,
   table: MarkdownTable,
   img: Img,
+  p: P,
 };
