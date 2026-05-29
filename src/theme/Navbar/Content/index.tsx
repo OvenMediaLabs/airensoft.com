@@ -86,7 +86,7 @@ function DropdownItem({item, isActive = false}: {item: NavbarItem; isActive?: bo
             <i className={`ph ${item.icon} dropdown-item-leading`}></i>
           )}
           <span className="me-auto">{item.label}</span>
-          <i className="ph ph-arrow-up-right ms-2 small opacity-50"></i>
+          <i className="ph ph-arrow-up-right ms-2 small" style={{opacity: 0.6}}></i>
         </a>
       </li>
     );
@@ -194,6 +194,7 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
     const onNavHidden = (e: Event) => {
       if ((e.target as HTMLElement)?.id !== 'mainNav') return;
       setResourcesInstant(false);
+      setIsExpanded(false);
     };
 
     mainNav.addEventListener('show.bs.collapse',   onNavShow);
@@ -258,7 +259,15 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
           className={`collapse${showAccordion ? ' show' : ''}`}
           id="mobileResourcesMenu">
           <ul className="nav flex-column">
-            {linkItems.map((sub, i) => {
+            {subItems.map((sub, i) => {
+              if (sub.type === 'header') {
+                return (
+                  <li key={`mob-${i}`}>
+                    <h6 className="dropdown-header">{sub.label}</h6>
+                  </li>
+                );
+              }
+              if (sub.type === 'divider') return null;
               const label: string = sub.mobileLabel ?? sub.label ?? '';
               return sub.href ? (
                 <li key={`mob-${i}`} className="nav-item">
@@ -268,16 +277,18 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
                     target={sub.target ?? '_blank'}
                     rel="noopener noreferrer"
                     onClick={() => setExternalClicked(true)}>
-                    <span>{label}</span>
-                    <i className="ph ph-arrow-up-right ms-2 mobile-nav-external-icon"></i>
+                    {sub.icon && <i className={`ph ${sub.icon} nav-link-sub-icon`}></i>}
+                    <span className="me-auto">{label}</span>
+                    <i className="ph ph-arrow-up-right mobile-nav-external-icon"></i>
                   </a>
                 </li>
               ) : (
                 <li key={`mob-${i}`} className="nav-item">
                   <Link
-                    className={`nav-link nav-link-sub${isCurrentPath(sub.to, pathname) ? ' active' : ''}`}
+                    className={`nav-link nav-link-sub d-flex align-items-center${isCurrentPath(sub.to, pathname) ? ' active' : ''}`}
                     to={sub.to ?? '/'}>
-                    {label}
+                    {sub.icon && <i className={`ph ${sub.icon} nav-link-sub-icon`}></i>}
+                    <span>{label}</span>
                   </Link>
                 </li>
               );
