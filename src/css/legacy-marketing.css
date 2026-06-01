@@ -1073,14 +1073,24 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px color-mix(in srgb, var(--brand-secondary), transparent 85%);
     color: var(--bg-body); z-index: 10;
 }
-.btn-aws-outline {
-    background-color: transparent; border: 1px solid #FF9900; color: #FF9900;
+.btn-ome-outline {
+    background-color: transparent; border: 1px solid #4ade80; color: #4ade80;
     transition: all 0.5s ease;
-    --bs-btn-active-bg: rgba(255, 153, 0, 0.5); --bs-btn-active-border-color: #FF9900;
+    --bs-btn-active-bg: rgba(74, 222, 128, 0.5); --bs-btn-active-border-color: #4ade80;
+}
+.btn-ome-outline:hover {
+    border-color: #4ade80; background-color: #4ade80;
+    transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px rgba(74, 222, 128, 0.2);
+    color: #0a1122; z-index: 10;
+}
+.btn-aws-outline {
+    background-color: transparent; border: 1px solid #f59e0b; color: #f59e0b;
+    transition: all 0.5s ease;
+    --bs-btn-active-bg: rgba(245, 158, 11, 0.5); --bs-btn-active-border-color: #f59e0b;
 }
 .btn-aws-outline:hover {
-    border-color: #FF9900; background-color: #FF9900;
-    transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px rgba(255, 153, 0, 0.2);
+    border-color: #f59e0b; background-color: #f59e0b;
+    transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px rgba(245, 158, 11, 0.2);
     color: var(--text-main); z-index: 10;
 }
 
