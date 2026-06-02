@@ -77,7 +77,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
 
     <div id="hero-product-cards" className="row g-3 g-lg-4 mt-3 justify-content-center reveal-up">
       <div className="col-12 col-md-4">
-        <a href="#enterprise" className="d-flex flex-column p-3 p-md-4 rounded-4 h-100 text-start text-decoration-none" style={{border: '1px solid rgba(186, 230, 253, 0.35)', boxShadow: '0 0 24px rgba(186, 230, 253, 0.1)', background: 'rgba(186, 230, 253, 0.1)'}}>
+        <a href="#enterprise" className="d-flex flex-column p-3 p-md-4 rounded-4 h-100 text-start text-decoration-none" style={{border: '1px solid rgba(186, 230, 253, 0.50)', boxShadow: '0 0 24px rgba(186, 230, 253, 0.2)', background: 'rgba(186, 230, 253, 0.2)'}}>
           <div className="d-flex justify-content-between align-items-start mb-2">
             <span className="badge fw-bold text-dark" style={{background: '#BAE6FD'}}>Most Tailored</span>
             <i className="ph ph-lightning" style={{color: '#BAE6FD', fontSize: '1.1rem'}}></i>
@@ -88,7 +88,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         </a>
       </div>
       <div className="col-12 col-md-4">
-        <a href="#marketplace" className="d-flex flex-column p-3 p-md-4 rounded-4 h-100 text-start text-decoration-none" style={{border: '1px solid rgba(253, 230, 138, 0.35)', boxShadow: '0 0 24px rgba(253, 230, 138, 0.1)', background: 'rgba(253, 230, 138, 0.1)'}}>
+        <a href="#marketplace" className="d-flex flex-column p-3 p-md-4 rounded-4 h-100 text-start text-decoration-none" style={{border: '1px solid rgba(253, 230, 138, 0.50)', boxShadow: '0 0 24px rgba(253, 230, 138, 0.2)', background: 'rgba(253, 230, 138, 0.2)'}}>
           <div className="d-flex justify-content-between align-items-start mb-2">
             <span className="badge fw-bold text-dark" style={{background: '#fde68a'}}>Fastest to Launch</span>
             <i className="ph ph-cloud" style={{color: '#fde68a', fontSize: '1.1rem'}}></i>
@@ -99,7 +99,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         </a>
       </div>
       <div className="col-12 col-md-4">
-        <a href="#ome" className="d-flex flex-column p-3 p-md-4 rounded-4 h-100 text-start text-decoration-none" style={{border: '1px solid rgba(187, 247, 208, 0.35)', boxShadow: '0 0 24px rgba(187, 247, 208, 0.1)', background: 'rgba(187, 247, 208, 0.1)'}}>
+        <a href="#ome" className="d-flex flex-column p-3 p-md-4 rounded-4 h-100 text-start text-decoration-none" style={{border: '1px solid rgba(187, 247, 208, 0.50)', boxShadow: '0 0 24px rgba(187, 247, 208, 0.2)', background: 'rgba(187, 247, 208, 0.2)'}}>
           <div className="d-flex justify-content-between align-items-start mb-2">
             <span className="badge fw-bold text-dark" style={{background: '#bbf7d0'}}>Free &amp; Open Source</span>
             <i className="ph ph-github-logo" style={{color: 'rgba(187, 247, 208, 0.5)', fontSize: '1.1rem'}}></i>
@@ -127,13 +127,13 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
           </h2>
           <p className="text-sub mb-4">Fine-tune the entire live streaming workflow, from ingest to delivery. Built for enterprise requirements, optimized for sub-second latency, and supported directly by the core engineering team.</p>
           <div className="d-flex gap-2 mb-3 justify-content-center justify-content-lg-start" style={{maxWidth: '340px'}}>
-            <a href="#pricing" className="btn btn-sm btn-brand-outline rounded-pill px-4 flex-grow-1"><i className="ph ph-tag me-2"></i>Pricing</a>
+            <a href="#pricing" className="btn btn-sm btn-enterprise-fill rounded-pill px-4 flex-grow-1"><i className="ph ph-tag me-2"></i>Pricing</a>
             <a href="/docs/ome-enterprise" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary-outline rounded-pill px-4 flex-grow-1"><i className="ph ph-book-open me-2"></i>Guide</a>
           </div>
           <a href="/eula" className="text-bi-yellow2 small text-decoration-underline lh-1 d-block text-center text-lg-start">※ Please see the End User License Agreement.</a>
         </div>
         <div className="col-lg-6 reveal-up">
-          <div className="p-4 rounded-4 bg-middle-50 overflow-hidden">
+          <div className="p-4 rounded-4 overflow-hidden" style={{boxShadow: '15px 15px 15px rgba(56, 190, 248, 0.20)', border: '1px solid rgba(56, 190, 248, 0.40)', background: 'radial-gradient(ellipse at 10% 10%, rgba(186, 230, 253, 0.1) 0%, var(--bg-body) 60%)'}}>
             <p className="extra-small text-secondary fw-bold mb-3 text-uppercase lh-1" style={{letterSpacing: '0.1em'}}>Where OvenMediaEngine Enterprise fits best</p>
             <div className="row g-2 row-cols-2">
               <div className="col">
@@ -355,6 +355,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
   <div className="w-100 flex-grow-1 d-flex align-items-center pt-4 pb-2">
     <div className="container">
       <div className="text-center mb-4 reveal-up">
+        <span className="badge bg-brand text-dark mb-3">Direct Licensing</span>
         <h2 id="pricing" className="display-4 fw-bold text-main mb-3 copy-title">Simple, per-instance pricing</h2>
         <p className="lead text-sub col-lg-8 mx-auto">Every plan includes the complete OvenMediaEngine Enterprise feature set, Guaranteed LTS, Basic-tier support, and unrestricted channel usage.</p>
         <p className="small mt-2 mb-0" style={{color: 'var(--brand-accent)'}}>* Discounts available for bulk purchases or long-term contracts.</p>
@@ -364,7 +365,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         <div className="col-lg-4 reveal-up">
           <div className="h-100 d-flex flex-column hover-card2 pricing-hover-card">
             <div className="text-center position-relative" style={{marginBottom: '-13px', zIndex: 2}}>
-              <span className="badge bg-brand text-dark px-3 py-1 rounded-2 fw-bold pricing-badge" style={{width: 'max-content'}}>Flexible Subscription</span>
+              <span className="badge rounded-pill text-dark px-3 py-1 fw-bold pricing-badge" style={{width: 'max-content', background: '#bae6fd'}}>Flexible Subscription</span>
             </div>
             <div className="tech-card-pro opensource flex-grow-1 px-4 py-3 px-xl-5 py-xl-4 rounded-4 bg-surface d-flex border border-sec flex-column">
               <h3 className="fw-bold text-main mb-1 mt-2">Monthly</h3>
@@ -389,7 +390,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         <div className="col-lg-4 reveal-up">
           <div className="h-100 d-flex flex-column hover-card2 pricing-hover-card">
             <div className="text-center position-relative" style={{marginBottom: '-13px', zIndex: 2}}>
-              <span className="badge bg-brand text-dark px-3 py-1 rounded-2 fw-bold pricing-badge" style={{width: 'max-content'}}>Best Value · Save 17%</span>
+              <span className="badge rounded-pill text-dark px-3 py-1 fw-bold pricing-badge" style={{width: 'max-content', background: '#bae6fd'}}>Best Value · Save 17%</span>
             </div>
             <div className="tech-card-pro opensource flex-grow-1 px-4 py-3 px-xl-5 py-xl-4 rounded-4 bg-surface d-flex border border-sec flex-column">
               <h3 className="fw-bold text-main mb-1 mt-2">Annual</h3>
@@ -412,7 +413,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         <div className="col-lg-4 reveal-up">
           <div className="h-100 d-flex flex-column hover-card2 pricing-hover-card">
             <div className="text-center position-relative" style={{marginBottom: '-13px', zIndex: 2}}>
-              <span className="badge bg-brand text-dark px-3 py-1 rounded-2 fw-bold pricing-badge" style={{width: 'max-content'}}>One-Time Purchase</span>
+              <span className="badge rounded-pill text-dark px-3 py-1 fw-bold pricing-badge" style={{width: 'max-content', background: '#bae6fd'}}>One-Time Purchase</span>
             </div>
             <div className="tech-card-pro opensource flex-grow-1 px-4 py-3 px-xl-5 py-xl-4 rounded-4 bg-surface d-flex border border-sec flex-column">
               <h3 className="fw-bold text-main mb-1 mt-2">Perpetual</h3>
@@ -492,14 +493,14 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         </div>
 
         <div className="col-lg-4 text-center text-lg-end d-none d-lg-flex flex-column align-items-end gap-2">
-          <div className="d-inline-block p-3 rounded border border-darker bg-middle-50 text-start" style={{minWidth: '300px'}}>
+          <div className="d-inline-block p-3 rounded bg-middle-50 text-start" style={{minWidth: '300px'}}>
             <div className="d-flex align-items-center gap-2 mb-1">
               <i className="ph-fill ph-clock text-secondary"></i>
               <span className="fw-bold text-main small">Business Hours (UTC+9)</span>
             </div>
             <p className="text-mono-light extra-small mb-0">·&nbsp;Mon - Fri, 09:00 - 18:00 (Excl. KR Holidays)</p>
           </div>
-          <div className="d-inline-block p-3 rounded border border-darker bg-middle-50 text-start" style={{minWidth: '300px'}}>
+          <div className="d-inline-block p-3 rounded bg-middle-50 text-start" style={{minWidth: '300px'}}>
             <div className="d-flex align-items-center gap-2 mb-1">
               <i className="ph-fill ph-warning-circle text-secondary"></i>
               <span className="fw-bold text-main small">Priority Definition</span>
@@ -518,7 +519,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         <div className="col-lg-5 reveal-up">
           <div className="h-100 d-flex flex-column hover-card2 pricing-hover-card">
             <div className="text-center position-relative" style={{marginBottom: '-13px', zIndex: 2}}>
-              <span className="badge bg-brand text-dark px-3 py-1 rounded-2 fw-bold pricing-badge" style={{width: 'max-content'}}>For Developer-Connected Teams</span>
+              <span className="badge rounded-pill text-dark px-3 py-1 fw-bold pricing-badge" style={{width: 'max-content', background: '#bae6fd'}}>For Developer-Connected Teams</span>
             </div>
             <div className="tech-card-pro opensource flex-grow-1 px-4 py-3 px-xl-5 py-xl-4 rounded-4 bg-surface d-flex border border-sec flex-column">
               <h3 className="fw-bold text-main mb-2 mt-2">Business Tier</h3>
@@ -547,7 +548,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         <div className="col-lg-5 reveal-up">
           <div className="h-100 d-flex flex-column hover-card2 pricing-hover-card">
             <div className="text-center position-relative" style={{marginBottom: '-13px', zIndex: 2}}>
-              <span className="badge bg-brand text-dark px-3 py-1 rounded-2 fw-bold pricing-badge" style={{width: 'max-content'}}>For Mission-Critical Teams</span>
+              <span className="badge rounded-pill text-dark px-3 py-1 fw-bold pricing-badge" style={{width: 'max-content', background: '#bae6fd'}}>For Mission-Critical Teams</span>
             </div>
             <div className="tech-card-pro opensource flex-grow-1 px-4 py-3 px-xl-5 py-xl-4 rounded-4 bg-surface d-flex border border-sec flex-column">
               <h3 className="fw-bold text-main mb-2 mt-2">Enterprise Tier</h3>
@@ -607,7 +608,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
           </h2>
           <p className="text-sub mb-4">Get the complete OvenMediaEngine Enterprise experience on AWS, with the same feature set and engineer-backed support, billed by the hour. Skip procurement, validate with real traffic, and move to production with confidence.</p>
           <div className="d-flex gap-2" style={{maxWidth: '340px'}}>
-            <a href="https://aws.amazon.com/marketplace/pp/prodview-okn5l63yxarwm" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-aws-outline rounded-pill px-4 text-center" style={{flex: '1 1 0'}}>
+            <a href="https://aws.amazon.com/marketplace/pp/prodview-okn5l63yxarwm" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-aws-fill rounded-pill px-4 text-center" style={{flex: '1 1 0'}}>
               <i className="ph ph-cloud me-2"></i>Marketplace
             </a>
             <a href="/docs/ome-enterprise/exclusive/aws-marketplace/getting-started-on-aws" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary-outline rounded-pill px-4 text-center" style={{flex: '1 1 0'}}>
@@ -617,12 +618,24 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         </div>
 
         <div className="col-lg-6 reveal-up">
-          <div className="p-4 p-lg-5 rounded-4 aws-box-pulse" style={{border: '1px solid rgba(245, 158, 11, 0.5)', background: 'radial-gradient(ellipse at 80% 10%, rgba(245, 158, 11, 0.18) 0%, var(--bg-body) 60%)'}}>
-            <p className="extra-small fw-bold mb-4 text-uppercase lh-1" style={{color: '#f59e0b', letterSpacing: '0.1em'}}>Go live worldwide in minutes</p>
-            <p className="text-sub small mb-1">Starting at</p>
-            <div className="d-flex align-items-baseline gap-2 mb-4">
-              <span className="aws-price-shimmer display-1 fw-bold lh-1">$0.19</span>
-              <span className="text-main fw-bold">per instance-hour</span>
+          <div className="p-4 p-lg-5 rounded-4" style={{boxShadow: '15px 15px 15px rgba(245, 158, 11, 0.20)', border: '1px solid rgba(245, 158, 11, 0.40)', background: 'radial-gradient(ellipse at 10% 10%, rgba(253, 230, 138, 0.1) 0%, var(--bg-body) 60%)'}}>
+            <p className="extra-small fw-bold mb-4 text-uppercase lh-1 text-center text-sm-start" style={{color: '#f59e0b', letterSpacing: '0.1em'}}>Go live worldwide in minutes</p>
+            {/* Mobile: centered block, Starting at + $0.19 left-aligned, per instance centered */}
+            <div className="d-flex flex-column align-items-center mb-3 d-sm-none">
+              <div className="d-flex flex-column align-items-start">
+                <span className="text-sub small mb-1">Starting at</span>
+                <span className="aws-price-shimmer fw-bold lh-1" style={{fontSize: 'clamp(4rem, 7vw, 6rem)'}}>$0.19</span>
+              </div>
+              <span className="text-main fw-bold text-center" style={{fontSize: '1rem'}}>per instance-hour</span>
+            </div>
+
+            {/* Desktop: original inline layout */}
+            <div className="d-none d-sm-block mb-4">
+              <p className="text-sub small mb-0">Starting at</p>
+              <div className="d-flex align-items-baseline" style={{columnGap: '0.5rem'}}>
+                <span className="aws-price-shimmer fw-bold lh-1" style={{fontSize: 'clamp(4rem, 7vw, 6rem)'}}>$0.19</span>
+                <span className="text-main fw-bold" style={{fontSize: 'clamp(1rem, 3vw, 1.5rem)'}}>per instance-hour</span>
+              </div>
             </div>
             <hr className="my-4" style={{borderColor: 'rgba(245, 158, 11, 0.2)'}} />
             <div className="row g-2 row-cols-2">
@@ -639,7 +652,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
                     <div className="flex-shrink-0 rounded" style={{background: 'rgba(245,158,11,0.12)', border: '1px solid rgba(245,158,11,0.25)', width: '28px', height: '28px', minWidth: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                       <i className={`ph ${icon}`} style={{color: '#f59e0b', fontSize: '14px', lineHeight: '28px', display: 'block', textAlign: 'center'}}></i>
                     </div>
-                    <span className="small text-main lh-sm">{label}</span>
+                    <span className="text-main lh-sm" style={{fontSize: 'clamp(0.75rem, 2vw, 0.875rem)'}}>{label}</span>
                   </div>
                 </div>
               ))}
@@ -664,22 +677,22 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
 
       <div className="row g-lg-3 g-2 row-cols-1 row-cols-md-3 reveal-up mb-4 mobile-horizontal-scroll">
         <div className="col">
-          <div className="p-4 rounded-4 h-100 d-flex flex-column bg-surface-50">
-            <i className="ph ph-rocket-launch fs-3 mb-3" style={{color: '#f59e0b'}}></i>
+          <div className="p-4 p-lg-5 rounded-4 h-100 d-flex flex-column bg-surface-50">
+            <div className="fs-3 fw-bold mb-4 lh-1" style={{color: '#f59e0b'}}>01</div>
             <h4 className="h5 text-main fw-bold mb-2">Launch and Validate in Minutes</h4>
             <p className="text-sub mb-0 lh-sm">Deploy OvenMediaEngine Enterprise from AWS Marketplace and test ingest, playback, recording, and operations in a real AWS environment before moving to production.</p>
           </div>
         </div>
         <div className="col">
-          <div className="p-4 rounded-4 h-100 d-flex flex-column bg-surface-50">
-            <i className="ph ph-sliders-horizontal fs-3 mb-3" style={{color: '#f59e0b'}}></i>
+          <div className="p-4 p-lg-5 rounded-4 h-100 d-flex flex-column bg-surface-50">
+            <div className="fs-3 fw-bold mb-4 lh-1" style={{color: '#f59e0b'}}>02</div>
             <h4 className="h5 text-main fw-bold mb-2">Tune for Real-Time Workflows</h4>
             <p className="text-sub mb-0 lh-sm">Balance latency, quality, and stability across WebRTC, SRT (&lt;1s), and LL-HLS (&lt;3s). Use the Web Console to keep live streaming operations consistent.</p>
           </div>
         </div>
         <div className="col">
-          <div className="p-4 rounded-4 h-100 d-flex flex-column bg-surface-50">
-            <i className="ph ph-shield-check fs-3 mb-3" style={{color: '#f59e0b'}}></i>
+          <div className="p-4 p-lg-5 rounded-4 h-100 d-flex flex-column bg-surface-50">
+            <div className="fs-3 fw-bold mb-4 lh-1" style={{color: '#f59e0b'}}>03</div>
             <h4 className="h5 text-main fw-bold mb-2">Scale with Production Confidence</h4>
             <p className="text-sub mb-0 lh-sm">Run commercial live streaming with advanced security, high availability, and API-driven automation. Scale up for traffic spikes and pay by the hour.</p>
           </div>
@@ -711,23 +724,23 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
           </h2>
           <p className="text-sub mb-4">An open-source sub-second latency streaming server with WebRTC, LL-HLS, and SRT. As the foundation of the OvenMediaEngine family, it gives you full control to build, customize, and own your real-time media service.</p>
           <div className="row g-2 mb-3" style={{maxWidth: '340px'}}>
-            <div className="col-6"><a href="https://github.com/OvenMediaLabs/OvenMediaEngine" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-ome-outline rounded-pill w-100"><i className="ph ph-github-logo me-2"></i>GitHub</a></div>
+            <div className="col-6"><a href="https://github.com/OvenMediaLabs/OvenMediaEngine" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-ome-fill rounded-pill w-100"><i className="ph ph-github-logo me-2"></i>GitHub</a></div>
             <div className="col-6"><a href="/docs/ome" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary-outline rounded-pill w-100"><i className="ph ph-book-open me-2"></i>Guide</a></div>
-            <div className="col-6"><a href="https://demo.ovenplayer.com" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary-outline rounded-pill w-100"><i className="ph ph-play-circle me-2"></i>Player Demo</a></div>
-            <div className="col-6"><a href="https://space.ovenplayer.com/" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary-outline rounded-pill w-100"><i className="ph ph-play me-2"></i>Live Demo</a></div>
+            <div className="col-6"><a href="https://demo.ovenplayer.com" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-ome-outline rounded-pill w-100"><i className="ph ph-play-circle me-2"></i>Player Demo</a></div>
+            <div className="col-6"><a href="https://space.ovenplayer.com/" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-ome-outline rounded-pill w-100"><i className="ph ph-play me-2"></i>Live Demo</a></div>
           </div>
           <a href="/agplv3" className="small text-decoration-underline lh-1 d-block text-center text-lg-start" style={{color: '#4ade80'}}>※ Please See the Compliance Notice<span className="d-none d-md-inline"> for Obligations</span> (AGPLv3).</a>
         </div>
-        <div className="col-lg-6 reveal-up">
-          <div className="rounded-4 border border-darker p-4" style={{background: '#0d1117'}}>
+        <div className="col-lg-6 reveal-up d-none d-lg-block">
+          <div className="rounded-4 p-4" style={{boxShadow: '15px 15px 15px rgba(74, 222, 128, 0.20)', border: '1px solid rgba(74, 222, 128, 0.40)', background: 'radial-gradient(ellipse at 10% 10%, rgba(187, 247, 208, 0.1) 0%, var(--bg-body) 60%)'}}>
 
             <p className="extra-small fw-bold mb-4 text-uppercase lh-1" style={{color: '#4ade80', letterSpacing: '0.12em'}}>OvenMediaEngine Workflow</p>
 
             {/* 3-column layout */}
-            <div className="d-flex gap-3 align-items-start mb-3">
+            <div className="d-none d-lg-flex gap-3 align-items-start mb-3">
 
               {/* INGEST */}
-              <div style={{minWidth: 0, flex: '0 0 22%'}}>
+              <div style={{minWidth: 0, flex: '0 0 22%', paddingTop: '1rem'}}>
                 <p className="extra-small fw-bold mb-2 lh-1 text-uppercase text-center" style={{letterSpacing: '0.1em', color: 'rgba(74,222,128,0.6)'}}>Ingest</p>
                 <div className="d-flex flex-column gap-1">
                   {['WebRTC · WHIP', 'SRT', 'RTMP · E-RTMP', 'MPEG-2 TS', 'RTSP Pull', 'Scheduled Channel', 'Multiplex Channel'].map(label => (
@@ -737,8 +750,21 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
               </div>
 
               {/* Arrow */}
-              <div className="d-flex align-items-center justify-content-center flex-shrink-0 pt-4" style={{color: 'rgba(74,222,128,0.5)', paddingTop: '1.6rem'}}>
-                <i className="ph ph-arrow-right fs-5"></i>
+              <div className="d-flex align-items-center justify-content-center flex-shrink-0" style={{alignSelf: 'center'}}>
+                <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="0" y1="10" x2="18" y2="10" stroke="rgba(74,222,128,0.35)" strokeWidth="2.5"/>
+                  <line x1="0" y1="10" x2="18" y2="10" stroke="url(#flowGrad1)" strokeWidth="2.5" strokeDasharray="6 6">
+                    <animate attributeName="stroke-dashoffset" from="12" to="0" dur="0.8s" repeatCount="indefinite"/>
+                  </line>
+                  <polyline points="14,4 22,10 14,16" stroke="rgba(74,222,128,0.8)" strokeWidth="2.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
+                  <defs>
+                    <linearGradient id="flowGrad1" x1="0" y1="0" x2="28" y2="0" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#4ade80" stopOpacity="0"/>
+                      <stop offset="60%" stopColor="#4ade80" stopOpacity="0.9"/>
+                      <stop offset="100%" stopColor="#4ade80" stopOpacity="0"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
               </div>
 
               {/* OME CORE */}
@@ -760,12 +786,25 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
               </div>
 
               {/* Arrow */}
-              <div className="d-flex align-items-center justify-content-center flex-shrink-0" style={{color: 'rgba(74,222,128,0.5)', paddingTop: '1.6rem'}}>
-                <i className="ph ph-arrow-right fs-5"></i>
+              <div className="d-flex align-items-center justify-content-center flex-shrink-0" style={{alignSelf: 'center'}}>
+                <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="0" y1="10" x2="18" y2="10" stroke="rgba(74,222,128,0.35)" strokeWidth="2.5"/>
+                  <line x1="0" y1="10" x2="18" y2="10" stroke="url(#flowGrad2)" strokeWidth="2.5" strokeDasharray="6 6">
+                    <animate attributeName="stroke-dashoffset" from="12" to="0" dur="0.8s" repeatCount="indefinite"/>
+                  </line>
+                  <polyline points="14,4 22,10 14,16" stroke="rgba(74,222,128,0.8)" strokeWidth="2.5" fill="none" strokeLinejoin="round" strokeLinecap="round"/>
+                  <defs>
+                    <linearGradient id="flowGrad2" x1="0" y1="0" x2="28" y2="0" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#4ade80" stopOpacity="0"/>
+                      <stop offset="60%" stopColor="#4ade80" stopOpacity="0.9"/>
+                      <stop offset="100%" stopColor="#4ade80" stopOpacity="0"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
               </div>
 
               {/* EGRESS */}
-              <div style={{minWidth: 0, flex: '0 0 22%'}}>
+              <div style={{minWidth: 0, flex: '0 0 22%', paddingTop: '1rem'}}>
                 <p className="extra-small fw-bold mb-2 lh-1 text-uppercase text-center" style={{letterSpacing: '0.1em', color: 'rgba(74,222,128,0.6)'}}>Delivery</p>
                 <div className="d-flex flex-column gap-1">
                   {[
@@ -785,9 +824,9 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
             </div>
 
             {/* Bottom: clustering note */}
-            <div className="d-flex align-items-center justify-content-center gap-2 pt-2" style={{borderTop: '1px solid rgba(74,222,128,0.1)'}}>
+            <div className="d-none d-lg-flex align-items-center justify-content-center gap-2 pt-2 mt-4" style={{borderTop: '1px solid rgba(74,222,128,0.1)'}}>
               <p className="mb-0 lh-1" style={{fontSize: '0.72rem', color: 'rgba(187,247,208,0.5)'}}>
-                <span style={{color: '#bbf7d0', fontWeight: 600}}>Origin-Edge clustering</span> scales delivery horizontally for large concurrent audiences.
+{'* '}<span style={{color: '#bbf7d0', fontWeight: 600}}>Origin-Edge clustering</span> scales delivery horizontally for large concurrent audiences.
               </p>
             </div>
 
@@ -807,9 +846,10 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         <p className="lead text-sub col-lg-8 mx-auto">Complete your real-time streaming workflow with open-source tools for playback and publishing, optimized for OvenMediaEngine.</p>
       </div>
 
-      <div className="row g-0 align-items-stretch overflow-hidden rounded-4 border border-surface reveal-up">
-        <div className="col-lg-6 bg-body-50 p-4 p-lg-5 border-bottom border-bottom-lg-0 border-end-lg bg-brand-gradient-dark-20">
+      <div className="row g-0 align-items-stretch overflow-hidden rounded-4 border border-darker reveal-up">
+        <div className="col-lg-6 bg-surface-50 p-4 p-lg-5 border-bottom border-bottom-lg-0 border-end-lg border-darker bg-ome-gradient-dark-20">
           <div className="d-flex flex-column h-100 align-items-start">
+            <span className="badge rounded-pill text-dark mb-3 fw-bold" style={{background: '#bbf7d0'}}>JS Player Library</span>
             <h3 id="ovenplayer" className="fw-bold text-main mb-3 copy-title">OvenPlayer</h3>
             <p className="text-mono-light fs-6 mb-4 flex-grow-1">A JavaScript-based player library for WebRTC and LL-HLS playback from OvenMediaEngine, with flexible APIs for custom UX integration.</p>
             <div className="d-flex gap-2 w-100 w-sm-auto flex-wrap">
@@ -819,8 +859,9 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
           </div>
         </div>
 
-        <div className="col-lg-6 bg-body-50 p-4 p-lg-5 bg-brand-gradient-dark-r20">
+        <div className="col-lg-6 bg-surface-50 p-4 p-lg-5 bg-ome-gradient-dark-r20">
           <div className="d-flex flex-column h-100 align-items-start">
+            <span className="badge rounded-pill text-dark mb-3 fw-bold" style={{background: '#bbf7d0'}}>JS Encoder SDK</span>
             <h3 id="ovenlivekit" className="fw-bold text-main mb-3 copy-title">OvenLiveKit</h3>
             <p className="text-mono-light fs-6 mb-4 flex-grow-1">A JavaScript-based live encoder SDK that lets you send WebRTC streams to OvenMediaEngine with simple, developer-friendly APIs.</p>
             <div className="d-flex gap-2 w-50 w-sm-auto">
