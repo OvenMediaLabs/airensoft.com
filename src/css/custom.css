@@ -440,9 +440,9 @@ html[class*='easyops'] body {
  *   - Docs: `<main>` wraps the container.
  *   - Blog: `<main>` IS a `.col.col--7` inside an OUTER container.
  * Select `.main-wrapper` as the common ancestor so both hit the rule. */
-/* Fixes anchor jump calculations on iOS Safari */
+/* Disable smooth scrolling on iOS Safari — anchor jump calculations break with it */
 @supports (-webkit-touch-callout: none) {
-  html.plugin-docs {
+  :root {
     scroll-behavior: auto !important;
   }
 }
