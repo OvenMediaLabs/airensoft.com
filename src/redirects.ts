@@ -88,6 +88,19 @@ export function createDocsRedirects(existingPath: string): string[] | undefined 
  */
 export const explicitRedirects: {from: string[]; to: string}[] = [
   {
+    from: [
+      '/ovenmediaengine',
+      '/ome-enterprise',
+      '/ovenmediaengineenterprise',
+      '/ome-aws',
+      '/ovenmediaengine-enterprise',
+      '/ovenmediaengine-aws',
+      '/ome-cloud',
+      '/ovenmediaengine-cloud',
+    ],
+    to: '/ome',
+  },
+  {
     // GitBook "transcoding" section had an overview child also named
     // "transcoding"; the new site flattened it into the section page.
     from: [

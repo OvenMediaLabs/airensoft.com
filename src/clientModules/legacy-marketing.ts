@@ -51,14 +51,14 @@ function initNavbarOutsideClick(): Cleanup | undefined {
   const navbar = document.querySelector<HTMLElement>('.navbar-custom');
   if (!navbar) return;
 
-  const onOutsideClick = (e: MouseEvent) => {
-    // Ignore clicks that originate inside the navbar itself.
-    if (navbar.contains(e.target as Node)) return;
+  // Backdrop element — absorbs clicks when the mobile menu is open.
+  const backdrop = document.createElement('div');
+  backdrop.style.cssText =
+    'position:fixed;inset:0;top:64px;z-index:998;display:none;';
 
+  const closeMenu = () => {
     const bs = (window as any).bootstrap;
     if (!bs) return;
-
-    // 1. Close mobile hamburger menu if open.
     const mainNav = document.getElementById('mainNav');
     if (mainNav?.classList.contains('show')) {
       const inst =
@@ -66,8 +66,6 @@ function initNavbarOutsideClick(): Cleanup | undefined {
         new bs.Collapse(mainNav, {toggle: false});
       inst.hide();
     }
-
-    // 2. Close any open desktop dropdown (e.g. Resources).
     const openToggle = navbar.querySelector<HTMLElement>(
       '[data-bs-toggle="dropdown"][aria-expanded="true"]',
     );
@@ -76,11 +74,139 @@ function initNavbarOutsideClick(): Cleanup | undefined {
         bs.Dropdown.getInstance(openToggle) ?? new bs.Dropdown(openToggle);
       inst.hide();
     }
+    backdrop.style.display = 'none';
   };
 
-  // `click` fires for both mouse clicks (desktop) and taps (mobile).
+  backdrop.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    closeMenu();
+  });
+  document.body.appendChild(backdrop);
+
+  // Show/hide backdrop whenever the mobile menu toggles.
+  const mainNav = document.getElementById('mainNav');
+  const onMenuToggle = () => {
+    backdrop.style.display = mainNav?.classList.contains('show') ? 'block' : 'none';
+  };
+  mainNav?.addEventListener('show.bs.collapse', onMenuToggle);
+  mainNav?.addEventListener('hide.bs.collapse', onMenuToggle);
+  mainNav?.addEventListener('shown.bs.collapse', onMenuToggle);
+  mainNav?.addEventListener('hidden.bs.collapse', onMenuToggle);
+
+  const onOutsideClick = (e: MouseEvent) => {
+    if (navbar.contains(e.target as Node)) return;
+    closeMenu();
+  };
+
+  // Close any open menu when the search input is focused.
+  const onSearchFocus = () => closeMenu();
+  const searchInput = navbar.querySelector<HTMLElement>('.navbar__search-input');
+  searchInput?.addEventListener('focus', onSearchFocus);
+
+  // When resizing to desktop, silently reset mobile-only state without
+  // firing Bootstrap events that would re-trigger our own listeners.
+  const mq = window.matchMedia('(max-width: 991px)');
+  const onBreakpoint = (e: MediaQueryListEvent) => {
+    if (!e.matches) {
+      requestAnimationFrame(() => {
+        backdrop.style.display = 'none';
+        if (mainNav) {
+          mainNav.classList.remove('show', 'collapsing');
+          mainNav.style.removeProperty('height');
+        }
+        const toggler = navbar.querySelector<HTMLElement>('[data-bs-target="#mainNav"]');
+        if (toggler) toggler.setAttribute('aria-expanded', 'false');
+      });
+    }
+  };
+  mq.addEventListener('change', onBreakpoint);
+
   document.addEventListener('click', onOutsideClick);
-  return () => document.removeEventListener('click', onOutsideClick);
+  return () => {
+    document.removeEventListener('click', onOutsideClick);
+    searchInput?.removeEventListener('focus', onSearchFocus);
+    mq.removeEventListener('change', onBreakpoint);
+    mainNav?.removeEventListener('show.bs.collapse', onMenuToggle);
+    mainNav?.removeEventListener('hide.bs.collapse', onMenuToggle);
+    mainNav?.removeEventListener('shown.bs.collapse', onMenuToggle);
+    mainNav?.removeEventListener('hidden.bs.collapse', onMenuToggle);
+    backdrop.remove();
+  };
+}
+
+
+/**
+ * On mobile, position the search results dropdown fixed below the navbar.
+ * Uses focus/input events on the search input to find and style the dropdown.
+ */
+/**
+ * On mobile: position search dropdown fixed, and show a backdrop that
+ * absorbs taps so the user can't accidentally trigger background elements.
+ */
+/**
+ * Mobile search backdrop + dropdown positioning.
+ * Always initializes and responds to viewport changes via matchMedia.
+ */
+function initSearchDropdownMobile(): Cleanup | undefined {
+  const navbar = document.querySelector<HTMLElement>('.navbar-custom');
+  if (!navbar) return;
+  const searchInput = navbar.querySelector<HTMLElement>('.navbar__search-input');
+  if (!searchInput) return;
+
+  const mq = window.matchMedia('(max-width: 991px)');
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'search-backdrop';
+  document.body.appendChild(backdrop);
+
+  const showBackdrop = () => {
+    if (!mq.matches) return;
+    document.body.classList.add('mobile-search-active');
+    backdrop.classList.add('active');
+  };
+
+  const hideBackdrop = () => {
+    document.body.classList.remove('mobile-search-active');
+    backdrop.classList.remove('active');
+  };
+
+  backdrop.addEventListener('mousedown', (e) => {
+    e.preventDefault();
+    searchInput.blur();
+    hideBackdrop();
+  });
+  backdrop.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    searchInput.blur();
+    hideBackdrop();
+  }, {passive: false});
+
+  searchInput.addEventListener('focus', showBackdrop);
+  searchInput.addEventListener('blur', hideBackdrop);
+  searchInput.addEventListener('input', () => {
+    if (mq.matches) {
+      document.body.classList.add('mobile-search-active');
+    }
+  });
+
+  // Respond to viewport changes without page reload.
+  const onBreakpoint = (e: MediaQueryListEvent) => {
+    if (!e.matches) {
+      // Switched to desktop — tear down mobile state.
+      hideBackdrop();
+      searchInput.blur();
+    }
+    // Switched to mobile — next focus/input event will activate.
+  };
+  mq.addEventListener('change', onBreakpoint);
+
+  return () => {
+    searchInput.removeEventListener('focus', showBackdrop);
+    searchInput.removeEventListener('blur', hideBackdrop);
+    mq.removeEventListener('change', onBreakpoint);
+    backdrop.remove();
+  };
 }
 
 function initNavbarScroll(): Cleanup | undefined {
@@ -434,6 +560,7 @@ function reinitialize() {
   requestAnimationFrame(() => {
     [
       initNavbarOutsideClick(),
+      initSearchDropdownMobile(),
       initNavbarScroll(),
       initRevealAnimations(),
       initScrollToTop(),

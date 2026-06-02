@@ -493,7 +493,6 @@ const config: Config = {
       },
       items: [
         {to: '/ome', label: 'OvenMediaEngine', position: 'left'},
-        {to: '/ome-enterprise', label: 'OvenMediaEngine Enterprise', position: 'left'},
         {
           // The swizzled NavbarContent recognizes `customMenu: 'resources'`
           // and renders items from src/config/navbarResources.ts (which
@@ -513,8 +512,8 @@ const config: Config = {
         {
           title: 'Products',
           items: [
-            {label: 'OvenMediaEngine', to: '/ome'},
-            {label: 'OvenMediaEngine Enterprise', to: '/ome-enterprise'},
+            {label: 'OvenMediaEngine Enterprise', to: '/ome'},
+            {label: 'OvenMediaEngine', href: 'https://github.com/AirenSoft/OvenMediaEngine'},
             {label: 'Sub-second Latency', to: '/latency'},
           ],
         },

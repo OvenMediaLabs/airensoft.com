@@ -252,6 +252,8 @@ h7, .h7 {
            absolute repositions the element relative to the nearest ancestor,
            causing a visible jump at the start/end of the close animation. */
         position: fixed; top: var(--navbar-height); left: 0; right: 0; z-index: 1000; overflow: hidden;
+        will-change: height;
+        transform: translateZ(0);
     }
     .navbar-nav { padding-top: 0.5rem; padding-bottom: 0.5rem; }
 	.navbar-nav .nav-item:last-child .nav-link { margin-bottom: 0; border: none; }
@@ -539,6 +541,18 @@ h6, .h6 {
         var(--bg-body) 75%, 
         color-mix(in srgb, var(--bg-body), transparent 75%) 100%);
 }
+.bg-ome-gradient-dark-20 {
+    background: linear-gradient(-20deg,
+        color-mix(in srgb, var(--bg-body), transparent 75%) 0%,
+        var(--bg-body) 25%,
+        color-mix(in srgb, #4ade80, transparent 92%) 100%);
+}
+.bg-ome-gradient-dark-r20 {
+    background: linear-gradient(160deg,
+        color-mix(in srgb, var(--bg-body), transparent 75%) 0%,
+        var(--bg-body) 25%,
+        color-mix(in srgb, #4ade80, transparent 92%) 100%);
+}
 .bg-brand-gradient-dark-rev {
     background: linear-gradient(0deg, 
         color-mix(in srgb, var(--company-primary), transparent 95%) 0%, 
@@ -754,6 +768,19 @@ h6, .h6 {
     transform: translateY(-5px);
     border-color: color-mix(in srgb, var(--text-main), transparent 80%);
     box-shadow: 0 20px 50px color-mix(in srgb, var(--bg-body), transparent 50%);
+}
+.tech-card-pro::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    transition: background 0.4s ease;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+}
+.tech-card-pro:hover::before {
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .opensource:hover { --border-color: var(--brand-accent); }
@@ -975,8 +1002,8 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     transform: translateY(-2.5px); 
 }
 
-.btn-secondary-outline { 
-    background-color: transparent; border: 1px solid var(--text-main); color: var(--text-main); 
+.btn-secondary-outline {
+    background-color: color-mix(in srgb, var(--text-main), transparent 85%); border: 1px solid var(--text-main); color: var(--text-main);
     transition: all 0.5s ease; 
     --bs-btn-active-bg: color-mix(in srgb, var(--text-main), transparent 50%);
 }
@@ -986,8 +1013,8 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     color: var(--bg-body); z-index: 10;
 }
 
-.btn-secondary-outline2 { 
-    background-color: transparent; border: 1px solid var(--text-main); color: var(--text-main); 
+.btn-secondary-outline2 {
+    background-color: color-mix(in srgb, var(--text-main), transparent 85%); border: 1px solid var(--text-main); color: var(--text-main);
     transition: all 0.5s ease; 
     --bs-btn-active-bg: color-mix(in srgb, var(--text-main), transparent 50%);
 }
@@ -997,8 +1024,8 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     color: var(--bg-body); z-index: 10;
 }
 
-.btn-secondary-outline3 { 
-    background-color: transparent; border: 1px solid var(--text-main); color: var(--text-main); 
+.btn-secondary-outline3 {
+    background-color: color-mix(in srgb, var(--text-main), transparent 85%); border: 1px solid var(--text-main); color: var(--text-main);
     transition: all 0.5s ease; 
     --bs-btn-active-bg: color-mix(in srgb, var(--text-main), transparent 50%);
 }
@@ -1052,8 +1079,8 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     color: var(--bg-body); z-index: 10;
 }
 
-.btn-company-outline { 
-    background-color: transparent; border: 1px solid var(--company-primary); color: var(--company-primary); 
+.btn-company-outline {
+    background-color: rgba(197, 163, 142, 0.15); border: 1px solid var(--company-primary); color: var(--company-primary);
     transition: all 0.5s ease; 
     --bs-btn-active-bg: color-mix(in srgb, var(--company-primary), transparent 50%); --bs-btn-active-border-color: var(--company-primary); 
 }
@@ -1064,7 +1091,7 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 }
 
 .btn-brand-outline {
-    background-color: transparent; border: 1px solid var(--brand-secondary); color: var(--brand-secondary);
+    background-color: rgba(56, 189, 248, 0.15); border: 1px solid var(--brand-secondary); color: var(--brand-secondary);
     transition: all 0.5s ease;
     --bs-btn-active-bg: color-mix(in srgb, var(--brand-secondary), transparent 50%); --bs-btn-active-border-color: var(--brand-secondary);
 }
@@ -1073,20 +1100,96 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px color-mix(in srgb, var(--brand-secondary), transparent 85%);
     color: var(--bg-body); z-index: 10;
 }
-.btn-aws-outline {
-    background-color: transparent; border: 1px solid #FF9900; color: #FF9900;
+.btn-brand-outline-tinted {
+    background-color: rgba(56, 189, 248, 0.15); border: 1px solid var(--brand-secondary); color: var(--brand-secondary);
     transition: all 0.5s ease;
-    --bs-btn-active-bg: rgba(255, 153, 0, 0.5); --bs-btn-active-border-color: #FF9900;
+    --bs-btn-active-bg: color-mix(in srgb, var(--brand-secondary), transparent 50%); --bs-btn-active-border-color: var(--brand-secondary);
+}
+.btn-brand-outline-tinted:hover {
+    border-color: var(--brand-secondary); background-color: var(--brand-secondary);
+    transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px color-mix(in srgb, var(--brand-secondary), transparent 85%);
+    color: var(--bg-body); z-index: 10;
+}
+.btn-company-outline-tinted {
+    background-color: rgba(197, 163, 142, 0.15); border: 1px solid var(--company-primary); color: var(--company-primary);
+    transition: all 0.5s ease;
+    --bs-btn-active-bg: color-mix(in srgb, var(--company-primary), transparent 50%); --bs-btn-active-border-color: var(--company-primary);
+}
+.btn-company-outline-tinted:hover {
+    border-color: var(--company-primary); background-color: var(--company-primary);
+    transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px color-mix(in srgb, var(--company-primary), transparent 85%);
+    color: var(--bg-body); z-index: 10;
+}
+.btn-ome-outline {
+    background-color: rgba(74, 222, 128, 0.15); border: 1px solid #4ade80; color: #4ade80;
+    transition: all 0.5s ease;
+    --bs-btn-active-bg: rgba(74, 222, 128, 0.5); --bs-btn-active-border-color: #4ade80;
+}
+.btn-ome-outline:hover {
+    border-color: #4ade80; background-color: #4ade80;
+    transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px rgba(74, 222, 128, 0.2);
+    color: #0a1122; z-index: 10;
+}
+.btn-ome-light-outline {
+    background-color: rgba(187, 247, 208, 0.15); border: 1px solid #bbf7d0; color: #bbf7d0;
+    transition: all 0.5s ease;
+    --bs-btn-active-bg: rgba(187, 247, 208, 0.5); --bs-btn-active-border-color: #bbf7d0;
+}
+.btn-ome-light-outline:hover {
+    border-color: #bbf7d0; background-color: #bbf7d0;
+    transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px rgba(187, 247, 208, 0.2);
+    color: #0a1122; z-index: 10;
+}
+.btn-aws-outline {
+    background-color: rgba(245, 158, 11, 0.15); border: 1px solid #f59e0b; color: #f59e0b;
+    transition: all 0.5s ease;
+    --bs-btn-active-bg: rgba(245, 158, 11, 0.5); --bs-btn-active-border-color: #f59e0b;
 }
 .btn-aws-outline:hover {
-    border-color: #FF9900; background-color: #FF9900;
-    transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px rgba(255, 153, 0, 0.2);
+    border-color: #f59e0b; background-color: #f59e0b;
+    transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px rgba(245, 158, 11, 0.2);
     color: var(--text-main); z-index: 10;
 }
 
+/* === Fill buttons (main CTAs) === */
+.btn-enterprise-fill {
+    background-color: #38BDF8; border: 1px solid #38BDF8; color: #0a1122;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    --bs-btn-active-bg: #7dd3fc; --bs-btn-active-border-color: #7dd3fc;
+}
+.btn-enterprise-fill:hover {
+    background-color: #7dd3fc; border-color: #7dd3fc; color: #0a1122;
+    transform: translateY(-2.5px); box-shadow: 0 10px 24px rgba(56, 189, 248, 0.35);
+    z-index: 10;
+}
+.btn-aws-fill {
+    background-color: #f59e0b; border: 1px solid #f59e0b; color: #0a1122;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    --bs-btn-active-bg: #fbbf24; --bs-btn-active-border-color: #fbbf24;
+}
+.btn-aws-fill:hover {
+    background-color: #fbbf24; border-color: #fbbf24; color: #0a1122;
+    transform: translateY(-2.5px); box-shadow: 0 10px 24px rgba(245, 158, 11, 0.35);
+    z-index: 10;
+}
+.btn-ome-fill {
+    background-color: #4ade80; border: 1px solid #4ade80; color: #0a1122;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    --bs-btn-active-bg: #86efac; --bs-btn-active-border-color: #86efac;
+}
+.btn-ome-fill:hover {
+    background-color: #86efac; border-color: #86efac; color: #0a1122;
+    transform: translateY(-2.5px); box-shadow: 0 10px 24px rgba(74, 222, 128, 0.35);
+    z-index: 10;
+}
+
 .hero-badge { display: inline-block; background: color-mix(in srgb, var(--company-primary), transparent 75%); color: var(--company-primary); padding: 6px 12px; border-radius: 99px; font-size: clamp(0.75rem, 1.5vw, 1.1rem); border: 1px solid color-mix(in srgb, var(--company-primary), transparent 50%); white-space: nowrap; }
-.hero-badge2 { display: inline-block; background: color-mix(in srgb, var(--brand-secondary), transparent 75%); color: var(--brand-secondary); padding: 6px 12px; border-radius: 99px; font-size: clamp(0.75rem, 1.5vw, 1.1rem); border: 1px solid color-mix(in srgb, var(--brand-secondary), transparent 50%); white-space: nowrap; }
+.hero-badge2 { display: inline-block; background: color-mix(in srgb, var(--brand-secondary), transparent 75%); color: var(--brand-secondary); padding: 3px 12px; border-radius: 99px; font-size: clamp(0.75rem, 1.5vw, 1.1rem); border: 1px solid color-mix(in srgb, var(--brand-secondary), transparent 50%); white-space: nowrap; }
 .hero-badge3 { display: inline-block; background: color-mix(in srgb, var(--blue-mono-light), transparent 75%); color: var(--blue-mono-light); padding: 6px 12px; border-radius: 99px; font-size: clamp(0.75rem, 1.5vw, 1.1rem); border: 1px solid color-mix(in srgb, var(--blue-mono-light), transparent 50%); white-space: nowrap; }
+.hero-badge-sm { display: inline-block; border-radius: 99px; padding: 4px 10px; font-size: 0.75rem; white-space: nowrap; }
 .code-window { background: #1e1e1e; border-radius: 12px; border: 1px solid #333; overflow: hidden; }
 .window-header { background: var(--text-sub); padding-top: clamp(8px, 2vw, 12px); padding-bottom: clamp(8px, 2vw, 12px); padding-left: clamp(12px, 2vw, 16px); padding-right: clamp(12px, 2vw, 16px); display: flex; gap: 8px; border-bottom: 1px solid #333; }
 .dot { width: clamp(10px, 2vw, 12px); height: clamp(10px, 2vw, 12px); border-radius: 50%; } .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
