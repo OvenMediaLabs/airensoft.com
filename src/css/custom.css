@@ -440,6 +440,13 @@ html[class*='easyops'] body {
  *   - Docs: `<main>` wraps the container.
  *   - Blog: `<main>` IS a `.col.col--7` inside an OUTER container.
  * Select `.main-wrapper` as the common ancestor so both hit the rule. */
+/* Fixes anchor jump calculations on iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  html.plugin-docs {
+    scroll-behavior: auto !important;
+  }
+}
+
 html.plugin-docs .main-wrapper .container,
 html.plugin-docs .main-wrapper .container--fluid {
   max-width: 1440px !important;
