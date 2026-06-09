@@ -149,6 +149,10 @@ const config: Config = {
     './src/clientModules/bootstrap-dark.ts',
     './src/clientModules/legacy-marketing.ts',
     './src/clientModules/preview-redirect.ts',
+    // Dev-only review-comment overlay; excluded from production builds.
+    ...(process.env.NODE_ENV === 'development'
+      ? ['./src/clientModules/review-comments.ts']
+      : []),
   ],
 
   headTags: [

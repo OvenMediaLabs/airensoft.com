@@ -30,3 +30,6 @@ yarn-error.log*
 
 # Personal handoff notes (not for the repo)
 /HANDOFF.md
+
+# Local review-comment data (dev preview overlay)
+.review/
