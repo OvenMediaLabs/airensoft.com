@@ -39,6 +39,20 @@ keep the working tree clean (enterprise pages render as stubs).
 For docs editing, prefer the upstream repo's `docs/preview.sh` — it boots this
 site with only the product you're editing surfaced.
 
+### Review comments (dev preview overlay)
+
+A dev-only overlay for leaving inline review comments on the rendered site.
+In `npm start`, select text on any page, type a note, and it is saved to
+`.review/comments.jsonl` for the author (or an assistant) to act on.
+
+```bash
+npm run comment-sink   # http://localhost:3999  -> writes .review/comments.jsonl
+npm start              # in another terminal: http://localhost:3000
+```
+
+The overlay is gated to development in `docusaurus.config.ts`, so it never
+ships in `npm run build`. Comment data (`.review/`) is gitignored.
+
 ## How docs reach the site
 
 The `docs/*` folders are mirrors. **Do not edit them here** — edits are
