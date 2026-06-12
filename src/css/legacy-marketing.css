@@ -28,11 +28,14 @@
     --text-main: #F8FAFC;       /* (248, 250, 252) */
     --text-sub: #94A3B8;        /* (148, 163, 184) */
     --text-sub2: #67768E;       /* (103, 118, 142) */
+    --text-sub-amber: #B1A18B;  /* (177, 161, 139) — HSL 35°, 20%, 62% */
+    --text-sub-green: #8BB19A;  /* (139, 177, 154) — HSL 143°, 20%, 62% */
 
     /* Mono Blue */
     --blue-mono-deep: #5B7A9C;  /* (91 122 156) */
     --blue-mono: #708FB0;       /* (112 143 176) */
     --blue-mono-light: #86A5C2; /* (134 165 194) */
+    --blue-mono-lighter: #97B2CB; /* (151 178 203) — 50% pull toward blue-mono-light */
 
     /* Typography & Easing */
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -780,7 +783,7 @@ h6, .h6 {
     border-radius: inherit;
 }
 .tech-card-pro:hover::before {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
 }
 
 .opensource:hover { --border-color: var(--brand-accent); }
@@ -794,14 +797,14 @@ h6, .h6 {
     width: 56px; height: 56px;
     display: flex; align-items: center; justify-content: center;
     border-radius: 50%;
-    background: var(--tech-icon, rgba(255, 255, 255, 0.03));
+    background: var(--tech-icon, rgba(255, 255, 255, 0.04));
     border: 1px solid color-mix(in srgb, var(--text-main), transparent 90%);
     margin-bottom: 1.5rem;
     color: var(text-main);
     transition: all 0.3s ease;
 }
 .tech-card-pro:hover .pro-icon-box {
-    background: var(--tech-icon, rgba(255, 255, 255, 0.03));
+    background: var(--tech-icon, rgba(255, 255, 255, 0.04));
     transform: scale(1.1);
 }
 .enterprise .pro-icon-box { color: var(--company-primary); }
@@ -825,7 +828,7 @@ h6, .h6 {
 
 .pro-list li {
     padding: 0.4rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     color: var(--text-sub);
     font-size: 0.95rem;
 }
@@ -924,12 +927,15 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 .text-sub-50 { color: color-mix(in srgb, var(--text-sub), transparent 50%) !important; }
 .text-sub2 { color: var(--text-sub2) !important; }
 .text-sub2-50 { color: color-mix(in srgb, var(--text-sub2), transparent 50%) !important; }
+.text-sub-amber { color: var(--text-sub-amber) !important; }
+.text-sub-green { color: var(--text-sub-green) !important; }
 .text-darker { color: var(--tertiary-darker) !important;}
 .text-ci-darker { color: var(--company-darker) !important; }
 .text-bi-darker { color: var(--brand-darker) !important; }
 .text-mono { color: var(--blue-mono) !important; }
 .text-mono-deep { color: var(--blue-mono-deep) !important; }
 .text-mono-light { color: var(--blue-mono-light) !important; }
+.text-mono-lighter { color: var(--blue-mono-lighter) !important; }
 
 .text-bi-yellow { color: var(--company-accent) !important; }
 .text-bi-yellow:hover { color: var(--company-primary) !important; }
@@ -1254,7 +1260,8 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 
 /* GitHub star / fork badges on product cards */
 .github-stats { display: flex; justify-content: center; gap: 8px; margin-top: 10px; position: relative; z-index: 2; }
-.github-stat-badge { display: inline-flex; align-items: center; gap: 4px; font: 600 11px/1 var(--font-mono); color: var(--text-sub2); transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.github-stat-badge { display: inline-flex; align-items: center; gap: 4px; font: 600 11px/1 var(--font-mono); color: inherit; transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.hover-card2 .github-stat-badge { color: var(--text-sub2); }
 .hover-card2:hover .github-stat-badge { color: color-mix(in srgb, var(--company-primary), transparent 25%); }
 .github-stat-badge svg { width: 12px; height: 12px; flex-shrink: 0; }
 
@@ -2081,7 +2088,7 @@ html { scroll-padding-top: var(--navbar-height, 80px); }
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 .notice-footer .form-check {
     display: flex;
