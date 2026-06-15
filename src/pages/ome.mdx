@@ -11,6 +11,7 @@ import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
 import Head from '@docusaurus/Head';
 import OmeProductNav from '@site/src/components/OmeProductNav';
 import GitHubStats from '@site/src/components/GitHubStats';
+import OrbitDot from '@site/src/components/OrbitDot';
 
 <Head>
   <meta property="og:type" content="website" />
@@ -140,7 +141,7 @@ import GitHubStats from '@site/src/components/GitHubStats';
           <div className="hero-badge2 px-3 py-1 d-inline-block fw-bold small" style={{marginBottom: '2rem', color: '#BAE6FD', background: 'rgba(186, 230, 253, 0.15)', border: '1px solid rgba(186, 230, 253, 0.35)'}}><i className="ph ph-lightning me-1"></i>Enterprise Live Streaming Solution</div>
           <h2 id="enterprise" className="fw-bold text-main mb-3 copy-title lh-tight">
             <span className="d-block fs-4 mb-0 fw-bold" style={{color: '#38BDF8'}}>OvenMediaEngine</span>
-            <span className="display-2 d-block">Enterprise<span className="text-secondary">.</span></span>
+            <span className="display-2 d-block">Enterprise<OrbitDot orbitColor="#F8FAFC" className="text-secondary">.</OrbitDot></span>
           </h2>
           <p className="text-sub mb-4">Fine-tune your self-hosted live streaming workflow, from ingest to delivery, built for enterprise requirements, optimized for sub-second latency, and supported directly by the core engineering team.</p>
           <div className="d-flex gap-2 mb-3 justify-content-center justify-content-lg-start" style={{maxWidth: '340px'}}>
@@ -628,20 +629,20 @@ import GitHubStats from '@site/src/components/GitHubStats';
 
 <div className="aws-part">
 
-<section className="full-page-section d-flex flex-column position-relative bg-middle">
+<section id="marketplace" className="full-page-section d-flex flex-column position-relative bg-middle">
   <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
     <div className="container">
 
       <div className="row align-items-center g-4 g-lg-5">
         <div className="col-lg-6 reveal-up">
           <div className="hero-badge2 mb-4 px-3 py-1 d-inline-block fw-bold small" style={{color: '#fde68a', background: 'rgba(253, 230, 138, 0.15)', border: '1px solid rgba(253, 230, 138, 0.35)'}}><i className="ph ph-cloud me-1"></i>Enterprise Live Streaming on AWS</div>
-          <h2 id="marketplace" className="fw-bold text-main mb-3 copy-title lh-tight">
+          <h2 className="fw-bold text-main mb-3 copy-title lh-tight">
             <span className="d-block fs-4 mb-0 fw-bold" style={{color: '#f59e0b'}}>OvenMediaEngine Enterprise</span>
-            <span className="display-2 d-block fw-bold text-main">for AWS<span style={{color: '#f59e0b'}}>.</span></span>
+            <span className="display-2 d-block fw-bold text-main">for AWS<OrbitDot orbitColor="#F8FAFC" style={{color: '#f59e0b'}}>.</OrbitDot></span>
           </h2>
           <p className="text-sub mb-4">Get the complete OvenMediaEngine Enterprise experience on AWS, with the same feature set and engineer-backed support, billed by the hour. Skip procurement, validate with real traffic, and move to production with confidence.</p>
           <div className="d-flex gap-2" style={{maxWidth: '340px'}}>
-            <a href="https://aws.amazon.com/marketplace/pp/prodview-okn5l63yxarwm" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-aws-fill rounded-pill px-4 text-center" style={{flex: '1 1 0'}}>
+            <a href="https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-aws-fill rounded-pill px-4 text-center" style={{flex: '1 1 0'}}>
               <i className="ph ph-cloud me-2"></i>Marketplace
             </a>
             <a href="/docs/ome-enterprise/exclusive/aws-marketplace/getting-started-on-aws" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary-outline rounded-pill px-4 text-center" style={{flex: '1 1 0'}}>
@@ -753,7 +754,7 @@ import GitHubStats from '@site/src/components/GitHubStats';
             <span className="d-block fs-4 mb-0 fw-bold" style={{color: '#4ade80'}}>
               <span className="d-inline-flex align-items-center gap-3">OvenMediaEngine<GitHubStats repo="OvenMediaLabs/OvenMediaEngine" style={{marginTop: 0, color: 'var(--blue-mono-lighter)'}} /></span>
             </span>
-            <span className="display-2 d-block fw-bold text-main">Open-Source<span style={{color: '#4ade80'}}>.</span></span>
+            <span className="display-2 d-block fw-bold text-main">Open-Source<OrbitDot orbitColor="#F8FAFC" style={{color: '#4ade80'}}>.</OrbitDot></span>
           </h2>
           <p className="text-sub mb-4">An open-source sub-second latency streaming server with WebRTC, LL-HLS, and SRT. As the foundation of the OvenMediaEngine family, it gives you full control to build, customize, and own your real-time media service.</p>
           <div className="row g-2 mb-3" style={{maxWidth: '340px'}}>
