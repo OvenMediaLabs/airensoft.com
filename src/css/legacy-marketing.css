@@ -2089,6 +2089,20 @@ html.plugin-blog article [id] {
     cursor: pointer;
 }
 
+.dot-orbit {
+    position: relative;
+    display: inline-block;
+}
+.dot-orbit.orbit-pulse {
+    animation: dot-pulse 0.9s ease-out forwards;
+}
+@keyframes dot-pulse {
+    0%   { text-shadow: none; }
+    20%  { text-shadow: 0 0 0.3em var(--orbit-color, currentColor), 0 0 0.6em var(--orbit-color, currentColor); }
+    100% { text-shadow: 0 0 0.3em color-mix(in srgb, var(--orbit-color, currentColor) 0%, transparent),
+                        0 0 0.6em color-mix(in srgb, var(--orbit-color, currentColor) 0%, transparent); }
+}
+
 /* Suppress Docusaurus hash-link hover icon for headings that use copy-title
    but shouldn't show the built-in # anchor (e.g. #contact on company page). */
 .copy-title-no-hash .hash-link {
