@@ -285,7 +285,7 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
               ) : (
                 <li key={`mob-${i}`} className="nav-item">
                   <Link
-                    className={`nav-link nav-link-sub d-flex align-items-center${isCurrentPath(sub.to, pathname) ? ' active' : ''}`}
+                    className={`nav-link nav-link-sub d-flex align-items-center${pathUnder(sub.to ?? '', pathname) ? ' active' : ''}`}
                     to={sub.to ?? '/'}>
                     {sub.icon && <i className={`ph ${sub.icon} nav-link-sub-icon`}></i>}
                     <span>{label}</span>

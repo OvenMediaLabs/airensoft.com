@@ -582,16 +582,21 @@ const module: ClientModule = {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setTimeout(() => {
-            const target = document.querySelector(location.hash);
+            const id = decodeURIComponent(location.hash.slice(1));
+            const target = document.getElementById(id);
             if (target) {
-              // On marketing pages the target sits inside a <section>; scroll to
-              // that section's top so the full section is visible below the navbar.
-              // On docs pages there are no <section> wrappers — leave the scroll
-              // to the browser so scroll-padding-top handles the navbar offset.
               const section = target.closest('section');
-              if (section) {
-                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
+              // Three cases:
+              // 1. id is on the <section> itself (full-page marketing sections)
+              //    → scroll to the section so the whole section is visible.
+              // 2. id is on an element *inside* a section (EULA divs, marketing
+              //    h2/h3 inside full-page sections) → scroll to the element
+              //    directly; scroll-margin-top handles the navbar offset.
+              // 3. id is on a heading with no section ancestor (docs/blog) →
+              //    same: scroll to element; html scroll-padding-top (= navbar
+              //    height) handles the navbar offset.
+              const scrollTarget = section === target ? section : target;
+              scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
           }, 80);
         });

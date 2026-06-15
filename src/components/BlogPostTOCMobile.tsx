@@ -1,15 +1,13 @@
 import {type ReactNode, useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import clsx from 'clsx';
 import {useThemeConfig} from '@docusaurus/theme-common';
-import {useNavbarMobileSidebar} from '@docusaurus/theme-common/internal';
-import {useDoc} from '@docusaurus/plugin-content-docs/client';
+import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
 import {useLocation} from '@docusaurus/router';
 
-import styles from './styles.module.css';
+import styles from '../theme/DocItem/TOC/Mobile/styles.module.css';
 
-export default function DocItemTOCMobile(): ReactNode {
-  const {toc, frontMatter, metadata} = useDoc();
-  const mobileSidebar = useNavbarMobileSidebar();
+export default function BlogPostTOCMobile(): ReactNode {
+  const {toc, frontMatter} = useBlogPost();
   const {pathname} = useLocation();
   const themeConfig = useThemeConfig();
 
@@ -33,7 +31,6 @@ export default function DocItemTOCMobile(): ReactNode {
   const overrideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingSkipsRef = useRef(0);
 
-  // Scroll tracking — debounced so intermediate scroll positions are ignored.
   useEffect(() => {
     if (!showTOC) return;
     const getNavH = () =>
@@ -68,7 +65,6 @@ export default function DocItemTOCMobile(): ReactNode {
     setClickOverrideId(null);
     if (overrideTimer.current) clearTimeout(overrideTimer.current);
   }, [pathname]);
-  useEffect(() => { if (mobileSidebar.shown) setTocOpen(false); }, [mobileSidebar.shown]);
 
   useEffect(() => {
     if (!tocOpen) return;
@@ -79,9 +75,6 @@ export default function DocItemTOCMobile(): ReactNode {
     return () => document.removeEventListener('click', handler);
   }, [tocOpen]);
 
-  // Skip the first activeId update after a click (that's the click-scroll
-  // settling). Clear the override on the next update — which means the user
-  // has manually scrolled somewhere.
   useEffect(() => {
     if (clickOverrideId === null || activeId === null) return;
     if (pendingSkipsRef.current > 0) {
@@ -95,94 +88,65 @@ export default function DocItemTOCMobile(): ReactNode {
   const handleTocToggle = useCallback(() => setTocOpen((p) => !p), []);
   const handleLinkClick = useCallback((id: string) => {
     setClickOverrideId(id);
-    pendingSkipsRef.current = 1; // skip the click-scroll settle update
+    pendingSkipsRef.current = 1;
     if (overrideTimer.current) clearTimeout(overrideTimer.current);
     overrideTimer.current = setTimeout(() => setClickOverrideId(null), 10000);
     setTocOpen(false);
   }, []);
 
   const displayActiveId = clickOverrideId ?? activeId;
+
+  if (!showTOC) return null;
+
   const activeItem = filteredTOC.find((item) => item.id === displayActiveId);
   const buttonLabel = activeItem
     ? activeItem.value.replace(/<[^>]+>/g, '')
-    : (metadata.title ?? 'On this page');
+    : 'Content';
 
   return (
     <>
       <div className={styles.mobileDocNavSpacer} aria-hidden="true" />
       <div ref={navRef} className={styles.mobileDocNav}>
-        {/* Sidebar nav — icon only */}
-        <button
-          type="button"
-          className={clsx('clean-btn', styles.pagesButton)}
-          aria-label="Browse pages"
-          onClick={() => mobileSidebar.toggle()}>
-          <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
-            <path d="M2 3.5h12v1.5H2zM2 7.25h12v1.5H2zM2 11h12v1.5H2z" />
-          </svg>
-        </button>
-
-        {showTOC && (
-          <div className={styles.tocButtonWrapper}>
-            <button
-              type="button"
-              className={clsx('clean-btn', styles.tocButton, tocOpen && styles.tocButtonOpen)}
-              aria-label="On this page"
-              aria-expanded={tocOpen}
-              onClick={handleTocToggle}>
-              <span className={styles.tocButtonLabel}>{buttonLabel}</span>
-              <i className={clsx('ph ph-caret-down', styles.tocCaret)} aria-hidden="true" />
-            </button>
-
-            {tocOpen && (
-              <div className={styles.tocOverlay} role="navigation" aria-label="Page sections">
-                <ul className={styles.tocList} role="list">
-                  <li className={clsx(styles.tocListItem, styles.tocItemTitle)}>
-                    <a
-                      href="#"
+        <div className={styles.tocButtonWrapper}>
+          <button
+            type="button"
+            className={clsx('clean-btn', styles.tocButton, tocOpen && styles.tocButtonOpen)}
+            aria-label="On this page"
+            aria-expanded={tocOpen}
+            onClick={handleTocToggle}>
+            <span className={styles.tocButtonLabel}>{buttonLabel}</span>
+            <i className={clsx('ph ph-caret-down', styles.tocCaret)} aria-hidden="true" />
+          </button>
+          {tocOpen && (
+            <div className={styles.tocOverlay} role="navigation" aria-label="Page sections">
+              <ul className={styles.tocList} role="list">
+                {filteredTOC.map((item) => {
+                  const depth = item.level - minLevel;
+                  return (
+                    <li
+                      key={item.id}
                       className={clsx(
-                        styles.tocOverlayLink,
-                        displayActiveId === null && styles.tocLinkActive,
-                      )}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.scrollTo({top: 0, behavior: 'smooth'});
-                        setClickOverrideId(null);
-                        if (overrideTimer.current) clearTimeout(overrideTimer.current);
-                        setTocOpen(false);
-                      }}
-                    >
-                      {metadata.title}
-                    </a>
-                  </li>
-                  {filteredTOC.map((item) => {
-                    const depth = item.level - minLevel;
-                    return (
-                      <li
-                        key={item.id}
+                        styles.tocListItem,
+                        depth === 0 && styles.tocItemL1,
+                        depth === 1 && styles.tocItemL2,
+                        depth >= 2 && styles.tocItemL3,
+                      )}>
+                      <a
+                        href={`#${item.id}`}
                         className={clsx(
-                          styles.tocListItem,
-                          depth === 0 && styles.tocItemL1,
-                          depth === 1 && styles.tocItemL2,
-                          depth >= 2 && styles.tocItemL3,
-                        )}>
-                        <a
-                          href={`#${item.id}`}
-                          className={clsx(
-                            styles.tocOverlayLink,
-                            displayActiveId === item.id && styles.tocLinkActive,
-                          )}
-                          dangerouslySetInnerHTML={{__html: item.value}}
-                          onClick={() => handleLinkClick(item.id)}
-                        />
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            )}
-          </div>
-        )}
+                          styles.tocOverlayLink,
+                          displayActiveId === item.id && styles.tocLinkActive,
+                        )}
+                        dangerouslySetInnerHTML={{__html: item.value}}
+                        onClick={() => handleLinkClick(item.id)}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
