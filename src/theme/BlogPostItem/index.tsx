@@ -17,6 +17,7 @@ import BlogPostItemFooter from '@theme/BlogPostItem/Footer';
 import type {Props} from '@theme/BlogPostItem';
 
 import PostFooterExtras from './PostFooterExtras';
+import BlogPostTOCMobile from '@site/src/components/BlogPostTOCMobile';
 import styles from './styles.module.css';
 
 function useFormattedDate(date: string): string {
@@ -125,6 +126,7 @@ export default function BlogPostItem({children, className}: Props): ReactNode {
 
   return (
     <BlogPostItemContainer className={className}>
+      <BlogPostTOCMobile />
       <BlogPostItemHeader />
       <BlogPostItemContent>{children}</BlogPostItemContent>
       <BlogPostItemFooter />

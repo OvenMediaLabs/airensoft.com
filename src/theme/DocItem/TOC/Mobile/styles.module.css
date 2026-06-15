@@ -1,66 +1,55 @@
-/* ── Pill bar (Pages + On this page) ───────────────────────────────── */
+/* ── Fixed bar ──────────────────────────────────────────────────────── */
 
-/* Bar height as a variable so the spacer can reference it. */
 :local {
   --mobile-toc-bar-height: 2.3rem;
 }
 
-/* position: fixed keeps the bar anchored below the navbar at all
- * times — it never moves when scrolling and never jumps on re-renders
- * (which `position: sticky` can do when a layout reflow happens to
- * coincide with the sticky attach/detach threshold). */
 .mobileDocNav {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 6px;
   position: fixed;
-  /* 8px gap from the navbar so the bar reads as a distinct element. */
-  top: calc(var(--ifm-navbar-height) + 8px);
+  top: var(--ifm-navbar-height);
   left: 0;
   right: 0;
   z-index: 10;
-  padding: 0 0.5rem;
-  background-color: #0f1216;
+  padding: 4px 12px;
+  background-color: var(--bg-dark, #05070a);
 }
 
-/* Invisible placeholder that reserves the bar's height in the document
- * flow so the article content starts below the fixed bar. */
 .mobileDocNavSpacer {
   height: calc(var(--mobile-toc-bar-height, 2.3rem) + 8px);
   margin-bottom: 1rem;
 }
 
-/* ── Shared pill appearance ─────────────────────────────────────────── */
+/* ── Buttons — matches .eula-toc-toggle ─────────────────────────────── */
 
 .pagesButton {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  border-radius: var(--ifm-global-radius);
-  padding: 0.4rem 0.8rem;
-  font-size: inherit;
-  color: inherit;
+  justify-content: center;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-darker);
+  border-radius: 8px;
+  padding: 5px 9px;
+  color: var(--text-sub);
   cursor: pointer;
-  background-color: var(--ifm-background-surface-color) !important;
-}
-
-.pagesIcon {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 0.5rem;
+  transition: border-color 0.15s, color 0.15s;
   opacity: 0.7;
 }
 
-/* ── "On this page" button + its absolute-positioned overlay ─────────
- * The wrapper is the positioning context so the dropdown inherits the
- * button's exact width without affecting document flow.             */
+.pagesButton:hover {
+  color: var(--text-main);
+  border-color: color-mix(in srgb, var(--brand-secondary), transparent 50%);
+  text-decoration: none;
+  opacity: 1;
+}
 
 .tocButtonWrapper {
   flex: 1 1 0;
   position: relative;
-  /* Overflow visible so the dropdown can extend below the bar. */
   overflow: visible;
-  /* Minimum width so the label doesn't get squished on narrow screens. */
   min-width: 0;
 }
 
@@ -69,21 +58,38 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: var(--ifm-global-radius);
-  padding: 0.4rem 0.8rem;
-  font-size: inherit;
-  color: inherit;
+  gap: 8px;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-darker);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-sub);
   cursor: pointer;
-  background-color: var(--ifm-background-surface-color) !important;
+  transition: border-color 0.15s, color 0.15s;
+  text-align: left;
 }
 
-/* Caret rotates 180° when open. */
+.tocButton:hover {
+  color: var(--text-main);
+  border-color: color-mix(in srgb, var(--brand-secondary), transparent 50%);
+  text-decoration: none;
+}
+
+.tocButtonLabel {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .tocCaret {
   display: inline-block;
-  font-size: 0.8rem;
-  opacity: 0.65;
-  transition: transform 0.2s ease;
-  margin-left: 0.4rem;
+  font-size: 0.7rem;
+  opacity: 0.5;
+  transition: transform 0.2s;
   flex-shrink: 0;
 }
 
@@ -91,11 +97,6 @@
   transform: rotate(180deg);
 }
 
-/* Desktop: hide the bar AND its spacer.
- * The spacer reserves height in document flow so fixed bar doesn't
- * overlap content on mobile — on desktop the bar is gone so the
- * spacer must go too, otherwise it adds ~60px of blank gap above
- * the article content between the breadcrumbs and the prose. */
 @media (min-width: 997px) {
   .mobileDocNav,
   .mobileDocNavSpacer {
@@ -109,40 +110,32 @@
   }
 }
 
-/* ── TOC overlay panel ──────────────────────────────────────────────── */
+/* ── Dropdown — matches .eula-toc-nav ───────────────────────────────── */
 
-/* Anchored to the button wrapper (position:relative).
- * top: 100% + a 4px gap puts it just below the button pill.
- * z-index: 200 — above page content (10), but below the navbar (1050)
- * and the Pages sidebar (also within the navbar stacking context). */
 .tocOverlay {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
   right: 0;
   z-index: 200;
-  background: var(--ifm-background-surface-color);
-  border: 1px solid color-mix(in srgb, var(--ifm-color-emphasis-300), transparent 50%);
-  border-radius: var(--ifm-global-radius);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
-  max-height: 60vh;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-darker);
+  border-radius: 8px;
+  padding: 4px;
+  max-height: 50vh;
   overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }
 
-.tocOverlay::-webkit-scrollbar {
-  width: 4px;
-}
-.tocOverlay::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
-}
+.tocOverlay::-webkit-scrollbar { width: 4px; }
+.tocOverlay::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
 
 .tocList {
   list-style: none;
   margin: 0;
-  padding: 0.35rem 0;
+  padding: 0;
 }
 
 .tocListItem {
@@ -150,75 +143,78 @@
   padding: 0;
 }
 
-/* ── Hierarchy levels ───────────────────────────────────────────────── */
+/* ── Title item — fixed first entry, links back to page top ────────────── */
 
-/* L1 — top-level headings (h2 by default): full weight, full opacity. */
-.tocItemL1 > .tocOverlayLink {
-  padding-left: 0.85rem;
-  font-weight: 500;
-  color: var(--ifm-color-content);
-  font-size: 0.875rem;
+.tocItemTitle > .tocOverlayLink {
+  font-weight: 600;
+  border-bottom: 1px solid color-mix(in srgb, var(--blue-mono-deep), transparent 75%);
+  border-radius: 4px 4px 0 0;
+  margin-bottom: 4px;
 }
 
-/* L2 — one level in (h3): indented, muted, smaller. */
-.tocItemL2 > .tocOverlayLink {
-  padding-left: 1.6rem;
-  font-size: 0.825rem;
-  color: var(--ifm-color-content-secondary);
-  position: relative;
-}
+/* ── Links — all levels match .eula-toc-link, indentation shows hierarchy */
 
-/* Vertical guide line connecting L2 items to their parent. */
-.tocItemL2 > .tocOverlayLink::before {
-  content: '';
-  position: absolute;
-  left: 0.9rem;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: color-mix(in srgb, var(--ifm-color-emphasis-300), transparent 40%);
-}
-
-/* L3+ — deeper (h4+): further indented, more muted. */
-.tocItemL3 > .tocOverlayLink {
-  padding-left: 2.3rem;
-  font-size: 0.8rem;
-  color: color-mix(in srgb, var(--ifm-color-content-secondary), transparent 25%);
-  position: relative;
-}
-
-.tocItemL3 > .tocOverlayLink::before {
-  content: '';
-  position: absolute;
-  left: 1.6rem;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: color-mix(in srgb, var(--ifm-color-emphasis-300), transparent 50%);
-}
-
-/* Base link style shared by all levels. */
 .tocOverlayLink {
   display: block;
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
-  padding-right: 0.85rem;
+  padding: 6px 10px;
+  color: var(--text-sub);
   text-decoration: none;
-  line-height: 1.4;
-  transition: color 0.12s, background-color 0.12s;
-  /* Truncate very long headings gracefully. */
+  font-size: 0.82rem;
+  border-radius: 4px;
+  transition: all 0.12s;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.4;
 }
 
-.tocOverlayLink:hover {
-  color: var(--ifm-color-content) !important;
-  background-color: rgba(255, 255, 255, 0.05);
+.tocOverlayLink:hover,
+.tocOverlayLink:active {
+  color: var(--text-main) !important;
+  background: var(--bg-middle);
   text-decoration: none;
 }
 
-/* Only show this overlay on mobile. */
+/* L2/L3: text-sub at 30% opacity; guide line uses opacity property (color-mix
+ * with transparent shifts hue toward black, making the line invisible on dark bg) */
+.tocItemL2 > .tocOverlayLink {
+  padding-left: 20px;
+  color: color-mix(in srgb, var(--text-sub), transparent 30%);
+  position: relative;
+}
+.tocItemL2 > .tocOverlayLink::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: var(--text-sub);
+  opacity: 0.3;
+}
+
+.tocItemL3 > .tocOverlayLink {
+  padding-left: 30px;
+  color: color-mix(in srgb, var(--text-sub), transparent 30%);
+  position: relative;
+}
+.tocItemL3 > .tocOverlayLink::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 4px;
+  bottom: 4px;
+  width: 1px;
+  background: var(--text-sub);
+  opacity: 0.3;
+}
+
+/* Active state — all levels, no transparency */
+.tocOverlayLink.tocLinkActive {
+  color: var(--brand-secondary) !important;
+  background: color-mix(in srgb, var(--brand-secondary), transparent 90%);
+}
+
 @media (min-width: 997px) {
   .tocOverlay {
     display: none;

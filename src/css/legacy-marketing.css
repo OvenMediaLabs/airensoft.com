@@ -1442,6 +1442,20 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 
 html { scroll-padding-top: var(--navbar-height, 80px); }
 
+/* Docs/blog anchor targets: same offsets as .eula-section.
+ * Target any [id] element inside articles so all anchor destinations are covered
+ * regardless of tag or Docusaurus class name. 78+22=100px desktop, 78+50=128px mobile. */
+html.plugin-docs article [id],
+html.plugin-blog article [id] {
+  scroll-margin-top: 22px;
+}
+@media (max-width: 996px) {
+  html.plugin-docs article [id],
+  html.plugin-blog article [id] {
+    scroll-margin-top: 50px;
+  }
+}
+
 .grayscale-img { filter: hue-rotate(180deg) grayscale(100%) invert(1) brightness(0.8); opacity: 1; transition: none; }
 .bg-secondary-cov { background-color: var(--text-sub); transition: 0.4s ease; color: var(--text-main); }
 .hover-card:hover .bg-secondary-cov { background-color: var(--company-primary); color: var(--text-main); }
@@ -1879,25 +1893,24 @@ html { scroll-padding-top: var(--navbar-height, 80px); }
     }
 }
 
-/* EULA Layout */
-    body.page-legal { 
-        overflow-x: clip !important; 
+/* EULA Layout — `page-legal` is added via wrapperClassName and lands on <html> */
+    html.page-legal body {
+        overflow-x: clip !important;
         overflow-y: visible !important;
     }
 
-    html:has(body.page-legal) {
+    html.page-legal {
         overflow-y: visible !important;
+        scroll-padding-top: 100px;
     }
 
-    .page-legal section, 
-    .page-legal .full-page-section, 
-    .page-legal .bg-surface, 
-    .page-legal .container, 
-    .page-legal .row {
+    html.page-legal section,
+    html.page-legal .full-page-section,
+    html.page-legal .bg-surface,
+    html.page-legal .container,
+    html.page-legal .row {
         overflow: visible !important;
     }
-
-    html:has(.page-legal) { scroll-padding-top: 100px; }
     body { scroll-behavior: smooth; }
 
     .doc-sidebar {
@@ -1941,7 +1954,7 @@ html { scroll-padding-top: var(--navbar-height, 80px); }
         box-shadow: 0 10px 40px rgba(0,0,0,0.3);
     }
 
-    .eula-section { scroll-margin-top: 100px; border-bottom: 1px solid var(--bg-surface); padding-bottom: 50px; margin-bottom: 50px; }
+    .eula-section { scroll-margin-top: 22px; border-bottom: 1px solid var(--bg-surface); padding-bottom: 50px; margin-bottom: 50px; }
     .eula-section:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
     
     .eula-title { color: var(--text-main); font-weight: 700; font-size: 1.6rem; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
@@ -1964,7 +1977,87 @@ html { scroll-padding-top: var(--navbar-height, 80px); }
         .doc-sidebar { display: none; }
         .doc-content-wrapper { padding: 25px; }
         .eula-list { margin-left: 0.5rem; }
+        /* navbar(64) + toggle + breathing = 134px total; html scroll-padding-top is 78 → 56px margin */
+        .eula-section { scroll-margin-top: 56px; }
     }
+
+/* EULA Mobile TOC */
+@media (max-width: 991px) {
+    .eula-toc-mobile {
+        position: sticky;
+        top: var(--ifm-navbar-height, 78px);
+        z-index: 50;
+        margin-bottom: 16px;
+    }
+
+    .eula-toc-toggle {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 9px 14px;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-darker);
+        border-radius: 8px;
+        color: var(--text-sub);
+        font-family: inherit;
+        font-size: 0.82rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: border-color 0.15s, color 0.15s;
+        text-align: left;
+    }
+    .eula-toc-toggle:hover {
+        border-color: color-mix(in srgb, var(--brand-secondary), transparent 50%);
+        color: var(--text-main);
+    }
+
+    .eula-toc-current {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .eula-toc-chevron { flex-shrink: 0; font-size: 0.7rem; opacity: 0.5; transition: transform 0.2s; }
+    .eula-toc-chevron.open { transform: rotate(180deg); }
+
+    .eula-toc-nav {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-darker);
+        border-radius: 8px;
+        padding: 4px;
+        max-height: 50vh;
+        overflow-y: auto;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        z-index: 10;
+    }
+
+    .eula-toc-link {
+        display: block;
+        padding: 6px 10px;
+        color: var(--text-sub);
+        text-decoration: none;
+        font-size: 0.82rem;
+        border-radius: 4px;
+        transition: all 0.12s;
+    }
+    .eula-toc-link:hover,
+    .eula-toc-link:active {
+        color: var(--text-main);
+        background: var(--bg-middle);
+        text-decoration: none;
+    }
+    .eula-toc-link.active {
+        color: var(--brand-secondary);
+        background: color-mix(in srgb, var(--brand-secondary), transparent 90%);
+    }
+}
 
 /* Toast */
 .copy-dialog {

@@ -965,6 +965,65 @@ html.plugin-blog [class*='yearGroupHeading'] {
   font-weight: 500;
 }
 
+/* Docs desktop TOC — same design as blog-post-page TOC */
+html.plugin-docs .theme-doc-toc-desktop .table-of-contents {
+  border-left: none;
+  padding-left: 0;
+}
+
+html.plugin-docs .theme-doc-toc-desktop .table-of-contents__link {
+  display: block;
+  padding: 5px 0 5px 14px;
+  border-left: 2px solid transparent;
+  color: var(--text-sub);
+  font-size: 0.83rem;
+  line-height: 1.45;
+  text-decoration: none;
+  transition: color 0.2s ease, border-left-color 0.2s ease, background 0.2s ease;
+}
+
+html.plugin-docs .theme-doc-toc-desktop .table-of-contents__link:hover {
+  color: #fff;
+  border-left-color: var(--brand-secondary);
+  background: linear-gradient(90deg, rgba(57, 72, 103, 0.5) 0%, transparent 80%);
+  text-decoration: none;
+}
+
+html.plugin-docs .theme-doc-toc-desktop .table-of-contents__link--active,
+html.plugin-docs .theme-doc-toc-desktop .table-of-contents__link--active code {
+  color: var(--brand-secondary);
+  border-left-color: var(--brand-accent);
+  background: linear-gradient(90deg, rgba(20, 39, 78, 0.7) 0%, transparent 80%);
+  font-weight: 500;
+}
+
+/* L1 — H2 headings */
+html.plugin-docs .theme-doc-toc-desktop .table-of-contents > li > .table-of-contents__link {
+  font-size: 0.855rem;
+  font-weight: 500;
+}
+html.plugin-docs .theme-doc-toc-desktop .table-of-contents > li > .table-of-contents__link:not(.table-of-contents__link--active) {
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* L2 — H3 headings */
+html.plugin-docs .theme-doc-toc-desktop .table-of-contents ul > li > .table-of-contents__link {
+  padding-left: 26px;
+  font-size: 0.81rem;
+}
+html.plugin-docs .theme-doc-toc-desktop .table-of-contents ul > li > .table-of-contents__link:not(.table-of-contents__link--active) {
+  color: var(--text-sub);
+}
+
+/* L3 — H4 headings */
+html.plugin-docs .theme-doc-toc-desktop .table-of-contents ul ul > li > .table-of-contents__link {
+  padding-left: 38px;
+  font-size: 0.78rem;
+}
+html.plugin-docs .theme-doc-toc-desktop .table-of-contents ul ul > li > .table-of-contents__link:not(.table-of-contents__link--active) {
+  color: var(--text-sub2);
+}
+
 /* ---- Markdown body ---- */
 /* Root cause of the narrow body column: Bootstrap 5 (loaded globally for
  * the marketing navbar/footer) ships a `.row > *` universal rule that
