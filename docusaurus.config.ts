@@ -3,6 +3,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import {sectionHeaderSidebarGenerator} from './src/lib/sidebar-section-headers';
 import {createDocsRedirects, explicitRedirects} from './src/redirects';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const defaultOgImage = require('./plugins/default-og-image.js');
 
 /**
  * Custom Prism theme: low-saturation, brand-aligned, easy on the eyes.
@@ -156,21 +158,18 @@ const config: Config = {
   ],
 
   headTags: [
-    // ----- Tracking & consent (production only) -----
-    // Order matters: Google Consent Mode defaults must run BEFORE any other
-    // analytics/ads code so the initial gtag('consent', 'default', ...) call
-    // is in effect when Cookiebot/GTM/GA4 start firing.
-    //
-    // Cookiebot id + GTM/GA4/Ads ids preserved verbatim from the legacy
-    // index.html. `data-cookieconsent="ignore"` keeps this consent-defaults
-    // script itself out of Cookiebot's auto-blocking sweep.
+    // ----- Consent (production only) -----
+    // Google Consent Mode defaults must run BEFORE GTM/GA4/Ads fire.
+    // GTM → @docusaurus/plugin-google-tag-manager
+    // GA4 + Google Ads → @docusaurus/plugin-google-gtag
+    // Both plugins hook into Docusaurus routing and track SPA navigation.
     ...(process.env.NODE_ENV === 'production' ? [
       {
         tagName: 'script' as const,
         attributes: {'data-cookieconsent': 'ignore'},
         innerHTML:
           "window.dataLayer=window.dataLayer||[];" +
-          "function gtag(){dataLayer.push(arguments);}" +
+          "window.gtag=function(){dataLayer.push(arguments);};" +
           "gtag('consent','default',{" +
             "ad_personalization:'denied'," +
             "ad_storage:'denied'," +
@@ -194,30 +193,6 @@ const config: Config = {
           type: 'text/javascript',
           async: 'true',
         },
-      },
-      {
-        tagName: 'script' as const,
-        attributes: {},
-        innerHTML:
-          "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});" +
-          "var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';" +
-          "j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;" +
-          "f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-THBJMSZV');",
-      },
-      {
-        tagName: 'script' as const,
-        attributes: {
-          async: 'true',
-          src: 'https://www.googletagmanager.com/gtag/js?id=G-YF1TS3WD9S',
-        },
-      },
-      {
-        tagName: 'script' as const,
-        attributes: {},
-        innerHTML:
-          "gtag('js',new Date());" +
-          "gtag('config','G-YF1TS3WD9S');" +  // GA4
-          "gtag('config','AW-955539851');",  // Google Ads
       },
     ] : []),
 
@@ -361,6 +336,13 @@ const config: Config = {
   ],
 
   plugins: [
+    // ----- Analytics (production only) -----
+    ...(process.env.NODE_ENV === 'production' ? [
+      ['@docusaurus/plugin-google-tag-manager', {containerId: 'GTM-THBJMSZV'}],
+      ['@docusaurus/plugin-google-gtag', {
+        trackingID: ['G-YF1TS3WD9S', 'AW-955539851'],
+      }],
+    ] as any[] : []),
     // Expand `dup:` Enterprise stubs from the OSS manual at plugin
     // module-load — before any plugin's loadContent (incl.
     // @docusaurus/plugin-content-docs) and on BOTH `docusaurus build`
@@ -375,6 +357,7 @@ const config: Config = {
         routeBasePath: 'docs/ome',
         sidebarPath: './sidebars-ome.ts',
         sidebarItemsGenerator: sectionHeaderSidebarGenerator,
+        remarkPlugins: [[defaultOgImage, {image: 'images/og/og_ome.png'}]],
         // README.md is the contributor authoring guide; it ships in the
         // upstream docs/ tree but must not appear in the public sidebar.
         exclude: ['README.md'],
@@ -388,6 +371,7 @@ const config: Config = {
         routeBasePath: 'docs/ome-enterprise',
         sidebarPath: './sidebars-ome-enterprise.ts',
         sidebarItemsGenerator: sectionHeaderSidebarGenerator,
+        remarkPlugins: [[defaultOgImage, {image: 'images/og/og_ome-enterprise.png'}]],
         exclude: ['README.md'],
       },
     ],
@@ -399,6 +383,7 @@ const config: Config = {
         routeBasePath: 'docs/ovenplayer',
         sidebarPath: './sidebars-ovenplayer.ts',
         sidebarItemsGenerator: sectionHeaderSidebarGenerator,
+        remarkPlugins: [[defaultOgImage, {image: 'images/og/og_op.png'}]],
         exclude: ['README.md'],
       },
     ],
