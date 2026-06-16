@@ -10,6 +10,8 @@ sidebar_position: 33
 
 1. Please sign in to [AWS Marketplace](https://aws.amazon.com/marketplace).
 2. Search for **OvenMediaEngine Enterprise**, then open the product page and review the details.
+   * [OvenMediaEngine Enterprise on AWS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs)
+   * [OvenMediaEngine Enterprise on AWS for GPU](https://aws.amazon.com/marketplace/pp/prodview-xgqlshxeegf5c)
 3. To proceed, click \[View purchase options] and accept the terms and subscription offer.
 4. Once confirmed, click \[Subscribe] to complete your subscription.
    * After subscribing, you can deploy and run OvenMediaEngine Enterprise on Amazon EC2. For detailed instructions, please refer to the [AWS Buyer's Guide](https://docs.aws.amazon.com/marketplace/latest/buyerguide/buyer-getting-started.html).
