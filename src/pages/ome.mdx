@@ -1,7 +1,7 @@
 ---
 title: OvenMediaEngine — Sub-Second Latency Live Streaming Server
 description: OvenMediaEngine is an open-source sub-second latency live streaming server supporting WebRTC, LL-HLS, and SRT. Deploy free under AGPLv3, or choose Enterprise and AWS Marketplace editions for production.
-image: images/og/og_ome.png
+image: images/og/og_ome-enterprise.png
 hide_table_of_contents: true
 wrapperClassName: marketing-page
 keywords: [OvenMediaEngine, live streaming, WebRTC, LL-HLS, SRT, sub-second latency, open-source streaming server, real-time streaming, enterprise live streaming]
@@ -104,10 +104,10 @@ import OrbitDot from '@site/src/components/OrbitDot';
             <i className="ph ph-cloud hero-card-product-icon d-none d-md-inline" style={{color: '#fde68a', fontSize: '1.1rem'}}></i>
             <i className="ph ph-arrow-up-right d-md-none" style={{color: '#fde68a', fontSize: '1.1rem'}}></i>
           </div>
-          <h3 className="h5 fw-bold text-main mb-2" style={{fontSize: 'clamp(1rem, 2.5vw, 1.125rem)'}}>OvenMediaEngine Enterprise for AWS</h3>
+          <h3 className="h5 fw-bold text-main mb-2" style={{fontSize: 'clamp(1rem, 2.5vw, 1.125rem)'}}>OvenMediaEngine Enterprise on AWS</h3>
           <p className="text-sub-amber small lh-sm flex-grow-1 d-none d-md-block">The full OvenMediaEngine Enterprise stack on AWS Marketplace. Launch in one click and pay by the hour, with no upfront license.</p>
           <div className="mt-auto">
-            <p className="extra-small mb-1 pt-2 text-center fst-italic" style={{color: '#fde68a', borderTop: '1px solid rgba(253, 230, 138, 0.2)'}}>From $0.19 / instance-hour · 1-click deploy</p>
+            <p className="extra-small mb-1 pt-2 text-center fst-italic" style={{color: '#fde68a', borderTop: '1px solid rgba(253, 230, 138, 0.2)'}}>14-day free trial · From $0.19 / instance-hour</p>
           </div>
           <span className="hero-card-explore small fw-bold pt-1 d-none d-md-inline" style={{color: '#f59e0b'}}>Explore <i className="ph ph-arrow-right"></i></span>
         </a>
@@ -638,14 +638,19 @@ import OrbitDot from '@site/src/components/OrbitDot';
           <div className="hero-badge2 mb-4 px-3 py-1 d-inline-block fw-bold small" style={{color: '#fde68a', background: 'rgba(253, 230, 138, 0.15)', border: '1px solid rgba(253, 230, 138, 0.35)'}}><i className="ph ph-cloud me-1"></i>Enterprise Live Streaming on AWS</div>
           <h2 className="fw-bold text-main mb-3 copy-title lh-tight">
             <span className="d-block fs-4 mb-0 fw-bold" style={{color: '#f59e0b'}}>OvenMediaEngine Enterprise</span>
-            <span className="display-2 d-block fw-bold text-main">for AWS<OrbitDot orbitColor="#F8FAFC" style={{color: '#f59e0b'}}>.</OrbitDot></span>
+            <span className="display-2 d-block fw-bold text-main">on AWS<OrbitDot orbitColor="#F8FAFC" style={{color: '#f59e0b'}}>.</OrbitDot></span>
           </h2>
           <p className="text-sub mb-4">Get the complete OvenMediaEngine Enterprise experience on AWS, with the same feature set and engineer-backed support, billed by the hour. Skip procurement, validate with real traffic, and move to production with confidence.</p>
-          <div className="d-flex gap-2" style={{maxWidth: '340px'}}>
-            <a href="https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-aws-fill rounded-pill px-4 text-center" style={{flex: '1 1 0'}}>
-              <i className="ph ph-cloud me-2"></i>Marketplace
-            </a>
-            <a href="/docs/ome-enterprise/exclusive/aws-marketplace/getting-started-on-aws" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary-outline rounded-pill px-4 text-center" style={{flex: '1 1 0'}}>
+          <div className="d-flex flex-column gap-2" style={{maxWidth: '340px'}}>
+            <div className="d-flex gap-2">
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-aws-fill rounded-pill px-4 text-center" style={{flex: '1 1 0'}}>
+                <i className="ph ph-cpu me-2"></i>CPU Edition
+              </a>
+              <a href="https://aws.amazon.com/marketplace/pp/prodview-xgqlshxeegf5c" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-aws-fill rounded-pill px-4 text-center" style={{flex: '1 1 0'}}>
+                <i className="ph ph-graph me-2"></i>GPU Edition
+              </a>
+            </div>
+            <a href="/docs/ome-enterprise/exclusive/aws-marketplace/getting-started-on-aws" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary-outline rounded-pill px-4 text-center">
               <i className="ph ph-book-open me-2"></i>Guide
             </a>
           </div>
@@ -671,6 +676,7 @@ import OrbitDot from '@site/src/components/OrbitDot';
                 <span className="text-main fw-bold" style={{fontSize: 'clamp(1rem, 3vw, 1.5rem)'}}>per instance-hour</span>
               </div>
             </div>
+            <p className="mb-0 fw-bold fst-italic text-center" style={{color: 'rgba(253, 230, 138, 0.85)', fontSize: 'clamp(0.875rem, 2vw, 1rem)'}}>Validate your live streaming workflow free for 14 days</p>
             <hr className="my-4" style={{borderColor: 'rgba(245, 158, 11, 0.2)', alignSelf: 'stretch'}} />
             <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem 1.5rem', width: 'fit-content', maxWidth: '100%'}}>
               {[
