@@ -169,7 +169,7 @@ const config: Config = {
         attributes: {'data-cookieconsent': 'ignore'},
         innerHTML:
           "window.dataLayer=window.dataLayer||[];" +
-          "function gtag(){dataLayer.push(arguments);}" +
+          "window.gtag=function(){dataLayer.push(arguments);};" +
           "gtag('consent','default',{" +
             "ad_personalization:'denied'," +
             "ad_storage:'denied'," +
