@@ -151,6 +151,7 @@ const config: Config = {
     './src/clientModules/bootstrap-dark.ts',
     './src/clientModules/legacy-marketing.ts',
     './src/clientModules/preview-redirect.ts',
+    './src/clientModules/gtag-stub.ts',
     // Dev-only review-comment overlay; excluded from production builds.
     ...(process.env.NODE_ENV === 'development'
       ? ['./src/clientModules/review-comments.ts']
@@ -463,6 +464,7 @@ const config: Config = {
     },
     metadata: [
       {name: 'keywords', content: 'ovenmedia, oven media, ovenmedia labs, airensoft, ovenmediaengine, ome, ome enterprise, ovenplayer, ovenlivekit, sub second latency streaming, webrtc streaming, llhls streaming, srt streaming, open source streaming server'},
+      {property: 'og:site_name', content: 'OvenMedia Labs'},
     ],
     colorMode: {
       defaultMode: 'dark',
