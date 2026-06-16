@@ -243,6 +243,7 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.20.0.0**: Alert on transcoder creation failures
 - **0.20.1.0**: Anomaly detection
 - **0.20.2.0**: `TranscodeStatus` alert rule
+- **0.20.8.0**: `TrackPrepareTimeout` anomaly rule
 
 ### CDN Cache Control
 

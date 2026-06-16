@@ -80,7 +80,7 @@ You can define anomalies and patterns of interest to be detected in a separate f
 
 #### Rules
 
-<table><thead><tr><th width="140.11114501953125">Key</th><th width="200.4444580078125"></th><th>Description</th></tr></thead><tbody><tr><td>Ingress</td><td>StreamStatus</td><td>It detects the creation, standby, failure, and deletion states of a ingress stream.</td></tr><tr><td></td><td>MinBitrate</td><td>Detects when the ingress stream's video bitrate is lower than the set value.</td></tr><tr><td></td><td>MaxBitrate</td><td>Detects when the ingress stream's video bitrate is greater than the set value.</td></tr><tr><td></td><td>MinFramerate</td><td>Detects when the ingress stream's framerate is lower than the set value.</td></tr><tr><td></td><td>MaxFramerate</td><td>Detects when the ingress stream's framerate is greater than the set value.</td></tr><tr><td></td><td>MinWidth</td><td>Detects when the ingress stream's width is lower than the set value.</td></tr><tr><td></td><td>MaxWidth</td><td>Detects when the ingress stream's width is greater than the set value.</td></tr><tr><td></td><td>MinHeight</td><td>Detects when the ingress stream's height is lower than the set value.</td></tr><tr><td></td><td>MaxHeight</td><td>Detects when the ingress stream's height is greater than the set value.</td></tr><tr><td></td><td>MinSamplerate</td><td>Detects when the ingress stream's audio samplerate is lower than the set value.</td></tr><tr><td></td><td>MaxSamplerate</td><td>Detects when the ingress stream's audio samplerate is greater than the set value.</td></tr><tr><td></td><td>LongKeyFrameInterval</td><td>Detects when the ingress stream's keyframe interval is too long (exceeds 4 seconds).</td></tr><tr><td></td><td>HasBFrames</td><td>Detects when there are B-frames in the ingress stream.</td></tr><tr><td>Egress</td><td>StreamStatus</td><td>It detects the creation, standby, failure, and deletion states of a egress stream.</td></tr><tr><td></td><td>LLHLSReady</td><td>Detects the point in time when Low-Latency HLS playback becomes available.</td></tr><tr><td></td><td>HLSReady</td><td>Detects the point in time when HLS playback becomes available.</td></tr><tr><td></td><td>TranscodeStatus</td><td>Detects decoding, encoding, and filtering failure states during egress stream transcoding.</td></tr><tr><td>InternalQueueCongestion</td><td></td><td>Detect when internal queues become congested.</td></tr><tr><td>Anomaly</td><td>DTSReversal</td><td>Detects cases where DTS is not monotonically increasing.</td></tr><tr><td></td><td>DTSJump</td><td>Detects cases where DTS increases abruptly between consecutive frames.</td></tr><tr><td></td><td>DTSDuplication</td><td>Detects cases where DTS is the same between consecutive frames.</td></tr><tr><td></td><td>PacketTimeout</td><td>Detects when no packets are received for a specified period of time.</td></tr></tbody></table>
+<table><thead><tr><th width="140.11114501953125">Key</th><th width="200.4444580078125"></th><th>Description</th></tr></thead><tbody><tr><td>Ingress</td><td>StreamStatus</td><td>It detects the creation, standby, failure, and deletion states of a ingress stream.</td></tr><tr><td></td><td>MinBitrate</td><td>Detects when the ingress stream's video bitrate is lower than the set value.</td></tr><tr><td></td><td>MaxBitrate</td><td>Detects when the ingress stream's video bitrate is greater than the set value.</td></tr><tr><td></td><td>MinFramerate</td><td>Detects when the ingress stream's framerate is lower than the set value.</td></tr><tr><td></td><td>MaxFramerate</td><td>Detects when the ingress stream's framerate is greater than the set value.</td></tr><tr><td></td><td>MinWidth</td><td>Detects when the ingress stream's width is lower than the set value.</td></tr><tr><td></td><td>MaxWidth</td><td>Detects when the ingress stream's width is greater than the set value.</td></tr><tr><td></td><td>MinHeight</td><td>Detects when the ingress stream's height is lower than the set value.</td></tr><tr><td></td><td>MaxHeight</td><td>Detects when the ingress stream's height is greater than the set value.</td></tr><tr><td></td><td>MinSamplerate</td><td>Detects when the ingress stream's audio samplerate is lower than the set value.</td></tr><tr><td></td><td>MaxSamplerate</td><td>Detects when the ingress stream's audio samplerate is greater than the set value.</td></tr><tr><td></td><td>LongKeyFrameInterval</td><td>Detects when the ingress stream's keyframe interval is too long (exceeds 4 seconds).</td></tr><tr><td></td><td>HasBFrames</td><td>Detects when there are B-frames in the ingress stream.</td></tr><tr><td>Egress</td><td>StreamStatus</td><td>It detects the creation, standby, failure, and deletion states of a egress stream.</td></tr><tr><td></td><td>LLHLSReady</td><td>Detects the point in time when Low-Latency HLS playback becomes available.</td></tr><tr><td></td><td>HLSReady</td><td>Detects the point in time when HLS playback becomes available.</td></tr><tr><td></td><td>TranscodeStatus</td><td>Detects decoding, encoding, and filtering failure states during egress stream transcoding.</td></tr><tr><td>InternalQueueCongestion</td><td></td><td>Detect when internal queues become congested.</td></tr><tr><td>Anomaly</td><td>DTSReversal</td><td>Detects cases where DTS is not monotonically increasing.</td></tr><tr><td></td><td>DTSJump</td><td>Detects cases where DTS increases abruptly between consecutive frames.</td></tr><tr><td></td><td>DTSDuplication</td><td>Detects cases where DTS is the same between consecutive frames.</td></tr><tr><td></td><td>PacketTimeout</td><td>Detects when no packets are received for a specified period of time.</td></tr><tr><td></td><td>TrackPrepareTimeout</td><td>Detects when a track is not prepared in time, blocking the stream while other tracks keep arriving.</td></tr></tbody></table>
 
 ## Notification
 
@@ -1398,6 +1398,9 @@ Anomaly Detection can be configured in `<Server><Alert><Rules>` as shown below:
 				<PacketTimeout>
 					<Action>TerminateStream,Alert</Action>
 				</PacketTimeout>
+				<TrackPrepareTimeout>
+					<Action>TerminateStream,Alert</Action>
+				</TrackPrepareTimeout>
 			</Anomaly>
 		</Rules>
 	</Alert>
@@ -1564,6 +1567,56 @@ Because this `PacketTimeout` feature overlaps with the [`PacketSilenceTimeoutMs`
 		{
 			"code": "ANOMALY_PACKET_TIMEOUT_DETECTED",
 			"description": "No packets have been received for 1500ms."
+		}
+	],
+	"type": "ANOMALY"
+}
+```
+
+### Configuring TrackPrepareTimeout
+
+`TrackPrepareTimeout` detects cases where a track is not prepared within a specified time after media starts, which blocks the stream from being prepared. A common cause is a Simulcast layer (RID) that the client never sends while the other layers keep arriving.
+
+`TrackPrepareTimeout` can be configured under `<Server><Alert><Rules><Anomaly>`. An example is shown below:
+
+```xml
+<Server>
+	<Alert>
+		<Rules>
+			<Anomaly>
+				<TrackPrepareTimeout>
+					<CheckDuration>5</CheckDuration>	<!-- During the last 5 seconds -->
+					<Count>1</Count>	<!-- One or more times -->
+					<Threshold>3000</Threshold>	<!-- A track stayed not prepared for 3000 ms or more -->
+					<Action>TerminateStream,Alert</Action>	<!-- Terminates the stream and sends an alert -->
+				</TrackPrepareTimeout>
+				...
+```
+
+\= During the last 5 seconds (`CheckDuration`), if a track stays not prepared for 3,000 milliseconds or more (`Threshold`) at least once (`Count`) while another track keeps arriving, the stream is terminated and an alert is sent (`Action`).
+
+<table><thead><tr><th width="139.5555419921875">Key</th><th width="159.5555419921875" align="center">Default (Allowed)</th><th>Description</th></tr></thead><tbody><tr><td>Threshold</td><td align="center">3000<br />(1-2147483647)</td><td><p>The criterion for "How long, after media starts, must a track stay not prepared for it to be regarded as an anomaly?"</p><ul><li>The unit is milliseconds (ms).</li></ul></td></tr></tbody></table>
+
+
+:::info
+
+`TrackPrepareTimeout` applies only before the stream is prepared. Once every track is prepared, this rule no longer triggers.
+
+* It triggers only on a partial failure: at least one track is prepared while another is not.
+* If no track is prepared yet (the stream is just starting or idle), this rule stays quiet; full-stream silence is handled by `PacketTimeout` instead.
+
+:::
+
+
+#### Notification example
+
+```json
+{
+	"sourceUri": "#default#app/stream",
+	"messages": [
+		{
+			"code": "ANOMALY_TRACK_PREPARE_TIMEOUT_DETECTED",
+			"description": "Track #1 (Audio) is not prepared, blocking stream preparation."
 		}
 	],
 	"type": "ANOMALY"
