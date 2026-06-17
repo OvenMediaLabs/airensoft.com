@@ -1,0 +1,48 @@
+---
+slug: discontinuing-hardware-acceleration-ome
+title: "Open-Source Edition: A Note on Discontinuing Hardware Acceleration"
+description: Starting with the next release, hardware-accelerated features including NVIDIA and Intel QuickSync support will no longer be available in the open-source edition of OvenMediaEngine.
+authors: [ovenmedialabs]
+tags: [ome, news, release]
+image: ./hero.png
+---
+
+> Starting with the next release, the open-source edition of OvenMediaEngine will no longer provide hardware-accelerated features, including hardware encoder integrations such as NVIDIA. This was a difficult decision, and we want to begin by thanking everyone who has relied on these features over the years and asking for your understanding. Software-based features, including software encoding, remain fully supported, and no other features are affected.
+
+{/* truncate */}
+
+## How We Got Here
+
+Hardware acceleration was first introduced in [v0.12.2 (August 2021)](https://github.com/OvenMediaLabs/OvenMediaEngine/releases/tag/v0.12.2), which added hardware encoding (Beta) and NVIDIA GPU support. Since then, we expanded acceleration support to NVIDIA (NV Codec), Intel QuickSync, and Xilinx (XMA), and more recently we have been working to add official support for NETINT.
+
+For roughly four and a half years, up to and including the latest stable release v0.20.5, the open-source edition has provided hardware acceleration. We know how many of you have built and run your services on top of these features, which is exactly why this decision weighs on us.
+
+## Why We Made This Decision
+
+Supporting hardware-accelerated features has been a fundamentally different undertaking from maintaining software code. Each feature requires us to own the actual hardware, keep pace with constant changes across the driver and SDK stack, and validate it with every release.
+
+Over the past few years of supporting NVIDIA and Xilinx and preparing NETINT support, we have purchased the hardware ourselves, worked closely with each vendor, and committed significant resources. Through this, it became clear that maintaining these features reliably over the long term effectively requires a dedicated team. A commercial product with dedicated staff can sustain this effort, but an open-source project cannot realistically keep it up to the same standard.
+
+This decision also reflects a principle we have held since we first started OvenMediaEngine: integrations with commercial, third-party hardware and services belong in the Enterprise edition, while the open-source edition stays focused on being a complete, self-contained streaming server that anyone can run on their own.
+
+## What Changes
+
+| Scope | Details |
+|-------|---------|
+| Current and earlier versions (up to v0.20.5) | Continue to work exactly as they do today, including accelerated features |
+| Limitation of existing versions | Those paths will no longer be updated in future releases, with no further improvements or fixes |
+| From the next release | Hardware acceleration is no longer available in the open-source build |
+| Software features | Software encoding and other software-based features remain unchanged |
+| If you need hardware acceleration | These capabilities remain available through OvenMediaEngine Enterprise |
+
+In short, hardware acceleration was available in the open-source edition from v0.12.2 (August 2021) through v0.20.5. Versions you are already running will continue to work as they do now, but they will no longer receive updates in future releases. If you need hardware acceleration beyond the next release, it remains available through OvenMediaEngine Enterprise.
+
+## Finally
+
+We understand that this change affects some of you, particularly those running larger deployments. Sharing this news with the community that has been with open-source OvenMediaEngine for so long is not easy for us either. This was not a decision we made lightly, and we have tried to communicate it as carefully as we can.
+
+If you are concerned about the impact on your setup or have any questions, please feel free to leave a comment on the announcement below. We will do our best to respond to each of you, and we remain committed to giving back through an even better open-source streaming server.
+
+---
+
+*This announcement was posted on the official OvenMediaEngine GitHub Discussions. Original post and inquiries: [GitHub Discussions #2203](https://github.com/OvenMediaLabs/OvenMediaEngine/discussions/2203)*
