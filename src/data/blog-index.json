@@ -1,5 +1,19 @@
 [
   {
+    "slug": "discontinuing-hardware-acceleration-ome",
+    "permalink": "/blog/discontinuing-hardware-acceleration-ome",
+    "title": "Open-Source Edition: A Note on Discontinuing Hardware Acceleration",
+    "description": "Starting with the next release, hardware-accelerated features including NVIDIA and Intel QuickSync support will no longer be available in the open-source edition of OvenMediaEngine.",
+    "tags": [
+      "ome",
+      "news",
+      "release"
+    ],
+    "date": "2026-06-17",
+    "dir": "2026-06-17-discontinuing-hardware-acceleration-ome",
+    "image": "hero.png"
+  },
+  {
     "slug": "on-demand-rtsp-cameras-with-webrtc",
     "permalink": "/blog/on-demand-rtsp-cameras-with-webrtc",
     "title": "Managing Hundreds of RTSP Cameras with a Single Server, Using On-Demand Live WebRTC",
