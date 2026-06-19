@@ -1,5 +1,19 @@
 [
   {
+    "slug": "llhls-hls-channel-redundancy-high-availability",
+    "permalink": "/blog/llhls-hls-channel-redundancy-high-availability",
+    "title": "LL-HLS / HLS Channel Redundancy: High Availability That Stays Live Through Failures",
+    "description": "Real LL-HLS / HLS channel redundancy comes down to keeping two Origins, Primary and Backup, in sync. Here is what has to line up in the encoder-origin path, especially the timeline and the segment numbers.",
+    "tags": [
+      "llhls",
+      "tutorial",
+      "ome"
+    ],
+    "date": "2026-06-19",
+    "dir": "2026-06-19-llhls-hls-channel-redundancy-high-availability",
+    "image": ""
+  },
+  {
     "slug": "discontinuing-hardware-acceleration-ome",
     "permalink": "/blog/discontinuing-hardware-acceleration-ome",
     "title": "Open-Source Edition: A Note on Discontinuing Hardware Acceleration",

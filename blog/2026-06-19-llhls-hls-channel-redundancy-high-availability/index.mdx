@@ -4,6 +4,7 @@ title: "LL-HLS / HLS Channel Redundancy: High Availability That Stays Live Throu
 description: Real LL-HLS / HLS channel redundancy comes down to keeping two Origins, Primary and Backup, in sync. Here is what has to line up in the encoder-origin path, especially the timeline and the segment numbers.
 authors: [jeheon]
 tags: [llhls, tutorial, ome]
+image: ./hero.png
 ---
 
 Making a live channel redundant comes down to one thing: keeping the output of the two Origins behind your CDN, Primary and Backup, synchronized so that the player can switch between them at any time and keep playing without interruption.
@@ -18,9 +19,7 @@ This post covers what has to line up to make a live channel truly redundant, and
 
 This is a recording of what happens when the Primary is force-killed, with Primary and Backup Origins behind Amazon CloudFront serving LL-HLS. Playback switches to the Backup with no stall or buffering, and returns to the Primary once it recovers.
 
-{/* TODO: embed demo video (Amazon CloudFront Origin Failover). e.g. <iframe src="..." width="100%" height="480" allowfullscreen></iframe> or <video controls src="..." style={{width: '100%'}} /> */}
-
-> 🎬 Demo video placeholder (coming soon)
+<iframe width="100%" style={{aspectRatio: '16/9'}} src="https://www.youtube.com/embed/Hpv9Eqiumf4?rel=0&modestbranding=1" title="LL-HLS/HLS Origin Failover Demo on OvenMediaEngine Enterprise" frameborder="0" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
 
 The rest of this post covers what makes that possible and how to configure it.
 
