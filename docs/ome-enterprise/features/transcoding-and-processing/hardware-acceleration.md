@@ -1,0 +1,205 @@
+---
+title: Hardware Acceleration
+description: "Enable hardware-accelerated video encoding in OvenMediaEngine Enterprise automatically with the RPM/DEB packages."
+enterprise_only: true
+sidebar_position: 93
+---
+
+When you install OvenMediaEngine Enterprise with the distributed RPM/DEB package, hardware-accelerated video encoding is enabled automatically if a **hardware-acceleration-capable device** and its driver are present. Drivers can be reinstalled, updated, or removed after installation without affecting program execution. This section describes the supported versions and codecs, along with the methods for installing and verifying the drivers.
+
+## Supported OS, Drivers, and Codecs
+
+| Device | Support OS | Driver Version | Decoder | Encoder |
+| --- | --- | --- | --- | --- |
+| NVIDIA | Ubuntu 22.04 / 24.04, Rocky 9 | Driver 535+ | H.264, H.265 | H.264, H.265 |
+| Xilinx Alveo U30MA | Ubuntu 22.04 / 24.04 | Video SDK 3.0 | H.264, H.265 | H.264, H.265 |
+| NETINT VPU | _Coming soon_ | | | |
+
+## Driver Installation
+
+### NVIDIA Graphics Driver
+
+The contents of this section are based on the `misc/install_nvidia_driver.sh` script provided by OvenMediaEngine as Open-Source. The minimum required version is **NVIDIA Driver 535**. The CUDA Toolkit does not need to be installed separately, as OvenMediaEngine includes the CUDA runtime it requires. If installation issues arise, please refer to the [Official NVIDIA Documentation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#package-manager-installation).
+
+#### Ubuntu Linux 22.04 / 24.04
+
+```bash
+# Install prerequisites
+sudo apt-get update
+sudo apt-get install -y --no-install-recommends \
+    apt-utils ca-certificates curl gnupg2 lshw \
+    software-properties-common ubuntu-drivers-common
+
+# Uninstall any previously installed NVIDIA driver and CUDA Toolkit packages
+sudo apt-get remove -y --purge 'nvidia-*' 'cuda-*' 'libnvidia-*' 'nsight-*'
+sudo apt-get autoremove -y
+
+# Disable the nouveau driver if it is loaded (a reboot is required afterwards)
+if lsmod | awk '{print $1}' | grep -qx nouveau; then
+    sudo tee /etc/modprobe.d/blacklist-nouveau.conf > /dev/null <<EOF
+blacklist nouveau
+blacklist lbm-nouveau
+options nouveau modeset=0
+alias nouveau off
+alias lbm-nouveau off
+EOF
+    sudo update-initramfs -u
+    echo "nouveau disabled. Reboot and re-run this script to continue."
+    exit 0
+fi
+
+# Register the official NVIDIA CUDA repository
+# Replace 'ubuntu2204' with 'ubuntu2404' on Ubuntu 24.04
+REPO_DIST=ubuntu2204
+REPO_BASE=https://developer.download.nvidia.com/compute/cuda/repos/${REPO_DIST}/x86_64
+curl -fsSLo cuda-${REPO_DIST}.pin ${REPO_BASE}/cuda-${REPO_DIST}.pin
+sudo install -m 644 cuda-${REPO_DIST}.pin /etc/apt/preferences.d/cuda-repository-pin-600
+rm -f cuda-${REPO_DIST}.pin
+sudo apt-key adv --fetch-keys ${REPO_BASE}/3bf863cc.pub
+sudo add-apt-repository -y "deb ${REPO_BASE}/ /"
+sudo apt-get update
+
+# Install the NVIDIA driver
+sudo apt-get install -y --no-install-recommends nvidia-driver-535
+```
+
+#### Rocky Linux 9
+
+```bash
+# Install prerequisites
+sudo dnf update -y
+sudo dnf install -y epel-release dnf-plugins-core lshw
+
+# Uninstall any previously installed NVIDIA driver and CUDA Toolkit packages
+sudo dnf remove -y 'nvidia-driver*' 'cuda*' 'libnvidia*' 'nsight*'
+sudo dnf module reset -y nvidia-driver
+sudo dnf clean all
+
+# Disable the nouveau driver if it is loaded (a reboot is required afterwards)
+if lsmod | awk '{print $1}' | grep -qx nouveau; then
+    sudo tee /etc/modprobe.d/blacklist-nouveau.conf > /dev/null <<EOF
+blacklist nouveau
+options nouveau modeset=0
+EOF
+    sudo dracut --force
+    echo "nouveau disabled. Reboot and re-run this script to continue."
+    exit 0
+fi
+
+# Register the official NVIDIA CUDA repository
+OS_MAJOR=9
+REPO_BASE=https://developer.download.nvidia.com/compute/cuda/repos/rhel${OS_MAJOR}/x86_64
+sudo dnf config-manager --add-repo=${REPO_BASE}/cuda-rhel${OS_MAJOR}.repo
+sudo dnf clean all
+
+# Install the NVIDIA driver
+sudo dnf module install -y nvidia-driver:535
+```
+
+#### Install and Check the Driver
+
+```
+# nvidia-smi 
+Wed Jul  3 23:30:00 2024       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.01   Driver Version: 535.183.01   CUDA Version: 12.2     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  NVIDIA GeForce ...  Off  | 00000000:0A:00.0 Off |                  N/A |
+| 55%   33C    P8    10W / 120W |      2MiB /  3018MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+                                                                  
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+```
+
+### XILINX Video SDK Driver
+
+The Xilinx Video SDK 3.0 driver officially supports Ubuntu, Red Hat Linux 7.8, and Amazon Linux 2. For detailed information, please refer to the [Official Xilinx Documentation](https://xilinx.github.io/video-sdk/v3.0/getting_started_on_prem.html#install-the-sdk).
+
+## Verify Hardware Acceleration
+
+Once the RPM/DEB package and driver installation are complete, you need to verify that the drivers are correctly loaded and the Hardware-Accelerated Video Encoding is activated in OvenMediaEngine. This can be checked through the OvenMediaEngine's Log files.
+
+```bash
+$ cd /var/log/ovenmediaengine
+$ cat ovenmediaengine.log | grep transcoder_gpu
+
+[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:43   | Trying to check the hardware accelerator
+[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:278  | NVIDIA. DeviceId(0), Name(NVIDIA GeForce GTX 1060 3GB), BusId(10), CudaId(0)
+[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:48   | Supported NVIDIA Accelerator. Number of devices(1)
+[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:62   | No supported Xilinx Media Accelerator
+[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:82   | No supported Netint VPU Accelerator
+```
+
+## Configuration
+
+To use hardware acceleration, add the `<HWAccels>` section under `<OutputProfiles>` and set `<Enable>` to `true` for the `<Decoder>` and/or `<Encoder>`. If a hardware codec is unavailable due to insufficient resources, it automatically falls back to a software codec.
+
+```markup
+<OutputProfiles>
+    <HWAccels>
+        <!-- 
+        Setting for Hardware Modules.
+            - nv : Nvidia Video Codec SDK
+            - xma :Xilinx Media Accelerator
+            - netint: Netint VPU (coming soon)
+
+        You can use multiple modules by separating them with commas.
+        For example, if you want to use xma and nv, you can set it as follows.
+
+        <Modules>[ModuleName]:[DeviceId],[ModuleName]:[DeviceId],...</Modules>
+        <Modules>nv:0,nv:1,xma:0</Modules>
+        -->
+        <Decoder>
+                <Enable>true</Enable>
+                <Modules>nv</Modules>
+        </Decoder>
+        <Encoder>
+                <Enable>true</Enable>
+                <Modules>nv</Modules>
+        </Encoder>
+    </HWAccels>
+    
+    <OutputProfile>
+        ...
+    </OutputProfile>
+</OutputProfiles>
+```
+
+### Set Modules per Encode
+
+The `<Modules>` in `<HWAccels>` applies to every encode. To use a different module or device for a specific encode, add `<Modules>` inside that `<Video>`. This value overrides the one in `<HWAccels>`.
+
+Use the `[ModuleName]:[DeviceId]` format, and separate multiple modules with commas. They are tried in order, and the software codec is used if none are available.
+
+```markup
+<OutputProfile>
+    <Encodes>
+        <!-- Encode on NVIDIA device 0 -->
+        <Video>
+            <Modules>nv:0</Modules>
+            ...
+        </Video>
+        <!-- Encode on NVIDIA device 1 -->
+        <Video>
+            <Modules>nv:1</Modules>
+            ...
+        </Video>
+    </Encodes>
+</OutputProfile>
+```
+
+## Reference
+
+* NVIDIA Driver Installation Guide : [https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#package-manager-installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#package-manager-installation)
+* Xilinx Video SDK Installation Guide : [https://xilinx.github.io/video-sdk/v3.0/getting_started_on_prem.html#install-the-sdk](https://xilinx.github.io/video-sdk/v3.0/getting_started_on_prem.html#install-the-sdk)
+* NVIDIA Container Toolkit Installation Guide : [https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)

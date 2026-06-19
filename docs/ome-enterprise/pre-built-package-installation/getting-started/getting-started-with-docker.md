@@ -95,7 +95,7 @@ When running OvenMediaEngine Enterprise, you need to set the following two envir
 
 ### Enabling GPU access
 
-If you want to use GPU devices inside the container, you must install the GPU-enabled image (`ovenmedialabs/ovenmediaengine-enterprise:latest-gpu`) and run OvenMediaEngine Enterprise with the `--gpus all` option as shown below. For more detailed configuration instructions, please refer to the [official documentation](https://docs.docker.com/engine/containers/gpu/).
+To use an NVIDIA GPU inside the container, you must first install the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) on the host (this requires the NVIDIA driver to already be installed on the host). Then, use the GPU-enabled image (`ovenmedialabs/ovenmediaengine-enterprise:latest-gpu`) and run OvenMediaEngine Enterprise with the `--gpus all` option as shown below. For more detailed configuration instructions, please refer to the [official documentation](https://docs.docker.com/engine/containers/gpu/).
 
 
 ```sh
@@ -221,7 +221,7 @@ When running OvenMediaEngine Enterprise, you need to set the following two envir
 
 ### Enabling GPU access
 
-If you want to use GPU devices inside the container, you must install the GPU-enabled image (`ovenmedialabs/ovenmediaengine-enterprise:latest-gpu`) and add a `deploy` section to the `docker-compose.yaml` file as shown below. For more detailed configuration instructions, please refer to the [official documentation](https://docs.docker.com/compose/how-tos/gpu-support/).
+To use an NVIDIA GPU inside the container, you must first install the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) on the host (this requires the NVIDIA driver to already be installed on the host). Then, use the GPU-enabled image (`ovenmedialabs/ovenmediaengine-enterprise:latest-gpu`) and add a `deploy` section to the `docker-compose.yaml` file as shown below. For more detailed configuration instructions, please refer to the [official documentation](https://docs.docker.com/compose/how-tos/gpu-support/).
 
 ```yaml title="docker-compose.yaml"
 services:

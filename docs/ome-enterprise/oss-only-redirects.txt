@@ -21,4 +21,4 @@
 # GPU build instructions are N/A on Enterprise (we ship pre-built).
 # The Enterprise hardware-encoder page is the right destination for an
 # enterprise reader who follows a "GPU Acceleration" reference.
-docs/ome/transcoding/gpu-usage.md => docs/ome-enterprise/features/transcoding-and-processing/hardware-encoder-support.md
+docs/ome/transcoding/gpu-usage.md => docs/ome-enterprise/features/transcoding-and-processing/hardware-acceleration.md

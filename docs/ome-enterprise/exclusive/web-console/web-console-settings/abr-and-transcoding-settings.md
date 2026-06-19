@@ -41,7 +41,7 @@ If you enable `HardwareAcceleration` option in `Server.xml`, Hardware Codec will
 
 ![](../../../images/abr-and-transcoding-settings-check-gpu-acceleration-activation.png)
 
-On the ABR and Transcoding Settings page, you can verify that GPU-based hardware decoding and encoding ([Hardware-Accelerated Video Encoding](../../../features/transcoding-and-processing/hardware-encoder-support.md)), one of the features supported by OvenMediaEngine Enterprise at the Enterprise-grade, is enabled and its settings are checked.
+On the ABR and Transcoding Settings page, you can verify that GPU-based hardware decoding and encoding ([Hardware Acceleration](../../../features/transcoding-and-processing/hardware-acceleration.md)), an enterprise-grade feature of OvenMediaEngine Enterprise, is enabled and its settings are visible.
 
 #### See the Encoder Options:
 

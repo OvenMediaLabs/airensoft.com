@@ -57,7 +57,7 @@ to upgrade to) supports the feature or option you need.
 | [ABR](#abr) | Transcoding | 0.16.4.0 | [View](../features/transcoding-and-processing/abr.md) |
 | [Thumbnail](#thumbnail) | Transcoding | 0.16.4.0 | [View](../features/transcoding-and-processing/thumbnail.md) |
 | [TranscodeWebhook](#transcodewebhook) | Transcoding | 0.16.4.0 | [View](../features/transcoding-and-processing/transcodewebhook.md) |
-| [Hardware Encoder Support](#hardware-encoder-support) <Ent /> | Transcoding | 0.16.4.0 | [View](../features/transcoding-and-processing/hardware-encoder-support.md) |
+| [Hardware Acceleration](#hardware-acceleration) <Ent /> | Transcoding | 0.16.4.0 | [View](../features/transcoding-and-processing/hardware-acceleration.md) |
 | Skip Frames <Ent /> | Transcoding | 0.16.4.0 | [View](../features/transcoding-and-processing/skip-frames.md) |
 | Image Overlay <Ent /> | Transcoding | 0.19.1.0 | [View](../features/transcoding-and-processing/image-overlay.md) |
 | [Realtime Speech-to-Text](#realtime-speech-to-text) | Transcoding | 0.20.0.0 | [View](../features/transcoding-and-processing/subtitles/realtime-speech-to-text.md) |
@@ -199,7 +199,7 @@ listed here have no version-gated options beyond their minimum version above.
 
 - **0.20.2.0**: Receive-timeout support
 
-### Hardware Encoder Support
+### Hardware Acceleration
 
 - **0.19.2.0**: x264 (paid add-on) support
 - **0.20.4.0**: `ExtraOptions` video encoding settings for the x264 encoder
