@@ -47,16 +47,7 @@ These are the types of supported decoding and encoding codecs.
 <Tabs>
 <TabItem value="decoding-codecs" label="Decoding Codecs">
 
-**Video**&#x20;
-
-* VP8, H.264, H.265
-
-**Audio**&#x20;
-
-* AAC, Opus, MP3, MP2
-
-</TabItem>
-<TabItem value="encoding-codecs" label="Encoding Codecs">
+<div style={{paddingLeft: '1rem'}}>
 
 **Video**
 
@@ -64,11 +55,28 @@ These are the types of supported decoding and encoding codecs.
 
 **Audio**
 
+* AAC, Opus, MP3, MP2
+
+</div>
+
+</TabItem>
+<TabItem value="encoding-codecs" label="Encoding Codecs">
+
+<div style={{paddingLeft: '1rem'}}>
+
+**Video**
+
+* VP8, H.264, H.265 <sub>(Not supported, SW codec support planned)</sub>
+
+**Audio**
+
 * AAC, Opus
 
-**Image**&#x20;
+**Image**
 
-* &#x20;Jpeg, Png, WebP
+* Jpeg, Png, WebP
+
+</div>
 
 </TabItem>
 </Tabs>
@@ -76,11 +84,8 @@ These are the types of supported decoding and encoding codecs.
 
 ### **Hardware accelerators**
 
-These are the types of hardware accelerators officially supported.
-
-* NVIDIA GPU
-* Xilinx Alveo U30 MA <sub>enterpise only</sub>
-* NETINT VPU <sub>enterpise only (experiment)</sub>
+Hardware acceleration is no longer supported in the open-source version in releases after **v0.20.5**.<br/>
+For more information, see our official announcement: [Discontinuing Hardware Acceleration in OvenMediaEngine](https://ovenmedialabs.com/blog/discontinuing-hardware-acceleration-ome)
 
 
 
