@@ -137,6 +137,7 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.20.4.2**: `FIRInterval` setting
 - **0.20.5.1**: Immediate WHIP playback without waiting for RTCP (option); Transport-cc bandwidth estimation; `max_fps` in `OvenCapabilities`
 - **0.20.5.2**: `<ForceOvenCapabilitiesMaxValuesInStreamInfo>` option
+- **0.20.8.0**: NACK + RTX packet loss recovery for video (`<Rtx>` with `Enable` / `MaxHoldMs`)
 
 ### RTSP Pull
 
