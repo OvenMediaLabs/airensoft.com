@@ -114,6 +114,8 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.20.0.1**: Configure `<Defaults>` in `Server.xml` from the settings page
 - **0.20.4.0**: Validation when creating RTSP Pull streams
 - **0.20.6.1**: Quick ABR Setup (configure ABR via predefined video encoding presets)
+- **0.20.7.1**: Quick SSL Configuration
+- **0.20.8.1**: Recording Files (Browse, Download, Delete)
 
 ### RTMP
 
