@@ -2250,3 +2250,8 @@ html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_']
   letter-spacing: 0;
 }
 
+.py-6 {
+  padding-top: clamp(1.5rem, 3vh, 3rem);
+  padding-bottom: clamp(1.5rem, 3vh, 3rem);
+}
+
