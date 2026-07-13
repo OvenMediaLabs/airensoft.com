@@ -72,21 +72,34 @@ Metrics are grouped into collectors. Select a subset with repeated query keys (t
 
 Collector names are lowercase. An unknown name returns `400` with the list of valid names. A request with no selection emits all default collectors.
 
-| Collector    | Emits                                         | In default scrape |
-| ------------ | --------------------------------------------- | ----------------- |
-| `core`       | Build info, process start time                | Always on         |
-| `traffic`    | Received / transmitted byte counters          | Yes               |
-| `connection` | Current connection gauges                     | Yes               |
-| `stream`     | Media/track characteristics and source timing | Yes               |
-| `queue`      | Managed-queue gauges and counters             | Yes               |
-| `push`       | Push / record byte counters and state         | Yes               |
-| `session`    | Per-session byte counter and throughput       | No (opt-in)       |
+| Collector    | Emits                                                      | In default scrape |
+| ------------ | ---------------------------------------------------------- | ----------------- |
+| `core`       | Build info, process start time                             | Always on         |
+| `traffic`    | Received/transmitted byte counters                         | Yes               |
+| `connection` | Current connection gauges                                  | Yes               |
+| `stream`     | Media/track characteristics, source timing, and ingest RTT | Yes               |
+| `queue`      | Managed-queue gauges and counters                          | Yes               |
+| `push`       | Push/record byte counters and state                        | Yes               |
+| `session`    | Per-session byte counter, throughput, and RTT              | No (opt-in)       |
 
 `core` is always emitted regardless of the selection.
 
 `session` is **not** part of the default scrape: per-session series are high-cardinality and churn quickly. Request it explicitly with `?collect[]=session`, or scrape the `.../streams/{stream}/sessions` path.
 
-Per-session series are currently populated for **WebRTC** playback sessions only. Other publishers (LL-HLS, HLS, and so on) are reflected at the stream level (via `traffic` / `connection`) but do not create per-session entries.
+Per-session series are currently populated for **WebRTC** playback sessions only. Other publishers (LL-HLS, HLS, and so on) are reflected at the stream level (via `traffic`/`connection`) but do not create per-session entries.
+
+### Round-trip time
+
+Two RTT gauges are exposed in seconds, sourced according to how the connection is measured:
+
+- `ome_session_rtt_seconds` (in `session`): RTT to a WebRTC playback subscriber, derived from RTCP Receiver Reports.
+- `ome_stream_rtt_seconds` (in `stream`): ingest RTT of a WebRTC/WHIP input stream, derived from STUN binding request/response timing.
+
+A value of `0` means no RTT has been measured yet (for `ome_stream_rtt_seconds`, also for any non-WebRTC input).
+
+Both gauges are refreshed only when the peer drives new traffic: `ome_session_rtt_seconds` on each incoming RTCP Receiver Report, and `ome_stream_rtt_seconds` on each STUN binding response (the peer's ICE connectivity/consent-freshness checks, typically every few seconds).
+If the peer goes silent, the gauge holds its last value until the session or stream is torn down and the series disappears - it is not reset to `0`, so treat a non-zero value as "last measured RTT", not necessarily "current".
+`ome_stream_rtt_seconds` reflects the candidate pair that produced the most recent binding response, which is normally the nominated pair but may differ while the peer is still probing multiple pairs.
 
 ## Compression
 
