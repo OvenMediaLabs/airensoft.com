@@ -27,15 +27,21 @@ Only the `.../sessions` path includes per-session metrics by default; at any oth
 
 ## Authentication
 
-The endpoint sits behind the API server access token, like the rest of the REST API. Requests authenticate with HTTP Basic auth.
+`/v2/metrics` uses the same HTTP Basic authentication as the rest of the API server, keyed on the configured `<AccessToken>`.
 
-OvenMediaEngine compares the Base64-decoded Basic credential against the configured `<AccessToken>` verbatim. Set `<AccessToken>` in `username:password` form, then authenticate with standard HTTP Basic auth:
+Set `<AccessToken>` to a `username:password` pair, then authenticate with that username and password from any standard Basic-auth client:
 
 ```bash
-curl -u 'user:password' http://<ome-host>:<api-port>/v2/metrics
+curl -u 'user:secret' http://<ome-host>:<api-port>/v2/metrics
 ```
 
-If `<AccessToken>` contains no colon, it is not a username/password pair; send the token itself as the Base64 credential (`Authorization: Basic <base64 of the AccessToken>`).
+The username and password are simply the two sides of the colon in `<AccessToken>`. A leading-colon token such as `:secret` means an empty username (`curl -u ':secret'`).
+
+You can also use a single opaque token with no colon. In that case send it as the Base64-encoded Basic credential directly:
+
+```bash
+curl -H "Authorization: Basic $(printf '%s' 'mytoken' | base64)" http://<ome-host>:<api-port>/v2/metrics
+```
 
 ## Configuration
 
@@ -86,20 +92,124 @@ Collector names are lowercase. An unknown name returns `400` with the list of va
 
 `session` is **not** part of the default scrape: per-session series are high-cardinality and churn quickly. Request it explicitly with `?collect[]=session`, or scrape the `.../streams/{stream}/sessions` path.
 
-Per-session series are currently populated for **WebRTC** playback sessions only. Other publishers (LL-HLS, HLS, and so on) are reflected at the stream level (via `traffic`/`connection`) but do not create per-session entries.
+Per-session series are populated for **WebRTC, LLHLS, and HLS** playback sessions. Other publishers (SRT, OVT, Thumbnail, File, and so on) are reflected at the stream level (via `traffic`/`connection`) but do not create per-session entries.
+
+## Metrics reference
+
+Every metric emitted, grouped by collector. Each carries the entity labels of its scope (`vhost`/`app`/`stream`, plus `output_stream`, `publisher`, `session`/`session_id`, `track`/`media`/`codec`, `method`, `protocol` where applicable). All values are raw (no timestamps).
+
+### `core` (always on)
+
+| Metric                       | Type  | Description                                                       |
+| ---------------------------- | ----- | ----------------------------------------------------------------- |
+| `ome_build_info`             | info  | Build/version identification (value is always 1; data in labels). |
+| `process_start_time_seconds` | gauge | Process start time, in seconds since the Unix epoch.              |
+
+### `traffic`
+
+| Metric                     | Type    | Description                                                                                 |
+| -------------------------- | ------- | ------------------------------------------------------------------------------------------- |
+| `ome_receive_bytes_total`  | counter | Media bytes received from the provider for this stream (excludes protocol/socket overhead). |
+| `ome_transmit_bytes_total` | counter | Media bytes transmitted to subscribers, by `publisher`.                                     |
+
+### `connection`
+
+| Metric                | Type  | Description                                           |
+| --------------------- | ----- | ----------------------------------------------------- |
+| `ome_connections`     | gauge | Current number of connected sessions, by `publisher`. |
+| `ome_connections_max` | gauge | Peak concurrent connections observed for this stream. |
+
+### `stream`
+
+| Metric                                | Type  | Description                                                                         |
+| ------------------------------------- | ----- | ----------------------------------------------------------------------------------- |
+| `ome_stream_source_connect_seconds`   | gauge | Time taken to connect to the origin (0 for non-pull streams).                       |
+| `ome_stream_rtt_seconds`              | gauge | Ingest round-trip time, split by `method`. See [Round-trip time](#round-trip-time). |
+| `ome_track_bitrate_bps`               | gauge | Measured track bitrate (video and audio), by `track`/`media`/`codec`.               |
+| `ome_track_framerate_fps`             | gauge | Measured video frame rate.                                                          |
+| `ome_track_keyframe_interval_seconds` | gauge | Measured video keyframe interval.                                                   |
+| `ome_track_width`                     | gauge | Video frame width, in pixels.                                                       |
+| `ome_track_height`                    | gauge | Video frame height, in pixels.                                                      |
+| `ome_track_has_bframes`               | gauge | 1 if the video track carries B-frames, 0 otherwise.                                 |
+| `ome_track_samplerate_hertz`          | gauge | Audio sample rate, in hertz.                                                        |
+| `ome_track_channels`                  | gauge | Number of audio channels.                                                           |
+
+### `queue`
+
+| Metric                                 | Type    | Description                                      |
+| -------------------------------------- | ------- | ------------------------------------------------ |
+| `ome_queue_size`                       | gauge   | Current number of messages in the managed queue. |
+| `ome_queue_peak`                       | gauge   | Peak number of messages observed.                |
+| `ome_queue_threshold`                  | gauge   | Configured message-count threshold.              |
+| `ome_queue_dropped_total`              | counter | Total messages dropped by the queue.             |
+| `ome_queue_input_messages_per_second`  | gauge   | Messages enqueued per second.                    |
+| `ome_queue_output_messages_per_second` | gauge   | Messages dequeued per second.                    |
+| `ome_queue_waiting_seconds`            | gauge   | Average time a message waits in the queue.       |
+
+### `push`
+
+| Metric                          | Type     | Description                                                                         |
+| ------------------------------- | -------- | ----------------------------------------------------------------------------------- |
+| `ome_push_transmit_bytes_total` | counter  | Media bytes transmitted to the push/record target.                                  |
+| `ome_push_state`                | stateset | Push lifecycle state: one series per candidate state, value 1 for the active state. |
+
+### `session` (opt-in)
+
+| Metric                             | Type    | Description                                                                                             |
+| ---------------------------------- | ------- | ------------------------------------------------------------------------------------------------------- |
+| `ome_session_transmit_bytes_total` | counter | Media bytes transmitted to this subscriber session.                                                     |
+| `ome_session_transmit_bps`         | gauge   | Current transmit throughput to the session, in bits per second.                                         |
+| `ome_session_rtt_seconds`          | gauge   | Per-session round-trip time, split by `protocol` and `method`. See [Round-trip time](#round-trip-time). |
 
 ### Round-trip time
 
-Two RTT gauges are exposed in seconds, sourced according to how the connection is measured:
+Two RTT gauges are exposed in seconds, each carrying a `method` label that says how the value was measured:
 
-- `ome_session_rtt_seconds` (in `session`): RTT to a WebRTC playback subscriber, derived from RTCP Receiver Reports.
-- `ome_stream_rtt_seconds` (in `stream`): ingest RTT of a WebRTC/WHIP input stream, derived from STUN binding request/response timing.
+- `ome_session_rtt_seconds` (in `session`): RTT to a playback subscriber. Per-session metrics are produced for **WebRTC, LLHLS, and HLS** sessions, and every session series also carries a `protocol` label (`webrtc`, `llhls`, `hlsv3`, ...) so RTT can be split by delivery protocol as well as by method. The methods available depend on the protocol:
+  - `method="rtcp"`: derived from RTCP Receiver Reports (the media path). WebRTC only.
+  - `method="stun"`: derived from ICE STUN binding request/response timing. WebRTC only.
+  - `method="tcp"`: the kernel's smoothed TCP round-trip time (`TCP_INFO.tcpi_rtt`, SRTT) of the session's socket. Produced for HLS/LLHLS sessions (the HTTP connection that most recently served the session) and for WebRTC sessions carried over ICE-over-TCP; WebRTC sessions on UDP (the common case) emit no `tcp` series.
+  - `method="tcp_min"`: the kernel's minimum observed RTT (`TCP_INFO.tcpi_min_rtt`) of the same socket - the best-case path floor, filtering out the queuing/retransmit/delayed-ACK inflation carried by `tcp` (SRTT). Same TCP applicability as `tcp`.
+- `ome_stream_rtt_seconds` (in `stream`): ingest RTT of an input stream, by method:
+  - `method="stun"`: from STUN binding request/response timing (WebRTC/WHIP input).
+  - `method="tcp"`: the ingest socket's smoothed TCP round-trip time (`TCP_INFO.tcpi_rtt`, SRTT). Produced **only for TCP-based inputs** such as RTMP and RTSP-over-TCP; UDP-based inputs emit no `tcp` series.
+  - `method="tcp_min"`: the ingest socket's minimum observed RTT (`TCP_INFO.tcpi_min_rtt`), the best-case path floor. Same TCP applicability as `tcp`.
 
-A value of `0` means no RTT has been measured yet (for `ome_stream_rtt_seconds`, also for any non-WebRTC input).
+Because these methods measure the same round-trip at different layers, they will not agree exactly: `rtcp` reflects the media path, `stun` the ICE application exchange, and `tcp` the kernel transport (with `tcp_min` its best-case floor).
+Comparing them is useful - for example, a `stun`/`rtcp` value that spikes while `tcp` stays flat points to jitter or queuing above the transport rather than a network problem; a large `tcp` vs `tcp_min` gap points to queuing/retransmit within the TCP connection itself.
 
-Both gauges are refreshed only when the peer drives new traffic: `ome_session_rtt_seconds` on each incoming RTCP Receiver Report, and `ome_stream_rtt_seconds` on each STUN binding response (the peer's ICE connectivity/consent-freshness checks, typically every few seconds).
-If the peer goes silent, the gauge holds its last value until the session or stream is torn down and the series disappears - it is not reset to `0`, so treat a non-zero value as "last measured RTT", not necessarily "current".
-`ome_stream_rtt_seconds` reflects the candidate pair that produced the most recent binding response, which is normally the nominated pair but may differ while the peer is still probing multiple pairs.
+Do not expect `tcp`/`tcp_min` to match a raw `ping`. `TCP_INFO` derives RTT from the connection's own data/ACK timing, not from an echo probe. `tcp` (SRTT) is a _smoothed_ estimate, and delayed ACKs, retransmits, and send-buffer queuing under the media load push it well above the true path latency - so on even a fast LAN it can read milliseconds while `ping` shows microseconds. `tcp_min` (`tcpi_min_rtt`) strips that inflation out, so it is the closest of the TCP values to the raw path RTT, and the most directly comparable to `stun`/`rtcp` (which are lightweight single-packet probes). Use `tcp_min` when you want the path floor and `tcp` when you want what the connection is actually experiencing right now.
+
+Only the methods that apply to a session's/stream's protocol are exported - there are no always-zero series for methods that do not apply (e.g. an HLS/LLHLS session emits only `tcp`/`tcp_min`, never `rtcp`/`stun`; an RTMP input emits only `tcp`/`tcp_min`, never `stun`). For a method that does apply, a value of `0` means it is supported but has not measured an RTT yet.
+
+The `rtcp` and `stun` series are refreshed only when the peer drives new traffic: `rtcp` on each incoming RTCP Receiver Report, and `stun` on each STUN binding response (the peer's ICE connectivity/consent-freshness checks, typically every few seconds).
+If the peer goes silent, these gauges hold their last value until the session or stream is torn down and the series disappears - they are not reset to `0`, so treat a non-zero value as "last measured RTT", not necessarily "current".
+The `tcp` and `tcp_min` series are instead sampled at scrape time by reading the socket directly, so they always reflect the current transport state.
+Each `stun` value (session, and the `stun` series of `ome_stream_rtt_seconds`) reflects the candidate pair that produced the most recent binding response, which is normally the nominated pair but may differ while the peer is still probing multiple pairs.
+
+## Example queries
+
+A few PromQL starting points (replace the label matchers with your own vhost/app/stream):
+
+```promql
+# Current viewers of a stream, by publisher
+sum by (publisher) (ome_connections{stream="my_stream", output_stream=""})
+
+# Ingest bitrate, bits per second
+rate(ome_receive_bytes_total{stream="my_stream", output_stream=""}[1m]) * 8
+
+# Egress bitrate by publisher, bits per second
+sum by (publisher) (rate(ome_transmit_bytes_total{stream="my_stream", output_stream=""}[1m])) * 8
+
+# Per-session RTT (all protocols/methods) for an application
+ome_session_rtt_seconds{app="my_app"}
+
+# Transport-vs-media RTT divergence for WebRTC sessions
+# (large positive = TCP transport is slower than the media-path RTT)
+ome_session_rtt_seconds{method="tcp"} - ignoring(method) ome_session_rtt_seconds{method="rtcp"}
+```
+
+Stream-level series (`ome_connections`, `ome_receive_bytes_total`, `ome_transmit_bytes_total`, `ome_stream_rtt_seconds`) are emitted both for the input stream and for each output rendition. Match `output_stream=""` to select the input-side aggregate once and avoid double-counting across renditions.
 
 ## Compression
 
