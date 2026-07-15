@@ -150,6 +150,7 @@ const config: Config = {
   clientModules: [
     './src/clientModules/bootstrap-dark.ts',
     './src/clientModules/legacy-marketing.ts',
+    './src/clientModules/mobile-scroll.ts',
     './src/clientModules/preview-redirect.ts',
     './src/clientModules/gtag-stub.ts',
     // Dev-only review-comment overlay; excluded from production builds.

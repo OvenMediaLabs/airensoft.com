@@ -742,7 +742,7 @@ h6, .h6 {
     box-shadow: 0 0px 40px var(--border-darker);
 }
 .card-glow:hover::before {
-    opacity: 0.9;
+    opacity: 0.8;
 }
 .card-glow:hover::after {
     inset: 4px;
@@ -830,7 +830,7 @@ h6, .h6 {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 600;
-    opacity: 0.6;
+    opacity: 0.8;
     margin-bottom: 0.5rem;
     display: block;
 }
@@ -2470,6 +2470,23 @@ html.plugin-blog article [id] {
     transform: scale(1.03);
   }
   .fms-cmp-fms:hover .fms-cmp-top { height: 5px; }
+  /* hover Engineering-Led → Conventional 축소 */
+  .row:has(.fms-cmp-fms:hover) .fms-cmp:not(.fms-cmp-fms) {
+    transform: scale(0.96);
+    opacity: 0.8;
+  }
+  /* hover Conventional → Engineering-Led 강조 + Conventional 축소 */
+  .row:has(.fms-cmp:not(.fms-cmp-fms):hover) .fms-cmp-fms {
+    background: color-mix(in srgb, var(--bg-surface), white 5%);
+    border-color: var(--company-primary);
+    box-shadow: 0 20px 50px color-mix(in srgb, var(--company-primary), transparent 85%);
+    transform: scale(1.03);
+  }
+  .row:has(.fms-cmp:not(.fms-cmp-fms):hover) .fms-cmp-fms .fms-cmp-top { height: 5px; }
+  .row:has(.fms-cmp:not(.fms-cmp-fms):hover) .fms-cmp:not(.fms-cmp-fms) {
+    transform: scale(0.96);
+    opacity: 0.8;
+  }
 }
 .fms-cmp-top {
   position: absolute; top: 0; left: 0; right: 0; height: 3px;
