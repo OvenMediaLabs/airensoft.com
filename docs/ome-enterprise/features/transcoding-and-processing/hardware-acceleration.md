@@ -13,7 +13,11 @@ When you install OvenMediaEngine Enterprise with the distributed RPM/DEB package
 | --- | --- | --- | --- | --- |
 | NVIDIA | Ubuntu 22.04 / 24.04, Rocky 9 | Driver 535+ | H.264, H.265 | H.264, H.265 |
 | Xilinx Alveo U30MA | Ubuntu 22.04 / 24.04 | Video SDK 3.0 | H.264, H.265 | H.264, H.265 |
-| NETINT VPU | _Coming soon_ | | | |
+| NETINT Quadra VPU | Ubuntu 22.04 / 24.04, Rocky 9 | libxcoder V5.7.0+ (Quadra Release SW) | H.264, H.265 | H.264, H.265, AV1 |
+
+:::note
+On NETINT Quadra, AV1 is **encode-only** — there is no AV1 hardware decoding. A stream that needs AV1 decoding falls back to the software decoder.
+:::
 
 ## Driver Installation
 
@@ -125,6 +129,24 @@ Wed Jul  3 23:30:00 2024
 
 The Xilinx Video SDK 3.0 driver officially supports Ubuntu, Red Hat Linux 7.8, and Amazon Linux 2. For detailed information, please refer to the [Official Xilinx Documentation](https://xilinx.github.io/video-sdk/v3.0/getting_started_on_prem.html#install-the-sdk).
 
+### NETINT Quadra Driver (libxcoder)
+
+NETINT Quadra VPU support is built on NETINT's native `libxcoder` library from the official **Quadra Release SW** package. Unlike the NVIDIA driver, OvenMediaEngine does **not** bundle or install the NETINT driver — the Quadra kernel driver and `libxcoder` (**V5.7.0 or later**) must be installed beforehand, following the NETINT Quadra Release SW documentation for your OS.
+
+OvenMediaEngine loads `libxcoder.so` at runtime via `dlopen()` rather than linking it at build time. As a result, the same OvenMediaEngine Enterprise package runs on hosts with or without a Quadra card: when `libxcoder.so` or a card is absent, the NETINT backend simply reports zero devices and OvenMediaEngine falls back to another accelerator or the software codec.
+
+After installing the Quadra Release SW, verify the card and driver with the tools that ship with `libxcoder` (installed under `/usr/local/bin`):
+
+```bash
+# List detected Quadra cards (GUID / model / firmware revision / device path)
+$ ni_rsrc_list
+
+# Real-time per-card view: LOAD / running instances / memory / temperature / power
+$ ni_rsrc_mon
+```
+
+
+
 ## Verify Hardware Acceleration
 
 Once the RPM/DEB package and driver installation are complete, you need to verify that the drivers are correctly loaded and the Hardware-Accelerated Video Encoding is activated in OvenMediaEngine. This can be checked through the OvenMediaEngine's Log files.
@@ -133,14 +155,19 @@ Once the RPM/DEB package and driver installation are complete, you need to verif
 $ cd /var/log/ovenmediaengine
 $ cat ovenmediaengine.log | grep transcoder_gpu
 
-[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:43   | Trying to check the hardware accelerator
+[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:55   | Trying to check available hardware accelerators
 [OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:278  | NVIDIA. DeviceId(0), Name(NVIDIA GeForce GTX 1060 3GB), BusId(10), CudaId(0)
-[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:48   | Supported NVIDIA Accelerator. Number of devices(1)
-[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:62   | No supported Xilinx Media Accelerator
-[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:82   | No supported Netint VPU Accelerator
+[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:60   | Supported NVIDIA accelerator. Number of devices(1)
+[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:70   | No supported Xilinx Media accelerator
+[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:490  | NETINT(QUADRA). DeviceId(0), GUID(0), Model(Quadra T1A), FwRev(590A)
+[OvenMediaEngine:1234] TAG| transcoder_gpu.cpp:81   | Supported Netint VPU accelerator. Number of devices(1)
 ```
 
 ## Configuration
+
+:::info Enterprise-only configuration
+The `<HWAccels>` configuration is an **OvenMediaEngine Enterprise** feature. In the Open-Source edition this option is **deprecated** and has been removed from the sample configuration files (`Server.xml`, `Origin.xml`) and the Transcode WebHook (`hwaccels`) schema. Use the `<HWAccels>` block shown below with OvenMediaEngine Enterprise (`EnterpriseServer.xml`).
+:::
 
 To use hardware acceleration, add the `<HWAccels>` section under `<OutputProfiles>` and set `<Enable>` to `true` for the `<Decoder>` and/or `<Encoder>`. If a hardware codec is unavailable due to insufficient resources, it automatically falls back to a software codec.
 
@@ -150,8 +177,8 @@ To use hardware acceleration, add the `<HWAccels>` section under `<OutputProfile
         <!-- 
         Setting for Hardware Modules.
             - nv : Nvidia Video Codec SDK
-            - xma :Xilinx Media Accelerator
-            - netint: Netint VPU (coming soon)
+            - xma : Xilinx Media Accelerator
+            - nilogan : Netint Quadra VPU
 
         You can use multiple modules by separating them with commas.
         For example, if you want to use xma and nv, you can set it as follows.
@@ -194,6 +221,11 @@ Use the `[ModuleName]:[DeviceId]` format, and separate multiple modules with com
             <Modules>nv:1</Modules>
             ...
         </Video>
+        <!-- Encode on NETINT Quadra card 0 -->
+        <Video>
+            <Modules>nilogan:0</Modules>
+            ...
+        </Video>
     </Encodes>
 </OutputProfile>
 ```
@@ -203,3 +235,4 @@ Use the `[ModuleName]:[DeviceId]` format, and separate multiple modules with com
 * NVIDIA Driver Installation Guide : [https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#package-manager-installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#package-manager-installation)
 * Xilinx Video SDK Installation Guide : [https://xilinx.github.io/video-sdk/v3.0/getting_started_on_prem.html#install-the-sdk](https://xilinx.github.io/video-sdk/v3.0/getting_started_on_prem.html#install-the-sdk)
 * NVIDIA Container Toolkit Installation Guide : [https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+* NETINT SDK Installation Guide : [https://docs.netint.com/vpu/quadra/installation/ffmpeg/ffmpeg-scripted-installation](https://docs.netint.com/vpu/quadra/installation/ffmpeg/ffmpeg-scripted-installation)
