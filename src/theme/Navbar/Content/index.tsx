@@ -313,7 +313,7 @@ function Dropdown({item, isActive, dropdownId}: {item: NavbarItem; isActive: boo
   const activeSubLabel = activeAnchor
     ? (linkItems.find(sub => sub.to === activeAnchor)?.label ?? null)
     : (linkItems.find(sub => isSubActive(sub))?.label ?? null);
-  const toggleLabel = activeSubLabel ?? item.label;
+  const toggleLabel = activeSubLabel ?? item.label ?? '';
 
   // Closes any open Bootstrap dropdown (PC) or the hamburger collapse (mobile).
   const closeDropdownMenu = () => {
