@@ -82,7 +82,7 @@ function ProductCTA(): ReactNode {
           <p className={styles.ctaCardBody}>
             Free and self-hosted. Deploy on your own infrastructure.
           </p>
-          <Link to="/ome" className={styles.ctaCardButton}>
+          <Link to="/" className={styles.ctaCardButton}>
             Get started →
           </Link>
         </div>

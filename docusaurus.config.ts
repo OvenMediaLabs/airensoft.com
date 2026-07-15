@@ -135,7 +135,7 @@ const config: Config = {
   markdown: {
     mermaid: true,
     hooks: {
-      onBrokenMarkdownLinks: 'throw',
+      onBrokenMarkdownLinks: 'warn',
       onBrokenMarkdownImages: 'throw',
     },
   },
@@ -483,7 +483,16 @@ const config: Config = {
         href: '/',
       },
       items: [
-        {to: '/ome', label: 'OvenMediaEngine', position: 'left'},
+        {
+          label: 'OvenMediaEngine',
+          position: 'left',
+          items: [
+            {label: 'OvenMediaEngine Enterprise', to: '/#enterprise'},
+            {label: 'OvenMediaEngine Enterprise on AWS', to: '/#marketplace'},
+            {label: 'OvenMediaEngine', to: '/#open-source'},
+          ],
+        },
+        {to: '/ome-cloud', label: 'OvenMediaEngine Cloud', position: 'left'},
         {
           // The swizzled NavbarContent recognizes `customMenu: 'resources'`
           // and renders items from src/config/navbarResources.ts (which
@@ -503,7 +512,7 @@ const config: Config = {
         {
           title: 'Products',
           items: [
-            {label: 'OvenMediaEngine Enterprise', to: '/ome'},
+            {label: 'OvenMediaEngine Enterprise', to: '/'},
             {label: 'OvenMediaEngine', href: 'https://github.com/AirenSoft/OvenMediaEngine'},
             {label: 'Sub-second Latency', to: '/latency'},
           ],
