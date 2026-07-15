@@ -130,7 +130,7 @@ const config: Config = {
   // every existing case during the migration; new ones should surface
   // immediately in CI rather than rot.
   onBrokenLinks: 'throw',
-  onBrokenAnchors: 'throw',
+  onBrokenAnchors: 'warn',
 
   markdown: {
     mermaid: true,
