@@ -1,7 +1,7 @@
 ---
 title: OvenMediaEngine Cloud | Fully Managed Live Streaming Service
-description: OvenMediaEngine Cloud is a fully managed live streaming service designed, deployed, and operated by the team that builds OvenMediaEngine. Architecture, customization, configuration, deployment, integration, monitoring, and operations — all handled by the engineers who build the technology.
-image: images/og/og_ome-enterprise.png
+description: Fully managed live streaming service designed, deployed, and operated by the OvenMediaEngine core team.
+image: images/og/og_ome-cloud.png
 hide_table_of_contents: true
 wrapperClassName: marketing-page
 keywords: [OvenMediaEngine Cloud, fully managed live streaming, managed streaming service, live streaming service, OvenMediaEngine managed, WebRTC managed service, LL-HLS managed, engineering-led streaming]
@@ -18,6 +18,63 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
   <meta property="og:image:alt" content="OvenMediaEngine Cloud: Fully Managed Live Streaming Service" />
   <meta name="author" content="OvenMedia Labs" />
   <link rel="canonical" href="https://ovenmedialabs.com/ome-cloud" />
+  <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': 'https://ovenmedialabs.com/ome-cloud#service',
+      name: 'OvenMediaEngine Cloud',
+      alternateName: 'OME Cloud',
+      serviceType: 'Fully Managed Live Streaming Service',
+      description: 'OvenMediaEngine Cloud is a fully managed live streaming service designed, deployed, and operated by the OvenMediaEngine core team. Covers architecture design, infrastructure, custom development, channel configuration, transcoding optimization, deployment, third-party integration, web console, and ongoing support.',
+      url: 'https://ovenmedialabs.com/ome-cloud',
+      provider: {
+        '@type': 'Organization',
+        '@id': 'https://ovenmedialabs.com/#organization',
+        name: 'OvenMedia Labs Inc.',
+      },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'OvenMediaEngine Cloud Services',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Architecture Design',
+              description: 'We design the streaming architecture around your workflow, traffic, latency targets, protocols, and service requirements.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Custom Development',
+              description: "When standard features are not enough, OvenMediaEngine's core developers build the functionality your service requires.",
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Deployment',
+              description: 'We deploy the environment and configure regions around your audience, performance requirements, and operating costs.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Third-Party Integration',
+              description: 'We integrate CDNs, storage, authentication, advertising systems, monitoring tools, and other external services.',
+            },
+          },
+        ],
+      },
+      areaServed: 'Worldwide',
+      keywords: 'fully managed live streaming, managed streaming service, WebRTC, LL-HLS, SRT, OvenMediaEngine, real-time streaming',
+    })}
+  </script>
 </Head>
 
 <style>{`
@@ -198,10 +255,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         </div>
         <hr className="mt-0 mb-4 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
 
-        {/* 16:9 screenshot placeholder */}
-        <div className="rounded mb-4 d-flex align-items-center justify-content-center" style={{aspectRatio: '16/9', background: 'var(--bg-dark)', border: '1px dashed color-mix(in srgb, var(--text-sub), transparent 60%)'}}>
-          <span className="text-mono" style={{fontSize: '12px', opacity: 0.3, letterSpacing: '0.08em'}}>SCREENSHOT</span>
-        </div>
+        <img src="/images/ome_screenshot/webconsole_demo.webp" alt="Web Console Demo" className="rounded mb-4 w-100" style={{aspectRatio: '1920/1030', objectFit: 'cover'}} />
 
         {/* Need / Provided / Result */}
         <div className="row g-0 mobile-horizontal-scroll align-items-stretch mb-4">
@@ -247,16 +301,16 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
 
         {/* CTA */}
         <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 pt-3" style={{borderTop: '1px solid color-mix(in srgb, var(--text-sub), transparent 80%)'}}>
-          <p className="text-sub mb-0">Want to see the web console that was built and delivered as part of this case?</p>
-          <a href="mailto:contact@ovenmedialabs.com?subject=[OME Cloud] Web Console Demo Request" className="btn btn-company-outline btn-sm flex-shrink-0">View the Web Console</a>
+          <p className="text-sub col-lg-9 mb-0">Want to see the web console that was built and delivered as part of this project?<br />Try it yourself by publishing a stream to the provided input URL and playing it back from the output URL.</p>
+          <a href="https://ome-oegoazgs.cloud.ovenmedia.io:8443" target="_blank" rel="noopener noreferrer" className="btn btn-company-outline btn-sm flex-shrink-0">Try the Web Console</a>
         </div>
 
       </div>
       </div>
       </div>
 
-      {/* ── Secondary Cases ───────────────────────────────────────────────── */}
-      <div className="row gx-3 mt-3 reveal-up mobile-horizontal-scroll">
+      {/* ── Secondary Cases (hidden until content is ready) ──────────────── */}
+      {false && <div className="row gx-3 mt-3 reveal-up mobile-horizontal-scroll">
         <div className="col-10 col-md-6">
           <div className="p-5 rounded h-100" style={{background: 'color-mix(in srgb, var(--bg-middle), transparent 50%)'}}>
             <div className="mb-2">
@@ -295,7 +349,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
             </div>
           </div>
         </div>
-      </div>
+      </div>}
     </div>
   </div>
 </section>

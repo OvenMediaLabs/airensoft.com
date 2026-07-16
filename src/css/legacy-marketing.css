@@ -139,52 +139,21 @@ h7, .h7 {
 .toggler-icon-bar:nth-child(3) { bottom: 0; }
 
 .navbar-brand {
-    /* Don't let the navbar's flex layout shrink the brand on narrow
-     * widths — the img keeps its declared height but the picture
-     * container can otherwise be flex-shrunk, causing the visible
-     * brand to look compressed. */
-    flex-shrink: 0;
+    flex-shrink: 1;
+    min-width: 0;
 }
+
+.navbar-formerly { margin-top: 4px; }
 
 .navbar-brand img {
-    /* Fixed height keeps the brand stable across viewport widths.
-     * Previously `clamp(28px, 4vw, 40px)` made the logo grow/shrink
-     * with the window, which most company sites avoid. 40px matches
-     * the previous clamp's upper bound. */
-    height: 40px;
+    height: 24px;
     width: auto;
     transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-    filter: brightness(120%);
+    filter: none;
 }
 
-
-/* On phone-sized viewports the desktop 40px logo + the search button +
- * the hamburger toggler can't all fit on one navbar row, so the search
- * and toggler wrap below. Scale the brand container to a fraction of
- * the viewport so it always leaves enough room for the search and
- * toggler — including at ultra-narrow (~280px) widths where the desktop
- * width would still wrap. The desktop 40px size remains the upper bound.
- *
- * Picture wraps the <img> and the "(Formerly AirenSoft)" subtext; we
- * size the picture explicitly and let both children fill it. The
- * subtext is clipped with an ellipsis if it would otherwise expand the
- * picture wider than the logo image and re-trigger the wrap. */
 @media (max-width: 767.98px) {
-    .navbar-brand {
-        flex-shrink: 1;
-        min-width: 0;
-    }
     .navbar-brand picture {
-        /* Brand width is the smallest of:
-         *   1. 40vw — the preferred share of the viewport
-         *   2. 200px — the desktop logo width (upper bound)
-         *   3. 100vw - 10rem — the slack left after subtracting the
-         *      container padding, search button, toggler, and their
-         *      margins. Without this third bound, ultra-narrow widths
-         *      (< 280px) re-trigger the row-wrap because 40vw is still
-         *      too wide once the fixed elements take their share.
-         * The result: logo scales smoothly with viewport, never grows
-         * past the desktop size, and never pushes the row to wrap. */
         display: block;
         width: min(40vw, 200px, calc(100vw - 10rem));
     }
@@ -193,12 +162,7 @@ h7, .h7 {
         width: 100%;
         max-width: 100%;
     }
-    .navbar-brand picture p {
-        max-width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+    .navbar-formerly { margin-top: 0 !important; }
 }
 
 .navbar-toggler[aria-expanded="true"] .toggler-icon-bar:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
@@ -877,8 +841,8 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 .footer-section .flex-grow-1 > .container { margin-top: var(--navbar-height); justify-content: center; }
 
 .address-col img {
-    width: auto;
-    height: clamp(12px, 4vw, 20px);
+    width: clamp(130px, 18vw, 200px);
+    height: auto;
 	margin-bottom: clamp(1rem, 4vw, 1.5rem);
 	display: block;
     color: var(--text-sub);
@@ -2353,15 +2317,27 @@ html.plugin-blog article [id] {
 }
 
 .guide-img-main { 
-    width: calc(280px + (550 - 280) * ((100vw - 320px) / (1400 - 320))) !important;
-    max-width: 90% !important;
+    width: calc(200px + (380 - 200) * ((100vw - 320px) / (1400 - 320))) !important;
+    max-width: 70% !important;
 }
 
 .guide-img-symbol {
-    width: calc(90px + 2vw) !important;
-    max-width: 140px !important;
+    width: calc(150px + 6vw) !important;
+    max-width: 300px !important;
     height: auto !important;
     flex-shrink: 0;
+}
+
+.guide-box-body.is-grid-2 {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.guide-box-body.is-grid-2 .guide-img-symbol {
+    width: calc(50% - 2rem) !important;
+    max-width: calc(50% - 2rem) !important;
+    margin: 1rem !important;
 }
 
 .guide-img-text { 

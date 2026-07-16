@@ -43,7 +43,6 @@ function AnimatedLabel({label}: {label: string}) {
 
   useEffect(() => {
     if (label === displayed) {
-      // Initial mount: just let the enter animation finish
       const t = setTimeout(() => setPhase('idle'), 340);
       return () => clearTimeout(t);
     }
@@ -273,9 +272,17 @@ function Dropdown({item, isActive, dropdownId}: {item: NavbarItem; isActive: boo
       }
       setActiveAnchor(active);
     };
-    window.addEventListener('scroll', update, {passive: true});
+    let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+    const onScroll = () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(update, 30);
+    };
+    window.addEventListener('scroll', onScroll, {passive: true});
     update();
-    return () => window.removeEventListener('scroll', update);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      clearTimeout(debounceTimer);
+    };
   }, [pathname]); // item.items is static config — safe to omit
 
   // Track desktop dropdown open/close for the active class.
@@ -437,21 +444,31 @@ export default function NavbarContent(): ReactNode {
   const brandTo = previewSource ? `/docs/${previewSource}/` : '/';
   const {pathname} = useLocation();
 
-  const logoSrc = useBaseUrl('/images/airen_ci/OML_Letter_GGL.svg');
-  const logoPng = useBaseUrl('/images/airen_ci/OML_Letter_GGL.png');
+  const logoDefaultSrc = useBaseUrl('/images/airen_ci/OML_horz_right_default.svg');
+  const logoDefaultPng = useBaseUrl('/images/airen_ci/OML_horz_right_default.png');
+  const logoLightSrc = useBaseUrl('/images/airen_ci/OML_horz_right_light.svg');
+  const logoLightPng = useBaseUrl('/images/airen_ci/OML_horz_right_light.png');
 
   return (
     <div className="container">
-      {/* Brand structure mirrors legacy index.html: the <p> "(Formerly AirenSoft)"
-          sits INSIDE the <picture> element so it stacks below the logo image as
-          a subscript. Browsers tolerate non-spec children in <picture>; the
-          rendering order matches the original site exactly. */}
       <Link className="navbar-brand d-flex flex-column align-items-start" to={brandTo}>
-        <picture style={{pointerEvents: 'none'}}>
-          <source srcSet={logoSrc} type="image/svg+xml" />
-          <img src={logoPng} alt="OvenMedia Labs" className="sharp-img" />
-        </picture>
-        <span className="super-small text-end text-sub opacity-75 w-100 d-block" style={{pointerEvents: 'none'}}>
+        <div style={{position: 'relative', pointerEvents: 'none'}}>
+          <picture style={{display: 'block'}}>
+            <source srcSet={logoDefaultSrc} type="image/svg+xml" />
+            <img src={logoDefaultPng} alt="OvenMedia Labs" className="sharp-img" />
+          </picture>
+          <picture style={{
+            position: 'absolute', top: 0, left: 0, display: 'block',
+            maskImage: 'linear-gradient(-60deg, transparent 0%, white 100%)',
+            WebkitMaskImage: 'linear-gradient(-60deg, transparent 0%, white 100%)',
+          }}>
+            <source srcSet={logoLightSrc} type="image/svg+xml" />
+            <img src={logoLightPng} alt="" className="sharp-img" />
+          </picture>
+        </div>
+        <span
+          className="super-small text-sub navbar-formerly"
+          style={{pointerEvents: 'none', opacity: 0.75, alignSelf: 'flex-end'}}>
           (Formerly AirenSoft)
         </span>
       </Link>

@@ -75,7 +75,7 @@ const structuredData = {
       name: 'OvenMedia Labs',
       alternateName: 'AirenSoft',
       url: SITE_URL,
-      logo: `${SITE_URL}/images/ico/android-chrome-512x512.png`,
+      logo: `${SITE_URL}/images/ico/web-app-manifest-512x512.png`,
       description:
         'Media Technology Experts Group. Developers of OvenMediaEngine and OvenMediaEngine Enterprise.',
       foundingDate: '2010',
@@ -160,6 +160,11 @@ const config: Config = {
   ],
 
   headTags: [
+    // ----- Favicon -----
+    { tagName: 'link', attributes: { rel: 'icon', type: 'image/svg+xml', href: '/images/ico/favicon.svg' } },
+    { tagName: 'link', attributes: { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/images/ico/favicon-96x96.png' } },
+    { tagName: 'link', attributes: { rel: 'apple-touch-icon', sizes: '180x180', href: '/images/ico/apple-touch-icon.png' } },
+    { tagName: 'link', attributes: { rel: 'manifest', href: '/images/ico/site.webmanifest' } },
     // ----- Consent (production only) -----
     // Google Consent Mode defaults must run BEFORE GTM/GA4/Ads fire.
     // GTM → @docusaurus/plugin-google-tag-manager
@@ -466,6 +471,8 @@ const config: Config = {
     metadata: [
       {name: 'keywords', content: 'ovenmedia, oven media, ovenmedia labs, airensoft, ovenmediaengine, ome, ome enterprise, ovenplayer, ovenlivekit, sub second latency streaming, webrtc streaming, llhls streaming, srt streaming, open source streaming server'},
       {property: 'og:site_name', content: 'OvenMedia Labs'},
+      {name: 'twitter:card', content: 'summary_large_image'},
+      {name: 'twitter:site', content: '@OvenMediaEngine'},
     ],
     colorMode: {
       defaultMode: 'dark',
@@ -480,7 +487,7 @@ const config: Config = {
       title: '',
       logo: {
         alt: 'OvenMedia Labs',
-        src: 'images/airen_ci/OML_Letter_GGL.svg',
+        src: 'images/airen_ci/OML_horz_right_default.svg',
         href: '/',
       },
       items: [

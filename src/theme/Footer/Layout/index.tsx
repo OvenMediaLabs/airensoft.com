@@ -11,8 +11,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function FooterLayout(): ReactNode {
-  const logoSvg = useBaseUrl('/images/airen_ci/OML_Text_L.svg');
-  const logoPng = useBaseUrl('/images/airen_ci/OML_Text_L.png');
+  const logoSvg = useBaseUrl('/images/airen_ci/OML_text_gray.svg');
+  const logoPng = useBaseUrl('/images/airen_ci/OML_text_gray.png');
   const {siteConfig} = useDocusaurusContext();
   const previewSource = (siteConfig.customFields as Record<string, string> | undefined)?.previewSource || '';
 
