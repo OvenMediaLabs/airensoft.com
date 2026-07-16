@@ -770,10 +770,10 @@ h6, .h6 {
     width: 56px; height: 56px;
     display: flex; align-items: center; justify-content: center;
     border-radius: 50%;
-    background: var(--tech-icon, rgba(255, 255, 255, 0.04));
-    border: 1px solid color-mix(in srgb, var(--text-main), transparent 90%);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(248, 250, 252, 0.1);
     margin-bottom: 1.5rem;
-    color: var(text-main);
+    color: var(--text-main);
     transition: all 0.3s ease;
 }
 .tech-card-pro:hover .pro-icon-box {
@@ -2316,9 +2316,9 @@ html.plugin-blog article [id] {
     height: auto !important;
 }
 
-.guide-img-main { 
+.guide-img-main {
     width: calc(200px + (380 - 200) * ((100vw - 320px) / (1400 - 320))) !important;
-    max-width: 70% !important;
+    max-width: 80% !important;
 }
 
 .guide-img-symbol {
@@ -2340,9 +2340,41 @@ html.plugin-blog article [id] {
     margin: 1rem !important;
 }
 
-.guide-img-text { 
+.guide-img-text {
     width: calc(240px + (450 - 240) * ((100vw - 320px) / (1400 - 320))) !important;
     max-width: 75% !important;
+}
+
+.guide-box-body.is-split {
+    flex-direction: row;
+    gap: 2.5rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.guide-split-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.guide-split-col .guide-img-text {
+    width: 220px !important;
+    max-width: 100% !important;
+}
+
+.guide-img-fst {
+    width: calc(90px + 6vw) !important;
+    max-width: 160px !important;
+}
+
+.guide-img-horz {
+    width: calc(320px + (580 - 320) * ((100vw - 320px) / (1400 - 320))) !important;
+    max-width: 90% !important;
 }
 
 .grid-line-layer {
@@ -2367,7 +2399,11 @@ html.plugin-blog article [id] {
 
 @media (max-width: 991px) {
     .guide-box-body { padding: 40px 20px; min-height: 200px; }
-    .guide-img-main, .guide-img-text { max-width: 100%; }
+    .guide-img-main { width: 80% !important; max-width: 100% !important; }
+    .guide-img-text { max-width: 100%; }
+    .guide-box-body.is-split { flex-direction: column; }
+    .guide-img-fst { width: calc(80px + 10vw) !important; max-width: 140px !important; }
+    .guide-img-horz { width: 90% !important; max-width: 100% !important; }
 }
 
 /* ── OvenMediaEngine FMS page ─────────────────────────────────────────────── */
