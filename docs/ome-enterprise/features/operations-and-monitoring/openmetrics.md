@@ -78,21 +78,23 @@ Metrics are grouped into collectors. Select a subset with repeated query keys (t
 
 Collector names are lowercase. An unknown name returns `400` with the list of valid names. A request with no selection emits all default collectors.
 
-| Collector    | Emits                                                      | In default scrape |
-| ------------ | ---------------------------------------------------------- | ----------------- |
-| `core`       | Build info, process start time                             | Always on         |
-| `traffic`    | Received/transmitted byte counters                         | Yes               |
-| `connection` | Current connection gauges                                  | Yes               |
-| `stream`     | Media/track characteristics, source timing, and ingest RTT | Yes               |
-| `queue`      | Managed-queue gauges and counters                          | Yes               |
-| `push`       | Push/record byte counters and state                        | Yes               |
-| `session`    | Per-session byte counter, throughput, and RTT              | No (opt-in)       |
+| Collector    | Emits                                                                              | In default scrape |
+| ------------ | ---------------------------------------------------------------------------------- | ----------------- |
+| `core`       | Build info, process start time                                                     | Always on         |
+| `traffic`    | Received/transmitted byte counters                                                 | Yes               |
+| `connection` | Current connection gauges                                                          | Yes               |
+| `stream`     | Media/track characteristics, source timing, ingest RTT, and SRT ingest packet loss | Yes               |
+| `queue`      | Managed-queue gauges and counters                                                  | Yes               |
+| `push`       | Push/record byte counters and state                                                | Yes               |
+| `session`    | Per-session byte counter, throughput, RTT, and SRT egress packet loss              | No (opt-in)       |
 
 `core` is always emitted regardless of the selection.
 
 `session` is **not** part of the default scrape: per-session series are high-cardinality and churn quickly. Request it explicitly with `?collect[]=session`, or scrape the `.../streams/{stream}/sessions` path.
 
-Per-session series are populated for **WebRTC, LLHLS, and HLS** playback sessions. Other publishers (SRT, OVT, Thumbnail, File, and so on) are reflected at the stream level (via `traffic`/`connection`) but do not create per-session entries.
+Per-session series are populated for **WebRTC, LLHLS, and HLS** playback sessions, and for **SRT** subscriber sessions. Other publishers (OVT, Thumbnail, File, and so on) are reflected at the stream level (via `traffic`/`connection`) but do not create per-session entries.
+
+An SRT subscriber session populates only the SRT egress packet-loss counters. Its bytes and throughput are accounted at the stream level rather than per session, so `ome_session_transmit_bytes_total` and `ome_session_transmit_bps` read `0` for SRT sessions (use the stream-level `ome_transmit_bytes_total{publisher="srt"}` for SRT egress bytes). SRT has no per-session RTT, so `ome_session_rtt_seconds` is not emitted for SRT sessions at all (no method applies), the same way RTT methods are omitted rather than zeroed for any protocol that does not support them.
 
 ## Metrics reference
 
@@ -121,18 +123,20 @@ Every metric emitted, grouped by collector. Each carries the entity labels of it
 
 ### `stream`
 
-| Metric                                | Type  | Description                                                                         |
-| ------------------------------------- | ----- | ----------------------------------------------------------------------------------- |
-| `ome_stream_source_connect_seconds`   | gauge | Time taken to connect to the origin (0 for non-pull streams).                       |
-| `ome_stream_rtt_seconds`              | gauge | Ingest round-trip time, split by `method`. See [Round-trip time](#round-trip-time). |
-| `ome_track_bitrate_bps`               | gauge | Measured track bitrate (video and audio), by `track`/`media`/`codec`.               |
-| `ome_track_framerate_fps`             | gauge | Measured video frame rate.                                                          |
-| `ome_track_keyframe_interval_seconds` | gauge | Measured video keyframe interval.                                                   |
-| `ome_track_width`                     | gauge | Video frame width, in pixels.                                                       |
-| `ome_track_height`                    | gauge | Video frame height, in pixels.                                                      |
-| `ome_track_has_bframes`               | gauge | 1 if the video track carries B-frames, 0 otherwise.                                 |
-| `ome_track_samplerate_hertz`          | gauge | Audio sample rate, in hertz.                                                        |
-| `ome_track_channels`                  | gauge | Number of audio channels.                                                           |
+| Metric                                 | Type    | Description                                                                                                  |
+| -------------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------ |
+| `ome_stream_source_connect_seconds`    | gauge   | Time taken to connect to the origin (0 for non-pull streams).                                                |
+| `ome_stream_rtt_seconds`               | gauge   | Ingest round-trip time, split by `method`. See [Round-trip time](#round-trip-time).                          |
+| `ome_stream_srt_lost_packets_total`    | counter | SRT ingest: packets the receiver detected as lost. SRT inputs only. See [SRT packet loss](#srt-packet-loss). |
+| `ome_stream_srt_dropped_packets_total` | counter | SRT ingest: packets dropped too-late-to-play (TLPKTDROP). SRT inputs only.                                   |
+| `ome_track_bitrate_bps`                | gauge   | Measured track bitrate (video and audio), by `track`/`media`/`codec`.                                        |
+| `ome_track_framerate_fps`              | gauge   | Measured video frame rate.                                                                                   |
+| `ome_track_keyframe_interval_seconds`  | gauge   | Measured video keyframe interval.                                                                            |
+| `ome_track_width`                      | gauge   | Video frame width, in pixels.                                                                                |
+| `ome_track_height`                     | gauge   | Video frame height, in pixels.                                                                               |
+| `ome_track_has_bframes`                | gauge   | 1 if the video track carries B-frames, 0 otherwise.                                                          |
+| `ome_track_samplerate_hertz`           | gauge   | Audio sample rate, in hertz.                                                                                 |
+| `ome_track_channels`                   | gauge   | Number of audio channels.                                                                                    |
 
 ### `queue`
 
@@ -155,11 +159,14 @@ Every metric emitted, grouped by collector. Each carries the entity labels of it
 
 ### `session` (opt-in)
 
-| Metric                             | Type    | Description                                                                                             |
-| ---------------------------------- | ------- | ------------------------------------------------------------------------------------------------------- |
-| `ome_session_transmit_bytes_total` | counter | Media bytes transmitted to this subscriber session.                                                     |
-| `ome_session_transmit_bps`         | gauge   | Current transmit throughput to the session, in bits per second.                                         |
-| `ome_session_rtt_seconds`          | gauge   | Per-session round-trip time, split by `protocol` and `method`. See [Round-trip time](#round-trip-time). |
+| Metric                                        | Type    | Description                                                                                                           |
+| --------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------- |
+| `ome_session_transmit_bytes_total`            | counter | Media bytes transmitted to this subscriber session.                                                                   |
+| `ome_session_transmit_bps`                    | gauge   | Current transmit throughput to the session, in bits per second.                                                       |
+| `ome_session_rtt_seconds`                     | gauge   | Per-session round-trip time, split by `protocol` and `method`. See [Round-trip time](#round-trip-time).               |
+| `ome_session_srt_lost_packets_total`          | counter | SRT egress: packets the subscriber reported lost via NAK. SRT sessions only. See [SRT packet loss](#srt-packet-loss). |
+| `ome_session_srt_retransmitted_packets_total` | counter | SRT egress: packets retransmitted to the subscriber. SRT sessions only.                                               |
+| `ome_session_srt_dropped_packets_total`       | counter | SRT egress: packets dropped too-late-to-send (TLPKTDROP). SRT sessions only.                                          |
 
 ### Round-trip time
 
@@ -186,6 +193,27 @@ The `rtcp` and `stun` series are refreshed only when the peer drives new traffic
 If the peer goes silent, these gauges hold their last value until the session or stream is torn down and the series disappears - they are not reset to `0`, so treat a non-zero value as "last measured RTT", not necessarily "current".
 The `tcp` and `tcp_min` series are instead sampled at scrape time by reading the socket directly, so they always reflect the current transport state.
 Each `stun` value (session, and the `stun` series of `ome_stream_rtt_seconds`) reflects the candidate pair that produced the most recent binding response, which is normally the nominated pair but may differ while the peer is still probing multiple pairs.
+
+### SRT packet loss
+
+For SRT connections, OvenMediaEngine exposes libsrt's packet-loss counters (from `srt_bstats`) split by whether the connection is an ingest (SRT provider) or an egress (SRT publisher).
+Each is a counter reported as a cumulative total since the SRT connection was established; the value only grows, and the series disappears (resetting the count) when that connection reconnects.
+The counters are sampled directly from the socket at scrape time, so they always reflect the current transport state.
+
+Ingest side, on the `stream` collector (receiver statistics of the SRT input):
+
+- `ome_stream_srt_lost_packets_total`: SRT data packets the receiver detected as lost, before retransmission recovery (`pktRcvLossTotal`).
+- `ome_stream_srt_dropped_packets_total`: SRT data packets dropped too-late-to-play by the TLPKTDROP mechanism (`pktRcvDropTotal`).
+
+Egress side, on the `session` collector (sender statistics towards one SRT subscriber):
+
+- `ome_session_srt_lost_packets_total`: SRT data packets the subscriber reported lost via NAK (`pktSndLossTotal`).
+- `ome_session_srt_retransmitted_packets_total`: SRT data packets retransmitted to the subscriber in response (`pktRetransTotal`).
+- `ome_session_srt_dropped_packets_total`: SRT data packets dropped too-late-to-send by the TLPKTDROP mechanism (`pktSndDropTotal`).
+
+These families are emitted only when at least one in-scope stream or session is carried over SRT; non-SRT streams and sessions produce no SRT series at all (rather than always-zero samples).
+These counters are causally ordered: detected loss (`lost`) is what triggers a retransmission (`retransmitted`), and a packet is counted as `dropped` (`TLPKTDROP`) only when neither the original nor its retransmission arrives within the latency window.
+So on a lossy path `lost` moves first, `retransmitted` tracks the recovery attempts it triggers, and `dropped` rises only for the packets that recovery could not deliver in time.
 
 ## Example queries
 
