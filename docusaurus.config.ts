@@ -500,7 +500,7 @@ const config: Config = {
             {label: 'OvenMediaEngine', to: '/#open-source'},
           ],
         },
-        {to: '/ome-cloud', label: 'OvenMediaEngine Cloud', position: 'left'},
+        {to: '/ome-cloud', label: 'OvenMedia Cloud', position: 'left'},
         {
           // The swizzled NavbarContent recognizes `customMenu: 'resources'`
           // and renders items from src/config/navbarResources.ts (which

@@ -455,7 +455,7 @@ export default function NavbarContent(): ReactNode {
         <div style={{position: 'relative', pointerEvents: 'none'}}>
           <picture style={{display: 'block'}}>
             <source srcSet={logoDefaultSrc} type="image/svg+xml" />
-            <img src={logoDefaultPng} alt="OvenMedia Labs" className="sharp-img" />
+            <img src={logoDefaultPng} alt="OvenMedia Labs" className="sharp-img" style={{filter: 'brightness(1.25)'}} />
           </picture>
           <picture style={{
             position: 'absolute', top: 0, left: 0, display: 'block',
@@ -463,7 +463,7 @@ export default function NavbarContent(): ReactNode {
             WebkitMaskImage: 'linear-gradient(-60deg, transparent 0%, white 100%)',
           }}>
             <source srcSet={logoLightSrc} type="image/svg+xml" />
-            <img src={logoLightPng} alt="" className="sharp-img" />
+            <img src={logoLightPng} alt="" className="sharp-img" style={{filter: 'brightness(1.25)'}} />
           </picture>
         </div>
         <span

@@ -54,7 +54,7 @@ export default function FooterLayout(): ReactNode {
                 <div className="footer-col">
                   <h6 className="footer-heading">Products</h6>
                   <ul className="list-unstyled">
-                    <li><Link to="/ome-cloud" className="footer-link">OvenMediaEngine Cloud</Link></li>
+                    <li><Link to="/ome-cloud" className="footer-link">OvenMedia Cloud</Link></li>
                     <li><Link to="/" className="footer-link">OvenMediaEngine Enterprise</Link></li>
                     <li><a href="https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs" target="_blank" rel="noopener noreferrer" className="footer-link">OvenMediaEngine Enterprise on AWS</a></li>
                     <li><a href="https://github.com/OvenMediaLabs/OvenMediaEngine" target="_blank" rel="noopener noreferrer" className="footer-link">OvenMediaEngine</a></li>

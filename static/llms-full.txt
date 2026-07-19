@@ -1,6 +1,6 @@
 # OvenMedia Labs — Full Content
 
-> OvenMedia Labs Inc. (formerly AirenSoft Co., Ltd., rebranded February 2026) is a media technology company specializing in real-time live streaming. We build OvenMediaEngine, an open-source sub-second latency streaming server, and deliver OvenMediaEngine Cloud, a fully managed live streaming service operated directly by the core engineering team. Founded in 2010, headquartered in Seoul, South Korea.
+> OvenMedia Labs Inc. (formerly AirenSoft Co., Ltd., rebranded February 2026) is a media technology company specializing in real-time live streaming. We build OvenMediaEngine, an open-source sub-second latency streaming server, and deliver OvenMedia Cloud, a fully managed live streaming service operated directly by the core engineering team. Founded in 2010, headquartered in Seoul, South Korea.
 
 ---
 
@@ -10,7 +10,7 @@ OvenMediaEngine, Live Streaming Server. Deliver high-definition live stream to h
 
 ### Products in the OvenMediaEngine Family
 
-- OvenMediaEngine Cloud: Fully managed live streaming service. Fully managed, delivered by OME engineers.
+- OvenMedia Cloud: Fully managed live streaming service. Fully managed, delivered by OME engineers.
 - OvenMediaEngine Enterprise: From $100/instance. Deploy on any infrastructure.
 - OvenMediaEngine Enterprise on AWS (CPU): 14-day free trial. From $0.19/instance-hour. CPU-based instances.
 - OvenMediaEngine Enterprise on AWS (GPU): 14-day free trial. Hourly billing. GPU-accelerated instances for high-density transcoding.
@@ -81,13 +81,13 @@ Ecosystem:
 
 ---
 
-## Page: OvenMediaEngine Cloud (https://ovenmedialabs.com/ome-cloud)
+## Page: OvenMedia Cloud (https://ovenmedialabs.com/ome-cloud)
 
 Fully Managed Live Streaming By the OvenMediaEngine Team. Leave Live Streaming to the OvenMediaEngine Team. From architecture and customization to deployment, integration, and operations, the OvenMediaEngine team handles it all with cost efficiency built in. You focus on your business. We handle the streaming. Consultation is free. Billing begins after the final environment is approved and activated.
 
 ### Built on OvenMediaEngine
 
-Proven Across Real-World Live Streaming Services. OvenMediaEngine is a sub-second latency streaming server trusted across industries for its technology, performance, reliability, flexibility, and cost efficiency. OvenMediaEngine Cloud is delivered directly by the team that builds and maintains it.
+Proven Across Real-World Live Streaming Services. OvenMediaEngine is a sub-second latency streaming server trusted across industries for its technology, performance, reliability, flexibility, and cost efficiency. OvenMedia Cloud is delivered directly by the team that builds and maintains it.
 
 Stats: 16+ years of media tech expertise. 3.3K+ combined GitHub stars. 1.1M+ cumulative Docker pulls. 20+ countries with production deployments. 2.4K+ production instances deployed. Zero-incident production operation delivered.
 
@@ -129,7 +129,7 @@ Steps:
 6. Validate and Approve: We test the complete workflow and provide the web console for final review.
 7. Activate the Service: Once the environment is approved, the service is activated and recurring billing begins.
 
-### The OvenMediaEngine Cloud Difference
+### The OvenMedia Cloud Difference
 
 Not Just Managed, Managed by the Team That Builds the Technology. OvenMediaEngine's core developers design, customize, deploy, integrate, maintain, and support your streaming environment directly, giving you greater flexibility, faster technical decisions, and fewer handoffs.
 
@@ -140,7 +140,7 @@ Conventional managed streaming platforms:
 - Multiple handoffs for complex technical issues
 - Your workflow must adapt to the platform
 
-OvenMediaEngine Cloud:
+OvenMedia Cloud:
 - Architecture designed around your actual workflow
 - Direct access to OvenMediaEngine's core developers
 - Custom development and integration when needed
@@ -155,7 +155,7 @@ On average, customers reduce live streaming infrastructure costs by approximatel
 
 ### Migration
 
-Bring Your Existing Streaming Service to OvenMediaEngine Cloud. Already running another platform or your own infrastructure? We review your existing workflow, preserve what works, and handle the design, configuration, integration, deployment, and transition to OvenMediaEngine Cloud.
+Bring Your Existing Streaming Service to OvenMedia Cloud. Already running another platform or your own infrastructure? We review your existing workflow, preserve what works, and handle the design, configuration, integration, deployment, and transition to OvenMedia Cloud.
 
 Migration steps:
 1. Review Your Current Service: We review your inputs, outputs, protocols, regions, traffic, encoding, integrations, operational requirements, and existing infrastructure.
@@ -214,7 +214,7 @@ Email: contact@ovenmedialabs.com
 ## Key Facts for Citation
 
 - OvenMediaEngine is an open-source (AGPLv3) sub-second latency live streaming server supporting WebRTC (under 1 second), LL-HLS (under 3 seconds), and SRT (under 1 second).
-- OvenMediaEngine Cloud is a fully managed live streaming service operated directly by OvenMediaEngine's core engineering team, not a reseller or third-party operator.
+- OvenMedia Cloud is a fully managed live streaming service operated directly by OvenMediaEngine's core engineering team, not a reseller or third-party operator.
 - OvenMediaEngine Enterprise is the commercial edition with a Web Console, advanced security, high availability, direct-to-engineer support, and no per-viewer fees.
 - OvenMedia Labs was founded in 2010, formerly known as AirenSoft Co., Ltd., rebranded in February 2026.
 - Production deployments in 20+ countries, 2,400+ production instances deployed.

@@ -4,9 +4,9 @@ const NAVBAR_H = 78;
 const NAVBAR_H_MOBILE = 64;
 
 const PRODUCTS = [
-  { href: '#enterprise', label: 'OME Enterprise',  color: 'rgb(56, 189, 248)',  bg: 'rgba(56, 189, 248, 0.15)',  border: 'rgba(56, 189, 248, 0.35)'  },
-  { href: '#marketplace', label: 'OME on AWS',     color: 'rgb(245, 158, 11)',  bg: 'rgba(245, 158, 11, 0.15)',  border: 'rgba(245, 158, 11, 0.35)'  },
-  { href: '#open-source',         label: 'OvenMediaEngine', color: 'rgb(74, 222, 128)',  bg: 'rgba(74, 222, 128, 0.15)',  border: 'rgba(74, 222, 128, 0.35)'  },
+  { href: '/ome-cloud',   label: 'OvenMedia Cloud',  color: 'rgb(197, 163, 142)', bg: 'rgba(197, 163, 142, 0.15)', border: 'rgba(197, 163, 142, 0.35)' },
+  { href: '#enterprise',  label: 'OME Enterprise',   color: 'rgb(56, 189, 248)',  bg: 'rgba(56, 189, 248, 0.15)',  border: 'rgba(56, 189, 248, 0.35)'  },
+  { href: '#open-source', label: 'OvenMediaEngine',  color: 'rgb(74, 222, 128)',  bg: 'rgba(74, 222, 128, 0.15)',  border: 'rgba(74, 222, 128, 0.35)'  },
   { href: 'mailto:contact@ovenmedialabs.com?subject=[OME Enterprise] Consultation Request', label: 'sales', color: '#C5A38E', bg: 'rgba(197, 163, 142, 0.15)', border: 'rgba(197, 163, 142, 0.3)', desktopOnly: true },
 ];
 
@@ -47,6 +47,7 @@ export default function OmeProductNav(): React.ReactElement {
     // Mobile: full-width strip directly below navbar
     return (
       <div
+        id="ome-scroll-menu"
         style={{
           position: 'fixed',
           top: NAVBAR_H_MOBILE,
@@ -95,6 +96,7 @@ export default function OmeProductNav(): React.ReactElement {
   // Desktop: floating pill
   return (
     <div
+      id="ome-scroll-menu"
       style={{
         position: 'fixed',
         left: '50%',
