@@ -4,7 +4,7 @@
 
 ## Products
 
-- [OvenMedia Cloud](https://ovenmedialabs.com/ome-cloud): Fully managed live streaming service designed, deployed, and operated by the OvenMediaEngine core team.
+- [OvenMedia Cloud](https://ovenmedialabs.com/om-cloud): Fully managed live streaming service designed, deployed, and operated by the OvenMediaEngine core team.
 - [OvenMediaEngine Enterprise](https://ovenmedialabs.com/): Commercial edition of OvenMediaEngine with Web Console, advanced security, high availability, and direct-to-engineer support. Self-hosted, per-instance pricing.
 - [OvenMediaEngine Enterprise on AWS (CPU)](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs): OvenMediaEngine Enterprise on AWS Marketplace for CPU-based instances. 14-day free trial, hourly billing.
 - [OvenMediaEngine Enterprise on AWS (GPU)](https://aws.amazon.com/marketplace/pp/prodview-xgqlshxeegf5c): OvenMediaEngine Enterprise on AWS Marketplace for GPU-accelerated instances. 14-day free trial, hourly billing.

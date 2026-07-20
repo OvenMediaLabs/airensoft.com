@@ -81,7 +81,7 @@ Ecosystem:
 
 ---
 
-## Page: OvenMedia Cloud (https://ovenmedialabs.com/ome-cloud)
+## Page: OvenMedia Cloud (https://ovenmedialabs.com/om-cloud)
 
 Fully Managed Live Streaming By the OvenMediaEngine Team. Leave Live Streaming to the OvenMediaEngine Team. From architecture and customization to deployment, integration, and operations, the OvenMediaEngine team handles it all with cost efficiency built in. You focus on your business. We handle the streaming. Consultation is free. Billing begins after the final environment is approved and activated.
 

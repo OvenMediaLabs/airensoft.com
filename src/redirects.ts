@@ -100,8 +100,8 @@ export const explicitRedirects: {from: string[]; to: string}[] = [
     to: '/',
   },
   {
-    from: ['/ovenmediaengine-cloud'],
-    to: '/ome-cloud',
+    from: ['/ovenmediaengine-cloud', '/ome-cloud', '/omc', '/ovenmedia-cloud'],
+    to: '/om-cloud',
   },
   {
     // GitBook "transcoding" section had an overview child also named

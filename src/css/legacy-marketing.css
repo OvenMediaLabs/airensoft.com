@@ -2662,3 +2662,6 @@ html.plugin-blog article [id] {
 .fms-tlrow:last-child .fms-tlline { display: none; }
 .fms-tlbody { padding-top: 0; }
 .fms-tlrow:last-child { margin-bottom: 0; }
+
+.notion-consultation-iframe { height: 2040px; }
+@media (max-width: 575px) { .notion-consultation-iframe { height: 2180px; } }
