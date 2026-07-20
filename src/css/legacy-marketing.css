@@ -841,7 +841,7 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 .footer-section .flex-grow-1 > .container { margin-top: var(--navbar-height); justify-content: center; }
 
 .address-col img {
-    width: clamp(130px, 18vw, 200px);
+    width: clamp(180px, 21vw, 240px);
     height: auto;
 	margin-bottom: clamp(1rem, 4vw, 1.5rem);
 	display: block;
@@ -922,12 +922,14 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 .text-bi-yellow3:hover { color: var(--company-accent) !important; }
 
 .bg-body { background-color: var(--bg-body) !important; }
-.bg-body-50 { background-color: color-mix(in srgb, var(--bg-body), transparent 50%) !important; }
+.bg-body-50 { background-color: rgba(10, 17, 34, 0.5) !important; }
 .bg-middle { background-color: var(--bg-middle) !important; }
 .bg-middle-50 { background-color: color-mix(in srgb, var(--bg-middle), transparent 50%) !important; }
 .bg-middle-75 { background-color: color-mix(in srgb, var(--bg-middle), transparent 25%) !important; }
-.bg-surface { background-color: var(--bg-surface) !important; } 
+.bg-middle-25 { background-color: rgba(20, 39, 78, 0.25) !important; }
+.bg-surface { background-color: var(--bg-surface) !important; }
 .bg-surface-50 { background-color: color-mix(in srgb, var(--bg-surface), transparent 50%) !important; }
+.bg-surface-25 { background-color: rgba(57, 72, 103, 0.25) !important; }
 .bg-company { background-color: var(--company-primary) !important; }
 .bg-company-tertiary { background-color: var(--company-tertiary) !important; }
 .bg-brand { background-color: var(--brand-secondary) !important; }
@@ -1136,6 +1138,16 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 }
 
 /* === Fill buttons (main CTAs) === */
+.btn-enterprise-outline {
+    background-color: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8;
+    transition: all 0.5s ease;
+    --bs-btn-active-bg: rgba(56, 189, 248, 0.5); --bs-btn-active-border-color: #38bdf8;
+}
+.btn-enterprise-outline:hover {
+    border-color: #38bdf8; background-color: #38bdf8;
+    transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px rgba(56, 189, 248, 0.2);
+    color: #0a1122; z-index: 10;
+}
 .btn-enterprise-fill {
     background-color: #38BDF8; border: 1px solid #38BDF8; color: #0a1122;
     font-weight: 600;
@@ -1652,6 +1664,14 @@ html.plugin-blog article [id] {
   50% {
     box-shadow: 0 0 32px 10px rgba(255, 153, 0, 0.2);
   }
+}
+
+.aws-price-text-pulse {
+  animation: aws-price-text-pulse 4s ease-in-out infinite;
+}
+@keyframes aws-price-text-pulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
 }
 
 .arrow-bounce {

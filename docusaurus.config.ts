@@ -496,7 +496,6 @@ const config: Config = {
           position: 'left',
           items: [
             {label: 'OvenMediaEngine Enterprise', to: '/#enterprise'},
-            {label: 'OvenMediaEngine Enterprise on AWS', to: '/#marketplace'},
             {label: 'OvenMediaEngine', to: '/#open-source'},
           ],
         },
