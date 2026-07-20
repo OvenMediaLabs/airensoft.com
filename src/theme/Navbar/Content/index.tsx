@@ -37,6 +37,28 @@ type NavbarItem = {
   [key: string]: unknown;
 };
 
+function AnimatedLabel({label}: {label: string}) {
+  const [displayed, setDisplayed] = useState(label);
+  const [phase, setPhase] = useState<'idle' | 'exit' | 'enter'>('enter');
+
+  useEffect(() => {
+    if (label === displayed) {
+      const t = setTimeout(() => setPhase('idle'), 340);
+      return () => clearTimeout(t);
+    }
+    setPhase('exit');
+    const t1 = setTimeout(() => { setDisplayed(label); setPhase('enter'); }, 130);
+    const t2 = setTimeout(() => setPhase('idle'), 340);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
+  }, [label]);
+
+  const cls = phase === 'exit' ? 'nav-label-exit'
+    : phase === 'enter' ? 'nav-label-enter'
+    : '';
+
+  return <span className={`nav-label-animated${cls ? ` ${cls}` : ''}`}>{displayed}</span>;
+}
+
 function NavLink({item, isActive}: {item: NavbarItem; isActive: boolean}) {
   const href = item.href;
   const to = item.to;
@@ -91,11 +113,19 @@ function DropdownItem({item, isActive = false}: {item: NavbarItem; isActive?: bo
       </li>
     );
   }
+  const closeMenu = () => {
+    const bs = (window as any).bootstrap;
+    if (!bs) return;
+    document.querySelectorAll<HTMLElement>('[data-bs-toggle="dropdown"]').forEach(el => {
+      bs.Dropdown.getInstance(el)?.hide();
+    });
+  };
   return (
     <li>
       <Link
         className={`dropdown-item d-flex align-items-center${isActive ? ' active' : ''}`}
-        to={item.to ?? '/'}>
+        to={item.to ?? '/'}
+        onClick={closeMenu}>
         {item.icon && (
           <i className={`ph ${item.icon} dropdown-item-leading`}></i>
         )}
@@ -105,7 +135,7 @@ function DropdownItem({item, isActive = false}: {item: NavbarItem; isActive?: bo
   );
 }
 
-function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
+function Dropdown({item, isActive, dropdownId}: {item: NavbarItem; isActive: boolean; dropdownId: string}) {
   const {pathname} = useLocation();
   const subItems: NavbarItem[] =
     item.customMenu === 'resources'
@@ -114,12 +144,18 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
   const linkItems = subItems.filter(
     (sub) => sub.type !== 'divider' && sub.type !== 'header',
   );
-  const isResourcesActive = linkItems.some(
-    (sub) => sub.to != null && pathUnder(sub.to, pathname),
-  );
   const [externalClicked, setExternalClicked] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [activeAnchor, setActiveAnchor] = useState<string | null>(null);
+  const isResourcesActive = linkItems.some((sub) => {
+    if (!sub.to) return false;
+    // Anchor items (e.g. /#enterprise) are on the homepage; pathname never
+    // contains the hash, so pathUnder would never match. Match only when
+    // that specific section is scrolled into view (activeAnchor).
+    if (sub.to.startsWith('/#')) return activeAnchor === sub.to;
+    return pathUnder(sub.to, pathname);
+  });
   const dropdownToggleRef = useRef<HTMLAnchorElement>(null);
   const showAccordionRef = useRef(false);
 
@@ -137,63 +173,75 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
   // Drive Bootstrap collapse open/close based on route
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const el = document.getElementById('mobileResourcesMenu');
+    const el = document.getElementById(dropdownId);
     if (!el) return;
     const bs = (window as any).bootstrap;
     if (!bs) return;
     const instance =
       bs.Collapse.getInstance(el) ?? new bs.Collapse(el, {toggle: false});
     showAccordion ? instance.show() : instance.hide();
-  }, [showAccordion]);
+  }, [showAccordion, dropdownId]);
 
-  // Track mobile accordion state for the active class
+  // Track mobile accordion state for the active class.
+  // Also close all other mobile accordions when this one opens (mutual exclusivity).
   useEffect(() => {
-    const el = document.getElementById('mobileResourcesMenu');
+    const el = document.getElementById(dropdownId);
     if (!el) return;
-    const onShow = () => setIsExpanded(true);
-    const onHide = () => setIsExpanded(false);
+    const onShow = () => {
+      setIsExpanded(true);
+      const bs = (window as any).bootstrap;
+      if (bs) {
+        document.querySelectorAll<HTMLElement>('#mainNav .collapse[id^="mobileDropdown-"]').forEach((other) => {
+          if (other !== el) bs.Collapse.getInstance(other)?.hide();
+        });
+      }
+    };
+    // Only update isExpanded when showAccordion is false. When showAccordion
+    // is true (user is on an active page), calling setIsExpanded(false) would
+    // trigger a React re-render that immediately adds 'show' back, fighting
+    // Bootstrap's close animation and preventing mutual exclusivity from working.
+    const onHide = () => { if (!showAccordionRef.current) setIsExpanded(false); };
     el.addEventListener('show.bs.collapse', onShow);
     el.addEventListener('hide.bs.collapse', onHide);
     return () => {
       el.removeEventListener('show.bs.collapse', onShow);
       el.removeEventListener('hide.bs.collapse', onHide);
     };
-  }, []);
+  }, [dropdownId]);
 
-  // Hamburger open/close → Resources accordion sync (no double-animation):
+  // Hamburger open/close → accordion sync (no double-animation):
   //
   //   show.bs.collapse  (hamburger starts opening, before any frame is painted)
-  //     → set Resources to its target state instantly, with no transition, so
-  //       it is already in the right position when the menu slides into view.
+  //     → set this accordion to its target state instantly, with no transition,
+  //       so it is already in the right position when the menu slides into view.
   //
   //   hidden.bs.collapse (hamburger fully hidden, off-screen)
-  //     → silently reset Resources to collapsed so the next open starts clean.
+  //     → silently reset to collapsed so the next open starts clean.
   //       Done after the hamburger is invisible so there is no visible flicker.
   useEffect(() => {
     const mainNav = document.getElementById('mainNav');
     if (!mainNav) return;
 
-    const setResourcesInstant = (open: boolean) => {
-      const el = document.getElementById('mobileResourcesMenu');
+    const setAccordionInstant = (open: boolean) => {
+      const el = document.getElementById(dropdownId);
       if (!el) return;
       // Bypass Bootstrap's transition by toggling the class directly.
       // Do NOT call dispose() — that nulls Bootstrap's internal _element ref
       // and causes "Cannot read properties of null (reading 'classList')" the
-      // next time the user clicks the Resources toggle.
+      // next time the user clicks the toggle.
       el.classList.toggle('show', open);
     };
 
     // Guard against event bubbling: collapse events from child elements
-    // (e.g. #mobileResourcesMenu) bubble up to #mainNav. Without the target
-    // check, clicking Resources would re-trigger this handler and fight with
-    // Bootstrap's own open animation.
+    // bubble up to #mainNav. Without the target check, clicking a dropdown
+    // would re-trigger this handler and fight with Bootstrap's own animation.
     const onNavShow   = (e: Event) => {
       if ((e.target as HTMLElement)?.id !== 'mainNav') return;
-      setResourcesInstant(showAccordionRef.current);
+      setAccordionInstant(showAccordionRef.current);
     };
     const onNavHidden = (e: Event) => {
       if ((e.target as HTMLElement)?.id !== 'mainNav') return;
-      setResourcesInstant(false);
+      setAccordionInstant(false);
       setIsExpanded(false);
     };
 
@@ -203,13 +251,54 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
       mainNav.removeEventListener('show.bs.collapse',   onNavShow);
       mainNav.removeEventListener('hidden.bs.collapse', onNavHidden);
     };
-  }, []);
+  }, [dropdownId]);
 
-  // Track desktop dropdown open/close for the active class
+  // Scroll-based section activation for homepage anchor items (e.g. /#enterprise).
+  // Resets when navigating away from /.
+  useEffect(() => {
+    const anchorSubs = (item.items ?? []).filter(sub => sub.to?.startsWith('/#'));
+    if (anchorSubs.length === 0 || pathname !== '/') {
+      setActiveAnchor(null);
+      return;
+    }
+    const navbarHeight = 82;
+    const update = () => {
+      let active: string | null = null;
+      for (const sub of anchorSubs) {
+        const id = sub.to!.slice(2); // '/#enterprise' → 'enterprise'
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= navbarHeight + 1) active = sub.to!;
+      }
+      setActiveAnchor(active);
+    };
+    let debounceTimer: ReturnType<typeof setTimeout> | undefined;
+    const onScroll = () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(update, 30);
+    };
+    window.addEventListener('scroll', onScroll, {passive: true});
+    update();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      clearTimeout(debounceTimer);
+    };
+  }, [pathname]); // item.items is static config — safe to omit
+
+  // Track desktop dropdown open/close for the active class.
+  // Also close all other open dropdowns when this one opens (mutual exclusivity).
   useEffect(() => {
     const toggle = dropdownToggleRef.current;
     if (!toggle) return;
-    const onShow = () => setIsDropdownOpen(true);
+    const onShow = () => {
+      setIsDropdownOpen(true);
+      const bs = (window as any).bootstrap;
+      if (bs) {
+        document.querySelectorAll<HTMLElement>('[data-bs-toggle="dropdown"]').forEach((el) => {
+          if (el !== toggle) bs.Dropdown.getInstance(el)?.hide();
+        });
+      }
+    };
     const onHide = () => setIsDropdownOpen(false);
     toggle.addEventListener('show.bs.dropdown', onShow);
     toggle.addEventListener('hide.bs.dropdown', onHide);
@@ -219,25 +308,50 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
     };
   }, []);
 
+  const hasAnchorItems = (item.items ?? []).some(sub => sub.to?.startsWith('/#'));
+  const isSubActive = (sub: NavbarItem): boolean => {
+    if (!sub.to) return false;
+    if (pathname !== '/') return pathUnder(sub.to, pathname);
+    if (activeAnchor !== null) return activeAnchor === sub.to;
+    return false;
+  };
+  const isToggleActive = isActive || isDropdownOpen || isResourcesActive
+    || (hasAnchorItems && pathname === '/');
+  const activeSubLabel = activeAnchor
+    ? (linkItems.find(sub => sub.to === activeAnchor)?.label ?? null)
+    : (linkItems.find(sub => isSubActive(sub))?.label ?? null);
+  const toggleLabel = activeSubLabel ?? item.label ?? '';
+
+  // Closes any open Bootstrap dropdown (PC) or the hamburger collapse (mobile).
+  const closeDropdownMenu = () => {
+    const bs = (window as any).bootstrap;
+    if (!bs) return;
+    document.querySelectorAll<HTMLElement>('[data-bs-toggle="dropdown"]').forEach(el => {
+      bs.Dropdown.getInstance(el)?.hide();
+    });
+    const mainNav = document.getElementById('mainNav');
+    if (mainNav) bs.Collapse.getInstance(mainNav)?.hide();
+  };
+
   return (
     <>
       {/* Desktop: full dropdown */}
       <li className="nav-item dropdown d-none d-lg-block">
         <a
           ref={dropdownToggleRef}
-          className={`nav-link dropdown-toggle${(isResourcesActive || isDropdownOpen) ? ' active' : ''}`}
+          className={`nav-link dropdown-toggle${isToggleActive ? ' active' : ''}`}
           href="#"
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false">
-          {item.label}
+          <AnimatedLabel label={toggleLabel} />
         </a>
         <ul className="dropdown-menu dropdown-menu-end navbar-dropdown-menu">
           {subItems.map((sub, i) => (
             <DropdownItem
               key={i}
               item={sub}
-              isActive={sub.to != null && pathUnder(sub.to, pathname)}
+              isActive={isSubActive(sub)}
             />
           ))}
         </ul>
@@ -246,18 +360,18 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
       {/* Mobile: accordion collapse */}
       <li className="nav-item d-lg-none">
         <a
-          className={`nav-link d-flex align-items-center justify-content-between${(isResourcesActive || isExpanded) ? ' active' : ''}`}
-          href="#mobileResourcesMenu"
+          className={`nav-link d-flex align-items-center justify-content-between${(isToggleActive || isExpanded) ? ' active' : ''}`}
+          href={`#${dropdownId}`}
           role="button"
           data-bs-toggle="collapse"
           aria-expanded={showAccordion ? 'true' : 'false'}
-          aria-controls="mobileResourcesMenu">
-          {item.label}
+          aria-controls={dropdownId}>
+          <AnimatedLabel label={toggleLabel} />
           <i className="ph ph-caret-down mobile-nav-caret"></i>
         </a>
         <div
           className={`collapse${showAccordion ? ' show' : ''}`}
-          id="mobileResourcesMenu">
+          id={dropdownId}>
           <ul className="nav flex-column">
             {subItems.map((sub, i) => {
               if (sub.type === 'header') {
@@ -285,8 +399,9 @@ function Dropdown({item, isActive}: {item: NavbarItem; isActive: boolean}) {
               ) : (
                 <li key={`mob-${i}`} className="nav-item">
                   <Link
-                    className={`nav-link nav-link-sub d-flex align-items-center${pathUnder(sub.to ?? '', pathname) ? ' active' : ''}`}
-                    to={sub.to ?? '/'}>
+                    className={`nav-link nav-link-sub d-flex align-items-center${isSubActive(sub) ? ' active' : ''}`}
+                    to={sub.to ?? '/'}
+                    onClick={closeDropdownMenu}>
                     {sub.icon && <i className={`ph ${sub.icon} nav-link-sub-icon`}></i>}
                     <span>{label}</span>
                   </Link>
@@ -329,21 +444,31 @@ export default function NavbarContent(): ReactNode {
   const brandTo = previewSource ? `/docs/${previewSource}/` : '/';
   const {pathname} = useLocation();
 
-  const logoSrc = useBaseUrl('/images/airen_ci/OML_Letter_GGL.svg');
-  const logoPng = useBaseUrl('/images/airen_ci/OML_Letter_GGL.png');
+  const logoDefaultSrc = useBaseUrl('/images/airen_ci/OML_horz_right_default.svg');
+  const logoDefaultPng = useBaseUrl('/images/airen_ci/OML_horz_right_default.png');
+  const logoLightSrc = useBaseUrl('/images/airen_ci/OML_horz_right_light.svg');
+  const logoLightPng = useBaseUrl('/images/airen_ci/OML_horz_right_light.png');
 
   return (
     <div className="container">
-      {/* Brand structure mirrors legacy index.html: the <p> "(Formerly AirenSoft)"
-          sits INSIDE the <picture> element so it stacks below the logo image as
-          a subscript. Browsers tolerate non-spec children in <picture>; the
-          rendering order matches the original site exactly. */}
       <Link className="navbar-brand d-flex flex-column align-items-start" to={brandTo}>
-        <picture style={{pointerEvents: 'none'}}>
-          <source srcSet={logoSrc} type="image/svg+xml" />
-          <img src={logoPng} alt="OvenMedia Labs" className="sharp-img" />
-        </picture>
-        <span className="super-small text-end text-sub opacity-75 w-100 d-block" style={{pointerEvents: 'none'}}>
+        <div style={{position: 'relative', pointerEvents: 'none'}}>
+          <picture style={{display: 'block'}}>
+            <source srcSet={logoDefaultSrc} type="image/svg+xml" />
+            <img src={logoDefaultPng} alt="OvenMedia Labs" className="sharp-img" style={{filter: 'brightness(1.25)'}} />
+          </picture>
+          <picture style={{
+            position: 'absolute', top: 0, left: 0, display: 'block',
+            maskImage: 'linear-gradient(-60deg, transparent 0%, white 100%)',
+            WebkitMaskImage: 'linear-gradient(-60deg, transparent 0%, white 100%)',
+          }}>
+            <source srcSet={logoLightSrc} type="image/svg+xml" />
+            <img src={logoLightPng} alt="" className="sharp-img" style={{filter: 'brightness(1.25)'}} />
+          </picture>
+        </div>
+        <span
+          className="super-small text-sub navbar-formerly"
+          style={{pointerEvents: 'none', opacity: 0.75, alignSelf: 'flex-end'}}>
           (Formerly AirenSoft)
         </span>
       </Link>
@@ -407,6 +532,7 @@ export default function NavbarContent(): ReactNode {
                   key={i}
                   item={item}
                   isActive={isDropdownActive(item, pathname)}
+                  dropdownId={`mobileDropdown-${i}`}
                 />
               );
             }

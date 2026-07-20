@@ -1,0 +1,545 @@
+---
+title: OvenMedia Cloud | Fully Managed Live Streaming Service
+description: Fully managed live streaming service designed, deployed, and operated by the OvenMediaEngine core team.
+image: images/og/og_ome-cloud.png
+hide_table_of_contents: true
+wrapperClassName: marketing-page
+keywords: [OvenMedia Cloud, fully managed live streaming, managed streaming service, live streaming service, OvenMediaEngine managed, WebRTC managed service, LL-HLS managed, engineering-led streaming]
+---
+
+import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
+import Head from '@docusaurus/Head';
+import OmeProductNav from '@site/src/components/OmeProductNav';
+
+<Head>
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="OvenMedia Labs" />
+  <meta property="og:image:alt" content="OvenMedia Cloud: Fully Managed Live Streaming Service" />
+  <meta name="author" content="OvenMedia Labs" />
+  <link rel="canonical" href="https://ovenmedialabs.com/om-cloud" />
+  <script type="application/ld+json">
+    {JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      '@id': 'https://ovenmedialabs.com/om-cloud#service',
+      name: 'OvenMedia Cloud',
+      alternateName: 'OME Cloud',
+      serviceType: 'Fully Managed Live Streaming Service',
+      description: 'OvenMedia Cloud is a fully managed live streaming service designed, deployed, and operated by the OvenMediaEngine core team. Covers architecture design, infrastructure, custom development, channel configuration, transcoding optimization, deployment, third-party integration, web console, and ongoing support.',
+      url: 'https://ovenmedialabs.com/om-cloud',
+      provider: {
+        '@type': 'Organization',
+        '@id': 'https://ovenmedialabs.com/#organization',
+        name: 'OvenMedia Labs Inc.',
+      },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'OvenMedia Cloud Services',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Architecture Design',
+              description: 'We design the streaming architecture around your workflow, traffic, latency targets, protocols, and service requirements.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Custom Development',
+              description: "When standard features are not enough, OvenMediaEngine's core developers build the functionality your service requires.",
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Deployment',
+              description: 'We deploy the environment and configure regions around your audience, performance requirements, and operating costs.',
+            },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: 'Third-Party Integration',
+              description: 'We integrate CDNs, storage, authentication, advertising systems, monitoring tools, and other external services.',
+            },
+          },
+        ],
+      },
+      areaServed: 'Worldwide',
+      keywords: 'fully managed live streaming, managed streaming service, WebRTC, LL-HLS, SRT, OvenMediaEngine, real-time streaming',
+    })}
+  </script>
+</Head>
+
+<style>{`
+  .foundation-part { background: linear-gradient(to bottom, var(--bg-body) 0%, var(--bg-middle) 100%); }
+  .foundation-part > .full-page-section.bg-body { background: transparent !important; }
+  .solutions-part { background: var(--bg-body); }
+  .solutions-part > .full-page-section.bg-body { background: transparent !important; }
+  .howitworks-part { background: linear-gradient(to bottom, var(--bg-dark) 0%, var(--bg-middle) 100%); }
+  .howitworks-part > .full-page-section.bg-body { background: transparent !important; }
+  #coverage .card-glow::after { background: var(--bg-surface) !important; transition: inset 0.4s ease, background 0.4s ease; }
+  @media (hover: hover) {
+    #coverage .card-glow:hover::after { background: color-mix(in srgb, var(--bg-surface), var(--bg-middle) 50%) !important; }
+  }
+  @keyframes case-arrow-nudge {
+    0%, 100% { transform: translateX(0); opacity: 0.5; }
+    50% { transform: translateX(5px); opacity: 1; }
+  }
+  .case-step-arrow { animation: case-arrow-nudge 1.6s ease-in-out infinite; }
+  .difference-part { background: linear-gradient(to bottom, var(--bg-surface) 0%, var(--bg-dark) 100%); }
+  .difference-part > .full-page-section.bg-middle-50 { background: transparent !important; }
+  @media (max-width: 991px) {
+    #migration .fms-step { border-radius: 16px !important; padding: 1.25rem !important; }
+    #migration .fms-stepno { font-size: 11px; }
+    #migration h4.h5 { font-size: 0.95rem; }
+    #migration p { font-size: 13px !important; }
+  }
+`}</style>
+
+{/* ─── 01 Hero ─────────────────────────────────────────────────────────────── */}
+<section id="hero-section" className="hero-bg-index full-page-section d-flex align-items-center position-relative text-center">
+  <div className="hero-overlay"></div>
+  <div className="hero-overlay-gradient" style={{height: '45%'}}></div>
+  <div className="container position-relative z-1">
+    <div className="row justify-content-center">
+      <div className="col-lg-8">
+        <div className="hero-badge mb-4 px-4 reveal-up mx-auto fw-bold small d-inline-block">OvenMedia Cloud</div>
+      </div>
+      <div className="col-lg-10 reveal-up">
+        <h1 className="display-2s fw-bold text-main mb-4 lh-tight">
+          <span className="text-main">Fully Managed Live Streaming</span>
+          <span className="text-gradient d-block" style={{paddingBottom: '0.1em'}}><span className="d-none d-sm-inline">By the OvenMediaEngine Team</span><span className="d-sm-none">By the OME Team</span></span>
+        </h1>
+        <p className="lead text-main mb-3 reveal-up col-lg-10 mx-auto" style={{fontWeight: 400}}>Leave Live Streaming to the OvenMediaEngine Team</p>
+
+        <div className="d-flex flex-wrap justify-content-center gap-2 mb-4 reveal-up">
+          {['Architecture', 'Infrastructure', 'Customization', 'Deployment', 'Integration', 'Fine-tuning', 'Monitoring', 'Maintenance', 'Operations'].map(tag => (
+            <span key={tag} className="fms-tag-secondary" style={{fontSize: '12px', padding: '4px 8px'}}>{tag}</span>
+          ))}
+        </div>
+        <p className="fms-herosub col-lg-9 mx-auto mb-5"><span className="text-primary">From architecture and customization to deployment, integration, and operations, the OvenMediaEngine team handles it all with cost efficiency built in.</span><br /><span style={{color: 'var(--fms-light)'}}>You focus on your business. We handle the streaming.</span></p>
+        <div className="d-flex flex-column flex-sm-row gap-3 reveal-up mb-2 px-4 px-sm-0 mx-auto w-100" style={{maxWidth: '580px'}}>
+          <a href="/omc-consultation" className="btn btn-fms-fill" style={{flex: '1 1 0'}}><i className="ph ph-chat-circle-text me-2"></i>Free Consultation</a>
+          <a href="#solutions" className="btn btn-secondary-outline" style={{flex: '1 1 0'}}><i className="ph ph-file-text me-2"></i>View Case Studies</a>
+        </div>
+        <p className="text-mono reveal-up mb-5" style={{fontSize: '0.75rem', lineHeight: 1.6}}>※ Consultation is free. Billing begins after the final environment is approved and activated.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+{/* ─── Foundation + Coverage ──────────────────────────────────────────────── */}
+<div className="foundation-part py-6">
+
+<section id="foundation" className="full-page-section d-flex flex-column position-relative bg-body">
+  <div className="w-100 d-flex align-items-center pt-5 why-content">
+    <div className="container">
+      <div className="text-center mb-5 reveal-up">
+        <span className="badge bg-company text-dark mb-3">Built on OvenMediaEngine</span>
+        <h2 className="display-5 fw-bold text-main mb-3 lh-tight">Proven Across Real-World Live Streaming Services</h2>
+        <p className="lead text-sub col-lg-8 mx-auto mb-0">OvenMediaEngine is a sub-second latency streaming server trusted across industries for its technology, performance, reliability, flexibility, and cost efficiency. OvenMedia Cloud is delivered directly by the team that builds and maintains it.</p>
+      </div>
+    </div>
+  </div>
+  <div className="fms-metband reveal-up bg-black">
+    <div className="fms-met-grid">
+      {[
+        {value: '16+',   label: 'Years of\nMedia Tech Expertise'},
+        {value: '3.3K+', label: 'Combined\nGitHub Stars'},
+        {value: '1.1M+', label: 'Cumulative\nDocker Pulls'},
+        {value: '20+',   label: 'Countries with\nProduction Deployments'},
+        {value: '2.4K+', label: 'Production\nInstances Deployed'},
+        {value: 'Zero-Incident', label: 'Production\nOperation Delivered'},
+      ].map(({value, label}) => (
+        <div key={label}>
+          <div className="fms-met-val">{value}</div>
+          <div className="fms-met-lbl">{label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="coverage" className="full-page-section d-flex flex-column position-relative bg-body mt-3">
+  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
+    <div className="container">
+      <div className="text-center mb-5 reveal-up">
+        <h2 className="display-5 fw-bold text-main mb-3 lh-tight">One Team, Full Coverage</h2>
+        <p className="lead text-sub col-lg-8 mx-auto mb-0">Instead of coordinating multiple platforms, vendors, and engineering teams, you work with one team across the entire live streaming workflow.</p>
+      </div>
+      <div className="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-4 mb-3 mobile-horizontal-scroll" style={{alignItems: 'stretch'}}>
+        {[
+          {icon: 'ph-tree-structure',    title: 'Architecture Design',              body: 'We design the streaming architecture around your workflow, traffic, latency targets, protocols, and service requirements.'},
+          {icon: 'ph-hard-drives',       title: 'Infrastructure Options',           body: 'Use your preferred bare-metal server or cloud VM, or let the OME team provide and manage the infrastructure for you.'},
+          {icon: 'ph-code',              title: 'Custom Development',               body: "When standard features are not enough, OvenMediaEngine's core developers build the functionality your service requires."},
+          {icon: 'ph-sliders-horizontal',title: 'Channel Configuration',            body: 'We configure input and output channels, protocols, recording, security, and operational policies around your workflow.'},
+          {icon: 'ph-film-strip',        title: 'Transcoding Optimization',         body: 'We configure and optimize codecs, resolutions, bitrates, and transcoding profiles for quality, latency, and cost efficiency.'},
+          {icon: 'ph-globe',             title: 'Deployment',                        body: 'We deploy the environment and configure regions around your audience, performance requirements, and operating costs.'},
+          {icon: 'ph-plugs-connected',   title: 'Third-Party Integration',          body: 'We integrate CDNs, storage, authentication, advertising systems, monitoring tools, and other external services.'},
+          {icon: 'ph-monitor',           title: 'Web Console & Support',            body: 'We provide a web console for checking channel status and service health, along with ongoing technical support through Slack.'},
+        ].map(({icon, title, body}) => (
+          <div key={title} className="col reveal-up d-flex">
+            <div className="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-primary">
+              <div className="d-flex align-items-center gap-2 mb-2">
+                <i className={`ph ${icon} text-primary fs-5`}></i>
+                <span className="fw-bold text-main" style={{fontSize: '1rem'}}>{title}</span>
+              </div>
+              <hr className="mt-0 mb-3 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
+              <p className="text-sub small mb-0 lh-sm">{body}</p>
+            </div>
+          </div>
+        ))}
+        <div className="col reveal-up d-flex d-lg-none">
+          <div className="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-primary">
+            <div className="d-flex align-items-center gap-2 mb-2">
+              <i className="ph ph-headset text-primary fs-5"></i>
+              <span className="badge rounded-pill text-primary" style={{background: 'transparent', border: '1px solid currentColor'}}>Optional</span>
+              <span className="fw-bold text-main" style={{fontSize: '1rem'}}>24/7 Managed Operations</span>
+            </div>
+            <hr className="mt-0 mb-3 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
+            <p className="text-sub small mb-0 lh-sm">Continuous monitoring, incident response, and operational support by OvenMediaEngine's core engineers. Available as a separate managed operations agreement with a 99.9% service availability SLA.</p>
+          </div>
+        </div>
+      </div>
+      <div className="p-4 rounded reveal-up mb-4 hover-card5 card-glow glow-primary d-none d-lg-block">
+        <div className="d-flex align-items-center gap-2 mb-2">
+          <i className="ph ph-headset text-primary fs-5"></i>
+          <span className="badge rounded-pill text-primary" style={{background: 'transparent', border: '1px solid currentColor'}}>Optional</span>
+          <span className="fw-bold text-main" style={{fontSize: '1rem'}}>24/7 Operations by the OvenMediaEngine Team</span>
+        </div>
+        <hr className="mt-0 mb-3 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
+        <div className="row align-items-end">
+          <div className="col-lg-8 mb-3 mb-lg-0">
+            <p className="text-sub small mb-0 lh-sm">Continuous monitoring, incident response, and operational support by OvenMediaEngine's core engineers. Available as a separate managed operations agreement with a 99.9% service availability SLA.</p>
+          </div>
+          <div className="col-lg-4 d-flex justify-content-lg-end">
+            <a href="/omc-consultation" className="btn btn-company-outline">Contact for Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+{/* ─── Real-World Solutions ───────────────────────────────────────────────── */}
+<div className="solutions-part py-6">
+<section id="solutions" className="full-page-section d-flex flex-column position-relative bg-body">
+  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
+    <div className="container">
+      <div className="text-center mb-5 reveal-up">
+        <span className="badge bg-company text-dark mb-3">Real-World Solutions</span>
+        <h2 className="display-5 fw-bold text-main mb-3 lh-tight">Built Around What Each Service Actually Needs</h2>
+        <p className="lead text-sub col-lg-8 mx-auto mb-0">Every live streaming service has different infrastructure, delivery, integration, and operational requirements. Here are a few examples of how the OvenMediaEngine team designed and delivered solutions around real customer workflows.</p>
+      </div>
+
+      {/* ── Case Card ─────────────────────────────────────────────────────── */}
+      <div className="row reveal-up mobile-horizontal-scroll">
+      <div className="col-12">
+      <div className="p-4 p-md-5 rounded" style={{background: 'color-mix(in srgb, var(--bg-middle), transparent 50%)'}}>
+
+        {/* Header */}
+        <div className="mb-2">
+          <div className="mb-1"><span className="badge rounded-pill text-primary" style={{background: 'transparent', border: '1px solid currentColor'}}>Featured Case</span></div>
+          <span className="fw-bold text-main" style={{fontSize: '1.05rem'}}>24/7 Live Streaming Service in Canada</span>
+        </div>
+        <hr className="mt-0 mb-4 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
+
+        <img src="/images/ome_screenshot/webconsole_demo.webp" alt="Web Console Demo" className="rounded mb-4 w-100" style={{aspectRatio: '1920/1030', objectFit: 'cover'}} />
+
+        {/* Need / Provided / Result */}
+        <div className="row g-0 mobile-horizontal-scroll align-items-stretch mb-4">
+          <div className="col-12 col-lg">
+            <div className="fms-step fms-step-plain p-4 h-100 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
+              <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.7rem'}}>Customer Need</div>
+              <p className="text-mono-light small lh-sm mb-0">A customer needed to operate a 24/7 live channel within Canada while continuing to use its existing CDN partner.</p>
+            </div>
+          </div>
+          <div className="d-none d-lg-flex align-items-center justify-content-center flex-shrink-0" style={{width: '40px'}}>
+            <i className="ph ph-caret-right text-primary case-step-arrow" style={{fontSize: '1.1rem'}}></i>
+          </div>
+          <div className="col-12 col-lg" style={{flex: '2 0 0%'}}>
+            <div className="fms-step fms-step-plain p-4 h-100 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
+              <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.7rem'}}>What We Provided</div>
+              <ul className="list-unstyled mb-0 d-flex flex-column gap-1">
+                {[
+                  'Recommended and provisioned a cost-efficient cloud VM in the Canadian region',
+                  'Configured RTMP ingest and LL-HLS output',
+                  'Enabled WebRTC playback for internal low-latency monitoring',
+                  'Delivered a web console for channel and service monitoring',
+                  'Provided an API for inserting ID3 timed metadata for ad signaling',
+                  'Provided ongoing technical support',
+                ].map(item => (
+                  <li key={item} className="d-flex align-items-start gap-2">
+                    <i className="ph-fill ph-check-circle text-primary flex-shrink-0" style={{marginTop: '2px'}}></i>
+                    <span className="text-mono-light small lh-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="d-none d-lg-flex align-items-center justify-content-center flex-shrink-0" style={{width: '40px'}}>
+            <i className="ph ph-caret-right text-primary case-step-arrow" style={{fontSize: '1.1rem'}}></i>
+          </div>
+          <div className="col-12 col-lg">
+            <div className="fms-step fms-step-plain p-4 h-100 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
+              <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.7rem'}}>Result</div>
+              <p className="text-mono-light small lh-sm mb-0">The customer launched a production-ready 24/7 streaming workflow while keeping its existing CDN relationship and avoiding unnecessary infrastructure complexity.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 pt-3" style={{borderTop: '1px solid color-mix(in srgb, var(--text-sub), transparent 80%)'}}>
+          <p className="text-sub col-lg-9 mb-0">Want to see the web console that was built and delivered as part of this project?<br />Try it yourself by publishing a stream to the provided input URL and playing it back from the output URL.</p>
+          <a href="https://ome-oegoazgs.cloud.ovenmedia.io:8443" target="_blank" rel="noopener noreferrer" className="btn btn-company-outline btn-sm flex-shrink-0">Try the Web Console</a>
+        </div>
+
+      </div>
+      </div>
+      </div>
+
+      {/* ── Secondary Cases (hidden until content is ready) ──────────────── */}
+      {false && <div className="row gx-3 mt-3 reveal-up mobile-horizontal-scroll">
+        <div className="col-10 col-md-6">
+          <div className="p-5 rounded h-100" style={{background: 'color-mix(in srgb, var(--bg-middle), transparent 50%)'}}>
+            <div className="mb-2">
+              <div className="mb-1"><span className="badge rounded-pill text-primary" style={{background: 'transparent', border: '1px solid currentColor'}}>Featured Case</span></div>
+              <span className="fw-bold text-main" style={{fontSize: '1.05rem'}}>Large-Scale Sports Streaming</span>
+            </div>
+            <hr className="mt-0 mb-3 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
+            <div className="d-flex flex-column gap-2">
+              <div className="p-3 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
+                <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.65rem'}}>Customer Need</div>
+                <p className="text-mono-light small lh-sm mb-0">Stable live delivery for high-concurrency sports events with multiple channels, encoding profiles, and operational monitoring requirements.</p>
+              </div>
+              <div className="p-3 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
+                <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.65rem'}}>What We Delivered</div>
+                <p className="text-mono-light small lh-sm mb-0">Architecture design, channel and transcoding configuration, production deployment, monitoring workflows, and direct engineering support.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-10 col-md-6">
+          <div className="p-5 rounded h-100" style={{background: 'color-mix(in srgb, var(--bg-middle), transparent 50%)'}}>
+            <div className="mb-2">
+              <div className="mb-1"><span className="badge rounded-pill text-primary" style={{background: 'transparent', border: '1px solid currentColor'}}>Featured Case</span></div>
+              <span className="fw-bold text-main" style={{fontSize: '1.05rem'}}>Multi-Platform Media Service</span>
+            </div>
+            <hr className="mt-0 mb-3 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
+            <div className="d-flex flex-column gap-2">
+              <div className="p-3 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
+                <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.65rem'}}>Customer Need</div>
+                <p className="text-mono-light small lh-sm mb-0">A complex workflow combining multiple input sources, output formats, delivery paths, and service-specific integrations.</p>
+              </div>
+              <div className="p-3 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
+                <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.65rem'}}>What We Delivered</div>
+                <p className="text-mono-light small lh-sm mb-0">Customized stream routing, protocol conversion, workflow-specific configuration, third-party integration, and production support.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>}
+    </div>
+  </div>
+</section>
+</div>
+
+{/* ─── How It Works ────────────────────────────────────────────────────────── */}
+<div className="howitworks-part py-6">
+<section id="how-it-works" className="full-page-section d-flex flex-column position-relative bg-body">
+  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
+    <div className="container">
+      <div className="text-center mb-5 reveal-up">
+        <span className="badge bg-company text-dark mb-3">How It Works</span>
+        <h2 className="display-5 fw-bold text-main mb-3 lh-tight">From Consultation to Production</h2>
+        <p className="lead text-sub col-lg-8 mx-auto mb-0">Start with a free consultation and design the service directly with OvenMediaEngine's core developers.</p>
+      </div>
+      <div className="row reveal-up mb-5">
+        <div className="col-lg-10 mx-auto">
+          <div className="fms-tl bg-black rounded-4 p-4 p-lg-5">
+            {[
+              {n: '01', title: 'Tell Us What You Need',              body: 'Send us your input and output workflow, transcoding requirements, expected traffic, target regions, and operational needs.'},
+              {n: '02', title: 'Design With the Core Developers',    body: "Work closely with OvenMediaEngine's core developers through Slack to shape the architecture, channels, capabilities, regions, and delivery workflow together."},
+              {n: '03', title: 'Customize Where Needed',             body: 'When necessary, we plan and develop the features, workflows, or integrations required by your service.'},
+              {n: '04', title: 'Finalize the Service',               body: 'We confirm the service scope, responsibilities, pricing, support model, and any optional managed operations agreement.'},
+              {n: '05', title: 'Configure, Deploy, and Integrate',   body: 'We provision the infrastructure, apply detailed settings, deploy to the agreed location, and connect the required third-party services.'},
+              {n: '06', title: 'Validate and Approve',               body: 'We test the complete workflow and provide the web console for final review.'},
+              {n: '07', title: 'Activate the Service',               body: 'Once the environment is approved, the service is activated and recurring billing begins.'},
+            ].map(({n, title, body}) => (
+              <div key={n} className="fms-tlrow">
+                <div className="fms-tlrail">
+                  <div className="fms-tldot">{n}</div>
+                  <div className="fms-tlline"></div>
+                </div>
+                <div className="fms-tlbody">
+                  <h4 className="h5 fw-bold mb-1" style={{fontSize: '17.5px', letterSpacing: '-0.01em'}}>{title}</h4>
+                  <p className="mb-0" style={{fontSize: '14.5px', lineHeight: 1.6}}>{body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="text-center reveal-up">
+        <a href="/omc-consultation" className="btn btn-company-outline">Contact the OvenMediaEngine Team</a>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+{/* ─── Difference, Cost & Migration ───────────────────────────────────────── */}
+<div className="difference-part py-6">
+
+<section id="difference" className="full-page-section d-flex flex-column position-relative bg-middle-50">
+  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
+    <div className="container">
+      <div className="text-center mb-5 reveal-up">
+        <span className="badge bg-company text-dark mb-3">The OvenMedia Cloud Difference</span>
+        <h2 className="display-5 fw-bold text-main mb-3 lh-tight">Not Just Managed,<br />Managed by the Team That Builds the Technology</h2>
+        <p className="lead text-sub col-lg-8 mx-auto mb-0">OvenMediaEngine's core developers design, customize, deploy, integrate, maintain, and support your streaming environment directly, giving you greater flexibility, faster technical decisions, and fewer handoffs.</p>
+      </div>
+
+      <div className="row g-3 reveal-up mb-4">
+        <div className="col-md-6 d-none d-md-block">
+          <div className="fms-cmp h-100">
+            <div className="fms-cmp-tag">Conventional Approach</div>
+            <div className="fms-cmp-h">Typical Managed Streaming Platform</div>
+            <ul className="fms-cmp-ul">
+              {[
+                'Standardized platform and service structure',
+                'Limited service-specific customization',
+                'Product engineering separated from support',
+                'Multiple handoffs for complex technical issues',
+                'Your workflow must adapt to the platform',
+              ].map(item => (
+                <li key={item} className="fms-cmp-li">
+                  <i className="ph ph-minus-circle fms-cmp-li-icon"></i>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="fms-cmp fms-cmp-fms h-100">
+            <div className="fms-cmp-top"></div>
+            <div className="fms-cmp-tag">Engineering-Led</div>
+            <div className="fms-cmp-h">OvenMedia Cloud</div>
+            <ul className="fms-cmp-ul">
+              {[
+                'Architecture designed around your actual workflow',
+                "Direct access to OvenMediaEngine's core developers",
+                'Custom development and integration when needed',
+                'Detailed configuration, deployment, and regional setup',
+                'One team from initial design through ongoing support',
+              ].map(item => (
+                <li key={item} className="fms-cmp-li">
+                  <i className="ph-fill ph-check-circle fms-cmp-li-icon"></i>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="fms-cmp-note mt-3 mb-0">※ The platform adapts to your service, not the other way around.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{/* ─── Cost Efficiency ────────────────────────────────────────────────────── */}
+<section id="cost" className="full-page-section d-flex flex-column position-relative bg-middle-50">
+  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
+    <div className="container">
+      <div className="text-center mb-5 reveal-up">
+        <h2 className="display-5 fw-bold text-main mb-3 lh-tight">Our Technology, Our Expertise, Lower Costs</h2>
+        <p className="lead text-sub col-lg-8 mx-auto mb-0">We build the technology ourselves and know how to optimize it in real production environments. That allows us to deliver a fully managed live streaming service at a lower cost without compromising flexibility or technical depth.</p>
+      </div>
+      <div className="fms-costhero reveal-up">
+        <div className="fms-costnum">30%+</div>
+        <div>
+          <h4 className="fw-bold text-primary mb-1" style={{fontSize: '19px', letterSpacing: '-0.015em'}}>Average Cost Reduction</h4>
+          <p className="text-main mb-0" style={{fontSize: '14.5px', lineHeight: 1.55}}>On average, our customers reduce live streaming infrastructure costs by approximately 30 to 40% through service-specific architecture, encoding, and delivery optimization.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* ─── 10 Migration ────────────────────────────────────────────────────────── */}
+<section id="migration" className="full-page-section d-flex flex-column position-relative bg-middle-50">
+  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
+    <div className="container">
+      <div className="text-center mb-5 reveal-up">
+        <h2 className="display-5 fw-bold text-main mb-3 lh-tight">Bring Your Existing Streaming Service to OvenMedia Cloud</h2>
+        <p className="lead text-sub col-lg-8 mx-auto mb-0">Already running another platform or your own infrastructure? We review your existing workflow, preserve what works, and handle the design, configuration, integration, deployment, and transition to OvenMedia Cloud.</p>
+      </div>
+      <div className="row g-0 mobile-horizontal-scroll align-items-stretch reveal-up mb-4">
+        <div className="col-12 col-lg">
+          <div className="fms-step fms-step-plain p-4 p-lg-5 h-100 d-flex flex-column gap-2" style={{border: 'none', borderRadius: '999px', background: 'linear-gradient(135deg, color-mix(in srgb, var(--bg-surface), transparent 20%), transparent 65%)'}}>
+            <div className="fms-stepno">Step 01</div>
+            <h4 className="h5 fw-bold text-main mb-1">Review Your Current Service</h4>
+            <p className="text-sub mb-0" style={{fontSize: '14px', lineHeight: 1.55}}>We review your inputs, outputs, protocols, regions, traffic, encoding, integrations, operational requirements, and existing infrastructure.</p>
+          </div>
+        </div>
+        <div className="fms-step-conn d-none d-lg-flex"><span className="fms-step-conn-line"></span></div>
+        <div className="col-12 col-lg">
+          <div className="fms-step fms-step-plain p-4 p-lg-5 h-100 d-flex flex-column gap-2" style={{border: 'none', borderRadius: '999px', background: 'linear-gradient(135deg, transparent 22%, color-mix(in srgb, var(--bg-surface), transparent 40%) 50%, transparent 78%)'}}>
+            <div className="fms-stepno">Step 02</div>
+            <h4 className="h5 fw-bold text-main mb-1">Design the Target System</h4>
+            <p className="text-sub mb-0" style={{fontSize: '14px', lineHeight: 1.55}}>Together with your team, OvenMediaEngine's core developers design the new architecture, channel structure, deployment regions, integrations, and migration plan.</p>
+          </div>
+        </div>
+        <div className="fms-step-conn d-none d-lg-flex"><span className="fms-step-conn-line"></span></div>
+        <div className="col-12 col-lg">
+          <div className="fms-step fms-step-plain p-4 p-lg-5 h-100 d-flex flex-column gap-2" style={{border: 'none', borderRadius: '999px', background: 'linear-gradient(315deg, color-mix(in srgb, var(--bg-surface), transparent 20%), transparent 65%)'}}>
+            <div className="fms-stepno">Step 03</div>
+            <h4 className="h5 fw-bold text-main mb-1">Build, Validate, and Transition</h4>
+            <p className="text-sub mb-0" style={{fontSize: '14px', lineHeight: 1.55}}>We configure and deploy the environment, connect required third-party services, validate the complete workflow, and support the transition to production.</p>
+          </div>
+        </div>
+      </div>
+      <p className="text-center reveal-up text-mono mb-0" style={{fontSize: '0.8rem', color: 'var(--fms-light)'}}>※ You keep your service moving. We handle the migration underneath it.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+
+<section className="full-page-section d-flex flex-column position-relative bg-middle-50">
+  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
+    <div className="container text-center reveal-up">
+      <h2 className="h2s fw-bold text-main mb-3">You Define the Input and Output,<br />We Handle Everything in Between</h2>
+      <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
+        {['Architecture', 'Infrastructure', 'Customization', 'Deployment', 'Integration', 'Fine-tuning', 'Monitoring', 'Maintenance', 'Operations'].map(tag => (
+          <span key={tag} className="fms-tag-secondary" style={{fontSize: '12px', padding: '4px 8px'}}>{tag}</span>
+        ))}
+      </div>
+      <p className="lead text-sub fw-light mb-4 col-lg-8 mx-auto">Whatever you need, envision, or want to build in live streaming, leave it to the OvenMediaEngine team.</p>
+      <div className="d-grid d-md-block">
+        <a href="/omc-consultation" className="btn btn-fms-fill rounded-pill px-5">Free Consultation</a>
+      </div>
+      <p className="text-mono-deep mt-3 mb-0" style={{fontSize: '0.75rem', lineHeight: 1.6}}>※ Billing begins after the final environment is approved and activated.</p>
+    </div>
+  </div>
+</section>
+
+<OmeProductNav />
+
+<div style={{background: 'var(--bg-middle)'}}>
+  <LatestBlogPosts subhead="From the OvenMediaEngine Engineers." />
+</div>

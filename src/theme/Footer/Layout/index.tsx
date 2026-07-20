@@ -11,8 +11,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function FooterLayout(): ReactNode {
-  const logoSvg = useBaseUrl('/images/airen_ci/OML_Text_L.svg');
-  const logoPng = useBaseUrl('/images/airen_ci/OML_Text_L.png');
+  const logoSvg = useBaseUrl('/images/airen_ci/OML_footer.svg');
+  const logoPng = useBaseUrl('/images/airen_ci/OML_footer.png');
   const {siteConfig} = useDocusaurusContext();
   const previewSource = (siteConfig.customFields as Record<string, string> | undefined)?.previewSource || '';
 
@@ -54,7 +54,9 @@ export default function FooterLayout(): ReactNode {
                 <div className="footer-col">
                   <h6 className="footer-heading">Products</h6>
                   <ul className="list-unstyled">
-                    <li><Link to="/ome" className="footer-link">OvenMediaEngine Enterprise</Link></li>
+                    <li><Link to="/om-cloud" className="footer-link">OvenMedia Cloud</Link></li>
+                    <li><Link to="/" className="footer-link">OvenMediaEngine Enterprise</Link></li>
+                    <li><a href="https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs" target="_blank" rel="noopener noreferrer" className="footer-link">OvenMediaEngine Enterprise on AWS</a></li>
                     <li><a href="https://github.com/OvenMediaLabs/OvenMediaEngine" target="_blank" rel="noopener noreferrer" className="footer-link">OvenMediaEngine</a></li>
                     <li><a href="https://github.com/OvenMediaLabs/OvenPlayer" target="_blank" rel="noopener noreferrer" className="footer-link">OvenPlayer</a></li>
                     <li><a href="https://github.com/OvenMediaLabs/OvenLiveKit-Web" target="_blank" rel="noopener noreferrer" className="footer-link">OvenLiveKit</a></li>

@@ -90,6 +90,7 @@ Manual re-sync: Actions → *Sync docs from upstream* → **Run workflow**.
 | OvenPlayer manual page          | OvenPlayer repo → `docs/`                                |
 | Manual sidebar order / labels   | upstream repo → file `sidebar_position:` + folder `_category_.json` |
 | Blog post                       | `blog/<date>-<slug>/index.mdx` (see [`blog/README.md`](./blog/README.md)) |
+| Consultation form (frontend)    | `src/components/ConsultationForm` — API server in private repo `notion-form-relay` |
 | New broken-link redirect        | `docusaurus.config.ts` → `redirects` plugin              |
 
 The sidebar files in this repo (`sidebars-<product>.ts`) are a thin
@@ -101,6 +102,18 @@ position, and landing page. Decorative top-level section dividers
 entries that set `customProps.sidebarHeader: true` — the transform
 lives in [`src/lib/sidebar-section-headers.ts`](./src/lib/sidebar-section-headers.ts).
 Adding or reordering manual pages does not require touching this repo.
+
+## Consultation form
+
+The `/omc-consultation` page ([`src/pages/omc-consultation.mdx`](./src/pages/omc-consultation.mdx))
+renders a native React form, [`src/components/ConsultationForm`](./src/components/ConsultationForm/index.tsx),
+instead of an embedded iframe (which broke the site's look and feel). On submit
+it sends the data through an API server; the endpoint URL is hardcoded in
+`ConsultationForm/index.tsx`.
+
+That API server (hosting, setup, configuration) is documented in a **private**
+repo: **[OvenMediaLabs/notion-form-relay](https://github.com/OvenMediaLabs/notion-form-relay)**.
+See its README for all server-side details.
 
 ## Secrets
 

@@ -36,6 +36,7 @@ import Head from '@docusaurus/Head';
       ]
     }
   `}</script>
+  <link rel="canonical" href="https://ovenmedialabs.com/company" />
 </Head>
 
 <div style={{height: '100vh', display: 'flex', flexDirection: 'column'}}>
@@ -48,7 +49,7 @@ import Head from '@docusaurus/Head';
         <div className="hero-badge2 mb-4 px-4 reveal-up mx-auto fw-bold small">Since 2010</div>
       </div>
       <div className="col-lg-12">
-        <h1 className="display-1 fw-bold text-main mb-4 lh-tight reveal-up">
+        <h1 className="display-2s fw-bold text-main mb-4 lh-tight reveal-up">
           <span className="text-gradient-surf">Media Technology<br />Experts Group</span>
         </h1>
         <p className="lead text-sub mb-5 reveal-up col-lg-8 mx-auto"><strong>WE DO ONE THING.</strong><br />We define media technology for the real-time world.</p>
@@ -309,10 +310,7 @@ import Head from '@docusaurus/Head';
           <div className="guide-box-header">CI Construction</div>
           <div className="guide-box-body">
             <div className="grid-line-layer"></div>
-            <picture style={{pointerEvents: 'none'}}>
-              <source srcSet="/images/airen_ci/OML_Letter_W.svg" type="image/svg+xml" />
-              <img src="/images/airen_ci/OML_Letter_W.png" alt="CI Guide" className="sharp-img guide-img-main" />
-            </picture>
+            <img src="/images/airen_ci/OML_full_default.svg" alt="CI Guide" className="sharp-img guide-img-main" style={{pointerEvents: 'none'}} />
           </div>
         </div>
       </div>
@@ -320,19 +318,10 @@ import Head from '@docusaurus/Head';
       <div className="col-lg-6 reveal-up">
         <div className="guide-box-new h-100">
           <div className="guide-box-header">Symbolic Mark / Color Variations</div>
-          <div className="guide-box-body is-row">
+          <div className="guide-box-body is-column">
             <div className="grid-line-layer"></div>
-
-            <picture style={{pointerEvents: 'none'}}>
-              <source srcSet="/images/airen_ci/OML_Symbol_Default.svg" type="image/svg+xml" />
-              <img src="/images/airen_ci/OML_Symbol_Default.png" alt="Default Symbol" className="sharp-img guide-img-symbol" />
-            </picture>
-
-            <picture style={{pointerEvents: 'none'}}>
-              <source srcSet="/images/airen_ci/OML_Symbol_Gradation.svg" type="image/svg+xml" />
-              <img src="/images/airen_ci/OML_Symbol_Gradation.png" alt="Gradation Symbol" className="sharp-img guide-img-symbol" />
-            </picture>
-
+            <img src="/images/airen_ci/OML_symbol_default.svg" alt="Default Symbol" className="sharp-img guide-img-symbol" style={{pointerEvents: 'none'}} />
+            <img src="/images/airen_ci/OML_symbol_light.svg" alt="Light Symbol" className="sharp-img guide-img-symbol" style={{pointerEvents: 'none'}} />
           </div>
         </div>
       </div>
@@ -340,22 +329,26 @@ import Head from '@docusaurus/Head';
       <div className="col-lg-6 reveal-up">
         <div className="guide-box-new h-100">
           <div className="guide-box-header">Wordmark / Color Variations</div>
-          <div className="guide-box-body is-column">
+          <div className="guide-box-body is-split">
             <div className="grid-line-layer"></div>
-            <picture style={{pointerEvents: 'none'}}>
-              <source srcSet="/images/airen_ci/OML_Text_W.svg" type="image/svg+xml" />
-              <img src="/images/airen_ci/OML_Text_W.png" alt="Text Guide" className="sharp-img guide-img-text" />
-            </picture>
+            <div className="guide-split-col">
+              <img src="/images/airen_ci/OML_fst_default.svg" alt="Full Stack Default" className="sharp-img guide-img-fst" style={{pointerEvents: 'none'}} />
+            </div>
+            <div className="guide-split-col">
+              <img src="/images/airen_ci/OML_text_default.svg" alt="Text Default" className="sharp-img guide-img-text" style={{pointerEvents: 'none'}} />
+              <img src="/images/airen_ci/OML_text_light.svg" alt="Text Light" className="sharp-img guide-img-text" style={{pointerEvents: 'none'}} />
+              <img src="/images/airen_ci/OML_text_gray.svg" alt="Text Gray" className="sharp-img guide-img-text" style={{pointerEvents: 'none'}} />
+            </div>
+          </div>
+        </div>
+      </div>
 
-            <picture style={{pointerEvents: 'none'}}>
-              <source srcSet="/images/airen_ci/OML_Text_L.svg" type="image/svg+xml" />
-              <img src="/images/airen_ci/OML_Text_L.png" alt="Text Guide" className="sharp-img guide-img-text" />
-            </picture>
-
-            <picture style={{pointerEvents: 'none'}}>
-              <source srcSet="/images/airen_ci/OML_Text_D.svg" type="image/svg+xml" />
-              <img src="/images/airen_ci/OML_Text_D.png" alt="Text Guide" className="sharp-img guide-img-text" />
-            </picture>
+      <div className="col-12 reveal-up">
+        <div className="guide-box-new">
+          <div className="guide-box-header">Horizontal Combination</div>
+          <div className="guide-box-body">
+            <div className="grid-line-layer"></div>
+            <img src="/images/airen_ci/OML_horz_right_default.svg" alt="Horizontal Combination" className="sharp-img guide-img-horz" style={{pointerEvents: 'none'}} />
           </div>
         </div>
       </div>
@@ -365,39 +358,26 @@ import Head from '@docusaurus/Head';
           <div className="guide-box-header">Color Palette</div>
           <div className="guide-box-body py-5">
             <div className="d-flex flex-wrap justify-content-center gap-5">
-              <div className="color-swatch-wrap">
-                <div className="swatch-main" style={{background: '#9BA4B4', border: '1px solid #94A3B8'}}></div>
-                <code className="text-sub">#9BA4B4</code>
-              </div>
-              <div className="color-swatch-wrap">
-                <div className="swatch-main" style={{background: '#394867', border: '1px solid #94A3B8'}}></div>
-                <code className="text-sub">#394867</code>
-              </div>
-              <div className="color-swatch-wrap">
-                <div className="swatch-main" style={{background: '#14274E', border: '1px solid #94A3B8'}}></div>
-                <code className="text-sub">#14274E</code>
-              </div>
-              <div className="color-swatch-wrap d-none d-sm-block">
-                <div className="swatch-main" style={{background: '#38BDF8', border: '1px solid #94A3B8'}}></div>
-                <code className="text-sub">#38BDF8</code>
-              </div>
-              <div className="color-swatch-wrap d-none d-sm-block">
-                <div className="swatch-main" style={{background: '#C5A38E', border: '1px solid #94A3B8'}}></div>
-                <code className="text-sub">#C5A38E</code>
-              </div>
+              {['#061936','#2c4164','#4a5e7a','#c9d0df'].map(color => (
+                <div key={color} className="color-swatch-wrap">
+                  <div className="swatch-main" style={{background: color, border: '1px solid rgba(148, 163, 184, 0.4)'}}></div>
+                  <code className="text-sub">{color}</code>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div className="d-flex gap-3 mt-4 w-100 flex-wrap justify-content-center">
+      <a href="/assets/downloads/OML_Assets_PNG.zip" download="OvenMediaLabs_CI_PNG.zip" className="btn btn-company-outline rounded-pill px-5">
+        <i className="ph ph-archive me-2"></i> Download PNG Kit
+      </a>
+      <a href="/assets/downloads/OML_Assets_SVG.zip" download="OvenMediaLabs_CI_SVG.zip" className="btn btn-company-outline rounded-pill px-5">
+        <i className="ph ph-archive me-2"></i> Download SVG Kit
+      </a>
+    </div>
   </div>
 
-  <div className="d-flex gap-2 mb-5 w-100 flex-wrap justify-content-center">
-    <a href="/assets/downloads/OML_Assets_PNG.zip" download="OvenMediaLabs_CI_PNG.zip" className="btn btn-company-outline rounded-pill px-5">
-      <i className="ph ph-archive me-2"></i> Download PNG Kit
-    </a>
-    <a href="/assets/downloads/OML_Assets_SVG.zip" download="OvenMediaLabs_CI_SVG.zip" className="btn btn-company-outline rounded-pill px-5">
-      <i className="ph ph-archive me-2"></i> Download SVG Kit
-    </a>
-  </div>
 </section>

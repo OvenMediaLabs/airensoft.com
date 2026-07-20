@@ -1,0 +1,221 @@
+# OvenMedia Labs — Full Content
+
+> OvenMedia Labs Inc. (formerly AirenSoft Co., Ltd., rebranded February 2026) is a media technology company specializing in real-time live streaming. We build OvenMediaEngine, an open-source sub-second latency streaming server, and deliver OvenMedia Cloud, a fully managed live streaming service operated directly by the core engineering team. Founded in 2010, headquartered in Seoul, South Korea.
+
+---
+
+## Page: OvenMediaEngine (https://ovenmedialabs.com/)
+
+OvenMediaEngine, Live Streaming Server. Deliver high-definition live stream to hundreds of thousands of viewers in under a second, all from a server you deploy on your own infrastructure.
+
+### Products in the OvenMediaEngine Family
+
+- OvenMedia Cloud: Fully managed live streaming service. Fully managed, delivered by OME engineers.
+- OvenMediaEngine Enterprise: From $100/instance. Deploy on any infrastructure.
+- OvenMediaEngine Enterprise on AWS (CPU): 14-day free trial. From $0.19/instance-hour. CPU-based instances.
+- OvenMediaEngine Enterprise on AWS (GPU): 14-day free trial. Hourly billing. GPU-accelerated instances for high-density transcoding.
+- OvenMediaEngine (Open Source): AGPLv3. Deploy anywhere.
+
+### OvenMediaEngine Enterprise
+
+Fine-tune your self-hosted live streaming workflow, from ingest to delivery, built for enterprise requirements, optimized for sub-second latency, and supported directly by the core engineering team.
+
+Trusted across diverse domains: 24/7 Live Platforms, Live Commerce, iGaming, Live Auctions, Live Sports, Live OTT, Entertainment, Social Live Modules, Live Surveillance, Smart City, Monitoring Systems, Enterprise Streaming, Live Conferences, Remote Screenings, Collaboration.
+
+Stats: 20+ countries with production deployments. 2,400+ production instances deployed. Zero-incident production operation delivered.
+
+Production-grade Live Streaming, Fully Supported. The moment your live streaming service needs reliability, support, and operational control, it is time to move to OvenMediaEngine Enterprise.
+
+Reasons to upgrade:
+- From Validation to Production: Move beyond testing with a commercial-ready stack built for real traffic and long-term operation.
+- Control Production Risk: Use Web Console, advanced security, high availability, and APIs to operate complex live services with confidence.
+- Work with the OME Team: Access technical support, optimization, and customization directly from OME core engineers.
+
+Enterprise features:
+- Commercial License: Build proprietary services without AGPLv3 source disclosure obligations.
+- Pre-Built Package: Ready-to-deploy DEB, RPM, and Docker images.
+- Guaranteed LTS: Continuous updates and security patches for stable long-term support.
+- Performance Optimization: Hardware-accelerated encoding (Nvidia, AMD Xilinx).
+- Advanced Security: DRM integration, RTMP auth, and SHA-256 encryption.
+- Web Console: Intuitive GUI to configure, monitor, and fine-tune complex systems.
+- High Availability: Origin redundancy and failover strategies.
+- Direct-to-Engineer Support: Technical support straight from OvenMediaEngine core engineers.
+
+### OvenMediaEngine Enterprise Pricing
+
+Self-hosted, per-instance pricing. No per-viewer fees, no channel limits. Every plan includes the complete feature set, Guaranteed LTS, Basic-tier support, and unrestricted channel usage.
+
+- Monthly: $100/instance billed monthly.
+- Annual: $1,000/instance (approx. $83.3/month). 2 months free vs. monthly billing.
+- Perpetual: $2,500/instance. Lifetime license. Basic Support Renewal: $500/year.
+- x264 Add-on: $3/channel/month or $90/channel perpetual.
+
+Support tiers:
+- Basic (included): Email support. Max 3 business days.
+- Business: $500/month. Dedicated Slack and email support. P1: within 8h, P2: within 16h, P3: within 24h.
+- Enterprise: $2,500/month and up. Hands-on Slack and SSH support. Feature customization, system integration, performance validation. P1: within 2h, P2: within 4h, P3: within 8h.
+
+### OvenMediaEngine Enterprise on AWS
+
+Get the complete OvenMediaEngine Enterprise experience on AWS, billed by the hour. Free for 14 days. No upfront license fee, elastic scaling, billed through AWS.
+
+- CPU instances (https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs): Starting at $0.19/instance-hour. For standard deployments without hardware encoding requirements.
+- GPU instances (https://aws.amazon.com/marketplace/pp/prodview-xgqlshxeegf5c): Hourly billing. Nvidia GPU-accelerated encoding for high-density or multi-stream transcoding workloads.
+
+### OvenMediaEngine Open-Source
+
+An open-source sub-second latency streaming server with WebRTC, LL-HLS, and SRT. AGPLv3 license (alternative commercial licensing available). Written in C++. As the foundation of the OvenMediaEngine family, it gives you full control to build, customize, and own your real-time media service.
+
+Stats: 3,200+ GitHub stars. 1,100,000+ cumulative Docker pulls. 1,100+ forks.
+
+Supported platforms: Docker, Ubuntu 18+, Rocky Linux 8+, AlmaLinux 8+, Fedora 28+.
+
+Ingest protocols: WebRTC/WHIP, SRT, RTMP/E-RTMP, MPEG-2 TS, RTSP Pull, Scheduled Channel, Multiplex Channel.
+Delivery protocols: WebRTC (under 1 second), SRT (under 1 second), LL-HLS (under 3 seconds), HLS.
+Transcoding: ABR with H.264, H.265, VP8, AAC, Opus, and pass-through. Hardware-accelerated encoding support.
+Additional features: Real-time speech-to-text via Whisper integration, DVR recording, DRM (Widevine, Fairplay), FEC, Push publishing, Thumbnail, REST API, access control (webhooks, signed policies), Origin-Edge clustering for horizontal scalability.
+
+Ecosystem:
+- OvenPlayer (https://github.com/OvenMediaLabs/OvenPlayer): Open-source HTML5 JavaScript player supporting WebRTC, LL-HLS, LL-DASH (Chunked CMAF), HLS, and MPEG-DASH. Automatic protocol fallback. Ad support (VAST, VPAID, VMAP). Subtitles (SMI, VTT, SRT). Customizable UI and SDK. MIT license. 580+ GitHub stars.
+- OvenLiveKit (https://github.com/OvenMediaLabs/OvenLiveKit-Web): Open-source JavaScript browser-based live encoder SDK using WebRTC/WHIP. Supports simulcast, built-in device and screen capture, configurable bitrate and codec preferences. Available via npm. MIT license.
+
+---
+
+## Page: OvenMedia Cloud (https://ovenmedialabs.com/om-cloud)
+
+Fully Managed Live Streaming By the OvenMediaEngine Team. Leave Live Streaming to the OvenMediaEngine Team. From architecture and customization to deployment, integration, and operations, the OvenMediaEngine team handles it all with cost efficiency built in. You focus on your business. We handle the streaming. Consultation is free. Billing begins after the final environment is approved and activated.
+
+### Built on OvenMediaEngine
+
+Proven Across Real-World Live Streaming Services. OvenMediaEngine is a sub-second latency streaming server trusted across industries for its technology, performance, reliability, flexibility, and cost efficiency. OvenMedia Cloud is delivered directly by the team that builds and maintains it.
+
+Stats: 16+ years of media tech expertise. 3.3K+ combined GitHub stars. 1.1M+ cumulative Docker pulls. 20+ countries with production deployments. 2.4K+ production instances deployed. Zero-incident production operation delivered.
+
+### One Team, Full Coverage
+
+Instead of coordinating multiple platforms, vendors, and engineering teams, you work with one team across the entire live streaming workflow.
+
+Services:
+1. Architecture Design: We design the streaming architecture around your workflow, traffic, latency targets, protocols, and service requirements.
+2. Infrastructure Options: Use your preferred bare-metal server or cloud VM, or let the OME team provide and manage the infrastructure for you.
+3. Custom Development: When standard features are not enough, OvenMediaEngine's core developers build the functionality your service requires.
+4. Channel Configuration: We configure input and output channels, protocols, recording, security, and operational policies around your workflow.
+5. Transcoding Optimization: We configure and optimize codecs, resolutions, bitrates, and transcoding profiles for quality, latency, and cost efficiency.
+6. Deployment: We deploy the environment and configure regions around your audience, performance requirements, and operating costs.
+7. Third-Party Integration: We integrate CDNs, storage, authentication, advertising systems, monitoring tools, and other external services.
+8. Web Console and Support: We provide a web console for checking channel status and service health, along with ongoing technical support through Slack.
+
+Optional: 24/7 Operations by the OvenMediaEngine Team. Continuous monitoring, incident response, and operational support. Available as a separate managed operations agreement with a 99.9% service availability SLA.
+
+### Real-World Solutions
+
+Built Around What Each Service Actually Needs. Every live streaming service has different infrastructure, delivery, integration, and operational requirements.
+
+Featured Case: 24/7 Live Streaming Service in Canada.
+Customer Need: A customer needed to operate a 24/7 live channel within Canada while continuing to use its existing CDN partner.
+What We Provided: Recommended and provisioned a cost-efficient cloud VM in the Canadian region. Configured RTMP ingest and LL-HLS output. Enabled WebRTC playback for internal low-latency monitoring. Delivered a web console for channel and service monitoring. Provided an API for inserting ID3 timed metadata for ad signaling. Provided ongoing technical support.
+Result: The customer launched a production-ready 24/7 streaming workflow while keeping its existing CDN relationship and avoiding unnecessary infrastructure complexity.
+
+### How It Works
+
+From Consultation to Production. Start with a free consultation and design the service directly with OvenMediaEngine's core developers.
+
+Steps:
+1. Tell Us What You Need: Send us your input and output workflow, transcoding requirements, expected traffic, target regions, and operational needs.
+2. Design With the Core Developers: Work closely with OvenMediaEngine's core developers through Slack to shape the architecture, channels, capabilities, regions, and delivery workflow together.
+3. Customize Where Needed: When necessary, we plan and develop the features, workflows, or integrations required by your service.
+4. Finalize the Service: We confirm the service scope, responsibilities, pricing, support model, and any optional managed operations agreement.
+5. Configure, Deploy, and Integrate: We provision the infrastructure, apply detailed settings, deploy to the agreed location, and connect the required third-party services.
+6. Validate and Approve: We test the complete workflow and provide the web console for final review.
+7. Activate the Service: Once the environment is approved, the service is activated and recurring billing begins.
+
+### The OvenMedia Cloud Difference
+
+Not Just Managed, Managed by the Team That Builds the Technology. OvenMediaEngine's core developers design, customize, deploy, integrate, maintain, and support your streaming environment directly, giving you greater flexibility, faster technical decisions, and fewer handoffs.
+
+Conventional managed streaming platforms:
+- Standardized platform and service structure
+- Limited service-specific customization
+- Product engineering separated from support
+- Multiple handoffs for complex technical issues
+- Your workflow must adapt to the platform
+
+OvenMedia Cloud:
+- Architecture designed around your actual workflow
+- Direct access to OvenMediaEngine's core developers
+- Custom development and integration when needed
+- Detailed configuration, deployment, and regional setup
+- One team from initial design through ongoing support
+
+### Cost Efficiency
+
+Our Technology, Our Expertise, Lower Costs. We build the technology ourselves and know how to optimize it in real production environments. That allows us to deliver a fully managed live streaming service at a lower cost without compromising flexibility or technical depth.
+
+On average, customers reduce live streaming infrastructure costs by approximately 30 to 40% through service-specific architecture, encoding, and delivery optimization.
+
+### Migration
+
+Bring Your Existing Streaming Service to OvenMedia Cloud. Already running another platform or your own infrastructure? We review your existing workflow, preserve what works, and handle the design, configuration, integration, deployment, and transition to OvenMedia Cloud.
+
+Migration steps:
+1. Review Your Current Service: We review your inputs, outputs, protocols, regions, traffic, encoding, integrations, operational requirements, and existing infrastructure.
+2. Design the Target System: Together with your team, OvenMediaEngine's core developers design the new architecture, channel structure, deployment regions, integrations, and migration plan.
+3. Build, Validate, and Transition: We configure and deploy the environment, connect required third-party services, validate the complete workflow, and support the transition to production.
+
+---
+
+## Page: What is Sub-Second Latency? (https://ovenmedialabs.com/latency)
+
+Real-Time is Not 10 Seconds Late. In the era of live interaction, Live should mean Now. Understand why latency occurs and how we achieved Sub-Second Latency.
+
+### The Problem
+
+Why is your stream delayed? Many people believe their live stream is happening in real-time, but they are actually watching the past.
+
+The "Chunk" Bottleneck: Legacy protocols like HLS or DASH slice video into "Chunks" (segments) of 2 to 10 seconds. Players typically buffer 3 of these chunks to ensure stability. For example, 3 chunks x 10 seconds = 30 seconds delay. This buffering creates a massive gap between the streamer and the viewer.
+
+Latency comparison:
+- HLS and DASH: 6 to 10 seconds or more. Passive viewing only. Impossible to have real-time chat.
+- Low Latency HLS (LL-HLS): 2 to 4 seconds. Improved, but still feels slightly off for live interaction.
+- WebRTC and SRT: Under 1 second. Sub-second latency. True real-time synchronization.
+
+### What Can You Do with Zero Delay?
+
+- Live Auction and Commerce: Bids must happen instantly. A 5-second delay could mean losing a deal. Ensure fair, real-time bidding.
+- iGaming and Betting: Trust is built on visibility. Players need to see the card turn or the ball drop the moment it happens.
+- Interactive Webinar: Q&A sessions should not be awkward. Have a natural conversation with thousands of viewers.
+
+### Our Solution: Engineered for Sub-Second
+
+OvenMedia Labs' mission is to democratize high-quality, ultra-low latency streaming. We combined the best open-source protocols to create a powerful engine.
+
+WebRTC: The gold standard for real-time communication. We optimized WebRTC for one-to-many broadcasting, overcoming its traditional scaling limits. Frame-based rendering. Sub-500ms latency. No plugins required. Modern browser support.
+
+LL-HLS: Extended HLS protocol. With Chunked Transfer Encoding and HTTP/2, we cut typical HLS latency from tens of seconds down to about 2 to 3 seconds. Firewall friendly (HTTP/TCP based). HLS-compatible with existing CDN. ABR support.
+
+SRT: Quality in, quality out. We use SRT instead of aging RTMP to keep both ingress and egress stable, even over unreliable public networks or between sites. Reliable end-to-end packet loss recovery. Low jitter. Modern standard.
+
+---
+
+## Page: About OvenMedia Labs (https://ovenmedialabs.com/company)
+
+Media Technology Experts Group. WE DO ONE THING. We define media technology for the real-time world.
+
+We are a group of media technology experts behind the open-source project OvenMediaEngine. We believe that our core technology should be accessible to everyone.
+
+Founded: 2010. Formerly AirenSoft Co., Ltd. Rebranded as OvenMedia Labs Inc. in February 2026. Our technology powers thousands of media services worldwide.
+
+Address: #1203, Twenty-First Valley, 157, Yangpyeong-ro, Yeongdeungpo-gu, Seoul, 07207, Republic of Korea.
+Phone: +82-2-6378-5227
+Email: contact@ovenmedialabs.com
+
+---
+
+## Key Facts for Citation
+
+- OvenMediaEngine is an open-source (AGPLv3) sub-second latency live streaming server supporting WebRTC (under 1 second), LL-HLS (under 3 seconds), and SRT (under 1 second).
+- OvenMedia Cloud is a fully managed live streaming service operated directly by OvenMediaEngine's core engineering team, not a reseller or third-party operator.
+- OvenMediaEngine Enterprise is the commercial edition with a Web Console, advanced security, high availability, direct-to-engineer support, and no per-viewer fees.
+- OvenMedia Labs was founded in 2010, formerly known as AirenSoft Co., Ltd., rebranded in February 2026.
+- Production deployments in 20+ countries, 2,400+ production instances deployed.
+- GitHub: https://github.com/OvenMediaLabs
