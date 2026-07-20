@@ -124,7 +124,7 @@ export default function ConsultationForm(): React.ReactElement {
 
   return (
     <form className="consult-form reveal-up" onSubmit={onSubmit} noValidate>
-      <div className="row g-4">
+      <div className="row g-4h">
         <div className="col-md-6">
           <label className="consult-label" htmlFor="cf-name">
             Name <span className="consult-req">*</span>
@@ -174,7 +174,7 @@ export default function ConsultationForm(): React.ReactElement {
         </div>
 
         <div className="col-12">
-          <label className="consult-label">What Do You Need Help With</label>
+          <label className="consult-label d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-baseline">What Do You Need Help With <span className="text-mono small fw-normal">* Select all that apply</span></label>
           <div className="consult-chips">
             {HELP_TOPICS.map((t) => {
               const active = topics.includes(t);
@@ -209,7 +209,7 @@ export default function ConsultationForm(): React.ReactElement {
         </div>
 
         <div className="col-12 d-flex flex-column align-items-center pt-2">
-          <button type="submit" className="btn btn-fms-fill rounded-pill px-5 py-2" disabled={submitting}>
+          <button type="submit" className="btn btn-company-outline px-5 py-2" disabled={submitting}>
             {submitting ? 'Sending…' : 'Send Request'}
           </button>
           {Object.values(errors).some(Boolean) && (
