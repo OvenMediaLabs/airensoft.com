@@ -2663,5 +2663,62 @@ html.plugin-blog article [id] {
 .fms-tlbody { padding-top: 0; }
 .fms-tlrow:last-child { margin-bottom: 0; }
 
-.notion-consultation-iframe { height: 2040px; }
-@media (max-width: 575px) { .notion-consultation-iframe { height: 2180px; } }
+/* === OME Cloud Consultation page spacing ===
+   The global rule `.full-page-section > .container` pads every section by
+   var(--navbar-height) top and bottom. Between the short hero and the form
+   that stacks 156px+ of empty space, so tighten just this page's gap. */
+.oc-hero > .container { padding-bottom: 1rem !important; }
+.oc-form-section > .container { padding-top: 1.5rem !important; padding-bottom: 4rem !important; }
+
+/* === OME Cloud Consultation form === */
+.consult-card {
+    background: color-mix(in srgb, var(--bg-middle), transparent 35%);
+    border: 1px solid var(--border-darker);
+    border-radius: 20px;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+.consult-form .consult-label {
+    display: block; margin-bottom: 0.5rem;
+    font: 600 0.85rem/1.3 var(--font-sans); color: var(--text-main); letter-spacing: 0.01em;
+}
+.consult-form .consult-req { color: var(--company-primary); }
+.consult-input {
+    width: 100%; padding: 0.7rem 0.95rem;
+    background: color-mix(in srgb, var(--bg-body), transparent 20%);
+    border: 1px solid var(--border-darker); border-radius: 10px;
+    color: var(--text-main); font: 400 0.95rem/1.5 var(--font-sans);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.consult-input::placeholder { color: var(--text-sub2); }
+.consult-input:focus {
+    outline: none; border-color: var(--company-primary);
+    background: color-mix(in srgb, var(--bg-body), transparent 5%);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--company-primary), transparent 82%);
+}
+.consult-select { appearance: none; cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.4rem;
+}
+.consult-select option { background: var(--bg-body); color: var(--text-main); }
+.consult-textarea { resize: vertical; min-height: 120px; }
+.consult-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.consult-chip {
+    padding: 0.45rem 0.9rem; border-radius: 99px; cursor: pointer;
+    background: color-mix(in srgb, var(--bg-body), transparent 20%);
+    border: 1px solid var(--border-darker); color: var(--text-sub);
+    font: 500 0.8rem/1 var(--font-sans);
+    transition: all 0.2s ease;
+}
+.consult-chip:hover { border-color: var(--company-primary); color: var(--text-main); }
+.consult-chip.is-active {
+    background: color-mix(in srgb, var(--company-primary), transparent 82%);
+    border-color: var(--company-primary); color: var(--company-primary);
+}
+.consult-input.is-invalid { border-color: var(--company-accent); }
+.consult-input.is-invalid:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--company-accent), transparent 82%); }
+.consult-field-error { display: block; margin-top: 0.35rem; color: var(--company-accent); font-size: 0.8rem; }
+.consult-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.consult-error { color: var(--company-accent); font-size: 0.9rem; }
+.consult-done { padding: clamp(1.5rem, 5vw, 3rem) 1rem; }
+.consult-done-icon { font-size: 3rem; color: var(--oss-main); display: block; margin-bottom: 1rem; }
