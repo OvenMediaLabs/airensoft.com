@@ -10,10 +10,12 @@ keywords: [OvenMediaEngine, live streaming, WebRTC, LL-HLS, SRT, sub-second late
 import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
 import Head from '@docusaurus/Head';
 import OmeProductNav from '@site/src/components/OmeProductNav';
+import NewsletterForm from '@site/src/components/NewsletterForm';
 import GitHubStats from '@site/src/components/GitHubStats';
 import OrbitDot from '@site/src/components/OrbitDot';
 
 <Head>
+  <meta name="robots" content="noindex" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:site_name" content="OvenMedia Labs" />
@@ -153,7 +155,6 @@ import OrbitDot from '@site/src/components/OrbitDot';
 
 <div className="enterprise-part py-6">
 
-<a id="enterprise"></a>
 <section id="enterprise" className="full-page-section d-flex flex-column position-relative bg-body">
   <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
     <div className="container">
@@ -166,9 +167,10 @@ import OrbitDot from '@site/src/components/OrbitDot';
           </h2>
           <p className="text-sub mb-4">Fine-tune your self-hosted live streaming workflow, from ingest to delivery, built for enterprise requirements, optimized for sub-second latency, and supported directly by the core engineering team.</p>
           <div className="row g-2 mb-3">
-            <div className="col-6"><a href="#pricing" className="btn btn-sm btn-enterprise-fill rounded-pill w-100"><i className="ph ph-tag me-2"></i>Pricing</a></div>
+            <div className="col-6"><a href="/ome-consultation" className="btn btn-sm btn-enterprise-fill rounded-pill w-100"><i className="ph ph-envelope-simple me-2"></i>Contact</a></div>
+            <div className="col-6"><a href="/docs/ome-enterprise" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary-outline rounded-pill w-100"><i className="ph ph-book-open me-2"></i>Guide</a></div>
+            <div className="col-6"><a href="#pricing" className="btn btn-sm btn-enterprise-outline rounded-pill w-100"><i className="ph ph-tag me-2"></i>Pricing</a></div>
             <div className="col-6"><a href="#marketplace" className="btn btn-sm btn-enterprise-outline rounded-pill w-100"><i className="ph ph-storefront me-2"></i><span className="d-none d-lg-inline">Explore </span>AWS Options</a></div>
-            <div className="col-12"><a href="/docs/ome-enterprise" target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-secondary-outline rounded-pill w-100"><i className="ph ph-book-open me-2"></i>Guide</a></div>
           </div>
           <a href="/eula" className="text-bi-yellow2 small text-decoration-underline lh-1 d-block text-center text-lg-start">※ Please see the End User License Agreement.</a>
         </div>
@@ -394,7 +396,7 @@ import OrbitDot from '@site/src/components/OrbitDot';
                 <li className="d-flex align-items-center text-main mx-1 lh-sm small"><i className="ph ph-check text-secondary me-2"></i>Guaranteed LTS</li>
                 <li className="d-flex align-items-center text-main mx-1 lh-sm small"><i className="ph ph-check text-secondary me-2"></i>Technical Support via Email</li>
               </ul>
-              <a href="mailto:contact@ovenmedialabs.com?subject=[OME Enterprise] Monthly Plan Inquiry" className="btn btn-brand-outline w-100 mt-4">Request a Quote</a>
+              <a href="/ome-consultation?interest=license" className="btn btn-brand-outline w-100 mt-4">Request a Quote</a>
             </div>
           </div>
         </div>
@@ -417,7 +419,7 @@ import OrbitDot from '@site/src/components/OrbitDot';
                 <li className="d-flex align-items-center text-main mx-1 lh-sm small"><i className="ph-fill ph-star text-secondary me-2"></i>2 months free vs. monthly billing</li>
                 <li className="d-flex align-items-center text-main mx-1 lh-sm small"><i className="ph-fill ph-star text-secondary me-2"></i>Everything in Monthly</li>
               </ul>
-              <a href="mailto:contact@ovenmedialabs.com?subject=[OME Enterprise] Annual Plan Inquiry" className="btn btn-brand-outline w-100 mt-4">Request a Quote</a>
+              <a href="/ome-consultation?interest=license" className="btn btn-brand-outline w-100 mt-4">Request a Quote</a>
             </div>
           </div>
         </div>
@@ -440,7 +442,7 @@ import OrbitDot from '@site/src/components/OrbitDot';
                 <li className="d-flex align-items-center text-main mx-1 lh-sm small"><i className="ph ph-check text-secondary me-2"></i>Lifetime License Access</li>
                 <li className="d-flex align-items-center text-main mx-1 lh-sm small"><i className="ph ph-check text-secondary me-2"></i>1-Year Updates &amp; Support</li>
               </ul>
-              <a href="mailto:contact@ovenmedialabs.com?subject=[OME Enterprise] Perpetual License Inquiry" className="btn btn-brand-outline w-100 mt-4">Request a Quote</a>
+              <a href="/ome-consultation?interest=license" className="btn btn-brand-outline w-100 mt-4">Request a Quote</a>
             </div>
           </div>
         </div>
@@ -475,7 +477,7 @@ import OrbitDot from '@site/src/components/OrbitDot';
                   <div className="h2 fw-bold text-primary mb-0 lh-1">$90 <span className="small text-mono-light fw-normal">/ channel</span></div>
                 </div>
               </div>
-              <a href="mailto:contact@ovenmedialabs.com?subject=[OME Enterprise] x264 Add-on Inquiry" className="btn btn-company-outline w-100 mt-4">Request a Quote</a>
+              <a href="/ome-consultation?interest=x264" className="btn btn-company-outline w-100 mt-4">Request a Quote</a>
               </div>
             </div>
           </div>
@@ -585,7 +587,7 @@ import OrbitDot from '@site/src/components/OrbitDot';
                   </div>
                 </li>
               </ul>
-              <a href="mailto:contact@ovenmedialabs.com?subject=[OME Enterprise] Business Tier Support Inquiry" className="btn btn-brand-outline w-100 mt-4">Request a Quote</a>
+              <a href="/ome-consultation?interest=support" className="btn btn-brand-outline w-100 mt-4">Request a Quote</a>
             </div>
           </div>
         </div>
@@ -616,7 +618,7 @@ import OrbitDot from '@site/src/components/OrbitDot';
                   </div>
                 </li>
               </ul>
-              <a href="mailto:contact@ovenmedialabs.com?subject=[OME Enterprise] Enterprise Tier Support Inquiry" className="btn btn-brand-outline w-100 mt-4">Request a Quote</a>
+              <a href="/ome-consultation?interest=support" className="btn btn-brand-outline w-100 mt-4">Request a Quote</a>
             </div>
           </div>
         </div>
@@ -653,7 +655,6 @@ import OrbitDot from '@site/src/components/OrbitDot';
 
 <div className="ome-part py-6">
 
-<a id="open-source"></a>
 <section id="open-source" className="full-page-section d-flex flex-column position-relative bg-surface">
   <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
     <div className="container">
@@ -838,7 +839,7 @@ import OrbitDot from '@site/src/components/OrbitDot';
       <h2 className="h2s fw-bold text-main mb-3">Find the right OvenMediaEngine for your service</h2>
       <p className="lead text-sub fw-light mb-4 col-lg-8 mx-auto">Our experts can help you choose the best option based on your streaming workflow, deployment model, and production goals.</p>
       <div className="d-grid d-md-block">
-        <a href="/company#contact" className="btn btn-company-outline rounded-pill px-5">Talk to an Expert</a>
+        <a href="/ome-consultation" className="btn btn-company-outline rounded-pill px-5">Talk to an Expert</a>
       </div>
     </div>
   </div>
@@ -849,3 +850,11 @@ import OrbitDot from '@site/src/components/OrbitDot';
 <div style={{background: 'var(--bg-middle)'}}>
   <LatestBlogPosts subhead="From the OvenMediaEngine Engineers." />
 </div>
+
+<section id="newsletter" className="full-page-section d-flex flex-column position-relative bg-dark-30">
+  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
+    <div className="container text-center reveal-up">
+      <NewsletterForm />
+    </div>
+  </div>
+</section>

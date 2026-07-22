@@ -7,7 +7,7 @@ const PRODUCTS = [
   { href: '/om-cloud',   label: 'OvenMedia Cloud',  color: 'rgb(197, 163, 142)', bg: 'rgba(197, 163, 142, 0.15)', border: 'rgba(197, 163, 142, 0.35)' },
   { href: '#enterprise',  label: 'OME Enterprise',   color: 'rgb(56, 189, 248)',  bg: 'rgba(56, 189, 248, 0.15)',  border: 'rgba(56, 189, 248, 0.35)'  },
   { href: '#open-source', label: 'OvenMediaEngine',  color: 'rgb(74, 222, 128)',  bg: 'rgba(74, 222, 128, 0.15)',  border: 'rgba(74, 222, 128, 0.35)'  },
-  { href: 'mailto:contact@ovenmedialabs.com?subject=[OME Enterprise] Consultation Request', label: 'sales', color: '#C5A38E', bg: 'rgba(197, 163, 142, 0.15)', border: 'rgba(197, 163, 142, 0.3)', desktopOnly: true },
+  { href: '/ome-consultation', label: 'sales', color: '#C5A38E', bg: 'rgba(197, 163, 142, 0.15)', border: 'rgba(197, 163, 142, 0.3)', desktopOnly: true },
 ];
 
 export default function OmeProductNav(): React.ReactElement {
@@ -86,7 +86,7 @@ export default function OmeProductNav(): React.ReactElement {
               textAlign: 'center',
             }}
           >
-            {href === '#open-source' ? 'OME' : label}
+            {href === '#open-source' ? 'OvenMediaEngine' : label}
           </a>
         ))}
       </div>

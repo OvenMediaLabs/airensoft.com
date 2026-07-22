@@ -19,6 +19,9 @@ export type ResourcesItem = {
   // Label shown in the mobile accordion instead of `label`.
   // Use when the desktop label relies on a category header for context.
   mobileLabel?: string;
+  // Label shown in the navbar toggle when this item is the active route.
+  // Falls back to `label` when not set.
+  navLabel?: string;
 };
 
 export const resourcesDropdownItems: ResourcesItem[] = [
@@ -30,13 +33,14 @@ export const resourcesDropdownItems: ResourcesItem[] = [
   // so the column reads as "this group is documentation" and the label
   // is the only differentiator. Product-specific icons looked too much
   // like product logos.
-  {to: '/docs/ome', label: 'OvenMediaEngine', icon: 'ph-book-open-text'},
+  {to: '/docs/ome', label: 'OvenMediaEngine', icon: 'ph-book-open-text', navLabel: 'OvenMediaEngine Guide'},
   {
     to: '/docs/ome-enterprise',
     label: 'OvenMediaEngine Enterprise',
     icon: 'ph-book-open-text',
+    navLabel: 'OvenMediaEngine Enterprise Guide',
   },
-  {to: '/docs/ovenplayer', label: 'OvenPlayer', icon: 'ph-book-open-text'},
+  {to: '/docs/ovenplayer', label: 'OvenPlayer', icon: 'ph-book-open-text', navLabel: 'OvenPlayer Guide'},
   {type: 'divider'},
   {type: 'header', label: 'Source & Community'},
   {

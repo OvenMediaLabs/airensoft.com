@@ -34,6 +34,7 @@ type NavbarItem = {
   // header rows that Docusaurus's themeConfig schema would reject).
   customMenu?: 'resources';
   mobileLabel?: string;
+  navLabel?: string;
   [key: string]: unknown;
 };
 
@@ -317,9 +318,10 @@ function Dropdown({item, isActive, dropdownId}: {item: NavbarItem; isActive: boo
   };
   const isToggleActive = isActive || isDropdownOpen || isResourcesActive
     || (hasAnchorItems && pathname === '/');
-  const activeSubLabel = activeAnchor
-    ? (linkItems.find(sub => sub.to === activeAnchor)?.label ?? null)
-    : (linkItems.find(sub => isSubActive(sub))?.label ?? null);
+  const activeSub = activeAnchor
+    ? linkItems.find(sub => sub.to === activeAnchor)
+    : linkItems.find(sub => isSubActive(sub));
+  const activeSubLabel = activeSub ? (activeSub.navLabel ?? activeSub.label ?? null) : null;
   const toggleLabel = activeSubLabel ?? item.label ?? '';
 
   // Closes any open Bootstrap dropdown (PC) or the hamburger collapse (mobile).
@@ -455,7 +457,7 @@ export default function NavbarContent(): ReactNode {
         <div style={{position: 'relative', pointerEvents: 'none'}}>
           <picture style={{display: 'block'}}>
             <source srcSet={logoDefaultSrc} type="image/svg+xml" />
-            <img src={logoDefaultPng} alt="OvenMedia Labs" className="sharp-img" style={{filter: 'brightness(1.25)'}} />
+            <img src={logoDefaultPng} alt="OvenMedia Labs" style={{filter: 'brightness(1.25)'}} />
           </picture>
           <picture style={{
             position: 'absolute', top: 0, left: 0, display: 'block',
@@ -463,7 +465,7 @@ export default function NavbarContent(): ReactNode {
             WebkitMaskImage: 'linear-gradient(-60deg, transparent 0%, white 100%)',
           }}>
             <source srcSet={logoLightSrc} type="image/svg+xml" />
-            <img src={logoLightPng} alt="" className="sharp-img" style={{filter: 'brightness(1.25)'}} />
+            <img src={logoLightPng} alt="" style={{filter: 'brightness(1.25)'}} />
           </picture>
         </div>
         <span
