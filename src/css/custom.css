@@ -460,6 +460,21 @@ html.plugin-blog .main-wrapper .container--fluid {
   padding-left: 2rem !important;
   padding-right: 2rem !important;
 }
+html.plugin-blog #newsletter .container {
+  max-width: 1320px !important;
+}
+html.plugin-blog #newsletter .row {
+  flex-wrap: wrap !important;
+  margin-right: calc(var(--bs-gutter-x) * -0.5) !important;
+  margin-left: calc(var(--bs-gutter-x) * -0.5) !important;
+}
+html.plugin-blog #newsletter .row > * {
+  padding-right: calc(var(--bs-gutter-x) * 0.5) !important;
+  padding-left: calc(var(--bs-gutter-x) * 0.5) !important;
+  margin-top: var(--bs-gutter-y) !important;
+  width: revert !important;
+  max-width: revert !important;
+}
 
 /* Prose images get a uniform layout (centered block, generous vertical
  * rhythm) but no white background or padding. Diagrams that need a
