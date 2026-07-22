@@ -8,10 +8,12 @@ keywords: [OvenMedia Cloud, fully managed live streaming, managed streaming serv
 ---
 
 import LatestBlogPosts from '@site/src/components/LatestBlogPosts';
+import NewsletterForm from '@site/src/components/NewsletterForm';
 import Head from '@docusaurus/Head';
 import OmeProductNav from '@site/src/components/OmeProductNav';
 
 <Head>
+  <title>OvenMedia Cloud</title>
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:site_name" content="OvenMedia Labs" />
@@ -97,10 +99,17 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
   .difference-part > .full-page-section.bg-middle-50 { background: transparent !important; }
   @media (max-width: 991px) {
     #migration .fms-step { border-radius: 16px !important; padding: 1.25rem !important; }
-    #migration .fms-stepno { font-size: 11px; }
+    #migration .fms-stepno { font-size: 0.7rem; }
     #migration h4.h5 { font-size: 0.95rem; }
-    #migration p { font-size: 13px !important; }
+    #migration .fms-step > p { font-size: 0.8rem; }
   }
+  .badge-outline { background: transparent !important; border: 1px solid currentColor !important; }
+  .case-label { letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.7rem; }
+  #how-it-works .fms-tlbody h4 { font-size: 1.1rem; letter-spacing: -0.01em; }
+  #how-it-works .fms-tlbody p { font-size: 0.9rem; line-height: 1.6; }
+  #cost .fms-costhero h4 { font-size: 1.2rem; letter-spacing: -0.015em; }
+  #cost .fms-costhero p { font-size: 0.9rem; line-height: 1.55; }
+  #migration .fms-step > p { font-size: 0.875rem; line-height: 1.55; }
 `}</style>
 
 {/* ─── 01 Hero ─────────────────────────────────────────────────────────────── */}
@@ -113,23 +122,24 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         <div className="hero-badge mb-4 px-4 reveal-up mx-auto fw-bold small d-inline-block">OvenMedia Cloud</div>
       </div>
       <div className="col-lg-10 reveal-up">
-        <h1 className="display-2s fw-bold text-main mb-4 lh-tight">
+        <h1 className="display-2s fw-bold text-main mb-2 mb-sm-4 lh-tight">
           <span className="text-main">Fully Managed Live Streaming</span>
           <span className="text-gradient d-block" style={{paddingBottom: '0.1em'}}><span className="d-none d-sm-inline">By the OvenMediaEngine Team</span><span className="d-sm-none">By the OME Team</span></span>
         </h1>
-        <p className="lead text-main mb-3 reveal-up col-lg-10 mx-auto" style={{fontWeight: 400}}>Leave Live Streaming to the OvenMediaEngine Team</p>
+        {/* Hidden on mobile to reduce hero height and preserve viewport space */}
+        <p className="lead text-main mb-3 reveal-up col-lg-10 mx-auto d-none d-sm-block fw-normal">Leave Live Streaming to the OvenMediaEngine Team</p>
 
         <div className="d-flex flex-wrap justify-content-center gap-2 mb-4 reveal-up">
           {['Architecture', 'Infrastructure', 'Customization', 'Deployment', 'Integration', 'Fine-tuning', 'Monitoring', 'Maintenance', 'Operations'].map(tag => (
-            <span key={tag} className="fms-tag-secondary" style={{fontSize: '12px', padding: '4px 8px'}}>{tag}</span>
+            <span key={tag} className="fms-tag-secondary">{tag}</span>
           ))}
         </div>
-        <p className="fms-herosub col-lg-9 mx-auto mb-5"><span className="text-primary">From architecture and customization to deployment, integration, and operations, the OvenMediaEngine team handles it all with cost efficiency built in.</span><br /><span style={{color: 'var(--fms-light)'}}>You focus on your business. We handle the streaming.</span></p>
+        <p className="fms-herosub col-lg-9 mx-auto mb-3 mb-sm-5"><span className="text-primary">From architecture and customization to deployment, integration, and operations, the OvenMediaEngine team handles it all with cost efficiency built in.</span><br className="d-none d-sm-inline" /><span className="d-none d-sm-inline" style={{color: 'var(--fms-light)'}}>You focus on your business. We handle the streaming.</span></p>
         <div className="d-flex flex-column flex-sm-row gap-3 reveal-up mb-2 px-4 px-sm-0 mx-auto w-100" style={{maxWidth: '580px'}}>
           <a href="/omc-consultation" className="btn btn-fms-fill" style={{flex: '1 1 0'}}><i className="ph ph-chat-circle-text me-2"></i>Free Consultation</a>
           <a href="#solutions" className="btn btn-secondary-outline" style={{flex: '1 1 0'}}><i className="ph ph-file-text me-2"></i>View Case Studies</a>
         </div>
-        <p className="text-mono reveal-up mb-5" style={{fontSize: '0.75rem', lineHeight: 1.6}}>※ Consultation is free. Billing begins after the final environment is approved and activated.</p>
+        <p className="text-mono reveal-up mb-5 extra-small lh-base">※ Consultation is free. Billing begins after the final environment is approved and activated.</p>
       </div>
     </div>
   </div>
@@ -176,7 +186,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
         <h2 className="display-5 fw-bold text-main mb-3 lh-tight">One Team, Full Coverage</h2>
         <p className="lead text-sub col-lg-8 mx-auto mb-0">Instead of coordinating multiple platforms, vendors, and engineering teams, you work with one team across the entire live streaming workflow.</p>
       </div>
-      <div className="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-4 mb-3 mobile-horizontal-scroll" style={{alignItems: 'stretch'}}>
+      <div className="row g-3 row-cols-1 row-cols-md-2 row-cols-lg-4 mb-3 mobile-horizontal-scroll align-items-stretch">
         {[
           {icon: 'ph-tree-structure',    title: 'Architecture Design',              body: 'We design the streaming architecture around your workflow, traffic, latency targets, protocols, and service requirements.'},
           {icon: 'ph-hard-drives',       title: 'Infrastructure Options',           body: 'Use your preferred bare-metal server or cloud VM, or let the OME team provide and manage the infrastructure for you.'},
@@ -191,9 +201,9 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
             <div className="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-primary">
               <div className="d-flex align-items-center gap-2 mb-2">
                 <i className={`ph ${icon} text-primary fs-5`}></i>
-                <span className="fw-bold text-main" style={{fontSize: '1rem'}}>{title}</span>
+                <span className="fw-bold text-main h7">{title}</span>
               </div>
-              <hr className="mt-0 mb-3 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
+              <hr className="mt-0 mb-3 opacity-25 border-sub" />
               <p className="text-sub small mb-0 lh-sm">{body}</p>
             </div>
           </div>
@@ -202,10 +212,10 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
           <div className="p-4 rounded h-100 hover-card5 d-flex flex-column card-glow glow-primary">
             <div className="d-flex align-items-center gap-2 mb-2">
               <i className="ph ph-headset text-primary fs-5"></i>
-              <span className="badge rounded-pill text-primary" style={{background: 'transparent', border: '1px solid currentColor'}}>Optional</span>
-              <span className="fw-bold text-main" style={{fontSize: '1rem'}}>24/7 Managed Operations</span>
+              <span className="badge rounded-pill text-primary badge-outline">Optional</span>
+              <span className="fw-bold text-main h7">24/7 Managed Operations</span>
             </div>
-            <hr className="mt-0 mb-3 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
+            <hr className="mt-0 mb-3 opacity-25 border-sub" />
             <p className="text-sub small mb-0 lh-sm">Continuous monitoring, incident response, and operational support by OvenMediaEngine's core engineers. Available as a separate managed operations agreement with a 99.9% service availability SLA.</p>
           </div>
         </div>
@@ -213,16 +223,16 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
       <div className="p-4 rounded reveal-up mb-4 hover-card5 card-glow glow-primary d-none d-lg-block">
         <div className="d-flex align-items-center gap-2 mb-2">
           <i className="ph ph-headset text-primary fs-5"></i>
-          <span className="badge rounded-pill text-primary" style={{background: 'transparent', border: '1px solid currentColor'}}>Optional</span>
-          <span className="fw-bold text-main" style={{fontSize: '1rem'}}>24/7 Operations by the OvenMediaEngine Team</span>
+          <span className="badge rounded-pill text-primary badge-outline">Optional</span>
+          <span className="fw-bold text-main h7">24/7 Operations by the OvenMediaEngine Team</span>
         </div>
-        <hr className="mt-0 mb-3 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
+        <hr className="mt-0 mb-3 opacity-25 border-sub" />
         <div className="row align-items-end">
           <div className="col-lg-8 mb-3 mb-lg-0">
             <p className="text-sub small mb-0 lh-sm">Continuous monitoring, incident response, and operational support by OvenMediaEngine's core engineers. Available as a separate managed operations agreement with a 99.9% service availability SLA.</p>
           </div>
           <div className="col-lg-4 d-flex justify-content-lg-end">
-            <a href="/omc-consultation" className="btn btn-company-outline">Contact for Details</a>
+            <a href="/omc-consultation?topic=managed-ops" className="btn btn-company-outline">Contact for Details</a>
           </div>
         </div>
       </div>
@@ -244,24 +254,24 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
       </div>
 
       {/* ── Case Card ─────────────────────────────────────────────────────── */}
-      <div className="row reveal-up mobile-horizontal-scroll">
+      <div className="row reveal-up">
       <div className="col-12">
-      <div className="p-4 p-md-5 rounded" style={{background: 'color-mix(in srgb, var(--bg-middle), transparent 50%)'}}>
+      <div className="p-4 p-md-5 rounded bg-middle-50">
 
         {/* Header */}
         <div className="mb-2">
-          <div className="mb-1"><span className="badge rounded-pill text-primary" style={{background: 'transparent', border: '1px solid currentColor'}}>Featured Case</span></div>
+          <div className="mb-1"><span className="badge rounded-pill text-primary badge-outline">Featured Case</span></div>
           <span className="fw-bold text-main" style={{fontSize: '1.05rem'}}>24/7 Live Streaming Service in Canada</span>
         </div>
-        <hr className="mt-0 mb-4 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
+        <hr className="mt-0 mb-4 opacity-25 border-sub" />
 
-        <img src="/images/ome_screenshot/webconsole_demo.webp" alt="Web Console Demo" className="rounded mb-4 w-100" style={{aspectRatio: '1920/1030', objectFit: 'cover'}} />
+        <img src="/images/ome_screenshot/webconsole_demo.webp" alt="Web Console Demo" className="rounded mb-4 w-100 object-fit-cover" style={{aspectRatio: '1920/1030'}} />
 
         {/* Need / Provided / Result */}
         <div className="row g-0 mobile-horizontal-scroll align-items-stretch mb-4">
           <div className="col-12 col-lg">
             <div className="fms-step fms-step-plain p-4 h-100 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
-              <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.7rem'}}>Customer Need</div>
+              <div className="fw-semibold text-primary case-label">Customer Need</div>
               <p className="text-mono-light small lh-sm mb-0">A customer needed to operate a 24/7 live channel within Canada while continuing to use its existing CDN partner.</p>
             </div>
           </div>
@@ -270,7 +280,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
           </div>
           <div className="col-12 col-lg" style={{flex: '2 0 0%'}}>
             <div className="fms-step fms-step-plain p-4 h-100 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
-              <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.7rem'}}>What We Provided</div>
+              <div className="fw-semibold text-primary case-label">What We Provided</div>
               <ul className="list-unstyled mb-0 d-flex flex-column gap-1">
                 {[
                   'Recommended and provisioned a cost-efficient cloud VM in the Canadian region',
@@ -293,7 +303,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
           </div>
           <div className="col-12 col-lg">
             <div className="fms-step fms-step-plain p-4 h-100 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
-              <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.7rem'}}>Result</div>
+              <div className="fw-semibold text-primary case-label">Result</div>
               <p className="text-mono-light small lh-sm mb-0">The customer launched a production-ready 24/7 streaming workflow while keeping its existing CDN relationship and avoiding unnecessary infrastructure complexity.</p>
             </div>
           </div>
@@ -309,47 +319,6 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
       </div>
       </div>
 
-      {/* ── Secondary Cases (hidden until content is ready) ──────────────── */}
-      {false && <div className="row gx-3 mt-3 reveal-up mobile-horizontal-scroll">
-        <div className="col-10 col-md-6">
-          <div className="p-5 rounded h-100" style={{background: 'color-mix(in srgb, var(--bg-middle), transparent 50%)'}}>
-            <div className="mb-2">
-              <div className="mb-1"><span className="badge rounded-pill text-primary" style={{background: 'transparent', border: '1px solid currentColor'}}>Featured Case</span></div>
-              <span className="fw-bold text-main" style={{fontSize: '1.05rem'}}>Large-Scale Sports Streaming</span>
-            </div>
-            <hr className="mt-0 mb-3 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
-            <div className="d-flex flex-column gap-2">
-              <div className="p-3 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
-                <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.65rem'}}>Customer Need</div>
-                <p className="text-mono-light small lh-sm mb-0">Stable live delivery for high-concurrency sports events with multiple channels, encoding profiles, and operational monitoring requirements.</p>
-              </div>
-              <div className="p-3 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
-                <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.65rem'}}>What We Delivered</div>
-                <p className="text-mono-light small lh-sm mb-0">Architecture design, channel and transcoding configuration, production deployment, monitoring workflows, and direct engineering support.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-10 col-md-6">
-          <div className="p-5 rounded h-100" style={{background: 'color-mix(in srgb, var(--bg-middle), transparent 50%)'}}>
-            <div className="mb-2">
-              <div className="mb-1"><span className="badge rounded-pill text-primary" style={{background: 'transparent', border: '1px solid currentColor'}}>Featured Case</span></div>
-              <span className="fw-bold text-main" style={{fontSize: '1.05rem'}}>Multi-Platform Media Service</span>
-            </div>
-            <hr className="mt-0 mb-3 opacity-25" style={{borderColor: 'var(--text-sub)'}} />
-            <div className="d-flex flex-column gap-2">
-              <div className="p-3 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
-                <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.65rem'}}>Customer Need</div>
-                <p className="text-mono-light small lh-sm mb-0">A complex workflow combining multiple input sources, output formats, delivery paths, and service-specific integrations.</p>
-              </div>
-              <div className="p-3 d-flex flex-column gap-2" style={{border: '1px solid var(--bg-middle)', borderRadius: '8px', background: 'color-mix(in srgb, var(--bg-middle), transparent 25%)'}}>
-                <div className="small fw-semibold text-primary" style={{letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.65rem'}}>What We Delivered</div>
-                <p className="text-mono-light small lh-sm mb-0">Customized stream routing, protocol conversion, workflow-specific configuration, third-party integration, and production support.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>}
     </div>
   </div>
 </section>
@@ -383,8 +352,8 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
                   <div className="fms-tlline"></div>
                 </div>
                 <div className="fms-tlbody">
-                  <h4 className="h5 fw-bold mb-1" style={{fontSize: '17.5px', letterSpacing: '-0.01em'}}>{title}</h4>
-                  <p className="mb-0" style={{fontSize: '14.5px', lineHeight: 1.6}}>{body}</p>
+                  <h4 className="h5 fw-bold mb-1">{title}</h4>
+                  <p className="mb-0">{body}</p>
                 </div>
               </div>
             ))}
@@ -471,8 +440,8 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
       <div className="fms-costhero reveal-up">
         <div className="fms-costnum">30%+</div>
         <div>
-          <h4 className="fw-bold text-primary mb-1" style={{fontSize: '19px', letterSpacing: '-0.015em'}}>Average Cost Reduction</h4>
-          <p className="text-main mb-0" style={{fontSize: '14.5px', lineHeight: 1.55}}>On average, our customers reduce live streaming infrastructure costs by approximately 30 to 40% through service-specific architecture, encoding, and delivery optimization.</p>
+          <h4 className="fw-bold text-primary mb-1">Average Cost Reduction</h4>
+          <p className="text-main mb-0">On average, our customers reduce live streaming infrastructure costs by approximately 30 to 40% through service-specific architecture, encoding, and delivery optimization.</p>
         </div>
       </div>
     </div>
@@ -492,7 +461,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
           <div className="fms-step fms-step-plain p-4 p-lg-5 h-100 d-flex flex-column gap-2" style={{border: 'none', borderRadius: '999px', background: 'linear-gradient(135deg, color-mix(in srgb, var(--bg-surface), transparent 20%), transparent 65%)'}}>
             <div className="fms-stepno">Step 01</div>
             <h4 className="h5 fw-bold text-main mb-1">Review Your Current Service</h4>
-            <p className="text-sub mb-0" style={{fontSize: '14px', lineHeight: 1.55}}>We review your inputs, outputs, protocols, regions, traffic, encoding, integrations, operational requirements, and existing infrastructure.</p>
+            <p className="text-sub mb-0">We review your inputs, outputs, protocols, regions, traffic, encoding, integrations, operational requirements, and existing infrastructure.</p>
           </div>
         </div>
         <div className="fms-step-conn d-none d-lg-flex"><span className="fms-step-conn-line"></span></div>
@@ -500,7 +469,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
           <div className="fms-step fms-step-plain p-4 p-lg-5 h-100 d-flex flex-column gap-2" style={{border: 'none', borderRadius: '999px', background: 'linear-gradient(135deg, transparent 22%, color-mix(in srgb, var(--bg-surface), transparent 40%) 50%, transparent 78%)'}}>
             <div className="fms-stepno">Step 02</div>
             <h4 className="h5 fw-bold text-main mb-1">Design the Target System</h4>
-            <p className="text-sub mb-0" style={{fontSize: '14px', lineHeight: 1.55}}>Together with your team, OvenMediaEngine's core developers design the new architecture, channel structure, deployment regions, integrations, and migration plan.</p>
+            <p className="text-sub mb-0">Together with your team, OvenMediaEngine's core developers design the new architecture, channel structure, deployment regions, integrations, and migration plan.</p>
           </div>
         </div>
         <div className="fms-step-conn d-none d-lg-flex"><span className="fms-step-conn-line"></span></div>
@@ -508,7 +477,7 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
           <div className="fms-step fms-step-plain p-4 p-lg-5 h-100 d-flex flex-column gap-2" style={{border: 'none', borderRadius: '999px', background: 'linear-gradient(315deg, color-mix(in srgb, var(--bg-surface), transparent 20%), transparent 65%)'}}>
             <div className="fms-stepno">Step 03</div>
             <h4 className="h5 fw-bold text-main mb-1">Build, Validate, and Transition</h4>
-            <p className="text-sub mb-0" style={{fontSize: '14px', lineHeight: 1.55}}>We configure and deploy the environment, connect required third-party services, validate the complete workflow, and support the transition to production.</p>
+            <p className="text-sub mb-0">We configure and deploy the environment, connect required third-party services, validate the complete workflow, and support the transition to production.</p>
           </div>
         </div>
       </div>
@@ -526,20 +495,28 @@ import OmeProductNav from '@site/src/components/OmeProductNav';
       <h2 className="h2s fw-bold text-main mb-3">You Define the Input and Output,<br />We Handle Everything in Between</h2>
       <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
         {['Architecture', 'Infrastructure', 'Customization', 'Deployment', 'Integration', 'Fine-tuning', 'Monitoring', 'Maintenance', 'Operations'].map(tag => (
-          <span key={tag} className="fms-tag-secondary" style={{fontSize: '12px', padding: '4px 8px'}}>{tag}</span>
+          <span key={tag} className="fms-tag-secondary">{tag}</span>
         ))}
       </div>
       <p className="lead text-sub fw-light mb-4 col-lg-8 mx-auto">Whatever you need, envision, or want to build in live streaming, leave it to the OvenMediaEngine team.</p>
       <div className="d-grid d-md-block">
-        <a href="/omc-consultation" className="btn btn-fms-fill rounded-pill px-5">Free Consultation</a>
+        <a href="/omc-consultation" className="btn btn-company-outline rounded-pill px-5">Free Consultation</a>
       </div>
-      <p className="text-mono-deep mt-3 mb-0" style={{fontSize: '0.75rem', lineHeight: 1.6}}>※ Billing begins after the final environment is approved and activated.</p>
+      <p className="text-mono-deep mt-3 mb-0 extra-small lh-base">※ Billing begins after the final environment is approved and activated.</p>
     </div>
   </div>
 </section>
 
 <OmeProductNav />
 
-<div style={{background: 'var(--bg-middle)'}}>
+<div className="bg-middle">
   <LatestBlogPosts subhead="From the OvenMediaEngine Engineers." />
 </div>
+
+<section id="newsletter" className="full-page-section d-flex flex-column position-relative bg-dark-30">
+  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
+    <div className="container text-center reveal-up">
+      <NewsletterForm />
+    </div>
+  </div>
+</section>

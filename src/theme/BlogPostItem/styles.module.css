@@ -12,6 +12,8 @@
   padding: 1.25rem 0;
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
   transition: transform 0.18s ease, background-color 0.18s ease;
+  position: relative;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -105,6 +107,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  position: relative;
+  z-index: 2;
 }
 
 .tag {

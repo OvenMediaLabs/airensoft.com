@@ -296,12 +296,12 @@ const config: Config = {
             '**/__tests__/**',
             'README.md',
           ],
-          blogTitle: 'OvenMedia Labs Blog',
+          blogTitle: 'OvenMedia Blog',
           blogDescription: 'Sub-second latency live streaming insights from OvenMedia Labs.',
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
-            title: 'OvenMedia Labs Blog',
+            title: 'OvenMedia Blog',
             description: 'Sub-second latency live streaming insights from OvenMedia Labs.',
           },
           // editUrl intentionally omitted: editors and contributors don't
@@ -491,14 +491,7 @@ const config: Config = {
         href: '/',
       },
       items: [
-        {
-          label: 'OvenMediaEngine',
-          position: 'left',
-          items: [
-            {label: 'OvenMediaEngine Enterprise', to: '/#enterprise'},
-            {label: 'OvenMediaEngine', to: '/#open-source'},
-          ],
-        },
+        {to: '/', label: 'OvenMediaEngine', position: 'left'},
         {to: '/om-cloud', label: 'OvenMedia Cloud', position: 'left'},
         {
           // The swizzled NavbarContent recognizes `customMenu: 'resources'`
@@ -521,7 +514,6 @@ const config: Config = {
           items: [
             {label: 'OvenMediaEngine Enterprise', to: '/'},
             {label: 'OvenMediaEngine', href: 'https://github.com/AirenSoft/OvenMediaEngine'},
-            {label: 'Sub-second Latency', to: '/latency'},
           ],
         },
         {

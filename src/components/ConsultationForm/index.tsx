@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
-const ENDPOINT = 'https://demo.ovenplayer.com/api/forms/oc-consult';
+const ENDPOINT = 'https://form-api.ovenmedia.com/api/forms/oc-consult';
 
 const PROJECT_STAGES = [
   'Planning',
@@ -41,6 +41,16 @@ export default function ConsultationForm(): React.ReactElement {
   const [status, setStatus] = useState<Status>('idle');
   const [topics, setTopics] = useState<string[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const param = new URLSearchParams(window.location.search).get('topic');
+    const MAP: Record<string, string> = {
+      'managed-ops': '24/7 Managed Operations',
+    };
+    const preset = param ? MAP[param] : undefined;
+    if (preset) setTopics([preset]);
+  }, []);
 
   const toggleTopic = (t: string) =>
     setTopics((prev) => (prev.includes(t) ? prev.filter((x) => x !== t) : [...prev, t]));
@@ -111,7 +121,7 @@ export default function ConsultationForm(): React.ReactElement {
         <i className="ph ph-check-circle consult-done-icon" />
         <h3 className="text-main fw-bold mb-2">Thank you! Your request is in.</h3>
         <p className="text-sub mb-4">
-          The OvenMediaEngine team will review your consultation and reach out by email shortly.
+          We have received your request.<br/>The OvenMedia Cloud team will review the information and contact you shortly.
         </p>
         <a href="/om-cloud" className="btn btn-company-outline rounded-pill px-4">
           <i className="ph ph-arrow-left me-2" />Back to OvenMedia Cloud
@@ -195,7 +205,7 @@ export default function ConsultationForm(): React.ReactElement {
             Tell Us About Your Live Streaming Service <span className="consult-req">*</span>
           </label>
           <textarea className={`consult-input consult-textarea${errors.message ? ' is-invalid' : ''}`} id="cf-message" name="message"
-            rows={5} maxLength={5000}
+            rows={5} maxLength={10000}
             aria-invalid={!!errors.message}
             onInput={() => errors.message && setErrors((p) => ({...p, message: ''}))}
             placeholder="Share anything you already know: input/output workflow, protocols, channel count, transcoding needs, expected traffic, target regions, existing infrastructure, or launch schedule." />
@@ -210,7 +220,7 @@ export default function ConsultationForm(): React.ReactElement {
 
         <div className="col-12 d-flex flex-column align-items-center pt-2">
           <button type="submit" className="btn btn-company-outline px-5 py-2" disabled={submitting}>
-            {submitting ? 'Sending…' : 'Send Request'}
+            {submitting ? 'Sending…' : 'Request a Consultation'}
           </button>
           {Object.values(errors).some(Boolean) && (
             <p className="consult-error mt-3 mb-0">

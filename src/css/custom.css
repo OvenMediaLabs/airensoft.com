@@ -329,7 +329,7 @@ html.plugin-docs,
 html.plugin-blog,
 html.plugin-docs body,
 html.plugin-blog body {
-  background-color: #0f1216;
+  background-color: var(--bg-body);
   /* legacy-marketing.css already sets overflow-x: clip globally on html/body,
    * so no overflow override is needed here. Kept as a reminder that the
    * docs/blog background differs from the marketing dark body background. */
@@ -723,6 +723,12 @@ html.plugin-docs .pagination-nav {
 .theme-doc-sidebar-menu .sidebar-manual-title {
   display: block;
   padding: 0.65rem 0.75rem 0.9rem;
+  font-weight: 700;
+}
+@media (max-width: 996px) {
+  .theme-doc-sidebar-menu .sidebar-manual-title {
+    font-size: 1.1rem;
+  }
 }
 
 /* Strip the wrapping LI's `menuHtmlItem` padding + Infima sibling margin
@@ -917,12 +923,59 @@ html.plugin-blog h2[class*='title_'] {
 }
 
 html.plugin-blog [class*='title_'] a {
-  color: #ffffff;
+  color: var(--text-main);
   text-decoration: none;
   border-bottom: none;
 }
 
 html.plugin-blog [class*='title_'] a:hover {
+  color: var(--ifm-color-primary);
+}
+
+/* ---- Blog list page: post item typography & separators ---- */
+html.plugin-blog.blog-list-page [class*='meta_'] {
+  color: var(--blue-mono-light) !important;
+}
+
+html.plugin-blog.blog-list-page [class*='metaDot_'] {
+  color: var(--blue-mono-deep) !important;
+  opacity: 1 !important;
+}
+
+html.plugin-blog.blog-list-page [class*='excerpt_'] {
+  color: var(--text-sub) !important;
+}
+
+/* Tag pills: normal = primary at 60% opacity; hover keeps full primary */
+html.plugin-blog.blog-list-page [class*='tags_'] [class*='tag_'] {
+  color: color-mix(in srgb, var(--ifm-color-primary), transparent 40%);
+  border-color: color-mix(in srgb, var(--ifm-color-primary), transparent 40%);
+}
+
+html.plugin-blog.blog-list-page [class*='tags_'] [class*='tag_']:hover {
+  color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+}
+
+/* Article card: padding controlled by BlogPostItems gap wrapper */
+html.plugin-blog.blog-list-page [class*='card_'] {
+  padding-top: 0 !important;
+  padding-bottom: 1.25rem !important;
+  border-bottom-color: color-mix(in srgb, var(--bg-surface), transparent 30%) !important;
+}
+
+/* First article headroom */
+html.plugin-blog.blog-list-page [class*='cardWrapper_']:first-child [class*='card_'] {
+  padding-top: 1rem !important;
+}
+
+html.plugin-blog.blog-list-page [class*='card_']:hover {
+  transform: none !important;
+}
+
+/* Hovering anywhere on the card triggers title link hover color,
+ * but reset when hovering over tags (UX: tag click should feel independent) */
+html.plugin-blog.blog-list-page [class*='card_']:hover:not(:has([class*='tags_']:hover)) [class*='title_'] a {
   color: var(--ifm-color-primary);
 }
 
@@ -1780,11 +1833,19 @@ html.plugin-blog.blog-post-page .markdown {
 html.plugin-blog.blog-post-page .markdown > p:first-of-type {
   font-size: 1.2rem;
   line-height: 1.65;
-  color: #e8eaed;
+  color: var(--text-main);
   font-weight: 400;
   margin-bottom: 1.5rem;
   padding-bottom: 1.25rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html.plugin-blog.blog-post-page .markdown > p,
+html.plugin-blog.blog-post-page .markdown > ul,
+html.plugin-blog.blog-post-page .markdown > ol,
+html.plugin-blog.blog-post-page .markdown > blockquote,
+html.plugin-blog.blog-post-page .markdown li {
+  color: var(--text-sub);
 }
 
 html.plugin-blog.blog-post-page .markdown h2 {
@@ -1792,7 +1853,34 @@ html.plugin-blog.blog-post-page .markdown h2 {
   margin-top: 2.5rem !important;
   margin-bottom: 0.75rem !important;
   padding-top: 0.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-main);
+  border-top: 1px solid color-mix(in srgb, var(--bg-surface), transparent 50%);
+}
+
+/* Blog post author card & metadata */
+html.plugin-blog.blog-post-page [class*='container_'] {
+  color: var(--blue-mono-light);
+}
+
+html.plugin-blog.blog-post-page [class^='card_'] {
+  background: color-mix(in srgb, var(--bg-middle), transparent 50%) !important;
+  border-color: color-mix(in srgb, var(--bg-surface), transparent 50%) !important;
+}
+
+html.plugin-blog.blog-post-page [class*='label_'] {
+  color: var(--blue-mono) !important;
+}
+
+html.plugin-blog.blog-post-page [class*='name_'] {
+  color: var(--text-main) !important;
+}
+
+html.plugin-blog.blog-post-page [class*='titleGroup_'] {
+  color: var(--text-sub) !important;
+}
+
+html.plugin-blog.blog-post-page [class*='email_'] {
+  color: var(--text-sub2) !important;
 }
 
 html.plugin-blog.blog-post-page .markdown h3 {
@@ -2356,12 +2444,14 @@ html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_']
   display: none;
 }
 @media (max-width: 991px) {
+  .row.mobile-horizontal-scroll { margin-bottom: 0 !important; }
   .scroll-dots {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 7px;
-    padding: 12px 0 2px;
+    margin-top: 8px;
+    margin-bottom: 16px;
   }
   .scroll-dot {
     width: 6px;

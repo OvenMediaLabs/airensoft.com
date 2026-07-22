@@ -36,7 +36,7 @@ export default function FooterLayout(): ReactNode {
             <div className="col-12 col-lg-4 address-col">
               <picture style={{pointerEvents: 'none'}}>
                 <source srcSet={logoSvg} type="image/svg+xml" />
-                <img src={logoPng} alt="OvenMedia Labs" className="sharp-img" />
+                <img src={logoPng} alt="OvenMedia Labs" />
               </picture>
               <div className="address-compact">
                 <p>
@@ -56,7 +56,7 @@ export default function FooterLayout(): ReactNode {
                   <ul className="list-unstyled">
                     <li><Link to="/om-cloud" className="footer-link">OvenMedia Cloud</Link></li>
                     <li><Link to="/" className="footer-link">OvenMediaEngine Enterprise</Link></li>
-                    <li><a href="https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs" target="_blank" rel="noopener noreferrer" className="footer-link">OvenMediaEngine Enterprise on AWS</a></li>
+                    <li><a href="https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs" target="_blank" rel="noopener noreferrer" className="footer-link">OME Enterprise on AWS</a></li>
                     <li><a href="https://github.com/OvenMediaLabs/OvenMediaEngine" target="_blank" rel="noopener noreferrer" className="footer-link">OvenMediaEngine</a></li>
                     <li><a href="https://github.com/OvenMediaLabs/OvenPlayer" target="_blank" rel="noopener noreferrer" className="footer-link">OvenPlayer</a></li>
                     <li><a href="https://github.com/OvenMediaLabs/OvenLiveKit-Web" target="_blank" rel="noopener noreferrer" className="footer-link">OvenLiveKit</a></li>
@@ -66,8 +66,9 @@ export default function FooterLayout(): ReactNode {
                   <h6 className="footer-heading">Resources</h6>
                   <ul className="list-unstyled">
                     <li><a href="https://github.com/OvenMediaLabs" target="_blank" rel="noopener noreferrer" className="footer-link">GitHub</a></li>
-                    <li><Link to="/latency" className="footer-link">Tech: Low Latency</Link></li>
                     <li><Link to="/blog" className="footer-link">Blog</Link></li>
+                    <li><Link to="/agplv3" className="footer-link">License Compliance</Link></li>
+                    <li><Link to="/eula" className="footer-link">EULA</Link></li>
                   </ul>
                 </div>
                 <div className="footer-col">
@@ -82,9 +83,8 @@ export default function FooterLayout(): ReactNode {
                   <h6 className="footer-heading">Company</h6>
                   <ul className="list-unstyled">
                     <li><Link to="/company" className="footer-link">About Us</Link></li>
-                    <li><Link to="/company#contact" className="footer-link">Contact</Link></li>
-                    <li><Link to="/agplv3" className="footer-link">License Compliance</Link></li>
-                    <li><Link to="/eula" className="footer-link">EULA</Link></li>
+                    <li><Link to="/ome-consultation" className="footer-link">OME-E Inquiry</Link></li>
+                    <li><Link to="/omc-consultation" className="footer-link">OMC Consultation</Link></li>
                   </ul>
                 </div>
                 <div className="footer-col">

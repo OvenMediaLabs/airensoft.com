@@ -61,7 +61,7 @@ function ListCard({children}: {children: ReactNode}): ReactNode {
 
       <div className={styles.body}>
         <h2 className={styles.title}>
-          <Link to={permalink}>{title}</Link>
+          <Link to={permalink} className="stretched-link">{title}</Link>
         </h2>
 
         <div className={styles.meta}>

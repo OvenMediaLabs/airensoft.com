@@ -7,9 +7,11 @@ wrapperClassName: marketing-page
 ---
 
 import Heading from '@theme/Heading';
+import NewsletterForm from '@site/src/components/NewsletterForm';
 import Head from '@docusaurus/Head';
 
 <Head>
+  <title>OvenMedia Labs</title>
   <script type="application/ld+json">{`
     {
       "@context": "https://schema.org",
@@ -82,7 +84,7 @@ import Head from '@docusaurus/Head';
           <p className="lead text-sub col-lg-10 mb-0 mb-lg-4">We are a group of media technology experts behind the open-source project <strong>OvenMediaEngine</strong>.<span className="d-none d-sm-inline"> We believe that our core technology should be accessible to everyone.</span></p>
           <p className="text-sub small col-lg-10 mb-0 mb-lg-4 mt-3">Formerly operating as <strong>AirenSoft Co., Ltd.</strong> since 2010, the company rebranded to <strong>OvenMedia Labs Inc.</strong> in February 2026 to better reflect its product identity.</p>
 
-          <div className="d-none d-md-block">
+          <div>
             <div className="stat-grid-box mt-5">
               <div className="stat-cell">
                 <h3 className="fw-bold text-main mb-0">16+</h3>
@@ -108,7 +110,7 @@ import Head from '@docusaurus/Head';
         </div>
 
         <div className="col-lg-5 offset-lg-1 reveal-up d-none d-lg-block">
-          <div className="p-4 p-md-5 bg-middle-50 border border-surface rounded-4 position-relative hover-card5 shadow-lg">
+          <div className="p-4 p-md-5 bg-middle-50 rounded-4 position-relative shadow-lg">
             <i className="ph ph-code-block fs-1 text-secondary mb-4"></i>
             <h4 className="h3 text-main fw-bold mb-3">R&amp;D Centric</h4>
             <p className="text-sub mb-0 fs-6">Our team consists of streaming server developers, transcoding specialists, player engineers, and maintainers.<span className="d-none d-sm-inline"> We implement our core in C++ to maximize performance and maintain fine-grained control over every packet.</span></p>
@@ -175,7 +177,7 @@ import Head from '@docusaurus/Head';
   </div>
 </section>
 
-<section className="full-page-section d-flex flex-column position-relative bg-body py-5 bg-gradient3 team-section" style={{minHeight: '100vh'}}>
+<section className="full-page-section d-flex flex-column position-relative bg-body py-5 bg-gradient3 team-section">
   <div className="w-100 d-flex align-items-center pb-3">
     <div className="container">
       <div className="row justify-content-center mb-4 mb-lg-5 reveal-up">
@@ -275,19 +277,19 @@ import Head from '@docusaurus/Head';
 
       <hr className="border-surface my-5" />
 
-      <div className="row g-4 mobile-horizontal-scroll mb-2">
+      <div className="row g-4 mb-2">
         <div className="col-md-6 reveal-up">
-          <div className="tech-card-pro p-4 d-flex flex-column align-items-center text-center h-100 justify-content-center">
-            <i className="ph ph-envelope-simple fs-3 text-main mb-3 opacity-75"></i>
+          <div className="tech-card-pro p-4 d-flex flex-column align-items-center text-center h-100 justify-content-center" style={{cursor: 'pointer'}} onClick={(e) => { navigator.clipboard.writeText('contact@ovenmedialabs.com'); const el = e.currentTarget; const prev = el.querySelector('.email-label'); if (prev) { const orig = prev.textContent; prev.textContent = 'Copied!'; setTimeout(() => { prev.textContent = orig; }, 1500); } }}>
+            <i className="ph ph-envelope-simple fs-3 text-main mb-3 opacity-75 d-none d-md-block"></i>
             <h5 className="text-main fw-bold mb-1 h6">General Inquiry</h5>
-            <a href="mailto:contact@ovenmedialabs.com" className="text-sub small text-decoration-none hover-white">{'contact@ovenmedialabs.com'}</a>
+            <span className="email-label text-sub small">contact@ovenmedialabs.com</span>
           </div>
         </div>
         <div className="col-md-6 reveal-up">
-          <div className="tech-card-pro p-4 d-flex flex-column align-items-center text-center h-100 justify-content-center">
-            <i className="ph ph-wrench fs-3 text-main mb-3 opacity-75"></i>
+          <div className="tech-card-pro p-4 d-flex flex-column align-items-center text-center h-100 justify-content-center" style={{cursor: 'pointer'}} onClick={(e) => { navigator.clipboard.writeText('support@ovenmedialabs.com'); const el = e.currentTarget; const prev = el.querySelector('.email-label'); if (prev) { const orig = prev.textContent; prev.textContent = 'Copied!'; setTimeout(() => { prev.textContent = orig; }, 1500); } }}>
+            <i className="ph ph-wrench fs-3 text-main mb-3 opacity-75 d-none d-md-block"></i>
             <h5 className="text-main fw-bold mb-1 h6">Technical Support</h5>
-            <a href="mailto:support@ovenmedialabs.com" className="text-sub small text-decoration-none hover-white">{'support@ovenmedialabs.com'}</a>
+            <span className="email-label text-sub small">support@ovenmedialabs.com</span>
           </div>
         </div>
       </div>
@@ -357,11 +359,13 @@ import Head from '@docusaurus/Head';
         <div className="guide-box-new">
           <div className="guide-box-header">Color Palette</div>
           <div className="guide-box-body py-5">
-            <div className="d-flex flex-wrap justify-content-center gap-5">
+            <div className="row g-4 justify-content-center">
               {['#061936','#2c4164','#4a5e7a','#c9d0df'].map(color => (
-                <div key={color} className="color-swatch-wrap">
-                  <div className="swatch-main" style={{background: color, border: '1px solid rgba(148, 163, 184, 0.4)'}}></div>
-                  <code className="text-sub">{color}</code>
+                <div key={color} className="col-6 col-md-3 d-flex justify-content-center">
+                  <div className="color-swatch-wrap">
+                    <div className="swatch-main" style={{background: color, border: '1px solid rgba(148, 163, 184, 0.4)'}}></div>
+                    <code className="text-sub">{color}</code>
+                  </div>
                 </div>
               ))}
             </div>
@@ -370,7 +374,7 @@ import Head from '@docusaurus/Head';
       </div>
     </div>
 
-    <div className="d-flex gap-3 mt-4 w-100 flex-wrap justify-content-center">
+    <div className="d-flex flex-column flex-sm-row gap-3 mt-4 w-100 justify-content-center">
       <a href="/assets/downloads/OML_Assets_PNG.zip" download="OvenMediaLabs_CI_PNG.zip" className="btn btn-company-outline rounded-pill px-5">
         <i className="ph ph-archive me-2"></i> Download PNG Kit
       </a>
@@ -380,4 +384,12 @@ import Head from '@docusaurus/Head';
     </div>
   </div>
 
+</section>
+
+<section id="newsletter" className="full-page-section d-flex flex-column position-relative bg-dark-30">
+  <div className="w-100 flex-grow-1 d-flex align-items-center py-5">
+    <div className="container text-center reveal-up">
+      <NewsletterForm />
+    </div>
+  </div>
 </section>
