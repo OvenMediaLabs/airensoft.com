@@ -298,8 +298,9 @@ import Head from '@docusaurus/Head';
   </div>
 </section>
 
-<section id="brand" className="py-5 bg-middle border-top border-darker">
-  <div className="container py-5">
+<section id="brand" className="py-5 bg-middle border-top border-darker" style={{position: 'relative', overflow: 'hidden'}}>
+  <div style={{position: 'absolute', inset: 0, backgroundImage: 'url(/images/og/draw_bg.svg)', backgroundRepeat: 'no-repeat', backgroundPosition: '32% center', backgroundSize: 'auto 100%', opacity: 0.08, filter: 'invert(1)', pointerEvents: 'none', maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)', maskComposite: 'intersect', WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)', WebkitMaskComposite: 'destination-in'}}></div>
+  <div className="container py-5" style={{position: 'relative', zIndex: 1}}>
     <div className="text-center mb-5 reveal-up">
       <span className="badge bg-company text-dark mb-3">Design Assets</span>
       <h2 id="ci" className="display-4 fw-bold text-main mb-3 copy-title">Design Guidelines</h2>
