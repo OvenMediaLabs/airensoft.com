@@ -230,6 +230,36 @@ Use the `[ModuleName]:[DeviceId]` format, and separate multiple modules with com
 </OutputProfile>
 ```
 
+## Experiments
+
+:::warning Experimental
+The options in this section are experimental. They may change or be removed in a future release, so use them with care in production.
+:::
+
+### CUDA Stream Priority
+
+`<CUDAStreamPriority>` raises or lowers the scheduling priority of the CUDA stream that OvenMediaEngine's transcoding pipeline (decoding, scaling, overlay) runs on, so its GPU work can be scheduled ahead of other work on the same device. The value is resolved against each GPU's own priority range and applies to all NVIDIA GPUs.
+
+| Value | Meaning |
+| --- | --- |
+| *(unset)* | Keep the driver default. |
+| `lo` | Each device's lowest priority. |
+| `hi` | Each device's highest priority. |
+
+Add it under `<Server>` → `<Modules>`:
+
+```markup
+<Modules>
+    <CUDAStreamPriority>hi</CUDAStreamPriority>
+</Modules>
+```
+
+On startup, the applied priority is logged per device:
+
+```
+[experimental] Set CUDA stream priority: 0 -> -5 (range low=0, high=-5)
+```
+
 ## Reference
 
 * NVIDIA Driver Installation Guide : [https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#package-manager-installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#package-manager-installation)
