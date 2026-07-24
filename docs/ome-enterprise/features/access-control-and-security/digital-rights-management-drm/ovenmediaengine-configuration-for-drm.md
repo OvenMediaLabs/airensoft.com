@@ -47,6 +47,7 @@ Here's how you should structure your DRM Info File:
         <Key>16cf4232a86364b519e1982a27d90xxx</Key> <!-- Hexadecimal -->
         <Iv>572547f914e34dc68ba9ba9ef91d4xxx</Iv> <!-- Hexadecimal -->
         <Pssh>0000003f7073736800000000edef8ba979d64acea3c827dcd51d21ed0000001f1210572547f964e34dc68ba9ba9ef91d4c4a1a05657a64726d48f3c6899xxx</Pssh> <!-- Hexadecimal, for Widevine -->
+        <Pssh>0000xxxx70737368000000009a04f07998404286ab92e65be0885f95000000....</Pssh> <!-- Hexadecimal, for PlayReady. The pssh Data field must hold the PlayReady Object (PRO). -->
         <!-- Add Pssh for FairPlay if needed -->
         <FairPlayKeyUrl>skd://fiarplay_key_url</FairPlayKeyUrl> <!-- FairPlay only -->
     </DRM>
@@ -65,6 +66,8 @@ Multiple `<DRM>` can be set. Specify the `<VirtualHostName>`, `<ApplicationName>
 Currently, `<CencProtectScheme>` supports "cbcs" and "cenc". There may be limited prospects for adding other schemes in the near future.
 
 `<KeyId>`, `<Key>`, `<Iv>`, and `<Pssh>` values are essential and should be provided by your DRM provider. `<FairPlayKeyUrl>` is only needed for FairPlay and if you want to enable FairPlay to your stream, it is required. It will be also provided by your DRM provider.
+
+Add one `<Pssh>` element per DRM system. For PlayReady, the pssh `Data` field must contain the PlayReady Object (PRO).
 
 
 :::warning

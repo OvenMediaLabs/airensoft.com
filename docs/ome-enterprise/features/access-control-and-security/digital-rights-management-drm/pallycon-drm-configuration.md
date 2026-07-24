@@ -22,7 +22,7 @@ OvenMediaEngine Enterprise supports integration with [PallyCon](https://pallycon
         <StreamName>stream*</StreamName> <!-- Can be wildcard regular expression -->
 
         <DRMProvider>Pallycon</DRMProvider> <!-- Manual(default), Pallycon -->
-        <DRMSystem>Widevine,Fairplay</DRMSystem> <!-- Widevine, Fairplay -->
+        <DRMSystem>Widevine,Fairplay,PlayReady</DRMSystem> <!-- Widevine, Fairplay, PlayReady -->
         <CencProtectScheme>cbcs</CencProtectScheme> <!-- cbcs -->
         <ContentId>${VHostName}_${AppName}_${StreamName}</ContentId>
         <KMSUrl>https://kms.pallycon.com/v2/cpix/pallycon/getKey/</KMSUrl>
