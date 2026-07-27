@@ -172,24 +172,17 @@ LLHLS Dump Guide: [https://ovenmedialabs.com/docs/ome/streaming/low-latency-hls#
 
 ### Check LLHLS DRM Activation | 0.16.0.0+
 
-Digital Rights Management (DRM) is a technology used to prevent unauthorized use, copying, and distribution of digital content. Starting with OvenMediaEngine version 0.16.0 or later, you can apply DRM Vendors (`Widevine`, `Fairplay`) to LLHLS Stream through simple settings.
-
-
-:::warning
-
-Currently, DRM is only supported for H.264 and AAC codecs. H.265 support will be added soon.
-
-:::
+Digital Rights Management (DRM) is a technology used to prevent unauthorized use, copying, and distribution of digital content. Starting with OvenMediaEngine version 0.16.0 or later, you can apply DRM to an LLHLS Stream through simple settings.
 
 
 ![](../../../images/streaming-egress-settings-check-llhls-drm-activation-0-16-0-0.png)
 
-You can check the option information and activation status through the DRM on the LLHLS Streaming Settings page. OvenMediaEngine Enterprise also supports not only DRM Vendor integration but also [Commercial DRM Provider Integration](../../../features/access-control-and-security/digital-rights-management-drm/pallycon-drm-configuration.md), such as PallyCon DRM.
+You can check the option information and activation status through the DRM on the LLHLS Streaming Settings page.
 
 
 :::info
 
-LLHLS DRM Guide: [https://ovenmedialabs.com/docs/ome/streaming/low-latency-hls#drm-beta](https://ovenmedialabs.com/docs/ome/streaming/low-latency-hls#drm-beta)
+LLHLS DRM Guide: [Digital Rights Management (DRM)](../../../features/access-control-and-security/digital-rights-management-drm/README.md)
 
 :::
 
