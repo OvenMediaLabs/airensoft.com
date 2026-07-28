@@ -2484,3 +2484,10 @@ html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_']
     transform: scale(1.5);
   }
 }
+
+@media (min-width: 992px) {
+  .col-lg-hero-card {
+    flex: 0 0 auto;
+    width: 30%;
+  }
+}
