@@ -84,7 +84,7 @@ import OrbitDot from '@site/src/components/OrbitDot';
       </div>
     </div>
     <div id="hero-product-cards" className="row g-2 mt-2 justify-content-center reveal-up">
-      <div className="col-12 col-lg-4">
+      <div className="col-12 col-lg-hero-card">
         <a href="/om-cloud" className="hero-card-fms d-flex flex-column p-2 rounded-4 h-100 text-start text-decoration-none" style={{border: '1px solid color-mix(in srgb, var(--fms-light), transparent 50%)', boxShadow: '0 0 24px color-mix(in srgb, var(--fms-light), transparent 80%)', background: 'color-mix(in srgb, var(--fms-light), transparent 80%)'}}>
           <div className="d-flex justify-content-between align-items-start mb-2 px-0 px-lg-1">
             <span className="badge fw-bold text-dark" style={{background: 'var(--fms-light)'}}>Fully Managed Live Streaming by OME Engineers</span>
@@ -96,7 +96,7 @@ import OrbitDot from '@site/src/components/OrbitDot';
           </div>
         </a>
       </div>
-      <div className="col-12 col-lg-4">
+      <div className="col-12 col-lg-hero-card">
         <a href="#enterprise" className="hero-card-enterprise d-flex flex-column p-2 rounded-4 h-100 text-start text-decoration-none" style={{border: '1px solid color-mix(in srgb, var(--ent-light), transparent 50%)', boxShadow: '0 0 24px color-mix(in srgb, var(--ent-light), transparent 80%)', background: 'color-mix(in srgb, var(--ent-light), transparent 80%)'}}>
           <div className="d-flex justify-content-between align-items-start mb-2 px-0 px-lg-1">
             <span className="badge fw-bold text-dark" style={{background: 'var(--ent-light)'}}>Enterprise Live Streaming Server Package</span>
@@ -108,7 +108,7 @@ import OrbitDot from '@site/src/components/OrbitDot';
           </div>
         </a>
       </div>
-      <div className="col-12 col-lg-4">
+      <div className="col-12 col-lg-hero-card">
         <a href="#open-source" className="hero-card-oss d-flex flex-column p-2 rounded-4 h-100 text-start text-decoration-none" style={{border: '1px solid color-mix(in srgb, var(--oss-light), transparent 50%)', boxShadow: '0 0 24px color-mix(in srgb, var(--oss-light), transparent 80%)', background: 'color-mix(in srgb, var(--oss-light), transparent 80%)'}}>
           <div className="d-flex justify-content-between align-items-start mb-2 px-0 px-lg-1">
             <span className="badge fw-bold text-dark" style={{background: 'var(--oss-light)'}}>Open-source Live Streaming Server</span>
@@ -119,6 +119,51 @@ import OrbitDot from '@site/src/components/OrbitDot';
             <p className="extra-small mb-1 pt-2 text-center fst-italic" style={{color: 'var(--oss-main)', borderTop: '1px solid color-mix(in srgb, var(--oss-light), transparent 80%)'}}>Free and open-source · AGPLv3 · Deploy anywhere</p>
           </div>
         </a>
+      </div>
+    </div>
+    <div className="row justify-content-center mt-5 reveal-up">
+      <div className="col-lg-10 text-center">
+        <p className="mb-3" style={{fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.4, color: 'var(--text-main)'}}>Trusted by teams at</p>
+        <div className="logo-marquee" style={{opacity: 0.45}}>
+          <div className="logo-marquee-track gap-2 gap-lg-5">
+            <img src="/images/partners/multimedia.png" alt="Multi Media LLC" style={{height: '24px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+            <img src="/images/partners/imaginelive.png" alt="Imagine Live" style={{height: '18px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+            <img src="/images/partners/zf.png" alt="ZF" style={{height: '26px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+            {/* <img src="/images/partners/st-engineering.png" alt="ST Engineering" style={{height: '19px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} /> */}
+            <span style={{flexShrink: 0, fontSize: 'clamp(13px, 1.4vw, 15px)', fontWeight: 600, letterSpacing: '0.02em', color: 'white', opacity: 0.9, whiteSpace: 'nowrap'}}>Oceaneering Intl</span>
+            {/* <img src="/images/partners/49ing.png" alt="49ing" style={{height: '22px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} /> */}
+            {/* <img src="/images/partners/caption-group.png" alt="Caption Group" style={{height: '31px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} /> */}
+            <div style={{position: 'relative', display: 'inline-flex', flexShrink: 0, height: '26px'}}>
+              <img src="/images/partners/gs-neotek.png" alt="GS Neotek" style={{height: '26px', objectFit: 'contain', filter: 'brightness(0) invert(1)'}} />
+              <img src="/images/partners/gs-neotek.png" alt="" aria-hidden="true" style={{position: 'absolute', top: 0, left: 0, height: '26px', filter: 'saturate(0)', clipPath: 'inset(0 calc(100% - 27px) 0 0)', opacity: 0.7}} />
+            </div>
+            <img src="/images/partners/gs-shop.png" alt="GS Shop" style={{height: '15px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+            <img src="/images/partners/kbs.png" alt="KBS" style={{height: '20px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+            <div style={{position: 'relative', display: 'inline-flex', flexShrink: 0, height: '28px'}}>
+              <img src="/images/partners/sbs.png" alt="SBS" style={{height: '28px', objectFit: 'contain', filter: 'brightness(0) invert(1)'}} />
+              <img src="/images/partners/sbs.png" alt="" aria-hidden="true" style={{position: 'absolute', top: 0, left: 0, height: '28px', filter: 'saturate(0)', clipPath: 'inset(0 calc(100% - 32px) 0 0)', opacity: 0.7}} />
+            </div>
+            <img src="/images/partners/spotv.png" alt="SPOTV" style={{height: '17px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+            <img src="/images/partners/multimedia.png" alt="" aria-hidden="true" style={{height: '24px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+            <img src="/images/partners/imaginelive.png" alt="" aria-hidden="true" style={{height: '18px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+            <img src="/images/partners/zf.png" alt="" aria-hidden="true" style={{height: '26px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+            {/* <img src="/images/partners/st-engineering.png" alt="" aria-hidden="true" style={{height: '19px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} /> */}
+            <span aria-hidden="true" style={{flexShrink: 0, fontSize: 'clamp(13px, 1.4vw, 15px)', fontWeight: 600, letterSpacing: '0.02em', color: 'white', opacity: 0.9, whiteSpace: 'nowrap'}}>Oceaneering Intl</span>
+            {/* <img src="/images/partners/49ing.png" alt="" aria-hidden="true" style={{height: '22px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} /> */}
+            {/* <img src="/images/partners/caption-group.png" alt="" aria-hidden="true" style={{height: '31px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} /> */}
+            <div style={{position: 'relative', display: 'inline-flex', flexShrink: 0, height: '26px'}} aria-hidden="true">
+              <img src="/images/partners/gs-neotek.png" alt="" aria-hidden="true" style={{height: '26px', objectFit: 'contain', filter: 'brightness(0) invert(1)'}} />
+              <img src="/images/partners/gs-neotek.png" alt="" aria-hidden="true" style={{position: 'absolute', top: 0, left: 0, height: '26px', filter: 'saturate(0)', clipPath: 'inset(0 calc(100% - 27px) 0 0)', opacity: 0.7}} />
+            </div>
+            <img src="/images/partners/gs-shop.png" alt="" aria-hidden="true" style={{height: '15px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+            <img src="/images/partners/kbs.png" alt="" aria-hidden="true" style={{height: '20px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+            <div style={{position: 'relative', display: 'inline-flex', flexShrink: 0, height: '28px'}} aria-hidden="true">
+              <img src="/images/partners/sbs.png" alt="" aria-hidden="true" style={{height: '28px', objectFit: 'contain', filter: 'brightness(0) invert(1)'}} />
+              <img src="/images/partners/sbs.png" alt="" aria-hidden="true" style={{position: 'absolute', top: 0, left: 0, height: '28px', filter: 'saturate(0)', clipPath: 'inset(0 calc(100% - 32px) 0 0)', opacity: 0.7}} />
+            </div>
+            <img src="/images/partners/spotv.png" alt="" aria-hidden="true" style={{height: '17px', objectFit: 'contain', flexShrink: 0, filter: 'brightness(0) invert(1)'}} />
+          </div>
+        </div>
       </div>
     </div>
   </div>
