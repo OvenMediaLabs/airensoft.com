@@ -143,9 +143,17 @@ A stream can move to a new key while it runs, so a viewer who obtained one key c
 | Element | Description |
 | --- | --- |
 | `<Keys>` | Holds the keys as an ordered list of `<ContentKey>`. Each `<ContentKey>` takes the same key material as a single key does. |
-| `<KeyRotationPeriod>` | How many seconds of stream time to keep a key before moving to the next one. Leave it out to keep one key for the whole stream. |
+| `<KeyRotationPeriod>` | How many seconds of stream time to keep a key before moving to the next one. |
 
-The keys form a cycle: after the last one the stream returns to the first. Because the DRM info file is read again at every rotation, appending a `<ContentKey>` while the stream runs lengthens the cycle without a restart.
+`<KeyRotationPeriod>` decides when the stream moves on.
+
+| Value | Behaviour |
+| --- | --- |
+| Left out | The stream keeps one key from start to end. |
+| `0` | No rotation on its own. The key changes only when [asked for](#rotating-on-request-rest-api). |
+| Above `0` | The key changes every that many seconds, and can also be asked for in between. |
+
+The keys form a cycle: after the last one the stream returns to the first. A stream reads the file when it starts, so keys added to the file afterwards are picked up by the streams that start from then on.
 
 A rotation takes effect where the next segment of each track starts, which keeps every segment on a single key. Nothing is cut and no discontinuity is inserted, so playback continues across it. Segments already in the playlist keep the key they were encrypted with, so a player that is behind the live edge is unaffected.
 
@@ -154,6 +162,16 @@ A rotation takes effect where the next segment of each track starts, which keeps
 `<Keys>` and a single flat key are alternatives. When `<Keys>` is present the key material on the `<DRM>` node itself is ignored.
 
 :::
+
+## Rotating on request (REST API)
+
+A stream whose entry states a `<KeyRotationPeriod>` can also be moved to its next key at any moment, whether or not it rotates on a period of its own.
+
+```http
+POST /v1/vhosts/{vhost}/apps/{app}/streams/{stream}:rotateDrmKey
+```
+
+The stream picks the new key up where the next segment of each track starts, the same as a rotation on a period. See [Rotate DRM Key](../../rest-api/v1/virtual-host/application/stream/rotate-drm-key.md) for the headers and the responses.
 
 ## Checking Applied DRM
 

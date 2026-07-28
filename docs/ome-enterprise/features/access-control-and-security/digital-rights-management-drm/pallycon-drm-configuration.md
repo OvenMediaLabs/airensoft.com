@@ -47,7 +47,7 @@ In `Server.xml`, turn DRM on in the LLHLS publisher of the application and point
         <ApplicationName>app</ApplicationName>
         <StreamName>stream*</StreamName> <!-- Can be wildcard regular expression -->
 
-        <DRMProvider>Pallycon</DRMProvider> <!-- Manual(default), Pallycon -->
+        <DRMProvider>DoveRunner</DRMProvider> <!-- Manual(default), DoveRunner (or Pallycon) -->
         <DRMSystem>Widevine,Fairplay,PlayReady</DRMSystem> <!-- Widevine, Fairplay, PlayReady -->
         <CencProtectScheme>cbcs</CencProtectScheme> <!-- cbcs, cenc -->
         <ContentId>${VHostName}_${AppName}_${StreamName}</ContentId>
@@ -72,7 +72,7 @@ You can put several `<DRM>` entries in the file. A stream uses the **first entry
 
 | Element | Description |
 | --- | --- |
-| `<DRMProvider>` | Set it to `Pallycon` to request the keys from the service. Left out, the entry falls back to `Manual` and expects key material written into the file. |
+| `<DRMProvider>` | Set it to `DoveRunner` to request the keys from the service. `Pallycon` is accepted as well, under the name the service used before. Left out, the entry falls back to `Manual` and expects key material written into the file. |
 | `<DRMSystem>` | Which DRM systems to offer for this stream, separated by commas. `Widevine`, `Fairplay` and `PlayReady` can be combined. |
 | `<CencProtectScheme>` | How the media is encrypted. `cbcs` is AES-CBC with pattern encryption and is required for FairPlay; `cenc` is AES-CTR full sample encryption. Use `cbcs` if FairPlay is among the systems. |
 | `<ContentId>` | Identifies the content to the service. It also decides which streams share a key, so give each stream its own value unless you mean to share one. |
@@ -100,7 +100,7 @@ A stream can move to a new key while it runs, so a viewer who obtained one key c
     <ApplicationName>app</ApplicationName>
     <StreamName>stream*</StreamName>
 
-    <DRMProvider>Pallycon</DRMProvider>
+    <DRMProvider>DoveRunner</DRMProvider>
     <DRMSystem>Widevine,Fairplay,PlayReady</DRMSystem>
     <CencProtectScheme>cbcs</CencProtectScheme>
     <KeyRotationPeriod>600</KeyRotationPeriod> <!-- seconds -->
@@ -110,7 +110,13 @@ A stream can move to a new key while it runs, so a viewer who obtained one key c
 </DRM>
 ```
 
-`<KeyRotationPeriod>` is a number of seconds of stream time. Leave it out to keep one key for the whole stream.
+`<KeyRotationPeriod>` is a number of seconds of stream time.
+
+| Value | Behaviour |
+| --- | --- |
+| Left out | The stream keeps one key from start to end. |
+| `0` | No rotation on its own. The key changes only when [asked for](#rotating-on-request-rest-api). |
+| Above `0` | The key changes every that many seconds, and can also be asked for in between. |
 
 The key of the next period is fetched in advance, so a slow answer from the service does not hold up the stream. If a key is not there when a period turns, the stream keeps the key it has and moves on at the next period, rather than interrupting playback.
 
@@ -132,6 +138,16 @@ Both are settings of your DoveRunner account and player, not of OvenMediaEngine.
 Leaving `<KeyRotationPeriod>` out keeps the request to the service exactly as it was before rotation existed, so a stream that does not rotate is unaffected by these requirements.
 
 :::
+
+## Rotating on request (REST API)
+
+A stream whose entry states a `<KeyRotationPeriod>` can also be moved to its next key at any moment, whether or not it rotates on a period of its own.
+
+```http
+POST /v1/vhosts/{vhost}/apps/{app}/streams/{stream}:rotateDrmKey
+```
+
+The stream picks the new key up where the next segment of each track starts, the same as a rotation on a period. See [Rotate DRM Key](../../rest-api/v1/virtual-host/application/stream/rotate-drm-key.md) for the headers and the responses.
 
 ## Checking Applied DRM
 
