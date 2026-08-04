@@ -1863,6 +1863,28 @@ html.plugin-blog.blog-post-page .markdown li {
   color: var(--text-sub);
 }
 
+/* The shared .markdown > p/ul/ol/li/blockquote rules (see the base rules
+ * near the top of this file) set font-size: 0.85rem for docs pages, where
+ * that's the intended body size. Those rules target the elements directly,
+ * so they win over the 1.05rem set on .markdown above (inheritance loses to
+ * a same-element rule regardless of the ancestor rule's specificity).
+ * Blog posts need their own body size back, and blockquotes there are
+ * pull-quotes inside prose, not docs API labels, so they read a touch
+ * larger still. */
+html.plugin-blog.blog-post-page .markdown > p,
+html.plugin-blog.blog-post-page .markdown > ul,
+html.plugin-blog.blog-post-page .markdown > ol,
+html.plugin-blog.blog-post-page .markdown li {
+  font-size: 1.05rem;
+}
+
+html.plugin-blog.blog-post-page .markdown > blockquote {
+  font-size: 1.15rem;
+  font-style: italic;
+  border-left-color: var(--brand-secondary);
+  color: var(--blue-mono-light);
+}
+
 html.plugin-blog.blog-post-page .markdown h2 {
   font-size: 1.6rem !important;
   margin-top: 2.5rem !important;
