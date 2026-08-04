@@ -115,10 +115,10 @@ h7, .h7 {
     min-width: 0;
 }
 
-.navbar-formerly { margin-top: 4px; }
+.navbar-formerly { margin-top: 2px; }
 
 .navbar-brand img {
-    height: 24px;
+    height: 20px;
     width: auto;
     transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     filter: none;

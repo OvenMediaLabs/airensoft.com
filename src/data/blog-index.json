@@ -1,5 +1,17 @@
 [
   {
+    "slug": "from-flame-to-honey-badger",
+    "permalink": "/blog/from-flame-to-honey-badger",
+    "title": "From Flame to Honey Badger: From AirenSoft to OvenMedia Labs",
+    "description": "AirenSoft is now OvenMedia Labs, and our symbol has changed from a flame to a honey badger. Here's the sixteen-year story behind the rename, and why our focus is now entirely on OvenMediaEngine.",
+    "tags": [
+      "news"
+    ],
+    "date": "2026-08-04",
+    "dir": "2026-08-04-from-flame-to-honey-badger",
+    "image": "hero.png"
+  },
+  {
     "slug": "llhls-hls-channel-redundancy-high-availability",
     "permalink": "/blog/llhls-hls-channel-redundancy-high-availability",
     "title": "LL-HLS / HLS Channel Redundancy: High Availability That Stays Live Through Failures",
