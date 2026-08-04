@@ -15,7 +15,7 @@
 ## Company
 
 - [About OvenMedia Labs](https://ovenmedialabs.com/company): Media Technology Experts Group. Founded 2010. 16+ years of media technology expertise. 20+ countries with production deployments.
-- [Contact](https://ovenmedialabs.com/company#contact): contact@ovenmedialabs.com
+- [Contact](https://ovenmedialabs.com/company#contact): contact@ovenmedia.com
 
 ## Documentation
 

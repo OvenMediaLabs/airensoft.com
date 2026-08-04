@@ -30,26 +30,26 @@ ABR becomes highly valuable when one or more streamers need to stream to an unsp
 
 ## How Does OvenStudio LLHLS Provide ABR?
 
-- **Embedded Live Transcoder**: [OvenStudio LLHLS](https://airensoft.com/os.html) has embedded a live transcoder that allows encoding of the same media source into various bitrates, resolutions, and frame rates.
-- **ABR Profiles**: [OvenStudio LLHLS](https://airensoft.com/os.html) users can choose from multiple encoding presets to enable ABR. These profiles offer presets ranging from low bitrates and resolutions to high bandwidth options, based on collecting various user data. You can easily adjust the viewer experience by selecting the desired presets with just a few clicks.
-- **Dynamic Streaming**: [OvenStudio LLHLS](https://airensoft.com/os.html) real-time transforms the media source based on the configured profiles, sending the required LLHLS segments for streaming. If you use OvenPlayer, it continuously monitors viewer network conditions and device performance, requesting the appropriate profile from OvenStudio LLHLS.
+- **Embedded Live Transcoder**: [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) has embedded a live transcoder that allows encoding of the same media source into various bitrates, resolutions, and frame rates.
+- **ABR Profiles**: [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) users can choose from multiple encoding presets to enable ABR. These profiles offer presets ranging from low bitrates and resolutions to high bandwidth options, based on collecting various user data. You can easily adjust the viewer experience by selecting the desired presets with just a few clicks.
+- **Dynamic Streaming**: [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) real-time transforms the media source based on the configured profiles, sending the required LLHLS segments for streaming. If you use OvenPlayer, it continuously monitors viewer network conditions and device performance, requesting the appropriate profile from OvenStudio LLHLS.
 - **Automatic Profile Switching**: When changes are detected in network speed and stability, [OvenPlayer](https://github.com/AirenSoft/OvenPlayer) automatically switches profiles to ensure uninterrupted streaming. Of course, viewers can also select resolutions directly in [OvenPlayer](https://github.com/AirenSoft/OvenPlayer).
 
-In summary, [OvenStudio LLHLS](https://airensoft.com/os.html) provides ABR functionality, dynamically adjusting bitrate and resolution based on network conditions and device performance to offer uninterrupted high-quality streaming. We recommend using [OvenPlayer](https://github.com/AirenSoft/OvenPlayer), optimized for [OvenStudio LLHLS](https://airensoft.com/os.html), to provide a smoother streaming experience.
+In summary, [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) provides ABR functionality, dynamically adjusting bitrate and resolution based on network conditions and device performance to offer uninterrupted high-quality streaming. We recommend using [OvenPlayer](https://github.com/AirenSoft/OvenPlayer), optimized for [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS), to provide a smoother streaming experience.
 
 ## Can’t use ABR with Low-Latency Streaming?
 
 **Not at all**.
 
-Some users have had concerns that using ABR to deliver multiple profiles could make streaming heavier and prevent low-latency streaming. While this might be the case for some lower-quality streaming servers, [OvenStudio LLHLS](https://airensoft.com/os.html) smoothly delivers ABR with a latency of less than 3 seconds. [OvenStudio LLHLS](https://airensoft.com/os.html)’ ABR feature encodes media sources into multiple bitrates and resolutions, dynamically providing the appropriate profile based on viewer network conditions and device performance. This enhances streaming stability and quality, especially in slow or unstable network environments.
+Some users have had concerns that using ABR to deliver multiple profiles could make streaming heavier and prevent low-latency streaming. While this might be the case for some lower-quality streaming servers, [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) smoothly delivers ABR with a latency of less than 3 seconds. [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS)’ ABR feature encodes media sources into multiple bitrates and resolutions, dynamically providing the appropriate profile based on viewer network conditions and device performance. This enhances streaming stability and quality, especially in slow or unstable network environments.
 
-[OvenStudio LLHLS](https://airensoft.com/os.html)’ low-latency streaming minimizes the typical 6–10 seconds of delay found in most live streaming to **less than 3 seconds**. This allows viewers to enjoy high-quality media streaming while experiencing low-latency live streaming.
+[OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS)’ low-latency streaming minimizes the typical 6–10 seconds of delay found in most live streaming to **less than 3 seconds**. This allows viewers to enjoy high-quality media streaming while experiencing low-latency live streaming.
 
-In other words, ABR optimizes quality by adjusting resolution, bitrate, frame rate, etc., based on network conditions, while low-latency streaming provides an interactive streaming experience. Therefore, using both technologies together allows you to deliver flexible media quickly. Let’s configure ABR in [OvenStudio LLHLS](https://airensoft.com/os.html) now!
+In other words, ABR optimizes quality by adjusting resolution, bitrate, frame rate, etc., based on network conditions, while low-latency streaming provides an interactive streaming experience. Therefore, using both technologies together allows you to deliver flexible media quickly. Let’s configure ABR in [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) now!
 
 ## Configuring ABR in OvenStudio LLHLS
 
-To provide ABR functionality, [OvenStudio LLHLS](https://airensoft.com/os.html) has the embedded live transcoder, using video codecs such as VP8, H.264, Pass-through, and audio codecs like Opus, AAC, and Pass-through. Higher-spec instances may be required when using ABR. Here are the steps to configure ABR in OvenStudio LLHLS:
+To provide ABR functionality, [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) has the embedded live transcoder, using video codecs such as VP8, H.264, Pass-through, and audio codecs like Opus, AAC, and Pass-through. Higher-spec instances may be required when using ABR. Here are the steps to configure ABR in OvenStudio LLHLS:
 
 ![](./1-GLhb149KHL1JeYX6N2huIw.png)
 
@@ -75,10 +75,9 @@ To provide ABR functionality, [OvenStudio LLHLS](https://airensoft.com/os.html) 
 
 ## Conclusion
 
-Don’t worry about concerns that delivering multiple profiles will prevent low-latency streaming. [OvenStudio LLHLS](https://airensoft.com/os.html) delivers ABR efficiently, providing streaming with a latency of less than 3 seconds while supporting all these benefits. [OvenStudio LLHLS](https://airensoft.com/os.html) is the perfect tool for this. If you have any further questions or need additional information, please feel free to ask about [OvenStudio LLHLS](https://airensoft.com/os.html).
+Don’t worry about concerns that delivering multiple profiles will prevent low-latency streaming. [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) delivers ABR efficiently, providing streaming with a latency of less than 3 seconds while supporting all these benefits. [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) is the perfect tool for this. If you have any further questions or need additional information, please feel free to ask about [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS).
 
 ## For more information
 
-- [OvenStudio LLHLS Website](https://airensoft.com/os)
-- [OvenStudio LLHLS on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-xwvoj4om6w4ee)
-- [OvenStudio LLHLS User Guide](https://ovenstudio.gitbook.io/ovenstudio-llhls)
+- OvenStudio LLHLS has been integrated into [OvenMediaEngine Enterprise on AWS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs).
+- OvenStudio LLHLS has been integrated into OvenMediaEngine Enterprise on AWS. This guide has been replaced by the [Getting Started on AWS guide](https://ovenmedia.com/docs/ome-enterprise/exclusive/aws-marketplace/getting-started-on-aws).
