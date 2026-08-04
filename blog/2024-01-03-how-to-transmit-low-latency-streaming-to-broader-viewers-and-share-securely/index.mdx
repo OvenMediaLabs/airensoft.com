@@ -13,10 +13,10 @@ canonical_url: "https://medium.com/@OvenMediaEngine/how-to-transmit-low-latency-
 
 {/* truncate */}
 
-These concerns can be addressed by seamlessly integrating [OvenStudio LLHLS](https://airensoft.com/os.html) with **AWS CloudFront **(CDN)** **and **Signed URL**. While traditionally, connecting a streaming server with a CDN requires complexity and specialized knowledge, using [OvenStudio LLHLS](https://airensoft.com/os.html) automates the entire process.
+These concerns can be addressed by seamlessly integrating [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) with **AWS CloudFront **(CDN)** **and **Signed URL**. While traditionally, connecting a streaming server with a CDN requires complexity and specialized knowledge, using [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) automates the entire process.
 
 
-In this blog post, we provide step-by-step instructions on how to effortlessly set up integration with AWS CloudFront in just a few clicks. We also guide you on utilizing features such as the Signed URL, allowing you to share or restrict access as needed. Explore how [OvenStudio LLHLS](https://airensoft.com/os.html) simplifies the integration with AWS CloudFront, making it a breeze.
+In this blog post, we provide step-by-step instructions on how to effortlessly set up integration with AWS CloudFront in just a few clicks. We also guide you on utilizing features such as the Signed URL, allowing you to share or restrict access as needed. Explore how [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) simplifies the integration with AWS CloudFront, making it a breeze.
 
 ## What is AWS CloudFront?
 
@@ -37,13 +37,13 @@ A Content Delivery Network (CDN) is a system that efficiently transmits content 
 
 CDNs play a crucial role in delivering a consistent, high-quality streaming experience globally. Leveraging CDN services, especially for dynamic content like streaming, ensures users receive a seamless experience regardless of their location. Additionally, content providers can easily respond to increasing traffic through CDN expansion, enabling stable service provision.
 
-In our upcoming blog post, we provide a step-by-step guide on effortlessly integrating [OvenStudio LLHLS](https://airensoft.com/os.html) with AWS CloudFront. Whether you’re looking to enhance your streaming delivery or explore advanced features, [OvenStudio LLHLS](https://airensoft.com/os.html) makes the process user-friendly, saving you time and effort. Stay tuned for our comprehensive guide, and feel free to reach out with any further inquiries.
+In our upcoming blog post, we provide a step-by-step guide on effortlessly integrating [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) with AWS CloudFront. Whether you’re looking to enhance your streaming delivery or explore advanced features, [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) makes the process user-friendly, saving you time and effort. Stay tuned for our comprehensive guide, and feel free to reach out with any further inquiries.
 
 *※ Note: This guide will be updated to accommodate integration with other CDNs besides AWS CloudFront in the future.*
 
 ## What is a Signed URL?
 
-A Signed URL in [OvenStudio LLHLS](https://airensoft.com/os.html) encrypts the URL used for media transmission between the streaming server and the viewer during streaming. This URL is valid for a specific period, and only authenticated users with the appropriate permissions can access the streaming via this URL.
+A Signed URL in [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) encrypts the URL used for media transmission between the streaming server and the viewer during streaming. This URL is valid for a specific period, and only authenticated users with the appropriate permissions can access the streaming via this URL.
 
 OvenStudio LLHLS administrators can share encrypted URLs valid for a specified time, preventing unauthorized access to the streaming media source and safeguarding against leaks.
 
@@ -59,7 +59,7 @@ Even with expert knowledge, integrating CDN services into a streaming service an
 
 ## Setting Up Signed URL in OvenStudio LLHLS:
 
-[OvenStudio LLHLS](https://airensoft.com/os.html) makes it incredibly simple to configure and use the Signed URL feature with AWS CloudFront. Follow these steps:
+[OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) makes it incredibly simple to configure and use the Signed URL feature with AWS CloudFront. Follow these steps:
 
 ### **Connect with AWS CloudFront (Signed URL):**
 
@@ -107,7 +107,7 @@ Signed URLs are valid for a specific period (e.g., 1 hour). Once this period exp
 
 ## Using the Signed URL via API
 
-You can utilize an API to apply detailed options for individual streaming units with the Signed URL —For more information, please refer to the [**Access Token**](https://ovenstudio.gitbook.io/ovenstudio-llhls/rest-api/access-token) in the OvenStudio LLHLS’s User Guide. :
+You can utilize an API to apply detailed options for individual streaming units with the Signed URL —For more information, please refer to the [**AccessToken**](https://ovenmedia.com/docs/ome-enterprise/features/rest-api#managers) section of the OvenMediaEngine Enterprise on AWS documentation. :
 
 ### **Issuing Access Tokens:**
 
@@ -125,13 +125,13 @@ You can utilize an API to apply detailed options for individual streaming units 
 
 ### **Parameter Descriptions:**
 
-The Signed URL API is straightforwardly configured — In the OvenStudio LLHLS’s User Guide, detailed content is covered in the section labeled [**Body Parameters** of Signed URL](https://ovenstudio.gitbook.io/ovenstudio-llhls/v1/signed-url#body-parameters).”
+The Signed URL API is straightforwardly configured — In the OvenStudio LLHLS’s User Guide, detailed content is covered in the section labeled [**Configuration** of SignedPolicy](https://ovenmedia.com/docs/ome-enterprise/features/access-control-and-security/signedpolicy#configuration).”
 
 - **“stream_name”** requires the name of the streaming box for which the Signed URL is generated.
 - **“date_less_than”** ensures the URL is valid until a specified date and time, and this parameter is mandatory.
 - **“date_grater_than”** makes the URL valid from a specified date and time.
 
-### [Examples](https://ovenstudio.gitbook.io/ovenstudio-llhls/v1/signed-url#examples):
+### [Examples](https://ovenmedia.com/docs/ome-enterprise/features/access-control-and-security/signedpolicy#usage-examples):
 
 - To create a Signed URL for the streaming named OvenStudio, valid until January 1, 2024, 00:00:00 (UTC).
 
@@ -162,18 +162,17 @@ The Signed URL API is straightforwardly configured — In the OvenStudio LLH
 
 “date_greater_than” is a directive that defines the URL’s validity starting from the specified time. When used as in the example, the URL can be accessed from December 24, 2023, 00:00:00 UTC onwards.
 
-You can find comprehensive details in the OvenStudio LLHLS’s User Guide under the [**Signed URL**](https://ovenstudio.gitbook.io/ovenstudio-llhls/v1/signed-url) section.
+You can find comprehensive details in the OvenStudio LLHLS’s User Guide under the [**SignedPolicy**](https://ovenmedia.com/docs/ome-enterprise/features/access-control-and-security/signedpolicy) section.
 
 ## Conclusion
 
-[OvenStudio LLHLS](https://airensoft.com/os.html) minimizes cumbersome processes to alleviate your concerns. If you need to distribute your streaming to a wider audience, simply integrate with AWS CloudFront with just a few clicks — [OvenStudio LLHLS](https://airensoft.com/os.html) makes it possible.
+[OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) minimizes cumbersome processes to alleviate your concerns. If you need to distribute your streaming to a wider audience, simply integrate with AWS CloudFront with just a few clicks — [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) makes it possible.
 
 Moreover, if you wish to share your streaming with specific individuals only, activate the toggle button to enable the Signed URL. It provides security and flexibility for streaming service providers, enhancing service efficiency by protecting content and allowing access only to valid users.
 
-Always, [OvenStudio LLHLS](https://airensoft.com/os.html) offers the easiest and most effective options to support seamless, secure, and low-latency streaming in your service — Elevate your service with the easiest and most effective options, enabling larger audiences to enjoy a seamless, secure, and low-latency streaming experience. Join us in the future of low-latency streaming with [OvenStudio LLHLS](https://airensoft.com/os.html).
+Always, [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS) offers the easiest and most effective options to support seamless, secure, and low-latency streaming in your service — Elevate your service with the easiest and most effective options, enabling larger audiences to enjoy a seamless, secure, and low-latency streaming experience. Join us in the future of low-latency streaming with [OvenStudio LLHLS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs) (now OvenMediaEngine Enterprise on AWS).
 
 ## For more information
 
-- [OvenStudio LLHLS Website](https://airensoft.com/os)
-- [OvenStudio LLHLS on AWS Marketplace](https://aws.amazon.com/marketplace/pp/prodview-xwvoj4om6w4ee)
-- [OvenStudio LLHLS User Guide](https://ovenstudio.gitbook.io/ovenstudio-llhls)
+- OvenStudio LLHLS has been integrated into [OvenMediaEngine Enterprise on AWS](https://aws.amazon.com/marketplace/pp/prodview-66xy6t4xk56xs).
+- OvenStudio LLHLS has been integrated into OvenMediaEngine Enterprise on AWS. This guide has been replaced by the [Getting Started on AWS guide](https://ovenmedia.com/docs/ome-enterprise/exclusive/aws-marketplace/getting-started-on-aws).

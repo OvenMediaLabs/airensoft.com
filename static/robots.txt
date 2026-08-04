@@ -11,4 +11,4 @@ Allow: /
 Disallow: /search
 Disallow: /404
 
-Sitemap: https://ovenmedialabs.com/sitemap.xml
+Sitemap: https://ovenmedia.com/sitemap.xml

@@ -44,7 +44,7 @@ export default function FooterLayout(): ReactNode {
                   <br />Seoul 07207, South Korea
                 </p>
                 <p>T. +82-2-6378-5227 &nbsp;|&nbsp; F. +82-2-6378-5228</p>
-                <p>contact@ovenmedialabs.com</p>
+                <p>contact@ovenmedia.com</p>
               </div>
             </div>
 

@@ -214,7 +214,7 @@ export default function EnterpriseConsultForm(): React.ReactElement {
           {status === 'error' && (
             <p className="consult-error mt-3 mb-0">
               Something went wrong. Please try again, or email{' '}
-              <a href="mailto:contact@ovenmedialabs.com">contact@ovenmedialabs.com</a>.
+              <a href="mailto:contact@ovenmedia.com">contact@ovenmedia.com</a>.
             </p>
           )}
           <p className="text-sub2 small mt-3 mb-0 text-center">
