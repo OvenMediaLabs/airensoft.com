@@ -11,12 +11,16 @@ When you install OvenMediaEngine Enterprise with the distributed RPM/DEB package
 
 | Device | Support OS | Driver Version | Decoder | Encoder |
 | --- | --- | --- | --- | --- |
-| NVIDIA | Ubuntu 22.04 / 24.04, Rocky 9 | Driver 535+ | H.264, H.265 | H.264, H.265 |
+| NVIDIA | Ubuntu 22.04 / 24.04, Rocky 9 | Driver 535+ | H.264, H.265, AV1 (Ampere+) | H.264, H.265, AV1 (Ada Lovelace+) |
 | Xilinx Alveo U30MA | Ubuntu 22.04 / 24.04 | Video SDK 3.0 | H.264, H.265 | H.264, H.265 |
 | NETINT Quadra VPU | Ubuntu 22.04 / 24.04, Rocky 9 | libxcoder V5.7.0+ (Quadra Release SW) | H.264, H.265 | H.264, H.265, AV1 |
 
 :::note
-On NETINT Quadra, AV1 is **encode-only** — there is no AV1 hardware decoding. A stream that needs AV1 decoding falls back to the software decoder.
+On NVIDIA, AV1 support depends on the GPU generation: **decoding requires Ampere or newer** (except A100/A30) and **encoding requires Ada Lovelace or newer**. So an Ampere GPU can decode AV1 but cannot encode it.
+
+On NETINT Quadra, AV1 is **encode-only** — there is no AV1 hardware decoding.
+
+When a device cannot handle AV1, it falls back to the software codec.
 :::
 
 ## Driver Installation
@@ -263,6 +267,7 @@ On startup, the applied priority is logged per device:
 ## Reference
 
 * NVIDIA Driver Installation Guide : [https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#package-manager-installation](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#package-manager-installation)
+* NVIDIA Video Encode and Decode GPU Support Matrix (per-model codec support) : [https://developer.nvidia.com/video-encode-and-decode-gpu-support-matrix-new](https://developer.nvidia.com/video-encode-and-decode-gpu-support-matrix-new)
 * Xilinx Video SDK Installation Guide : [https://xilinx.github.io/video-sdk/v3.0/getting_started_on_prem.html#install-the-sdk](https://xilinx.github.io/video-sdk/v3.0/getting_started_on_prem.html#install-the-sdk)
 * NVIDIA Container Toolkit Installation Guide : [https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 * NETINT SDK Installation Guide : [https://docs.netint.com/vpu/quadra/installation/ffmpeg/ffmpeg-scripted-installation](https://docs.netint.com/vpu/quadra/installation/ffmpeg/ffmpeg-scripted-installation)
