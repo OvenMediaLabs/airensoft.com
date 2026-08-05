@@ -50,7 +50,7 @@ to upgrade to) supports the feature or option you need.
 | [Low-Latency HLS](#low-latency-hls) | Streaming & Distribution | 0.16.4.0 | [View](../features/streaming-and-distribution/low-latency-hls.md) |
 | [Push Publishing](#push-publishing) | Streaming & Distribution | 0.16.4.0 | [View](../features/streaming-and-distribution/push-publishing.md) |
 | Online Demo | Streaming & Distribution | 0.16.4.0 | [View](../features/streaming-and-distribution/online-demo.md) |
-| Recording | Streaming & Distribution | 0.16.5.0 | [View](../features/streaming-and-distribution/recording.md) |
+| [Recording](#recording) | Streaming & Distribution | 0.16.5.0 | [View](../features/streaming-and-distribution/recording.md) |
 | [HLS (legacy v3 / TS)](#hls) | Streaming & Distribution | 0.16.6.0 | [View](../features/streaming-and-distribution/hls.md) |
 | [SRT (Publisher)](#srt-publisher) | Streaming & Distribution | 0.18.0.0 | [View](../features/streaming-and-distribution/srt.md) |
 | [Transcoding](#transcoding) | Transcoding | 0.16.4.0 | [View](../features/transcoding-and-processing/transcoding.md) |
@@ -189,15 +189,21 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.16.4.0**: Keyframe interval by time
 - **0.17.2.2**: Thread-count setting for the software decoder; keyframe-only decoding when no video encoding
 - **0.17.3.0**: Lookahead encoding option
+- **0.21.0.0**: AV1 codec support (libaom software encoder/decoder)
 
 ### ABR
 
 - **0.20.6.1**: Quick ABR Setup (Web Console; predefined video encoding presets)
 
+### Recording
+
+- **0.21.0.0**: AV1 recording to MP4
+
 ### Thumbnail
 
 - **0.16.6.1**: Thumbnail Publisher supports HTTP/1.0
 - **0.17.3.1**: WebP image codec
+- **0.21.0.0**: AVIF image codec
 
 ### TranscodeWebhook
 
@@ -207,6 +213,8 @@ listed here have no version-gated options beyond their minimum version above.
 
 - **0.19.2.0**: x264 (paid add-on) support
 - **0.20.4.0**: `ExtraOptions` video encoding settings for the x264 encoder
+- **0.21.0.0**: NETINT Quadra VPU support
+- **0.21.0.0**: AV1 hardware encoding/decoding on NVIDIA; AV1 hardware encoding on NETINT Quadra
 
 ### Realtime Speech-to-Text
 
@@ -225,6 +233,7 @@ listed here have no version-gated options beyond their minimum version above.
 ### DRM OME Configuration
 
 - **0.16.5.0**: SAMPLE-AES-CTR mode encryption for LL-HLS DRM
+- **0.21.0.0**: HEVC (H.265) subsample encryption for LL-HLS DRM
 
 ### Origin Redundancy
 
