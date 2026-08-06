@@ -764,7 +764,7 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
 
 .address-col img {
     width: auto;
-    height: clamp(12px, 4vw, 20px);
+    height: clamp(22px, 3vw, 32px);
 	margin-bottom: clamp(1rem, 4vw, 1.5rem);
 	display: block;
     color: var(--text-sub);

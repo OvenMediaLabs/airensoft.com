@@ -11,8 +11,8 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export default function FooterLayout(): ReactNode {
-  const logoSvg = useBaseUrl('/images/airen_ci/OML_footer.svg');
-  const logoPng = useBaseUrl('/images/airen_ci/OML_footer.png');
+  const logoSvg = useBaseUrl('/images/airen_ci/OML_footer_ver.svg');
+  const logoPng = useBaseUrl('/images/airen_ci/OML_footer_ver.png');
   const {siteConfig} = useDocusaurusContext();
   const previewSource = (siteConfig.customFields as Record<string, string> | undefined)?.previewSource || '';
 
@@ -41,7 +41,7 @@ export default function FooterLayout(): ReactNode {
               <div className="address-compact">
                 <p>
                   #1203, 157, Yangpyeong-ro, Yeongdeungpo-gu,
-                  <br />Seoul 07207, South Korea
+                  <br className="d-none d-lg-block" /> Seoul 07207, South Korea
                 </p>
                 <p>T. +82-2-6378-5227 &nbsp;|&nbsp; F. +82-2-6378-5228</p>
                 <p>contact@ovenmedia.com</p>
