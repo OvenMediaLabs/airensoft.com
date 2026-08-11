@@ -2600,7 +2600,7 @@ html.plugin-blog article [id] {
 }
 .consult-select option { background: var(--bg-body); color: var(--text-main); }
 .consult-select:has(option[value=""]:checked) { color: var(--text-sub2); }
-.consult-textarea { resize: vertical; min-height: 120px; }
+.consult-textarea { display: block; resize: vertical; min-height: 120px; }
 .consult-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .consult-chip {
     padding: 0.45rem 0.9rem; border-radius: 99px; cursor: pointer;

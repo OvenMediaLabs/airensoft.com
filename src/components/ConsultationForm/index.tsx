@@ -41,6 +41,8 @@ export default function ConsultationForm(): React.ReactElement {
   const [status, setStatus] = useState<Status>('idle');
   const [topics, setTopics] = useState<string[]>([]);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [consented, setConsented] = useState(false);
+  const [consentRequired, setConsentRequired] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -81,10 +83,14 @@ export default function ConsultationForm(): React.ReactElement {
     };
 
     const clientErrors = validate(payload);
-    if (Object.keys(clientErrors).length) {
-      setErrors(clientErrors);
+    const hasFieldErrors = Object.keys(clientErrors).length > 0;
+    if (!consented) setConsentRequired(true);
+    if (hasFieldErrors || !consented) {
+      if (hasFieldErrors) {
+        setErrors(clientErrors);
+        document.getElementById(`cf-${Object.keys(clientErrors)[0]}`)?.focus();
+      }
       setStatus('idle');
-      document.getElementById(`cf-${Object.keys(clientErrors)[0]}`)?.focus();
       return;
     }
     setErrors({});
@@ -216,6 +222,23 @@ export default function ConsultationForm(): React.ReactElement {
         <div className="consult-hp" aria-hidden="true">
           <label htmlFor="cf-company-url">Company URL</label>
           <input id="cf-company-url" name="company_url" type="text" tabIndex={-1} autoComplete="off" />
+        </div>
+
+        <div className="col-12">
+          <label className="d-flex align-items-start gap-2" style={{cursor: 'pointer'}}>
+            <input
+              type="checkbox"
+              checked={consented}
+              onChange={(e) => { setConsented(e.target.checked); if (e.target.checked) setConsentRequired(false); }}
+              style={{marginTop: '3px', flexShrink: 0}}
+            />
+            <span className="text-sub small">
+              The consultation is delivered jointly by OvenMedia Labs (software) and Embrace, OvenMedia Labs' infrastructure partner (infrastructure). I consent to the information submitted above being shared with Embrace solely for the purpose of this consultation.
+            </span>
+          </label>
+          {consentRequired && !consented && (
+            <span className="consult-field-error mt-1">Please read the notice above and check the box to proceed.</span>
+          )}
         </div>
 
         <div className="col-12 d-flex flex-column align-items-center pt-2">

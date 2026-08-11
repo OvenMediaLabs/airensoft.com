@@ -976,10 +976,13 @@ footer { padding-top: 0rem; padding-bottom: 0rem; background-color: #000; }
     transition: all 0.5s ease; 
     --bs-btn-active-bg: color-mix(in srgb, var(--company-primary), transparent 50%); --bs-btn-active-border-color: var(--company-primary); 
 }
-.btn-company-outline:hover { 
+.btn-company-outline:hover {
     border-color: var(--company-primary); background-color: var(--company-primary);
     transform: translateY(-2.5px); box-shadow: 0 10px 20px 0px color-mix(in srgb, var(--company-primary), transparent 85%);
     color: var(--bg-body); z-index: 10;
+}
+.btn-company-outline:disabled {
+    background-color: transparent; color: var(--company-primary); border-color: var(--company-primary);
 }
 
 .btn-brand-outline { 
