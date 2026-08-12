@@ -133,7 +133,7 @@ Wed Jul  3 23:30:00 2024
 
 The Xilinx Video SDK 3.0 driver officially supports Ubuntu, Red Hat Linux 7.8, and Amazon Linux 2. For detailed information, please refer to the [Official Xilinx Documentation](https://xilinx.github.io/video-sdk/v3.0/getting_started_on_prem.html#install-the-sdk).
 
-### NETINT Quadra Driver (libxcoder)
+### NETINT Quadra Driver
 
 NETINT Quadra VPU support is built on NETINT's native `libxcoder` library from the official **Quadra Release SW** package. Unlike the NVIDIA driver, OvenMediaEngine does **not** bundle or install the NETINT driver — the Quadra kernel driver and `libxcoder` (**V5.7.0 or later**) must be installed beforehand, following the NETINT Quadra Release SW documentation for your OS.
 
@@ -169,7 +169,7 @@ $ cat ovenmediaengine.log | grep transcoder_gpu
 
 ## Configuration
 
-:::info Enterprise-only configuration
+:::info[Enterprise-only configuration]
 The `<HWAccels>` configuration is an **OvenMediaEngine Enterprise** feature. In the Open-Source edition this option is **deprecated** and has been removed from the sample configuration files (`Server.xml`, `Origin.xml`) and the Transcode WebHook (`hwaccels`) schema. Use the `<HWAccels>` block shown below with OvenMediaEngine Enterprise (`EnterpriseServer.xml`).
 :::
 
@@ -182,7 +182,7 @@ To use hardware acceleration, add the `<HWAccels>` section under `<OutputProfile
         Setting for Hardware Modules.
             - nv : Nvidia Video Codec SDK
             - xma : Xilinx Media Accelerator
-            - nilogan : Netint Quadra VPU
+            - ni : Netint Quadra VPU
 
         You can use multiple modules by separating them with commas.
         For example, if you want to use xma and nv, you can set it as follows.
@@ -227,7 +227,7 @@ Use the `[ModuleName]:[DeviceId]` format, and separate multiple modules with com
         </Video>
         <!-- Encode on NETINT Quadra card 0 -->
         <Video>
-            <Modules>nilogan:0</Modules>
+            <Modules>ni:0</Modules>
             ...
         </Video>
     </Encodes>
@@ -236,7 +236,7 @@ Use the `[ModuleName]:[DeviceId]` format, and separate multiple modules with com
 
 ## Experiments
 
-:::warning Experimental
+:::warning[Experimental]
 The options in this section are experimental. They may change or be removed in a future release, so use them with care in production.
 :::
 
