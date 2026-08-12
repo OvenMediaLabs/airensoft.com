@@ -10,7 +10,7 @@ OvenMediaEngine Enterprise is Copyright OvenMedia Labs Inc. (formerly AirenSoft 
 
 This product includes open source software developed by third parties. The following page lists the third-party open source components included in this product and the licenses that apply to each of them.
 
-If you have any questions regarding our use of open-source software in OvenMediaEngine Enterprise and this notice, please contact us at [support@ovenmedialabs.com](mailto:support@ovenmedialabs.com).
+If you have any questions regarding our use of open-source software in OvenMediaEngine Enterprise and this notice, please contact us at [support@ovenmedia.com](mailto:support@ovenmedia.com).
 
 ***
 

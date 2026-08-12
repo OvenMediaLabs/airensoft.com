@@ -4,7 +4,7 @@ description: "Review OvenMediaEngine Enterprise feature settings from the Web Co
 sidebar_position: 67
 ---
 
-You can check the settings for various features provided by OvenMediaEngine. Detailed information about the list of features and settings can be found in the [OvenMediaEngine User Guide](https://ovenmedialabs.com/docs/ome).
+You can check the settings for various features provided by OvenMediaEngine. Detailed information about the list of features and settings can be found in the [OvenMediaEngine User Guide](https://ovenmedia.com/docs/ome).
 
 ### Unapplied Configuration Detection
 

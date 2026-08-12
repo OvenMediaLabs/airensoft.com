@@ -33,7 +33,7 @@ You can select the `VirtualHost` and `Application` currently running in OvenMedi
 
 :::info
 
-You can use OvenMediaEngine's `<VirtualHost>` to run multiple streaming servers on a single machine. See the User Guide for more information: [https://ovenmedialabs.com/docs/ome/configuration#virtual-host](https://ovenmedialabs.com/docs/ome/configuration#virtual-host)
+You can use OvenMediaEngine's `<VirtualHost>` to run multiple streaming servers on a single machine. See the User Guide for more information: [https://ovenmedia.com/docs/ome/configuration#virtual-host](https://ovenmedia.com/docs/ome/configuration#virtual-host)
 
 :::
 
@@ -41,7 +41,7 @@ You can use OvenMediaEngine's `<VirtualHost>` to run multiple streaming servers 
 
 :::info
 
-You can also use OvenMediaEngine's `<Application>` to define stream behavior _(Stream input, Encoding, and Stream output)_ and build different streaming environments. See the User Guide for more information: [https://ovenmedialabs.com/docs/ome/configuration#application](https://ovenmedialabs.com/docs/ome/configuration#application)
+You can also use OvenMediaEngine's `<Application>` to define stream behavior _(Stream input, Encoding, and Stream output)_ and build different streaming environments. See the User Guide for more information: [https://ovenmedia.com/docs/ome/configuration#application](https://ovenmedia.com/docs/ome/configuration#application)
 
 :::
 

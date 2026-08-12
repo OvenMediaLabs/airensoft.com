@@ -31,7 +31,7 @@ OvenMediaEngine Enterprise on AWS provides the \[Download Logs] feature, which a
 ### Submit the log file
 
 3. OvenMediaEngine Enterprise on AWS provides **email-based Basic Technical Support** during your subscription period. Please send the downloaded log file to the OvenMediaEngine Enterprise Team. Based on the logs, we will review the issue in detail and provide guidance on the resolution.
-   * **Basic Technical Support:** [support@ovenmedialabs.com](mailto:support@ovenmedialabs.com)
+   * **Basic Technical Support:** [support@ovenmedia.com](mailto:support@ovenmedia.com)
 
 
 
@@ -39,5 +39,5 @@ OvenMediaEngine Enterprise on AWS provides the \[Download Logs] feature, which a
 
 OvenMediaEngine Enterprise on AWS provides email-based Basic Technical Support during your subscription period. If you need **faster**, **more direct support** via a **private channel** (Slack), please refer to the page below.
 
-* **Support Program:** [https://ovenmedialabs.com/ome-enterprise.html#enterprise-support](https://ovenmedialabs.com/ome-enterprise.html#enterprise-support)
-* **Support Program Contact:** [contact@ovenmedialabs.com](mailto:contact@ovenmedialabs.com)
+* **Support Program:** [https://ovenmedia.com/#enterprise-support](https://ovenmedia.com/#enterprise-support)
+* **Support Program Contact:** [contact@ovenmedia.com](mailto:contact@ovenmedia.com)

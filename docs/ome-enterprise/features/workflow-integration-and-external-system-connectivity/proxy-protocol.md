@@ -41,7 +41,7 @@ When `HAProxyProtocol` is enabled, `SignedPolicy` validates the Client Address f
 
 :::info
 
-Detailed User Guide: [https://ovenmedialabs.com/docs/ome/access-control/signedpolicy](https://ovenmedialabs.com/docs/ome/access-control/signedpolicy)
+Detailed User Guide: [https://ovenmedia.com/docs/ome/access-control/signedpolicy](https://ovenmedia.com/docs/ome/access-control/signedpolicy)
 
 :::
 
@@ -83,7 +83,7 @@ When `HAProxyProtocol` is enabled, `AdmissionWebhooks` sets the Client Address f
 
 :::info
 
-Detailed User Guide: [https://ovenmedialabs.com/docs/ome/access-control/admission-webhooks](https://ovenmedialabs.com/docs/ome/access-control/admission-webhooks)
+Detailed User Guide: [https://ovenmedia.com/docs/ome/access-control/admission-webhooks](https://ovenmedia.com/docs/ome/access-control/admission-webhooks)
 
 :::
 

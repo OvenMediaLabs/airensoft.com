@@ -34,6 +34,6 @@ If you use [DoveRunner](https://doverunner.com/), formerly PallyCon, OvenMediaEn
 
 With any other DRM provider, you enter the key material the provider issues to you: the content key, its key ID, the initialization vector and the protection system headers for the DRM systems you want to offer. See [OvenMediaEngine Configuration for DRM](ovenmediaengine-configuration-for-drm.md).
 
-To have the key management service of another DRM provider integrated the same way as DoveRunner, [contact us](https://ovenmedialabs.com/contact) and we will add support for it.
+To have the key management service of another DRM provider integrated the same way as DoveRunner, [contact us](https://ovenmedia.com/ome-consultation) and we will add support for it.
 
 Either way, the key can be rotated while the stream runs, so a viewer who obtained one key cannot keep decrypting the stream indefinitely.

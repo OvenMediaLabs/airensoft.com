@@ -231,7 +231,7 @@ To use this feature, configure `<PacketSilenceTimeoutMs>` under `<Providers><[Pr
 
 For **Pull-based Providers** such as RTSP and OVT, a similar functionality is already provided through the `noInputFailoverTimeoutMs` setting.
 
-* Reference: [https://ovenmedialabs.com/docs/ome/rest-api/v1/virtualhost/application/stream#create-stream-pull](https://ovenmedialabs.com/docs/ome/rest-api/v1/virtualhost/application/stream#create-stream-pull)
+* Reference: [https://ovenmedia.com/docs/ome/rest-api/v1/virtualhost/application/stream#create-stream-pull](https://ovenmedia.com/docs/ome/rest-api/v1/virtualhost/application/stream#create-stream-pull)
 
 :::
 

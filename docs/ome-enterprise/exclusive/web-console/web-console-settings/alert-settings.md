@@ -13,7 +13,7 @@ Alert is a module that can detect anomalies and patterns of interest in a stream
 On the Alert Settings, you can view and edit the details of the set Alert.
 
 * `Url`: The HTTP Server will receive the notification. HTTP and HTTPS are available.
-* `Secret Key`: The secret key used when encrypting with HMAC-SHA1. For more information, please see [Security](https://ovenmedialabs.com/docs/ome/alert#security).
+* `Secret Key`: The secret key used when encrypting with HMAC-SHA1. For more information, please see [Security](https://ovenmedia.com/docs/ome/alert#security).
 * `Timeout`: The time (in milliseconds) to wait for a response after a request.
 
 ## Rules Settings
@@ -53,7 +53,7 @@ Before applying the settings, a popup will display the changes in the file for r
 
 :::info
 
-Detailed Guide: [https://ovenmedialabs.com/docs/ome/alert](https://ovenmedialabs.com/docs/ome/alert)
+Detailed Guide: [https://ovenmedia.com/docs/ome/alert](https://ovenmedia.com/docs/ome/alert)
 
 :::
 

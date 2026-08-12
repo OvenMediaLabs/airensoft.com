@@ -34,7 +34,7 @@ Explain the Output Profiles in the image above, you can see that the Encode cont
 
 :::info
 
-Detailed Guide: [https://ovenmedialabs.com/docs/ome/thumbnail](https://ovenmedialabs.com/docs/ome/thumbnail)
+Detailed Guide: [https://ovenmedia.com/docs/ome/thumbnail](https://ovenmedia.com/docs/ome/thumbnail)
 
 :::
 

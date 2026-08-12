@@ -1,7 +1,7 @@
 # `docs-enterprise/` — OvenMediaEngine Enterprise docs source
 
 This folder holds the **MDX source** for the OvenMediaEngine Enterprise user
-guide published at <https://ovenmedialabs.com/docs/ome-enterprise/>.
+guide published at <https://ovenmedia.com/docs/ome-enterprise/>.
 
 ## Shared pages: single-sourced from the open-source manual (`dup:`)
 

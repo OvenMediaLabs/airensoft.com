@@ -17,7 +17,7 @@ Additionally, you can select Virtual Host and Application in the Application sec
 
 :::info
 
-Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/rtmp](https://ovenmedialabs.com/docs/ome/live-source/rtmp)
+Detailed Guide: [https://ovenmedia.com/docs/ome/live-source/rtmp](https://ovenmedia.com/docs/ome/live-source/rtmp)
 
 :::
 
@@ -37,7 +37,7 @@ Additionally, you can select Virtual Host and Application in the Application sec
 
 :::info
 
-Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/webrtc](https://ovenmedialabs.com/docs/ome/live-source/webrtc)
+Detailed Guide: [https://ovenmedia.com/docs/ome/live-source/webrtc](https://ovenmedia.com/docs/ome/live-source/webrtc)
 
 :::
 
@@ -53,7 +53,7 @@ Additionally, SRT uses the MPEG-TS format when transmitting streams, which allow
 
 :::info
 
-Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/srt](https://ovenmedialabs.com/docs/ome/live-source/srt)
+Detailed Guide: [https://ovenmedia.com/docs/ome/live-source/srt](https://ovenmedia.com/docs/ome/live-source/srt)
 
 :::
 
@@ -69,7 +69,7 @@ Additionally, you can select Virtual Host and Application in the Application sec
 
 :::info
 
-Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/mpeg-2-ts-beta](https://ovenmedialabs.com/docs/ome/live-source/mpeg-2-ts-beta)
+Detailed Guide: [https://ovenmedia.com/docs/ome/live-source/mpeg-2-ts-beta](https://ovenmedia.com/docs/ome/live-source/mpeg-2-ts-beta)
 
 :::
 
@@ -86,7 +86,7 @@ On the Scheduled Channel in the Live Source Settings, you can view whether Sched
 
 :::info
 
-Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/scheduled-channel](https://ovenmedialabs.com/docs/ome/live-source/scheduled-channel)
+Detailed Guide: [https://ovenmedia.com/docs/ome/live-source/scheduled-channel](https://ovenmedia.com/docs/ome/live-source/scheduled-channel)
 
 :::
 
@@ -102,7 +102,7 @@ On the Multiplex Channel in the Live Source Settings, you can check whether Mult
 
 :::info
 
-Detailed Guide: [https://ovenmedialabs.com/docs/ome/live-source/multiplex-channel](https://ovenmedialabs.com/docs/ome/live-source/multiplex-channel)
+Detailed Guide: [https://ovenmedia.com/docs/ome/live-source/multiplex-channel](https://ovenmedia.com/docs/ome/live-source/multiplex-channel)
 
 :::
 
