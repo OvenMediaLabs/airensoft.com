@@ -2260,7 +2260,15 @@ html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_']
 }
 
 @media (max-width: 991px) {
-  /* Default: icon-only input styled like the PC search bar. */
+  /* The plugin sets margin-left:16px on .searchBarContainer for desktop layout.
+   * On mobile the wrapper is tight so remove that gap. */
+  [class*='searchBarContainer'] {
+    margin-left: 0 !important;
+  }
+
+  /* Default: icon-only input. Transition on width drives both open and close:
+   * input grows → intermediate containers auto-resize → wrapper auto-grows →
+   * ms-auto shrinks → right edge stays fixed (expands leftward). */
   .navbar__search-input {
     width: 2.5rem;
     padding-right: 0.5rem;
@@ -2271,6 +2279,7 @@ html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_']
     border: 1px solid rgba(255, 255, 255, 0.27) !important;
     color: var(--text-sub);
     opacity: 0.7;
+    transition: opacity 0.2s, width 0.22s ease;
   }
   .navbar__search-input:hover {
     --ifm-navbar-search-input-background-color: rgba(255, 255, 255, 0.14);
@@ -2287,27 +2296,61 @@ html.plugin-blog.blog-post-page .theme-blog-footer-edit-meta-row [class*='tag_']
     cursor: text;
   }
 
-  /* While the search input is focused, transform the navbar into a
-   * dedicated search row. */
-  .navbar-custom:has(.navbar__search-input:focus) .navbar-brand,
-  .navbar-custom:has(.navbar__search-input:focus) .navbar-toggler {
+  /* Brand hides on focus. Phone (≤767px) overrides to keep brand visible. */
+  .navbar-custom:has(.navbar__search-input:focus) .navbar-brand {
     display: none;
   }
-  .navbar-custom:has(.navbar__search-input:focus) .mobile-search-wrapper {
-    flex: 1;
-    margin: 0 !important;
+  /* Toggler: X animation, non-clickable. Invisible cancel overlay intercepts
+   * clicks so Bootstrap collapse never fires. */
+  .navbar-custom:has(.navbar__search-input:focus) .navbar-toggler {
+    pointer-events: none;
   }
-  .navbar-custom:has(.navbar__search-input:focus) .navbar__search,
-  .navbar-custom:has(.navbar__search-input:focus) [class*='searchBarContainer'] {
-    flex: 1;
-    margin-left: 0;
+  .navbar-custom:has(.navbar__search-input:focus) .navbar-toggler .toggler-icon-bar:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .navbar-custom:has(.navbar__search-input:focus) .navbar-toggler .toggler-icon-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .navbar-custom:has(.navbar__search-input:focus) .navbar-toggler .toggler-icon-bar:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+  }
+  /* Wrapper is the containing block for the absolute cancel overlay */
+  .navbar-custom:has(.navbar__search-input:focus) .mobile-search-wrapper {
+    position: relative;
+  }
+  /* Transparent cancel button over the toggler: right:-35px spans the me-2 gap
+   * (8px) + toggler width (24px) + 3px margin. z-index:10 wins clicks. */
+  .navbar-custom:has(.navbar__search-input:focus) .mobile-search-cancel {
+    display: flex;
+    position: absolute;
+    right: -35px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 30px;
+    opacity: 0;
+    z-index: 10;
+    margin: 0;
   }
   .navbar-custom:has(.navbar__search-input:focus) .navbar__search-input {
-    width: 100%;
+    width: min(10rem, calc(100vw - 7.5rem));
     cursor: text;
   }
-  .navbar-custom:has(.navbar__search-input:focus) .mobile-search-cancel {
-    display: inline-flex;
+}
+
+/* Phone (≤767px): brand stays visible; wrapper keeps ms-auto (right-anchored)
+ * so the bar expands to the left. Width calc accounts for visible brand. */
+@media (max-width: 767px) {
+  /* Override tablet's brand:none — keep brand visible */
+  .navbar-custom:has(.navbar__search-input:focus) .navbar-brand {
+    display: flex;
+  }
+  /* 60vw covers proportional brand (≈40vw) + overhead; cap at 10rem (desktop size) */
+  .navbar-custom:has(.navbar__search-input:focus) .navbar__search-input {
+    width: min(10rem, calc(60vw - 7.6rem));
+    cursor: text;
   }
 }
 
