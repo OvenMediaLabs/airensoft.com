@@ -1,5 +1,18 @@
 [
   {
+    "slug": "your-live-stream-is-up-that-doesnt-mean-its-healthy",
+    "permalink": "/blog/your-live-stream-is-up-that-doesnt-mean-its-healthy",
+    "title": "Your Live Stream Is Up. That Doesn't Mean It's Healthy",
+    "description": "An OvenMediaEngine dashboard, built on Prometheus and Grafana, that shows whether the problem is the source, the server, or one viewer.",
+    "tags": [
+      "ome",
+      "tutorial"
+    ],
+    "date": "2026-08-19",
+    "dir": "2026-08-19-your-live-stream-is-up-that-doesnt-mean-its-healthy",
+    "image": "hero.png"
+  },
+  {
     "slug": "from-flame-to-honey-badger",
     "permalink": "/blog/from-flame-to-honey-badger",
     "title": "From Flame to Honey Badger: From AirenSoft to OvenMedia Labs",
