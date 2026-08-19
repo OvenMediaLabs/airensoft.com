@@ -356,6 +356,10 @@ const config: Config = {
     // and `docusaurus start`, so shared pages are filled for the
     // published site, CI checks, and local preview alike.
     './plugins/gen-enterprise-shared-plugin.js',
+    // Click an image to magnify it in place. The dashboard screenshots in the
+    // blog are 1200-3100px wide and render at about a quarter of that in the
+    // content column, which leaves panel labels unreadable without a zoom.
+    'docusaurus-plugin-image-zoom',
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -454,6 +458,11 @@ const config: Config = {
   ],
 
   themeConfig: {
+    zoom: {
+      selector: '.markdown img',
+      background: {light: 'rgba(255, 255, 255, 0.95)', dark: 'rgba(2, 12, 27, 0.95)'},
+      config: {margin: 24},
+    },
     image: 'images/og/og_oml.png',
     mermaid: {
       // `neutral` theme — monochrome, modern, no lavender/yellow.
