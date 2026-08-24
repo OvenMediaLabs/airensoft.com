@@ -367,3 +367,28 @@ If the OvenMediaEngine Enterprise log shows output similar to the example below,
 ```
 [11-03 21:29:02.028] D [SW-Push:2415407] FFmpegWriter | writer.cpp:523  | SCTE-35 Event: SpliceCommandType=5, ID=2025, OutOfNetwork=true, Timestamp=372370 ms, Duration=30000 ms, AutoReturn=false
 ```
+
+## Keyframe on Cue
+
+HLS and LL-HLS segments can only be split at keyframes. When an ad marker arrives in the middle of a GOP, the segment carrying the marker ends at the next keyframe, so the actual split can land up to one keyframe interval after the requested position and the ad break plays shorter than the duration it advertises.
+
+When `KeyframeOnCue` is enabled, every video encoder inserts a keyframe exactly at the marker position, so the segment splits right where the marker was requested and the break length matches the advertised duration. This applies to both CUE and SCTE-35 events. Enable it when a downstream ad stitcher replaces the break content, so the replaced range starts exactly at the marker.
+
+In `Server.xml`, configure `<Application><OutputProfiles><MediaOptions>` as below:
+
+```xml
+<OutputProfiles>
+  <MediaOptions>
+    <KeyframeOnCue>true</KeyframeOnCue>
+  </MediaOptions>
+  ...
+</OutputProfiles>
+```
+
+<table><thead><tr><th width="175">Element</th><th width="135">Value</th><th>Description</th></tr></thead><tbody><tr><td>KeyframeOnCue</td><td>true | false<br />(default: false)</td><td>Inserts a keyframe at the position of every CUE and SCTE-35 marker, on every encoded video rendition of the application.</td></tr></tbody></table>
+
+:::info
+
+The inserted keyframe is an extra one; the configured keyframe interval keeps its original cadence. It applies to encoded video renditions only. A bypass (passthrough) video keeps the keyframes of the source, so its splits still follow the source's own keyframes.
+
+:::
