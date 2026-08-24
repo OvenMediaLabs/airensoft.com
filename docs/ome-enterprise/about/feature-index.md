@@ -124,6 +124,7 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.17.3.0**: `onTextData` / `onCuePoint` AMF0 event handling in RTMP Provider & RTMP Push Publisher
 - **0.18.2.1**: Enhanced RTMP (E-RTMP) support
 - **0.19.0.0**: Metadata processing in Enhanced RTMP (E-RTMP)
+- **0.21.0.0**: AV1 codec ingest over Enhanced RTMP (E-RTMP), including `AV1CodecConfigurationRecord` parsing and in-band OBU fallback for FFmpeg libaom sources
 
 ### SRT Input
 
@@ -164,6 +165,8 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.18.0.0**: `#EXT-X-CUE-OUT` / `#EXT-X-CUE-IN` tags; `CHARACTERISTICS` attribute in `#EXT-X-MEDIA`
 - **0.18.1.0**: SCTE-35 event and `#EXT-X-DATERANGE` tag
 - **0.20.0.0**: Subtitle support
+- **0.21.0.0**: AV1 codec support in LL-HLS fMP4 packaging (`av01`/`av1C` ISOBMFF boxes); AV1 is not available in TS-based HLS
+- **0.21.0.0**: Discontinuity signaling (`EXT-X-DISCONTINUITY`, `EXT-X-DISCONTINUITY-SEQUENCE`, versioned `EXT-X-MAP`) for mid-stream track configuration changes (e.g. Scheduled Channel item switches)
 
 ### Push Publishing
 
@@ -178,6 +181,7 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.18.0.0**: `#EXT-X-PROGRAM-DATE-TIME` tag
 - **0.19.1.1**: Dump feature for Legacy HLS
 - **0.20.4.0**: HLS subtitles
+- **0.21.0.0**: Discontinuity signaling (`EXT-X-DISCONTINUITY`, `EXT-X-DISCONTINUITY-SEQUENCE`) for mid-stream track configuration changes (e.g. Scheduled Channel item switches)
 
 ### SRT Publisher
 
@@ -215,6 +219,7 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.20.4.0**: `ExtraOptions` video encoding settings for the x264 encoder
 - **0.21.0.0**: NETINT Quadra VPU support
 - **0.21.0.0**: AV1 hardware encoding/decoding on NVIDIA; AV1 hardware encoding on NETINT Quadra
+- **0.21.0.0**: Experimental `CUDAStreamPriority` option under `<Modules>` in Server.xml to set NVIDIA GPU CUDA stream scheduling priority (`lo` / `hi`)
 
 ### Realtime Speech-to-Text
 
@@ -234,6 +239,8 @@ listed here have no version-gated options beyond their minimum version above.
 
 - **0.16.5.0**: SAMPLE-AES-CTR mode encryption for LL-HLS DRM
 - **0.21.0.0**: HEVC (H.265) subsample encryption for LL-HLS DRM
+- **0.21.0.0**: Microsoft PlayReady DRM support for LL-HLS streams (alongside Widevine and FairPlay); provisioned via CPIX/SPEKE KMS (DoveRunner/PallyCon) or manual DRM Info file
+- **0.21.0.0**: LLHLS DRM key rotation — content keys are fetched per period from a CPIX KMS and rotated automatically without inserting a discontinuity (`<KeyRotationIntervalSec>`)
 
 ### Origin Redundancy
 
@@ -257,6 +264,7 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.20.1.0**: Anomaly detection
 - **0.20.2.0**: `TranscodeStatus` alert rule
 - **0.20.8.0**: `TrackPrepareTimeout` anomaly rule
+- **0.21.0.0**: Alert notification payloads include a `serverInfo` block (server ID, name, hostname, IP addresses) to identify the source server in multi-instance deployments
 
 ### CDN Cache Control
 
@@ -297,3 +305,7 @@ listed here have no version-gated options beyond their minimum version above.
 
 - **0.18.2.1**: `/v2/stats/*` statistics APIs
 - **0.20.0.0**: Supported-codecs query API (`/v2` internals)
+
+### Image Overlay
+
+- **0.21.0.0**: Image overlay composition support for the NETINT Quadra VPU hardware encoder (zero-copy RGBA alpha-blend on the 2D engine)
