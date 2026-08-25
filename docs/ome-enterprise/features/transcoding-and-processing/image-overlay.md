@@ -154,8 +154,8 @@ Content-Type: application/json
 
 
 ```json
-<strong>{
-</strong>    "message": "OK",
+{
+    "message": "OK",
     "statusCode": 200
 }
 ```
@@ -177,8 +177,8 @@ Content-Type: application/json
 
 
 ```json
-<strong>{
-</strong>    "message": "Could not parse json context",
+{
+    "message": "Could not parse json context",
     "statusCode": 400
 }
 ```
@@ -186,8 +186,8 @@ Content-Type: application/json
 
 
 ```json
-<strong>{
-</strong>    "message": "No required parameters",
+{
+    "message": "No required parameters",
     "statusCode": 400
 }
 ```
@@ -209,8 +209,8 @@ Content-Type: application/json
 
 
 ```json
-<strong>{
-</strong>    "message": "Could not found output stream",
+{
+    "message": "Could not found output stream",
     "statusCode": 404
 }
 ```
@@ -218,8 +218,8 @@ Content-Type: application/json
 
 
 ```json
-<strong>{
-</strong>    "message": "Could not found track by variant",
+{
+    "message": "Could not found track by variant",
     "statusCode": 404
 }
 ```
@@ -267,8 +267,8 @@ Content-Type: application/json
 
 
 ```json
-<strong>{
-</strong>    "message": "OK",
+{
+    "message": "OK",
     "statusCode": 200
 }
 ```
@@ -290,8 +290,8 @@ Content-Type: application/json
 
 
 ```json
-<strong>{
-</strong>    "message": "Could not parse json context",
+{
+    "message": "Could not parse json context",
     "statusCode": 400
 }
 ```
@@ -299,8 +299,8 @@ Content-Type: application/json
 
 
 ```json
-<strong>{
-</strong>    "message": "No required parameters",
+{
+    "message": "No required parameters",
     "statusCode": 400
 }
 ```
@@ -322,8 +322,8 @@ Content-Type: application/json
 
 
 ```json
-<strong>{
-</strong>    "message": "Could not found output stream",
+{
+    "message": "Could not found output stream",
     "statusCode": 404
 }
 ```
@@ -331,8 +331,8 @@ Content-Type: application/json
 
 
 ```json
-<strong>{
-</strong>    "message": "Could not found track by variant",
+{
+    "message": "Could not found track by variant",
     "statusCode": 404
 }
 ```
