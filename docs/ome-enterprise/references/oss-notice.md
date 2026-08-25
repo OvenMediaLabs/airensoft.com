@@ -127,3 +127,10 @@ Used to run the Whisper speech recognition model, converting audio tracks to tex
 
 * **Repo**: [https://github.com/ggml-org/whisper.cpp](https://github.com/ggml-org/whisper.cpp)
 * **License**: MIT license ([https://github.com/ggml-org/whisper.cpp/blob/master/LICENSE](https://github.com/ggml-org/whisper.cpp/blob/master/LICENSE))
+
+### Prometheus | 3.13.2
+
+Distributed unmodified as a separate executable, collecting and storing runtime metrics so the Web Console can show how a server behaved over time. Its upstream LICENSE and NOTICE files are installed with it, in the `prometheus` directory of the installation.
+
+* **Repo**: [https://github.com/prometheus/prometheus](https://github.com/prometheus/prometheus)
+* **License**: Apache-2.0 license ([https://github.com/prometheus/prometheus/blob/main/LICENSE](https://github.com/prometheus/prometheus/blob/main/LICENSE))

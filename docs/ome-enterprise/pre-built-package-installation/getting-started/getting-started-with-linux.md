@@ -20,12 +20,24 @@ To install OvenMediaEngine Enterprise, you need one of the following Linux versi
 * RHEL 9
 * RHEL 8
 
+### Disk space
+
+Installing takes about **3.2GB** of free space: roughly 1.6GB under `/usr`, 750MB under `/opt`, and 800MB for the downloaded package, which the package manager caches under `/var`. On most systems these share one filesystem, so plan for the total.
+
+Upgrades need the same amount. The new files are unpacked before the old ones are removed, so the peak is close to a fresh install even though little is added.
+
+Set aside additional space for the metrics history collected by the [bundled Prometheus](../../features/operations-and-monitoring/bundled-prometheus.md) — up to 5GB by default, and adjustable.
+
+The installation script checks all of this before it starts and stops with a clear message if any filesystem is short.
+
 ## Location
 
 By default, OvenMediaEngine Enterprise is installed in the following locations:
 
 * **Binary\&Config**: `/usr/share/ovenmediaengine`
+* **Dependencies**: `/opt/ovenmediaengine`
 * **Log**: `/var/log/ovenmediaengine`
+* **Metrics data**: `/usr/share/ovenmediaengine/prometheus/data`
 
 ## Installation
 
@@ -160,6 +172,10 @@ sudo systemctl start ovenstudio
 # Start OvenMediaEngine Delivery Module
 sudo systemctl stop ovenmediaengine-delivery
 sudo systemctl start ovenmediaengine-delivery
+
+# Start the metrics collector (Prometheus)
+sudo systemctl stop ovenmediaengine-prometheus
+sudo systemctl start ovenmediaengine-prometheus
 ```
 
 ## Post-installation Configuration
@@ -189,6 +205,24 @@ In private network or VPN environments, setting the Host Address explicitly ensu
 
 :::
 
+### Metrics History
+
+The Web Console charts how your server has behaved over time using the [bundled Prometheus](../../features/operations-and-monitoring/bundled-prometheus.md), which starts with the other services and needs no setup — it reads the API port and access token from your `Server.xml`.
+
+Two defaults are worth reviewing: it keeps **30 days** of history and stops at **5GB** of disk, whichever comes first. On a busy server the size limit is reached first, which shortens the window you can chart. Adjust both in `/usr/share/ovenmediaengine/prometheus/system.env`:
+
+```bash
+OME_PROMETHEUS_RETENTION_TIME=30d
+OME_PROMETHEUS_RETENTION_SIZE=20GB
+```
+
+These are start-up flags, so restart the service to apply them:
+
+```bash
+sudo systemctl restart ovenmediaengine-prometheus
+```
+
+See [Bundled Prometheus](../../features/operations-and-monitoring/bundled-prometheus.md) for disk sizing per server size and the full list of settings.
 
 ## Ports used by default
 

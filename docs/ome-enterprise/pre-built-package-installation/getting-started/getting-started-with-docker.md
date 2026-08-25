@@ -15,7 +15,7 @@ To get started with OvenMediaEngine Enterprise using a Docker image, follow the 
 
 OvenMediaEngine Enterprise is installed in the following path within the Docker container.
 
-<table><thead><tr><th>Type</th><th>Path / Description</th><th data-hidden=""></th></tr></thead><tbody><tr><td>OvenMediaEngine</td><td>/opt/ovenmediaengine/bin</td><td></td></tr><tr><td>Web Console (OvenStudio)</td><td>/opt/ovenmediaengine/ovenstudio</td><td></td></tr><tr><td>Record Delivery</td><td>/opt/ovenmediaengine/delivery</td><td></td></tr><tr><td>Logs</td><td>/var/log/ovenmediaengine</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Type</th><th>Path / Description</th><th data-hidden=""></th></tr></thead><tbody><tr><td>OvenMediaEngine</td><td>/opt/ovenmediaengine/bin</td><td></td></tr><tr><td>Web Console (OvenStudio)</td><td>/opt/ovenmediaengine/ovenstudio</td><td></td></tr><tr><td>Record Delivery</td><td>/opt/ovenmediaengine/delivery</td><td></td></tr><tr><td>Metrics (Prometheus)</td><td>/opt/ovenmediaengine/prometheus<br/>Metrics history is stored under <code>data</code>. Its log goes to container output rather than a file.</td><td></td></tr><tr><td>Logs</td><td>/var/log/ovenmediaengine</td><td></td></tr></tbody></table>
 
 ### Install the OvenMediaEngine Enterprise
 
@@ -93,6 +93,8 @@ When running OvenMediaEngine Enterprise, you need to set the following two envir
 * `OME_LICENSE_KEY`: If an invalid License Key is entered, the container will not run.
 * `OME_HOST_IP`: Setting the IP of the host server ensures smooth streaming and Web Console usage.
 
+How much metrics history the Web Console can chart is set by `OME_PROMETHEUS_RETENTION_TIME` and `OME_PROMETHEUS_RETENTION_SIZE`, 30 days and 5GB by default, whichever is reached first. That history lives inside the container, so mount a volume for it as shown in *Save configurations and data* below — otherwise it is discarded whenever the container is recreated. See [Bundled Prometheus](../../features/operations-and-monitoring/bundled-prometheus.md) for sizing guidance.
+
 ### Enabling GPU access
 
 To use an NVIDIA GPU inside the container, you must first install the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) on the host (this requires the NVIDIA driver to already be installed on the host). Then, use the GPU-enabled image (`ovenmedialabs/ovenmediaengine-enterprise:latest-gpu`) and run OvenMediaEngine Enterprise with the `--gpus all` option as shown below. For more detailed configuration instructions, please refer to the [official documentation](https://docs.docker.com/engine/containers/gpu/).
@@ -121,7 +123,7 @@ docker rm ovenmediaengine
 
 ### Save configurations and data
 
-Any changes to the configurations within a running container or log data being recorded will be deleted when the container is stopped and removed. You can use [Bind mounts](https://docs.docker.com/engine/storage/bind-mounts/) to persistently save the configurations and data inside the container.
+Any changes to the configurations within a running container, log data being recorded, or metrics history collected by the bundled Prometheus will be deleted when the container is stopped and removed. You can use [Bind mounts](https://docs.docker.com/engine/storage/bind-mounts/) to persistently save the configurations and data inside the container.
 
 #### Create a host directory
 
@@ -132,6 +134,7 @@ sudo mkdir -p $OME_DOCKER_HOME/conf
 sudo mkdir -p $OME_DOCKER_HOME/logs
 sudo mkdir -p $OME_DOCKER_HOME/ovenstudio/data
 sudo mkdir -p $OME_DOCKER_HOME/delivery/conf
+sudo mkdir -p $OME_DOCKER_HOME/prometheus/data
 
 # Set permissions for the created directory if necessary.
 sudo chgrp -R docker $OME_DOCKER_HOME
@@ -161,6 +164,8 @@ docker cp ovenmediaengine:/opt/ovenmediaengine/delivery/delivery.db $OME_DOCKER_
 docker cp ovenmediaengine:/opt/ovenmediaengine/delivery/conf $OME_DOCKER_HOME/delivery/
 ```
 
+Prometheus has nothing to copy — its scrape configuration is generated at every start from your `Server.xml`, so only the `data` directory created above needs mounting, to keep the metrics history.
+
 
 ### Run using Bind mount
 
@@ -174,6 +179,7 @@ docker run -d --name=ovenmediaengine \
 -v $OME_DOCKER_HOME/ovenstudio/data:/opt/ovenmediaengine/ovenstudio/data \
 -v $OME_DOCKER_HOME/delivery/delivery.db:/opt/ovenmediaengine/delivery/delivery.db \
 -v $OME_DOCKER_HOME/delivery/conf:/opt/ovenmediaengine/delivery/conf \
+-v $OME_DOCKER_HOME/prometheus/data:/opt/ovenmediaengine/prometheus/data \
 -p 1935:1935 -p 8080:8080 -p 9999:9999/udp -p 9000:9000 -p 80:80 -p 3478:3478 -p 10000:10000/udp -p 10000:10000/tcp \
 ovenmediaengine-enterprise
 ```
@@ -219,6 +225,8 @@ When running OvenMediaEngine Enterprise, you need to set the following two envir
 * `OME_LICENSE_KEY`: If an invalid License Key is entered, the container will not run.
 * `OME_HOST_IP`: Setting the IP of the host server ensures smooth streaming and Web Console usage.
 
+How much metrics history the Web Console can chart is set by `OME_PROMETHEUS_RETENTION_TIME` and `OME_PROMETHEUS_RETENTION_SIZE`, 30 days and 5GB by default, whichever is reached first. That history lives inside the container, so mount a volume for it as shown in *Save configurations and data* below — otherwise it is discarded whenever the container is recreated. See [Bundled Prometheus](../../features/operations-and-monitoring/bundled-prometheus.md) for sizing guidance.
+
 ### Enabling GPU access
 
 To use an NVIDIA GPU inside the container, you must first install the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) on the host (this requires the NVIDIA driver to already be installed on the host). Then, use the GPU-enabled image (`ovenmedialabs/ovenmediaengine-enterprise:latest-gpu`) and add a `deploy` section to the `docker-compose.yaml` file as shown below. For more detailed configuration instructions, please refer to the [official documentation](https://docs.docker.com/compose/how-tos/gpu-support/).
@@ -262,7 +270,7 @@ docker compose down
 
 ### Save configurations and data
 
-Any changes to the configurations within a running container or log data being recorded will be deleted when the container is stopped and removed. You can use [Bind mounts](https://docs.docker.com/engine/storage/bind-mounts/) to persistently save the configurations and data inside the container.
+Any changes to the configurations within a running container, log data being recorded, or metrics history collected by the bundled Prometheus will be deleted when the container is stopped and removed. You can use [Bind mounts](https://docs.docker.com/engine/storage/bind-mounts/) to persistently save the configurations and data inside the container.
 
 #### Create a host directory
 
@@ -273,6 +281,7 @@ sudo mkdir -p $OME_DOCKER_HOME/conf
 sudo mkdir -p $OME_DOCKER_HOME/logs
 sudo mkdir -p $OME_DOCKER_HOME/ovenstudio/data
 sudo mkdir -p $OME_DOCKER_HOME/delivery/conf
+sudo mkdir -p $OME_DOCKER_HOME/prometheus/data
 
 # Set permissions for the created directory if necessary.
 sudo chgrp -R docker $OME_DOCKER_HOME
@@ -302,6 +311,8 @@ docker cp ovenmediaengine:/opt/ovenmediaengine/delivery/delivery.db $OME_DOCKER_
 docker cp ovenmediaengine:/opt/ovenmediaengine/delivery/conf $OME_DOCKER_HOME/delivery/
 ```
 
+Prometheus has nothing to copy — its scrape configuration is generated at every start from your `Server.xml`, so only the `data` directory created above needs mounting, to keep the metrics history.
+
 
 ### Run Docker Compose using bind mounts
 
@@ -330,6 +341,7 @@ services:
       - $OME_DOCKER_HOME/ovenstudio/data:/opt/ovenmediaengine/ovenstudio/data
       - $OME_DOCKER_HOME/delivery/delivery.db:/opt/ovenmediaengine/delivery/delivery.db
       - $OME_DOCKER_HOME/delivery/conf:/opt/ovenmediaengine/delivery/conf
+      - $OME_DOCKER_HOME/prometheus/data:/opt/ovenmediaengine/prometheus/data
 ```
 
 ```sh
