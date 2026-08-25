@@ -187,8 +187,11 @@ Starting with OvenMediaEngine Enterprise 0.20.0.0-1, you can insert SCTE-35 even
 
 ### Behavior Rule
 
-1. When an `OUT` event is received, an `IN` is automatically scheduled after the specified `duration` (ms) elapses.
-2. If an `IN` is inserted before the duration expires, the previously auto-inserted `IN` is removed.
+These rules apply to markers inserted through the API. An SCTE-35 event that arrives in an input stream is forwarded with the return point its sender chose.
+
+1. When an `OUT` event sets `autoReturn` with a `duration`, an `IN` is inserted automatically at the end of that duration.
+2. Sending an `IN` before then replaces the automatic one, so the break ends where you send it.
+3. Without `autoReturn`, no `IN` is inserted on your behalf, because an explicit splice-in is expected to follow. Send the `IN` yourself to end the break.
 
 
 :::warning
@@ -224,7 +227,8 @@ Credentials for HTTP Basic Authentication created with <AccessToken>
     {
       "id": {{randomId}}, // required, 32bits unsigned number, auto filled if not present
       "type": "out", // required, out | in
-      "duration": 10000 // milliseconds, only available when cueType is out
+      "duration": 10000, // milliseconds, only available when cueType is out
+      "autoReturn": false // optional, fixes the return at the end of the duration
     }
   ]
 }
@@ -256,7 +260,8 @@ Credentials for HTTP Basic Authentication created with <AccessToken>
         "spliceCommand": "spliceInsert",
         "id": {{randomId}}, // required, 32bits unsigned number, auto filled if not present
         "type": "out", // required, out | in
-        "duration": 30000 // milliseconds, only available when cueType is out
+        "duration": 30000, // milliseconds, only available when cueType is out
+        "autoReturn": false // optional, fixes the return at the end of the duration
       }
     ]
   }
@@ -358,7 +363,7 @@ Below is an LL-HLS playlist sample after injecting an SCTE-35 event:
 #EXT-X-DATERANGE:ID="123",START-DATE="2025-01-01T09:15:00+00:00",SCTE35-IN=0xF
 ```
 
-<table><thead><tr><th width="175">Element</th><th>Description</th></tr></thead><tbody><tr><td>`SCTE35-OUT`</td><td>SCTE-35 payload indicating the start of the ad break (content → ad).</td></tr><tr><td>`SCTE35-IN`</td><td>SCTE-35 payload indicating the end of the ad break (ad → content).</td></tr><tr><td>`PLANNED-DURATION`</td><td>Ad break duration in seconds. When used with `OUT`, an IN is auto-inserted after this time.</td></tr><tr><td>`ID`</td><td><p>An identifier that ties the OUT/IN to the same break.</p><p>*  32-bit unsigned integer.</p></td></tr><tr><td>`START-DATE`</td><td>Ad start timestamp (ISO-8601).<br />* yyyy-mm-ddThh:mm:ss±UTC</td></tr></tbody></table>
+<table><thead><tr><th width="175">Element</th><th>Description</th></tr></thead><tbody><tr><td>`SCTE35-OUT`</td><td>SCTE-35 payload indicating the start of the ad break (content → ad).</td></tr><tr><td>`SCTE35-IN`</td><td>SCTE-35 payload indicating the end of the ad break (ad → content).</td></tr><tr><td>`PLANNED-DURATION`</td><td>Ad break duration in seconds. When `OUT` sets `autoReturn`, an IN is inserted at the end of this time.</td></tr><tr><td>`ID`</td><td><p>An identifier that ties the OUT/IN to the same break.</p><p>*  32-bit unsigned integer.</p></td></tr><tr><td>`START-DATE`</td><td>Ad start timestamp (ISO-8601).<br />* yyyy-mm-ddThh:mm:ss±UTC</td></tr></tbody></table>
 
 #### For SRT Push
 
@@ -366,6 +371,21 @@ If the OvenMediaEngine Enterprise log shows output similar to the example below,
 
 ```
 [11-03 21:29:02.028] D [SW-Push:2415407] FFmpegWriter | writer.cpp:523  | SCTE-35 Event: SpliceCommandType=5, ID=2025, OutOfNetwork=true, Timestamp=372370 ms, Duration=30000 ms, AutoReturn=false
+```
+
+## Segmentation Mode
+
+Every track has to mark the break at the same place. In `duration` segmentation each track decides its own boundaries, so the same marker can land on a different segment on each of them.
+
+Set `<SegmentationMode>` to `synced` on the streams that carry ad breaks:
+
+```xml
+<Publishers>
+  <LLHLS>
+    <SegmentationMode>synced</SegmentationMode>
+    ...
+  </LLHLS>
+</Publishers>
 ```
 
 ## Keyframe on Cue
