@@ -45,6 +45,7 @@ Credentials for HTTP Basic Authentication created with <AccessToken>
 ```json
 {
   "eventFormat": "cue",
+  "startOffset": 0, // optional, milliseconds to delay the marker from the current position
   "events":[
     {
       "cueType": "out", // out | in
@@ -90,6 +91,7 @@ Credentials for HTTP Basic Authentication created with <AccessToken>
   },
   {
     "eventFormat": "cue",
+    "startOffset": 0, // optional, milliseconds to delay the marker from the current position
     "events":[
       {
         "cueType": "out", // out | in
@@ -223,11 +225,12 @@ Credentials for HTTP Basic Authentication created with <AccessToken>
 ```json
 {
   "eventFormat": "scte35",
+  "startOffset": 0, // optional, milliseconds to delay the marker from the current position
   "events":[
     {
       "id": {{randomId}}, // required, 32bits unsigned number, auto filled if not present
       "type": "out", // required, out | in
-      "duration": 10000, // milliseconds, only available when cueType is out
+      "duration": 10000, // milliseconds, only available when type is out
       "autoReturn": false // optional, fixes the return at the end of the duration
     }
   ]
@@ -255,12 +258,13 @@ Credentials for HTTP Basic Authentication created with <AccessToken>
 [
   {
     "eventFormat": "scte35",
+    "startOffset": 0, // optional, milliseconds to delay the marker from the current position
     "events":[
       {
         "spliceCommand": "spliceInsert",
         "id": {{randomId}}, // required, 32bits unsigned number, auto filled if not present
         "type": "out", // required, out | in
-        "duration": 30000, // milliseconds, only available when cueType is out
+        "duration": 30000, // milliseconds, only available when type is out
         "autoReturn": false // optional, fixes the return at the end of the duration
       }
     ]
@@ -372,6 +376,12 @@ If the OvenMediaEngine Enterprise log shows output similar to the example below,
 ```
 [11-03 21:29:02.028] D [SW-Push:2415407] FFmpegWriter | writer.cpp:523  | SCTE-35 Event: SpliceCommandType=5, ID=2025, OutOfNetwork=true, Timestamp=372370 ms, Duration=30000 ms, AutoReturn=false
 ```
+
+## Scheduling a Marker Ahead
+
+`startOffset` delays a marker by that many milliseconds from the position the stream has reached when the request arrives. Omitting it, or sending `0`, places the marker at that position. Negative values are not allowed, and the maximum is 300000.
+
+A scheduled marker holds the break sequence until it is reached. Between the request and that position, no other `OUT` or `IN` is accepted, because a break must be opened and closed in order. Keep the offset only as long as the moment you are aiming at.
 
 ## Segmentation Mode
 
