@@ -95,6 +95,7 @@ to upgrade to) supports the feature or option you need.
 | Server-Side Ad Insertion (SSAI) <Ent /> | Workflow Integration | 0.21.1.0 | [View](../features/workflow-integration-and-external-system-connectivity/server-side-ad-insertion.md) |
 | Fault Injection <Ent /> | Tests | 0.20.2.0 | [View](../features/tests/fault-injection.md) |
 | [REST API v2 (Internals & Statistics)](#rest-api-v2) <Ent /> | REST API | 0.18.2.1 | [View](../features/rest-api/v2/README.md) |
+| AdmissionFile <Ent /> | Access Control | 0.21.1.0 | TODO |
 
 ## Version-gated capabilities
 
@@ -118,6 +119,8 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.20.6.1**: Quick ABR Setup (configure ABR via predefined video encoding presets)
 - **0.20.7.1**: Quick SSL Configuration
 - **0.20.8.1**: Recording Files (Browse, Download, Delete)
+- **0.21.1.0**: Metrics section with a real-time dashboard (service health, throughput, active streams) and per-stream Stream Quality views powered by the bundled Prometheus instance
+- **0.21.1.0**: Download Logs dialog lists all rotated log files (current and past) per component, with individual or bulk download
 
 ### RTMP
 
@@ -158,6 +161,7 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.18.0.0**: Multiple audio track support
 - **0.18.1.0**: `ErrorToleranceDurationMs` option
 - **0.20.5.1**: `forwardData` option on `<Item>` (forward live-input data)
+- **0.21.1.0**: `MaxFallbackDurationMs` option to automatically remove the channel after extended fallback; `PreserveRemovedScheduleFile` to rename removed schedule files with a timestamp instead of deleting them
 
 ### Low-Latency HLS
 
@@ -266,6 +270,7 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.20.2.0**: `TranscodeStatus` alert rule
 - **0.20.8.0**: `TrackPrepareTimeout` anomaly rule
 - **0.21.0.0**: Alert notification payloads include a `serverInfo` block (server ID, name, hostname, IP addresses) to identify the source server in multi-instance deployments
+- **0.21.1.0**: Ingress stream alerts include a `connection` object reporting active transport, protocol, and local/remote addresses for WebRTC, RTMP, SRT, and MPEG-TS ingest streams
 
 ### CDN Cache Control
 
@@ -293,10 +298,12 @@ listed here have no version-gated options beyond their minimum version above.
 - **0.18.0.0**: `#EXT-X-CUE-OUT` / `#EXT-X-CUE-IN` tags in LL-HLS
 - **0.18.1.0**: SCTE-35 event and `#EXT-X-DATERANGE` tag in LL-HLS; AWS MediaTailor ad-insertion compatibility
 - **0.20.0.0**: SCTE-35 (splice insert) event insertion during SRT push
+- **0.21.1.0**: `KeyframeOnCue` `<MediaOptions>` option forces a keyframe at each CUE/SCTE-35 marker position for frame-accurate segment cuts
 
 ### SEI Insertion
 
 - **0.18.2.0**: Insert SEI events only at keyframes (`<Values><KeyframeOnly>`)
+- **0.21.1.0**: SEI type 1 (`pic_timing`) support — stamps a SMPTE timecode on every video picture, readable by any standard decoder without OvenMediaEngine-specific parsing
 
 ### Event Forwarding Exclusions
 
@@ -306,7 +313,16 @@ listed here have no version-gated options beyond their minimum version above.
 
 - **0.18.2.1**: `/v2/stats/*` statistics APIs
 - **0.20.0.0**: Supported-codecs query API (`/v2` internals)
+- **0.21.1.0**: Stream response (`input`) includes a `connection` object with transport, protocol, and address details for each ingest stream
 
 ### Image Overlay
 
 - **0.21.0.0**: Image overlay composition support for the NETINT Quadra VPU hardware encoder (zero-copy RGBA alpha-blend on the 2D engine)
+
+### Server-Side Ad Insertion (SSAI)
+
+- **0.21.1.0**: `SsaiCompatibility` option for LL-HLS aligns segment boundaries across all tracks at ad marker positions for accurate ad stitching (e.g. AWS MediaTailor); `ForceAlignMarkerBoundary` sub-option also available independently
+
+### Send Event API
+
+- **0.21.1.0**: `startOffset` parameter on the `sendEvent` API schedules an event a fixed number of milliseconds ahead of the current stream position (max 300 000 ms); a request to a stream with no media yet answers 409
