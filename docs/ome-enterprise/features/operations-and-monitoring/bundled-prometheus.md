@@ -5,6 +5,10 @@ enterprise_only: true
 sidebar_position: 127
 ---
 
+:::note
+Prometheus is a trademark of The Linux Foundation. OvenMedia Labs is not affiliated with or endorsed by the Prometheus project.
+:::
+
 OvenMediaEngine Enterprise ships with its own Prometheus. It starts alongside the server, scrapes [`/v2/metrics`](openmetrics.md) every 15 seconds, and stores the result so the Web Console can chart how the server behaved over time rather than only what it is doing right now.
 
 Nothing needs to be configured for this to work. At every start the bundled instance reads the API endpoint and `<AccessToken>` out of the same `Server.xml` the server itself uses, so it keeps working after you change any of them — a restart is all it takes. It follows however you bind the API: plaintext, TLS, or both. The Web Console then reads from it automatically.

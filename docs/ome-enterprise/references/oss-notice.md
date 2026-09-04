@@ -132,5 +132,7 @@ Used to run the Whisper speech recognition model, converting audio tracks to tex
 
 Distributed unmodified as a separate executable, collecting and storing runtime metrics so the Web Console can show how a server behaved over time. Its upstream LICENSE and NOTICE files are installed with it, in the `prometheus` directory of the installation.
 
+Prometheus is a trademark of The Linux Foundation. OvenMedia Labs is not affiliated with or endorsed by the Prometheus project.
+
 * **Repo**: [https://github.com/prometheus/prometheus](https://github.com/prometheus/prometheus)
-* **License**: Apache-2.0 license ([https://github.com/prometheus/prometheus/blob/main/LICENSE](https://github.com/prometheus/prometheus/blob/main/LICENSE))
+* **License**: Apache-2.0 license ([https://github.com/prometheus/prometheus/blob/v3.13.2/LICENSE](https://github.com/prometheus/prometheus/blob/v3.13.2/LICENSE))
