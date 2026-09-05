@@ -99,7 +99,7 @@ X-OME-Signature: f871jd991jj1929jsjd91pqa0amm1
     "serverID": "b8e2f6a1-58f6-4451-b6f6-97f2b3ee4c39",
     "serverName": "MyEdge-01",
     "hostname": "ome-edge-01",
-    "ipAddresses": ["203.0.113.10", "192.168.0.220"]
+    "ipAddresses": ["203.0.113.10", "192.168.0.160"]
   },
   "sourceUri": "#default#app/stream",
   "messages": [
@@ -113,7 +113,16 @@ X-OME-Signature: f871jd991jj1929jsjd91pqa0amm1
     }
   ],
   "sourceInfo": {
+    "connection": {
+      "localAddress": "192.168.0.160",
+      "localPort": 1935,
+      "protocol": "TCP",
+      "remoteAddress": "192.168.0.220",
+      "remotePort": 10639,
+      "transport": "TCP"
+    },
     "createdTime": "2023-04-07T21:15:24.487+09:00",
+    "name": "stream",
     "sourceType": "Rtmp",
     "sourceUrl": "TCP://192.168.0.220:10639",
     "tracks": [
@@ -159,7 +168,7 @@ X-OME-Signature: f871jd991jj1929jsjd91pqa0amm1
 
 Here is a detailed explanation of each element of the JSON payload:
 
-<table><thead><tr><th width="156.5555419921875">Element</th><th>Description</th></tr></thead><tbody><tr><td>serverInfo</td><td><p>Information identifying the server that sent the notification. This is useful for distinguishing alerts when multiple OvenMediaEngine instances report to the same notification server.</p><ul><li>`serverID`: Unique ID of the server. It is generated when the server first starts and is persisted in the `Server.id` file in the configuration directory. The configuration directory must be writable for the ID to remain stable across restarts.</li><li>`serverName`: The value of `&#x3C;Server>&#x3C;Name>` in the configuration. Omitted if not set.</li><li>`hostname`: The OS hostname of the machine running OvenMediaEngine. On Kubernetes this is the pod name, and on Docker it is the container ID unless `--hostname` is specified. Omitted in the rare case that the hostname cannot be retrieved from the OS.</li><li>`ipAddresses`: IP addresses of the server, captured at server startup. The public IP addresses resolved from `&#x3C;StunServer>` (if configured) come first, followed by the local interface addresses (excluding loopback and IPv6 link-local addresses). Omitted when no address is available.</li></ul></td></tr><tr><td>messages</td><td>List of <a href="enhanced-alert.md#messages">Messages</a> detected by the <a href="enhanced-alert.md#rules">Rules</a>.</td></tr><tr><td>type</td><td>It represents the format of the JSON payload. The information of the JSON elements can vary depending on the value of the type.</td></tr><tr><td>sourceUri</td><td><p>URI information of the detected source.</p><ul><li>`INGRESS`: #&#x3C;vhost>#&#x3C;application>/&#x3C;input_stream></li><li>`EGRESS`: #&#x3C;vhost>#&#x3C;application>/&#x3C;output_stream></li><li>`ANOMALY`: #&#x3C;vhost>#&#x3C;application>/&#x3C;input_stream></li></ul></td></tr><tr><td>sourceInfo</td><td>Detailed information about the source at the time of detection. It is identical to the response of the REST API's source information query for the detected source.</td></tr><tr><td>parentSourceUri</td><td><p>It provides the URI information of the parent-level source associated with the detected source.</p><ul><li>`INGRESS`: #&#x3C;vhost>#&#x3C;application>/&#x3C;input_stream></li><li>`EGRESS`: #&#x3C;vhost>#&#x3C;application>/&#x3C;output_stream></li></ul></td></tr><tr><td>parentSourceInfo</td><td>Provides details of the parent-level source associated with the detected source. If detailed information is unavailable, this field helps trace the source through its parent connection.</td></tr></tbody></table>
+<table><thead><tr><th width="156.5555419921875">Element</th><th>Description</th></tr></thead><tbody><tr><td>serverInfo</td><td><p>Information identifying the server that sent the notification. This is useful for distinguishing alerts when multiple OvenMediaEngine instances report to the same notification server.</p><ul><li>`serverID`: Unique ID of the server. It is generated when the server first starts and is persisted in the `Server.id` file in the configuration directory. The configuration directory must be writable for the ID to remain stable across restarts.</li><li>`serverName`: The value of `&#x3C;Server>&#x3C;Name>` in the configuration. Omitted if not set.</li><li>`hostname`: The OS hostname of the machine running OvenMediaEngine. On Kubernetes this is the pod name, and on Docker it is the container ID unless `--hostname` is specified. Omitted in the rare case that the hostname cannot be retrieved from the OS.</li><li>`ipAddresses`: IP addresses of the server, captured at server startup. The public IP addresses resolved from `&#x3C;StunServer>` (if configured) come first, followed by the local interface addresses (excluding loopback and IPv6 link-local addresses). Omitted when no address is available.</li></ul></td></tr><tr><td>messages</td><td>List of <a href="enhanced-alert.md#messages">Messages</a> detected by the <a href="enhanced-alert.md#rules">Rules</a>.</td></tr><tr><td>type</td><td>It represents the format of the JSON payload. The information of the JSON elements can vary depending on the value of the type.</td></tr><tr><td>sourceUri</td><td><p>URI information of the detected source.</p><ul><li>`INGRESS`: #&#x3C;vhost>#&#x3C;application>/&#x3C;input_stream></li><li>`EGRESS`: #&#x3C;vhost>#&#x3C;application>/&#x3C;output_stream></li><li>`ANOMALY`: #&#x3C;vhost>#&#x3C;application>/&#x3C;input_stream></li></ul></td></tr><tr><td>sourceInfo</td><td>Detailed information about the source, captured when the notification is sent. It is the stream `name` plus the fields of the `input` object in the <a href="../rest-api/v1/virtual-host/application/stream/README.md#get-stream-info">Stream REST API</a> response, at the top level, so it also includes `connection`. For a WebRTC source, `connection` is present only after ICE has selected a candidate pair, so `INGRESS_STREAM_CREATED` normally does not have it yet, while notifications sent after ICE completes, starting with `INGRESS_STREAM_PREPARED`, do. A later ICE candidate pair switch changes the value returned by the REST API and is reflected in later notifications, but does not trigger a notification of its own.</td></tr><tr><td>parentSourceUri</td><td><p>It provides the URI information of the parent-level source associated with the detected source.</p><ul><li>`INGRESS`: #&#x3C;vhost>#&#x3C;application>/&#x3C;input_stream></li><li>`EGRESS`: #&#x3C;vhost>#&#x3C;application>/&#x3C;output_stream></li></ul></td></tr><tr><td>parentSourceInfo</td><td>Provides details of the parent-level source associated with the detected source. If detailed information is unavailable, this field helps trace the source through its parent connection. It has the same shape as `sourceInfo`, so it includes `connection` when the parent is a pushed ingress stream (WebRTC, RTMP, SRT, MPEG-TS); other source types do not report one.</td></tr></tbody></table>
 
 #### Messages
 
@@ -488,6 +497,14 @@ The following provides additional information when an Egress Stream creation fai
     }
   ],
   "parentSourceInfo": {
+    "connection": {
+      "localAddress": "192.168.0.160",
+      "localPort": 1935,
+      "protocol": "TCP",
+      "remoteAddress": "192.168.0.245",
+      "remotePort": 3805,
+      "transport": "TCP"
+    },
     "createdTime": "2025-12-15T11:55:50.029+09:00",
     "name": "stream1",
     "sourceType": "Rtmp",
@@ -720,6 +737,14 @@ The following provides additional information when an Egress Stream creation fai
     }
   ],
   "parentSourceInfo": {
+    "connection": {
+      "localAddress": "192.168.0.160",
+      "localPort": 1935,
+      "protocol": "TCP",
+      "remoteAddress": "192.168.0.245",
+      "remotePort": 3830,
+      "transport": "TCP"
+    },
     "createdTime": "2025-12-15T11:57:32.668+09:00",
     "name": "stream1",
     "sourceType": "Rtmp",
